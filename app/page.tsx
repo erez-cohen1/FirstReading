@@ -1,10 +1,13 @@
 import Image from "next/image";
+import { getKnessetData } from "./getKnessetDataCheck";
 
 export default function Home() {
+  console.log("hello");
   return (
     <main>
       <div>
         <h2>Welcome to the Product Jam Starter Kit</h2>
+        <button>get Data</button>
         <p>
           Feel free to look around, edit the source code and navigate to the
           demos.
