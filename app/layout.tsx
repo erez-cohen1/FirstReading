@@ -8,24 +8,24 @@ import VoteCount from "@/lib/components/votes";
 import LawCount from "@/lib/components/laws";
 
 export const metadata: Metadata = {
-  title: "Digital Product Jam Starter Kit",
+  title: "קריםה רםשונה. מה שקורה היום בכנסת",
   description:
-    "A starter kit for wiritng code in the Digital Product Jam course.",
+    "פלטפורמה למעקב םחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html>
+    <html dir="rtl" lang="he">
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
       <body>
         <Navbar />
-        {/* <div>{children}</div> */}
-        <VoteCount />
-        <LawCount />
+        <div>{children}</div>
         <Footer />
       </body>
     </html>
   );
 }
+
+//TODO - change the favicon
