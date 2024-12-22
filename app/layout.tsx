@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Navbar from "@/lib/components/Navbar";
 import Footer from "@/lib/components/Footer";
+import VoteCount from "@/lib/components/votes";
+import LawCount from "@/lib/components/laws";
 
 export const metadata: Metadata = {
   title: "Digital Product Jam Starter Kit",
@@ -19,7 +21,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <Navbar />
-        <div>{children}</div>
+        {/* <div>{children}</div> */}
+        <VoteCount />
+        <LawCount />
         <Footer />
       </body>
     </html>

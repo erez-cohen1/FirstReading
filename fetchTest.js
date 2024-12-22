@@ -1,22 +1,30 @@
-import { DOMParser } from "xmldom";
+const fetchVotes = async () => {
+  const url = 'https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders';
+  
+  const payload = {
+    SearchType: 1,
+    FromDate: "2024-12-18",
+    ToDate: "2024-12-18"
+  };
 
-export async function getKnessetData() {
-  // Make the HTTP GET request to the NASA API
-  const response = await fetch(
-    "http://knesset.gov.il/Odata/ParliamentInfo.svc/KNS_Committee()?$filter=KnessetNum eq 20"
-  );
-  // Check if the response is successful
-  if (!response.ok) {
-    console.log("Error fetching data:", response.status, response.statusText);
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
-  }
-  const xmlText = await response.text();
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-  const Names = xmlDoc.getElementsByTagName("d:Name");
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-  for (let i = 0; i < Names.length; i++) {
-    console.log(Names[i].textContent.split("").reverse().join(""));
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    console.log(data);  // Handle the response data as needed
+  } catch (error) {
+    console.error('Error fetching votes:', error);
   }
-}
-getKnessetData();
+};
+
+fetchVotes();
