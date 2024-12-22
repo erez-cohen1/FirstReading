@@ -27,3 +27,4 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 }
 
 //TODO - change the favicon
+//TODO - make order in global.css to be global
