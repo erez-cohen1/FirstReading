@@ -5,13 +5,13 @@
 /* what is :root? https://developer.mozilla.org/en-US/docs/Web/CSS/:root */
 :root {
   /* Define design variables */
-  --color-primary: #2b2d42;
-  --color-secondary: #bfc6d2;
-  --color-background: #f5f5f5;
-  --color-accent: #535bf2;
+  --color-primary: #ffffff;
+  --color-secondary: #ff6700;
+  --global-bg-color: #040050;
+  --component-bg-color: #3279ff;
 
-  --border-radius: 0.5rem;
-
+  --border-radius: 0.625rem;
+  --fonts: "narkisim", sans-serif;
   --font-titles: "Rubik", serif;
   --font-body: system-ui, sans-serif; /* system-ui matches the user's system font */
 }
@@ -20,13 +20,18 @@ body {
   color: var(--color-primary);
   background-color: var(--color-background);
   font-family: var(--font-body);
+  line-height: 1;
 }
 
 /* Layout */
 main {
-  max-width: 60rem;
-  padding: 2rem;
-  margin: 0 auto;
+  /* max-width: 60rem; */
+  /* padding: 2rem; */
+  /* margin: 0 auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -87,8 +92,9 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 1rem;
-  font-family: var(--font-titles);
+  /* margin-top: 1rem; */
+  color: var(--color-secondary);
+  font-family: var(--fonts);
   font-weight: 500;
   font-optical-sizing: auto;
 }
@@ -158,21 +164,50 @@ fieldset {
   border: 1px solid var(--color-secondary);
 }
 
-.counter-button {
-  background-color: var(--color-accent);
-  width: 2rem;
-  height: 2rem;
-  color: white;
-  border: none;
-  border-radius: 1000px; /* Make the button round */
-  cursor: pointer;
-  font-weight: bold;
+/* Components */
 
-  &:hover {
-    filter: brightness(120%);
+.Schedule {
+  background-color: var(--component-bg-color);
+  border-radius: var(--border-radius);
+  padding: 0.2rem;
+  width: 24rem;
+  height: 11.07;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  /* flex-shrink: 0; */
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: inherit;
+    padding: 0rem 0.2rem;
   }
+  h1 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin: 0;
+  }
+  main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 
-  &:active {
-    filter: brightness(80%);
+    h1 {
+      font-size: 8rem;
+      color: var(--color-primary);
+      margin: 0;
+      line-height: 0.6;
+    }
+  }
+  .Schedule-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
   }
 }

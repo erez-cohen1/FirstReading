@@ -6,22 +6,24 @@ import Navbar from "@/lib/components/Navbar";
 import Footer from "@/lib/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Digital Product Jam Starter Kit",
+  title: "קריאה ראשונה. מה שקורה היום בכנסת",
   description:
-    "A starter kit for wiritng code in the Digital Product Jam course.",
+    "פלטפורמה למעקב אחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html>
+    <html dir="rtl" lang="he">
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
       <body>
-        <Navbar />
+        {/* <Navbar /> */}
         <div>{children}</div>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
 }
+
+//TODO - change the favicon
