@@ -8,7 +8,7 @@ import VoteCount from "@/lib/components/votes";
 import LawCount from "@/lib/components/laws";
 
 export const metadata: Metadata = {
-  title: "קריםה רםשונה. מה שקורה היום בכנסת",
+  title: "קריאה ראשונה. מה שקורה היום בכנסת",
   description:
     "פלטפורמה למעקב םחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
 };
