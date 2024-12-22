@@ -16,6 +16,7 @@
     "nodemailer": "^6.9.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-native": "^0.76.5",
     "recharts": "^2.10.3",
     "swr": "^2.2.4",
     "xmldom": "^0.6.0"

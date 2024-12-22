@@ -73,14 +73,6 @@ footer {
 }
 
 /* Text */
-ul,
-ol {
-  margin-top: 0.5rem;
-}
-
-li {
-  margin-top: 0.3rem;
-}
 
 h1,
 h2,
@@ -162,9 +154,78 @@ fieldset {
 
 /* Components */
 
-.Schedule {
+.Component {
   background-color: var(--component-bg-color);
   border-radius: var(--border-radius);
+  margin: 0.5rem;
+}
+
+#Timeline-component {
+  padding: 1rem;
+  width: 93%;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+}
+
+#legend {
+  display: flex;
+  position: relative;
+  list-style: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 50%;
+  background-color: inherit;
+  padding: 0rem 0rem;
+  font-weight: bold;
+}
+
+.legend-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+.shnata {
+  content: "";
+  position: relative;
+  height: 1em;
+  background-color: black;
+  width: 0.2rem;
+  /* padding: 0 0.8em; */
+  /* margin: 0em 1em; */
+  z-index: 1;
+}
+
+.active-day {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  height: 1em;
+  width: 1em;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  z-index: 2;
+}
+
+.timeline-x-axis {
+  /* position: relative; */
+  background-color: black;
+  left: 0;
+  right: 0;
+  height: 0.3rem;
+  top: 0em;
+  width: 100%;
+  z-index: 1;
+  /* margin: 0.1em auto; */
+}
+
+#Schedule {
   padding: 0.2rem;
   width: 93%;
   height: 20%;

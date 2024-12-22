@@ -1,7 +1,7 @@
 export default function Schedule() {
   return (
     <>
-      <div className="Schedule">
+      <div className="Component" id="Schedule">
         <header className="schedule-header">
           <h1>סדר יום</h1>
           <a href="#">
