@@ -73,10 +73,6 @@ footer {
 }
 
 /* Text */
-p {
-  margin: 1rem 0;
-}
-
 ul,
 ol {
   margin-top: 0.5rem;
@@ -170,13 +166,11 @@ fieldset {
   background-color: var(--component-bg-color);
   border-radius: var(--border-radius);
   padding: 0.2rem;
-  width: 24rem;
-  height: 11.07;
+  width: 93%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: space-between;
-  /* flex-shrink: 0; */
 
   header {
     display: flex;
@@ -186,7 +180,7 @@ fieldset {
     padding: 0rem 0.2rem;
   }
   h1 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: var(--color-primary);
     margin: 0;
   }
@@ -197,17 +191,59 @@ fieldset {
     align-items: center;
 
     h1 {
-      font-size: 8rem;
+      font-size: 10rem;
       color: var(--color-primary);
       margin: 0;
       line-height: 0.6;
     }
   }
-  .Schedule-section {
+  footer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: left;
     align-items: center;
-    padding: 0.5rem;
+    background-color: inherit;
+    padding: 0rem 0.2rem;
+  }
+}
+
+.expand-component {
+  text-decoration: none;
+  color: var(--color-primary);
+  align-items: end;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  p {
+    margin: 0.7em 0em;
+    position: relative;
+    right: 0.7em;
+    top: 0.2em;
+  }
+}
+.Schedule-section {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    padding: 0.2rem;
+  }
+
+  span {
+    font-weight: bold;
+    color: var(--color-secondary);
   }
 }

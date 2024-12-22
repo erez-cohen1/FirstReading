@@ -17,16 +17,34 @@ export default function Schedule() {
           </section>
           <section className="Schedule-section" id="General-Assembly">
             <ul>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li>
+                <b>11:00</b> <br /> ועדת הכספים
+              </li>
+              <li>
+                <b>12:00</b> <br /> ועדת בריאות
+              </li>
+              <li>
+                <b>13:00</b> <br /> ועדת חוץ וביטחון
+              </li>
             </ul>
-            check
           </section>
           <section className="Schedule-section" id="Events">
-            check
+            <ul>
+              <li>
+                <b>11:00</b> <span>אירוע</span> <br /> יום המאבק בעוני מטעם חה"כ
+                אתי חוה אטייה
+              </li>
+            </ul>
           </section>
         </main>
+        <footer>
+          <div>
+            <a href="#" className="expand-component">
+              <p>ללו"ז המלא</p>
+              <img src="Schedule-arrow.png" alt="arrow" />
+            </a>
+          </div>
+        </footer>
       </div>
     </>
   );
