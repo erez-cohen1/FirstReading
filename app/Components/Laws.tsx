@@ -56,16 +56,18 @@ const LawCount = () => {
 
   return (
     <div onClick={toggleLawDetails} className="Component" dir="rtl">
-      <header className="schedule-header">
+      <header className="Component-header">
         <h1>הצעות חוק</h1>
         <a href="#">
           <img src="Share-icon.png" alt="Share icon" />
         </a>
       </header>
-      <main>
+      <main className="Component-main">
         <section className="Schedule-section" id="Law-Count">
           <div>
-            <h1 id="schedule-commitee-number">{totalCount}</h1>
+            <h1 className="number-fig" id="schedule-commitee-number">
+              {totalCount}
+            </h1>
           </div>
           <h4>הצעות חוק</h4>
         </section>
@@ -80,7 +82,7 @@ const LawCount = () => {
           </section>
         )}
       </main>
-      <footer>
+      <footer className="Component-footer">
         <div>
           <a href="#" className="expand-component">
             <p>להצעות החוק</p>

@@ -1,17 +1,36 @@
+interface Event {
+  EventStart: string;
+  StartDate: string; //change to time format
+  StartTime: string; // change to time format
+  EventType: EventType;
+  EventName: string;
+  committee_rank: number;
+}
+
+enum EventType {
+  Plenum = 1,
+  Committee,
+  SpecialOccasion,
+}
+
+interface ScheduleData {
+  Events: Event[];
+}
+
 export default function Schedule() {
   return (
     <>
       <div className="Component" id="Schedule">
-        <header className="schedule-header">
+        <header className="Component-header">
           <h1>סדר יום</h1>
           <a href="#">
             <img src="Share-icon.png" alt="Share icon" />
           </a>
         </header>
-        <main>
+        <main className="Component-main">
           <section className="Schedule-section" id="Comeeties">
             <div>
-              <h1 id="schedule-commitee-number">8</h1>
+              <h1 className="number-fig">8</h1>
             </div>
             <h4>ועדות כונסו</h4>
           </section>
@@ -37,7 +56,7 @@ export default function Schedule() {
             </ul>
           </section>
         </main>
-        <footer>
+        <footer className="Component-footer">
           <div>
             <a href="#" className="expand-component">
               <p>ללו"ז המלא</p>
