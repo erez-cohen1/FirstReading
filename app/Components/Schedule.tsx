@@ -1,23 +1,32 @@
-interface Event {
-  EventStart: string;
-  StartDate: string; //change to time format
-  StartTime: string; // change to time format
-  EventType: EventType;
-  EventName: string;
-  committee_rank: number;
-}
+import {
+  getScheduleData,
+  ScheduleData,
+  ScheduleEventType,
+} from "../getKnessetData";
 
-enum EventType {
-  Plenum = 1,
-  Committee,
-  SpecialOccasion,
-}
+export default async function Schedule() {
+  // get the date of today in the format of the API
+  const today = new Date(Date.now());
+  const todayString = today.toISOString();
+  const schduleParams = {
+    SelectedDate: "2024-12-26T00:00:00.000Z",
+    // SelectedDate: todayString,
+    SelectedMonth: null,
+    SelectedYear: null,
+  };
+  // get the schedule data
+  const events: ScheduleData = await getScheduleData(schduleParams);
+  // split the events to commitees, plenum and special occasions
+  const commitees = events.Events.filter(
+    (event) => event.EventType === ScheduleEventType.Committee
+  );
+  const plenum = events.Events.filter(
+    (event) => event.EventType === ScheduleEventType.Plenum
+  );
+  const specialOccasion = events.Events.filter(
+    (event) => event.EventType === ScheduleEventType.SpecialOccasion
+  );
 
-interface ScheduleData {
-  Events: Event[];
-}
-
-export default function Schedule() {
   return (
     <>
       <div className="Component" id="Schedule">
@@ -30,29 +39,31 @@ export default function Schedule() {
         <main className="Component-main">
           <section className="Schedule-section" id="Comeeties">
             <div>
-              <h1 className="number-fig">8</h1>
+              <h1 className="number-fig">{events.CommiteesNumber}</h1>
             </div>
             <h4>ועדות כונסו</h4>
           </section>
           <section className="Schedule-section" id="General-Assembly">
             <ul>
-              <li>
-                <b>11:00</b> <br /> ועדת הכספים
-              </li>
-              <li>
-                <b>12:00</b> <br /> ועדת בריאות
-              </li>
-              <li>
-                <b>13:00</b> <br /> ועדת חוץ וביטחון
-              </li>
+              {commitees.map((event) => (
+                <li key={event.EventName}>
+                  <b>{event.StartTime}</b> <br /> {event.EventName}
+                </li>
+              ))}
+              {plenum.map((event) => (
+                <li key={event.EventName}>
+                  <b>{event.StartTime}</b> <br /> {event.EventName}
+                </li>
+              ))}
             </ul>
           </section>
           <section className="Schedule-section" id="Events">
             <ul>
-              <li>
-                <b>11:00</b> <span>אירוע</span> <br /> יום המאבק בעוני מטעם חה"כ
-                אתי חוה אטייה
-              </li>
+              {specialOccasion.map((event) => (
+                <li key={event.EventName}>
+                  <b>{event.StartTime}</b> <br /> {event.EventName}
+                </li>
+              ))}
             </ul>
           </section>
         </main>

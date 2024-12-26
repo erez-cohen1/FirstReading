@@ -179,7 +179,7 @@ fieldset {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
+  /* align-items: start ; */
 }
 
 .Component-footer {
@@ -286,6 +286,9 @@ fieldset {
   justify-content: center;
 }
 
+#Events {
+  align-self: start;
+}
 .Schedule-section {
   display: flex;
   flex-direction: column;

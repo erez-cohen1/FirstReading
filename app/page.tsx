@@ -3,7 +3,7 @@ import LawCount from "./Components/Laws";
 import VoteCount from "./Components/Votes";
 import Image from "next/image";
 import Timeline from "./Components/TimeLine";
-import { getKnessetData } from "./getKnessetDataCheck";
+// import { getKnessetData } from "./getKnessetData";
 
 export default function Home() {
   return (
