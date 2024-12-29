@@ -188,13 +188,13 @@ const KnessetAttendance: React.FC = () => {
                   ))}
                 </tbody>
               </table>
-
             </div>
           </div>
         )}
       </main>
       <footer className="Component-footer">
         <a href="#" className="expand-component">
+          <p>לרשימה המלאה</p>
           <img src="Schedule-arrow.png" alt="Expand" 
           onClick={(e) => {
             e.preventDefault();
