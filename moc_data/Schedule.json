@@ -1,1 +1,233 @@
-{}
+{
+  "CurrentDateText": [
+    {
+      "SelectedDate": "23 בדצמבר 2024, כ\"ב בכסלו תשפ\"ה"
+    }
+  ],
+  "CurrentEvents": [
+    {
+      "EventStart": "2024-12-23T08:15:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "08:15",
+      "EventType": 2,
+      "EventName": "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+      "committee_rank": 62
+    },
+    {
+      "EventStart": "2024-12-23T08:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "08:30",
+      "EventType": 2,
+      "EventName": "<p>08:30</p><p> ישיבת ועדת הכלכלה</p>",
+      "committee_rank": 15
+    },
+    {
+      "EventStart": "2024-12-23T09:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "09:00",
+      "EventType": 2,
+      "EventName": "<p>09:00</p><p> ישיבת ועדת הכלכלה</p>",
+      "committee_rank": 15
+    },
+    {
+      "EventStart": "2024-12-23T09:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "09:00",
+      "EventType": 2,
+      "EventName": "<p>09:00</p><p> ישיבת ועדת החוקה, חוק ומשפט</p>",
+      "committee_rank": 30
+    },
+    {
+      "EventStart": "2024-12-23T09:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "09:00",
+      "EventType": 2,
+      "EventName": "<p>09:00</p><p class='canceled'> ישיבת ועדת החוקה, חוק ומשפט</p><p> - הישיבה מבוטלת</p>",
+      "committee_rank": 30
+    },
+    {
+      "EventStart": "2024-12-23T09:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "09:00",
+      "EventType": 2,
+      "EventName": "<p>09:00</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+      "committee_rank": 62
+    },
+    {
+      "EventStart": "2024-12-23T09:15:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "09:15",
+      "EventType": 2,
+      "EventName": "<p>09:15</p><p> ישיבת ועדת החינוך, התרבות והספורט</p>",
+      "committee_rank": 40
+    },
+    {
+      "EventStart": "2024-12-23T09:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "09:30",
+      "EventType": 2,
+      "EventName": "<p>09:30</p><p> ישיבת ועדת הבריאות</p>",
+      "committee_rank": 61
+    },
+    {
+      "EventStart": "2024-12-23T10:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "10:00",
+      "EventType": 2,
+      "EventName": "<p>10:00</p><p> ישיבת ועדת הכספים</p>",
+      "committee_rank": 10
+    },
+    {
+      "EventStart": "2024-12-23T10:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "10:00",
+      "EventType": 2,
+      "EventName": "<p>10:00</p><p> ישיבת ועדת הפנים והגנת הסביבה</p>",
+      "committee_rank": 25
+    },
+    {
+      "EventStart": "2024-12-23T10:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "10:30",
+      "EventType": 2,
+      "EventName": "<p>10:30</p><p> ישיבת ועדת העלייה, הקליטה והתפוצות</p>",
+      "committee_rank": 35
+    },
+    {
+      "EventStart": "2024-12-23T10:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "10:30",
+      "EventType": 2,
+      "EventName": "<p>10:30</p><p> ישיבת ועדת החינוך, התרבות והספורט</p>",
+      "committee_rank": 40
+    },
+    {
+      "EventStart": "2024-12-23T11:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:00",
+      "EventType": 3,
+      "EventName": "<p>11:00 </p><p> אירוע הוקרה לפצועי צה\"ל ונפגעי פעולות האיבה מטעם חה\"כ רם בן ברק </p>",
+      "committee_rank": 1
+    },
+    {
+      "EventStart": "2024-12-23T11:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:00",
+      "EventType": 2,
+      "EventName": "<p>11:00</p><p class='canceled'> ישיבת ועדת הכלכלה</p><p> - הישיבה מבוטלת</p>",
+      "committee_rank": 15
+    },
+    {
+      "EventStart": "2024-12-23T11:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:00",
+      "EventType": 2,
+      "EventName": "<p>11:00</p><p class='canceled'> ישיבת ועדת העבודה והרווחה</p><p> - הישיבה מבוטלת</p>",
+      "committee_rank": 45
+    },
+    {
+      "EventStart": "2024-12-23T11:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:00",
+      "EventType": 2,
+      "EventName": "<p>11:00</p><p class='canceled'> ישיבת הוועדה לקידום מעמד האישה ולשוויון מגדרי</p><p> - הישיבה מבוטלת</p>",
+      "committee_rank": 55
+    },
+    {
+      "EventStart": "2024-12-23T11:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:00",
+      "EventType": 2,
+      "EventName": "<p>11:00</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+      "committee_rank": 62
+    },
+    {
+      "EventStart": "2024-12-23T11:20:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:20",
+      "EventType": 2,
+      "EventName": "<p>11:20</p><p> ישיבת ועדת החוקה, חוק ומשפט</p>",
+      "committee_rank": 30
+    },
+    {
+      "EventStart": "2024-12-23T11:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:30",
+      "EventType": 2,
+      "EventName": "<p>11:30</p><p> ישיבת ועדת הכלכלה</p>",
+      "committee_rank": 15
+    },
+    {
+      "EventStart": "2024-12-23T11:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:30",
+      "EventType": 2,
+      "EventName": "<p>11:30</p><p> ישיבת ועדת החוץ והביטחון</p>",
+      "committee_rank": 20
+    },
+    {
+      "EventStart": "2024-12-23T11:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "11:30",
+      "EventType": 2,
+      "EventName": "<p>11:30</p><p> ישיבת ועדת העלייה, הקליטה והתפוצות</p>",
+      "committee_rank": 35
+    },
+    {
+      "EventStart": "2024-12-23T12:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "12:00",
+      "EventType": 2,
+      "EventName": "<p>12:00</p><p> ישיבת ועדת הפנים והגנת הסביבה</p>",
+      "committee_rank": 25
+    },
+    {
+      "EventStart": "2024-12-23T12:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "12:00",
+      "EventType": 2,
+      "EventName": "<p>12:00</p><p> ישיבת הוועדה לענייני ביקורת המדינה</p>",
+      "committee_rank": 50
+    },
+    {
+      "EventStart": "2024-12-23T12:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "12:30",
+      "EventType": 2,
+      "EventName": "<p>12:30</p><p> ישיבת ועדת הכלכלה</p>",
+      "committee_rank": 15
+    },
+    {
+      "EventStart": "2024-12-23T12:30:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "12:30",
+      "EventType": 2,
+      "EventName": "<p>12:30</p><p> ישיבת ועדת החינוך, התרבות והספורט</p>",
+      "committee_rank": 40
+    },
+    {
+      "EventStart": "2024-12-23T13:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "13:00",
+      "EventType": 2,
+      "EventName": "<p>13:00</p><p> ישיבת ועדת החוקה, חוק ומשפט</p>",
+      "committee_rank": 30
+    },
+    {
+      "EventStart": "2024-12-23T13:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "13:00",
+      "EventType": 2,
+      "EventName": "<p>13:00</p><p> ישיבת ועדת העבודה והרווחה</p>",
+      "committee_rank": 45
+    },
+    {
+      "EventStart": "2024-12-23T16:00:00",
+      "StartDate": "23/12/2024",
+      "StartTime": "16:00",
+      "EventType": 1,
+      "EventName": "<p>16:00</p><p> ישיבת מליאת הכנסת</p>",
+      "committee_rank": 1
+    }
+  ]
+}

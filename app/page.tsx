@@ -2,7 +2,8 @@ import Schedule from "./Components/Schedule";
 import LawCount from "./Components/Laws";
 import VoteCount from "./Components/Votes";
 import Image from "next/image";
-import { getKnessetData } from "./getKnessetDataCheck";
+import Timeline from "./Components/TimeLine";
+// import { getKnessetData } from "./getKnessetData";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Schedule></Schedule>
       <LawCount></LawCount>
       <VoteCount></VoteCount>
+      <Timeline></Timeline>
       {/* add instance of each component here */}
     </main>
   );

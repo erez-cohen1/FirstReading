@@ -4,13 +4,11 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Navbar from "@/lib/components/Navbar";
 import Footer from "@/lib/components/Footer";
-import VoteCount from "@/lib/components/votes";
-import LawCount from "@/lib/components/laws";
 
 export const metadata: Metadata = {
   title: "קריאה ראשונה. מה שקורה היום בכנסת",
   description:
-    "פלטפורמה למעקב םחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
+    "פלטפורמה למעקב אחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -29,3 +27,4 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 }
 
 //TODO - change the favicon
+//TODO - make order in global.css to be global
