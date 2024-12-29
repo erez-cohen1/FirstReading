@@ -1,4 +1,32 @@
-export default function Schedule() {
+import {
+  getScheduleData,
+  ScheduleData,
+  ScheduleEventType,
+} from "../getKnessetData";
+
+export default async function Schedule() {
+  // get the date of today in the format of the API
+  const today = new Date(Date.now());
+  const todayString = today.toISOString();
+  const schduleParams = {
+    SelectedDate: "2024-12-26T00:00:00.000Z",
+    // SelectedDate: todayString,
+    SelectedMonth: null,
+    SelectedYear: null,
+  };
+  // get the schedule data
+  const events: ScheduleData = await getScheduleData(schduleParams);
+  // split the events to commitees, plenum and special occasions
+  const commitees = events.Events.filter(
+    (event) => event.EventType === ScheduleEventType.Committee
+  );
+  const plenum = events.Events.filter(
+    (event) => event.EventType === ScheduleEventType.Plenum
+  );
+  const specialOccasion = events.Events.filter(
+    (event) => event.EventType === ScheduleEventType.SpecialOccasion
+  );
+
   return (
     <>
       <div className="Component" id="Schedule">
@@ -42,7 +70,7 @@ export default function Schedule() {
         <footer className="Component-footer">
           <div>
             <a href="#" className="expand-component">
-              <p>ללו"ז המלא</p>
+              <p>ללוז המלא</p>
               <img src="Schedule-arrow.png" alt="arrow" />
             </a>
           </div>
