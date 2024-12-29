@@ -30,9 +30,8 @@ export default function CurrentDate() {
     <div className='Date'>
       <p>
         <span className="Date-number-fig">{date.day}</span>
-        <br></br> 
-        <span >{date.month} </span> 
-        <span >{date.year}</span>
+        <span className="Date-fig">{date.month} </span> 
+        <span className="Date-fig">{date.year}</span>
       </p>
     </div>
   );

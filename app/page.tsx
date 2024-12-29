@@ -11,7 +11,11 @@ export default function Home() {
   return (
     <main>
       <h1> מה שקורה בכנסת.</h1>
+      <div className="row-display">
+      <CurrentDate></CurrentDate>
       <KnessetAttendance></KnessetAttendance>
+      </div>
+
       <Schedule></Schedule>
       <div className="row-display">
       <LawCount></LawCount>
