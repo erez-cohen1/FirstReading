@@ -1,6 +1,7 @@
 import Schedule from "./Components/Schedule";
 import LawCount from "./Components/Laws";
 import VoteCount from "./Components/Votes";
+import KnessetAttendance from "./Components/attendence";
 import Image from "next/image";
 import Timeline from "./Components/TimeLine";
 import CurrentDate from "./Components/Date";
@@ -10,7 +11,7 @@ export default function Home() {
   return (
     <main>
       <h1> מה שקורה בכנסת.</h1>
-      <CurrentDate></CurrentDate>
+      <KnessetAttendance></KnessetAttendance>
       <Schedule></Schedule>
       <div className="row-display">
       <LawCount></LawCount>

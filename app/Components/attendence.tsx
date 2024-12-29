@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import mkDetails from "./mkDetails.json";
 
 interface MkData {
@@ -15,6 +15,8 @@ const KnessetAttendance: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const modalRef = useRef<HTMLDivElement>(null);
+  
 
   const fetchAttendanceData = async () => {
     try {
@@ -101,126 +103,108 @@ const KnessetAttendance: React.FC = () => {
 
   useEffect(() => {
     fetchAttendanceData();
+      const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setShowModal(false);
+      } 
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
   }, []);
 
   // Count present and absent members
   const presentCount = mkData.filter(mk => mk.IsPresent).length;
   const absentCount = mkData.length - presentCount;
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="Component">Loading...</div>;
+  if (error) return <div className="Component">Error: {error}</div>;
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1>Knesset Attendance</h1>
-
-      {/* Button to show number of present/absent members */}
-      <div style={{ marginBottom: "20px" }}>
-        <button
-          onClick={() => setShowModal(true)}
-          style={{
-            padding: "10px 20px",
-            fontSize: "16px",
-            cursor: "pointer",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
+    <div className="attendance-component" id="KnessetAttendance">
+      <header className="Component-header">
+        <h1>נוכחות חכים היום</h1>
+        <a
+          href="#"
+          className="share-icon"
+          onClick={(e) => {
+            e.preventDefault();
+            setShowModal(true);
           }}
         >
-          Show Attendance (Present: {presentCount})
-        </button>
-      </div>
-
-      {/* Modal window showing the full list of members in table format */}
-      {showModal && (
-        <div
-          style={{
-            position: "fixed",
-            top: "0",
-            left: "0",
-            right: "0",
-            bottom: "0",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: "1000",
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "white",
-              padding: "20px",
-              borderRadius: "8px",
-              width: "80%",
-              maxHeight: "80vh",
-              overflowY: "auto",
-            }}
-          >
-            <h2>Attendance List</h2>
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "20px",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th style={{ textAlign: "left", padding: "10px" }}>Image</th>
-                  <th style={{ textAlign: "left", padding: "10px" }}>Name</th>
-                  <th style={{ textAlign: "left", padding: "10px" }}>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mkData.map((mk) => (
-                  <tr key={mk.MkId} style={{ borderBottom: "1px solid #ddd" }}>
-                    <td style={{ padding: "10px" }}>
-                      <img
-                        src={mk.MkImage}
-                        alt={mk.Name}
-                        style={{
-                          width: "40px",
-                          height: "40px",
-                          borderRadius: "50%",
-                        }}
-                      />
-                    </td>
-                    <td style={{ padding: "10px" }}>{mk.Name}</td>
-                    <td
-                      style={{
-                        padding: "10px",
-                        color: mk.IsPresent ? "green" : "red",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {mk.IsPresent ? "Present" : "Absent"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <button
-              onClick={() => setShowModal(false)}
-              style={{
-                padding: "10px 20px",
-                fontSize: "16px",
-                cursor: "pointer",
-                backgroundColor: "#f44336",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                marginTop: "20px",
-              }}
-            >
-              Close
-            </button>
+          <img src="Share-icon.png" alt="Share" />
+        </a>
+      </header>
+      <main className="Component-main" style={{ height: "auto" }}>
+        <div className="attendance-chart">
+          <div className="chart-wrapper">
+            {mkData.map((mk) => (
+              <div
+                key={mk.MkId}
+                className={`chart-circle ${mk.IsPresent ? "present" : "absent"}`}
+              ></div>
+            ))}
+          </div>
+          <div className="attendance-summary">
+            <span className="present-count">{presentCount}</span>/
+            <span className="total-count">{mkData.length}</span>
           </div>
         </div>
-      )}
+
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-content Component" ref={modalRef}>
+              <button
+                  onClick={() => setShowModal(false)}
+                  className="close-modal-button"
+                >
+                Close
+              </button>
+              <table className="attendance-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mkData.map((mk) => (
+                    <tr key={mk.MkId}>
+                      <td>
+                        <img
+                          src={mk.MkImage}
+                          alt={mk.Name}
+                          className="mk-image"
+                        />
+                      </td>
+                      <td>{mk.Name}</td>
+                      <td className={mk.IsPresent ? "present" : "absent"}>
+                        {mk.IsPresent ? "Present" : "Absent"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </main>
+      <footer className="Component-footer">
+        <a href="#" className="expand-component">
+          <p>לרשימה המלאה</p>
+          <img src="Schedule-arrow.png" alt="Expand" 
+          onClick={(e) => {
+            e.preventDefault();
+            setShowModal(true);
+          }}/>
+        </a>
+      </footer>
     </div>
   );
 };
+
 
 export default KnessetAttendance;

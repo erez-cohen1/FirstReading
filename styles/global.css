@@ -347,3 +347,133 @@ fieldset {
 
 
 
+
+.attendance-component {
+  background-color: var(--component-bg-color);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  max-height: 200px;
+  margin: 0 auto;
+}
+
+.attendance-header {
+  display: flex;
+  align-items: center;
+}
+
+.attendance-header h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.share-icon img {
+  width: 24px;
+  height: 24px;
+  margin-left: 20px;
+}
+
+.attendance-main {
+  margin-top: 20px;
+}
+
+.attendance-chart {
+  position: relative;
+}
+
+.chart-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 200px;
+  height: 75px; /* Half of the width to create the semi-circle */
+
+  border-top-left-radius: 75px; /* Rounded top-left corner */
+  border-top-right-radius: 75px; /* Rounded top-right corner */
+}
+
+.chart-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.present {
+  background-color: orange;
+}
+
+.absent {
+  background-color: white;
+  border: 1px solid orange;
+}
+
+.attendance-summary {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Ensures the overlay doesn't block interactions */
+}
+
+.modal-content {
+  background: white;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  max-height: 70vh;
+  overflow-y: auto;
+  text-align: left;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  pointer-events: auto; /* Enables interaction within the modal */
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.close-modal-button {
+  margin-top: 10px;
+  background-color: #0046ad;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.close-modal-button:hover {
+  background-color: #002f6e;
+}
+
+.attendance-footer .expand-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.mk-image{
+  width: 24px;
+  height: 24px;
+}
