@@ -317,7 +317,7 @@ fieldset {
 }
 
 .attendance-component {
-  background-color: #0046ad;
+  background-color: var(--component-bg-color);
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;

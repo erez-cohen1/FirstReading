@@ -162,7 +162,7 @@ const KnessetAttendance: React.FC = () => {
                 >
                 Close
               </button>
-              <table>
+              <table className="attendance-table">
                 <thead>
                   <tr>
                     <th>Image</th>
