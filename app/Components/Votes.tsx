@@ -1,5 +1,5 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client';
+import React, { useEffect, useState } from 'react';
 
 type Vote = {
   VoteId: number;
@@ -23,7 +23,7 @@ const VoteCount = () => {
   const [showItemTitles, setShowItemTitles] = useState(false);
 
   useEffect(() => {
-    fetch("/mock_data_votes.json")
+    fetch('/mock_data_votes.json')
       .then((response) => response.json())
       .then((data) => {
         setVoteData(data);
@@ -40,7 +40,7 @@ const VoteCount = () => {
 
   return (
     <>
-      <div className="Component" onClick={toggleItemTitles}>
+      <div className="Component" onClick={toggleItemTitles} id="Schedule">
         <header className="Component-header">
           <h1>הצבעות</h1>
           <a href="#">
@@ -48,20 +48,17 @@ const VoteCount = () => {
           </a>
         </header>
         <main className="Component-main">
-          <section className="Schedule-section" id="Votes">
+          <section className="Schedule-section" id="Comeeties">
             <div>
-              <h1
-                className="number-fig"
-                id="schedule-vote-number"
-                style={{ cursor: "pointer" }}
-              >
+              <h1 className="number-fig" id="schedule-vote-number" style={{ cursor: 'pointer' }}>
                 {voteData.Table.length}
               </h1>
             </div>
             <h4>הצבעות</h4>
           </section>
+          
           {showItemTitles && (
-            <section className="Schedule-section" id="Vote-Details">
+            <section className="Schedule-section" id="Comeeties">
               <ul>
                 {voteData.Table.map((vote) => (
                   <li key={vote.VoteId}>{vote.ItemTitle}</li>
@@ -81,6 +78,7 @@ const VoteCount = () => {
       </div>
     </>
   );
+
 };
 
 export default VoteCount;

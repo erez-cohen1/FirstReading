@@ -70,7 +70,7 @@ export default async function Schedule() {
         <footer className="Component-footer">
           <div>
             <a href="#" className="expand-component">
-              <p>ללוז המלא</p>
+              <p>ללו"ז המלא</p>
               <img src="Schedule-arrow.png" alt="arrow" />
             </a>
           </div>

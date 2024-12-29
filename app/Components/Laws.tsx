@@ -34,6 +34,7 @@ const LawCount = () => {
     const matches = text.match(regex);
     return matches ? matches.length : 0;
   };
+  
 
   // Remove HTML tags and links, adding space between text after links
   const removeHtmlTags = (text: string) => {
@@ -55,9 +56,10 @@ const LawCount = () => {
   };
 
   return (
-    <div onClick={toggleLawDetails} className="Component" dir="rtl">
+    <>
+    <div onClick={toggleLawDetails} className="Component" id="Schedule" >
       <header className="Component-header">
-        <h1>הצעות חוק</h1>
+        <h1>חוקים</h1>
         <a href="#">
           <img src="Share-icon.png" alt="Share icon" />
         </a>
@@ -91,6 +93,7 @@ const LawCount = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 

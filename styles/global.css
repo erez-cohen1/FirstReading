@@ -154,12 +154,32 @@ fieldset {
 
 /* Components */
 
+.Date {
+  min-width: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--component-bg-color);
+  border-radius: var(--border-radius);
+  margin: 0.5rem;
+  padding: 0.2rem;
+  width: 20%;
+}
+
+.Date-number-fig {
+  font-size: 5.5rem;
+  color: var(--color-primary);
+  margin: 0;
+  line-height: 0.6;
+}
+
 .Component {
   background-color: var(--component-bg-color);
   border-radius: var(--border-radius);
   margin: 0.5rem;
   padding: 0.2rem;
 }
+
 
 .Component-header {
   display: flex;
@@ -314,4 +334,16 @@ fieldset {
     font-weight: bold;
     color: var(--color-secondary);
   }
+
 }
+.row-display{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 93%;
+  /* padding: 0.5rem; */
+}
+
+
+
