@@ -34,7 +34,7 @@ export async function getScheduleData(
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(props),
+      // body: JSON.stringify(props),
     }
   );
   // const responseJson: any = {
@@ -96,9 +96,9 @@ global fetching function for all fetch requests
 export async function fetchData(
   url: string,
   requestInit: RequestInit
-): Promise<JSON> {
+): Promise<any> {
   const response = await fetch(url, requestInit);
-  const contentType = response.headers.get("Content-Type");
+  // const contentType = response.headers.get("Content-Type");
 
   if (!response.ok) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
