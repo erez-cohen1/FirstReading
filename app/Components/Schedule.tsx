@@ -6,11 +6,11 @@ import {
 
 export default async function Schedule() {
   // get the date of today in the format of the API
-  const today = new Date(Date.now());
-  const todayString = today.toISOString();
+  // const today = new Date(Date.now());
+  // const todayString = today.toISOString();
   const schduleParams = {
-    // SelectedDate: "2024-12-26T00:00:00.000Z",
-    SelectedDate: todayString,
+    SelectedDate: "2024-12-26T00:00:00.000Z",
+    // SelectedDate: todayString,
     SelectedMonth: null,
     SelectedYear: null,
   };

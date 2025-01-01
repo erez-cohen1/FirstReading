@@ -81,8 +81,17 @@ export async function fetchData(
   requestInit: RequestInit
 ): Promise<any> {
   const response = await fetch(url, requestInit);
+  const contentType = response.headers.get("Content-Type");
+
   if (!response.ok) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
   }
+  // if (contentType && contentType.includes("application/json")) {
+  //   const data = await response.json();
+  // } else {
+  //   // Handle non-JSON responses appropriately
+  //   console.error("Expected JSON, but received:", contentType);
+  //   throw new Error("Failed to fetch data: Invalid response type");
+  // }
   return await response.json();
 }
