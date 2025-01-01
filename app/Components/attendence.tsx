@@ -90,7 +90,8 @@ const KnessetAttendance: React.FC = () => {
 
       // Wait for all remaining requests to complete
       await Promise.all(queue);
-
+      // Convert the list to a dictionary
+      
       // Sort data so that present members come first
       const sortedData = detailedData.sort((a, b) => (b.IsPresent ? 1 : 0) - (a.IsPresent ? 1 : 0));
       setMkData(detailedData);

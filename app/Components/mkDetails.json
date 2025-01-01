@@ -1,391 +1,550 @@
 {
-    "1": {
-      "Name": "יולי יואל אדלשטיין",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1/1_1_3_4.jpeg?v=20241229_51053"
-    },
-    "35": {
-      "Name": "משה גפני",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/35/1_35_3_93.jpeg?v=20241229_74267"
-    },
-    "41": {
-      "Name": "אריה מכלוף דרעי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/41/1_41_3_110.jpeg?v=20241229_61348"
-    },
-    "69": {
-      "Name": "ישראל כץ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/69/1_69_3_191.jpeg?v=20241229_49973"
-    },
-    "90": {
-      "Name": "בנימין נתניהו",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/90/1_90_3_248.jpeg?v=20241229_49729"
-    },
-    "208": {
-      "Name": "אחמד טיבי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/208/1_208_3_520.jpeg?v=20241229_28252"
-    },
-    "212": {
-      "Name": "חיים כץ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/212/1_212_3_535.jpeg"
-    },
-    "214": {
-      "Name": "אביגדור ליברמן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/214/1_214_3_548.jpeg?v=20241229_19006"
-    },
-    "723": {
-      "Name": "גילה גמליאל",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/723/1_723_3_1586.jpeg?v=20241229_17591"
-    },
-    "751": {
-      "Name": "יעקב מרגי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/751/1_751_3_1669.jpeg"
-    },
-    "754": {
-      "Name": "ישראל אייכלר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/754/1_754_3_1681.jpeg?v=20241229_90494"
-    },
-    "768": {
-      "Name": "זאב אלקין",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/768/1_768_3_1721.jpeg?v=20241229_90552"
-    },
-    "771": {
-      "Name": "אבי דיכטר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/771/1_771_3_1732.jpeg?v=20241229_16711"
-    },
-    "814": {
-      "Name": "אורי מקלב",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/814/1_814_3_1874.jpeg"
-    },
-    "826": {
-      "Name": "יריב לוין",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/826/1_826_3_1921.jpeg?v=20241229_78388"
-    },
-    "860": {
-      "Name": "קארין אלהרר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/860/1_860_3_2066.jpeg?v=20241229_25606"
-    },
-    "861": {
-      "Name": "יעקב אשר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/861/1_861_3_2073.jpeg?v=20241229_40656"
-    },
-    "872": {
-      "Name": "בועז טופורובסקי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/872/1_872_3_2141.jpeg?v=20241229_43016"
-    },
-    "874": {
-      "Name": "מאיר כהן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/874/1_874_3_2153.jpeg?v=20241229_23906"
-    },
-    "876": {
-      "Name": "מיקי לוי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/876/1_876_3_2167.jpeg?v=20241229_80647"
-    },
-    "878": {
-      "Name": "יאיר לפיד",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/878/1_878_3_2178.jpeg?v=20241229_24802"
-    },
-    "881": {
-      "Name": "מרב מיכאלי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/881/1_881_3_2196.jpeg?v=20241229_31373"
-    },
-    "906": {
-      "Name": "יואב בן צור",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/906/1_906_3_2332.jpeg"
-    },
-    "912": {
-      "Name": "דוד אמסלם",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/912/1_912_3_2364.jpeg"
-    },
-    "914": {
-      "Name": "דוד ביטן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/914/1_914_3_2378.jpeg?v=20241229_70848"
-    },
-    "915": {
-      "Name": "מירב  בן ארי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/915/1_915_3_2385.jpeg?v=20241229_80381"
-    },
-    "921": {
-      "Name": "יואב גלנט",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/921/1_921_3_2424.jpeg?v=20241229_66774"
-    },
-    "922": {
-      "Name": "מכלוף מיקי זוהר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/922/1_922_3_2431.jpeg"
-    },
-    "928": {
-      "Name": "אלי אליהו כהן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/928/1_928_3_2473.jpeg"
-    },
-    "950": {
-      "Name": "שרן מרים השכל",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/950/1_950_3_2607.jpeg?v=20241229_95884"
-    },
-    "953": {
-      "Name": "אמיר אוחנה",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/953/1_953_3_2628.jpeg?v=20241229_12481"
-    },
-    "956": {
-      "Name": "יוליה מלינובסקי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/956/1_956_3_2649.jpeg?v=20241229_52676"
-    },
-    "957": {
-      "Name": "מיכאל  מלכיאלי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/957/1_957_3_2656.jpeg?v=20241229_53318"
-    },
-    "970": {
-      "Name": "ינון אזולאי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/970/1_970_3_2722.jpeg?v=20241229_99666"
-    },
-    "974": {
-      "Name": "ניר ברקת",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/974/1_974_3_12308.jpeg?v=20241229_20623"
-    },
-    "976": {
-      "Name": "אופיר כץ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/976/1_976_3_12324.jpeg?v=20241229_20347"
-    },
-    "988": {
-      "Name": "בני גנץ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/988/1_988_3_12347.jpeg?v=20241229_98211"
-    },
-    "994": {
-      "Name": "יבגני סובה",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/994/1_994_3_11217.jpeg?v=20241229_58008"
-    },
-    "996": {
-      "Name": "יעקב טסלר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/996/1_996_3_11221.jpeg?v=20241229_40197"
-    },
-    "998": {
-      "Name": "יוראי להב הרצנו",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/998/1_998_3_11225.jpeg?v=20241229_16083"
-    },
-    "1000": {
-      "Name": "חילי טרופר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1000/1_1000_3_11227.jpeg?v=20241229_33888"
-    },
-    "1002": {
-      "Name": "מאי גולן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1002/1_1002_3_12304.jpeg?v=20241229_47235"
-    },
-    "1003": {
-      "Name": "מיכאל מרדכי ביטון",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1003/1_1003_3_11237.jpeg?v=20241229_58607"
-    },
-    "1006": {
-      "Name": "מירב כהן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1006/1_1006_3_11251.jpeg?v=20241229_05747"
-    },
-    "1008": {
-      "Name": "משה ארבל",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1008/1_1008_3_11235.jpeg?v=20241229_38777"
-    },
-    
-    "1013": {
-      "Name": "עופר כסיף",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1013/1_1013_3_12312.jpeg?v=20241229_75043"
-    },
-    "1022": {
-      "Name": "רם בן ברק",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1022/1_1022_3_11242.jpeg?v=20241229_67904"
-    },
-    "1026": {
-      "Name": "ווליד טאהא",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1026/1_1026_3_13539.jpeg?v=20241229_34974"
-    },
-    "1029": {
-      "Name": "משה אבוטבול",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1029/1_1029_3_13527.jpeg?v=20241229_01479"
-    },
-    "1030": {
-      "Name": "מתן כהנא",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1030/1_1030_3_13542.jpeg?v=20241229_25795"
-    },
-    "1032": {
-      "Name": "אימאן ח'טיב יאסין",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1032/1_1032_3_13745.jpeg?v=20241229_58563"
-    },
-    "1039": {
-      "Name": "אוריאל בוסו",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1039/1_1039_3_15050.jpeg?v=20241229_56336"
-    },
-    "1042": {
-      "Name": "אליהו ברוכי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1042/1_1042_3_15101.jpeg?v=20241229_40169"
-    },
-    "1043": {
-      "Name": "יוסף טייב",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1043/1_1043_3_15131.jpeg?v=20241229_73603"
-    },
-    "1044": {
-      "Name": "עמית הלוי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1044/1_1044_3_16220.jpeg?v=20241229_97062"
-    },
-    "1045": {
-      "Name": "ניסים ואטורי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1045/1_1045_3_16502.jpeg?v=20241229_33144"
-    },
-    "1049": {
-      "Name": "ולדימיר בליאק",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1049/1_1049_3_16601.jpeg?v=20241229_45433"
-    },
-    "1050": {
-      "Name": "משה טור פז",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1050/1_1050_3_16606.jpeg?v=20241229_43527"
-    },
-    "1055": {
-      "Name": "חיים ביטון",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1055/1_1055_3_17783.jpeg"
-    },
-    "1056": {
-      "Name": "איתמר בן גביר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1056/1_1056_3_17788.jpeg?v=20241229_97978"
-    },
-    "1059": {
-      "Name": "גלית דיסטל אטבריאן ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1059/1_1059_3_17778.jpeg?v=20241229_14265"
-    },
-    "1060": {
-      "Name": "מיכל מרים וולדיגר",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
-    },
-    "1061": {
-      "Name": "רון כץ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1061/1_1061_3_17813.jpeg?v=20241229_74173"
-    },
-    "1063": {
-      "Name": "אבי מעוז",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1063/1_1063_3_17738.jpeg?v=20241229_92094"
-    },
-    "1076": {
-      "Name": "טטיאנה מזרסקי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1076/1_1076_3_17974.jpeg?v=20241229_79898"
-    },
-    "1082": {
-      "Name": "נעמה לזימי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1082/1_1082_3_17989.jpeg?v=20241229_30264"
-    },
-    "1085": {
-      "Name": "סימון דוידסון",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1085/1_1085_3_18028.jpeg?v=20241229_59171"
-    },
-    "1088": {
-      "Name": "מישל בוסקילה",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1088/1_1088_3_19591.jpeg?v=20241229_75516"
-    },
-    "1090": {
-      "Name": "אוהד טל",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1090/1_1090_3_19702.jpeg?v=20241229_54338"
-    },
-    "1092": {
-      "Name": "גדי איזנקוט",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1092/1_1092_3_19647.jpeg?v=20241229_45096"
-    },
-    "1093": {
-      "Name": "ואליד אלהואשלה",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1093/1_1093_3_19652.jpeg?v=20241229_71754"
-    },
-    "1094": {
-      "Name": "דבי ביטון",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1094/1_1094_3_19657.jpeg?v=20241229_72021"
-    },
-    "1095": {
-      "Name": "בועז ביסמוט",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1095/1_1095_3_19662.jpeg?v=20241229_92276"
-    },
-    "1096": {
-      "Name": "עמיחי אליהו",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1096/1_1096_3_19667.jpeg"
-    },
-    "1097": {
-      "Name": "אברהם  בצלאל",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1097/1_1097_3_19672.jpeg?v=20241229_83413"
-    },
-    "1098": {
-      "Name": "טלי גוטליב",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1098/1_1098_3_19677.jpeg?v=20241229_92354"
-    },
-    "1099": {
-      "Name": "יצחק גולדקנופ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1099/1_1099_3_19749.jpeg"
-    },
-    "1100": {
-      "Name": "אלי דלל",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1100/1_1100_3_19682.jpeg?v=20241229_74587"
-    },
-    "1101": {
-      "Name": "שלום דנינו",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1101/1_1101_3_19687.jpeg?v=20241229_37794"
-    },
-    "1102": {
-      "Name": "יצחק שמעון וסרלאוף",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1102/1_1102_3_19692.jpeg?v=20241229_.9939"
-    },
-    "1103": {
-      "Name": "יאסר חוג'יראת",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1103/1_1103_3_19697.jpeg?v=20241229_59448"
-    },
-    "1104": {
-      "Name": "אלמוג כהן",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1104/1_1104_3_19707.jpeg?v=20241229_74377"
-    },
-    "1105": {
-      "Name": "חנוך דב מלביצקי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1105/1_1105_3_19712.jpeg?v=20241229_74638"
-    },
-    "1108": {
-      "Name": "לימור סון הר מלך",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1108/1_1108_3_19728.jpeg?v=20241229_67287"
-    },
-    "1115": {
-      "Name": "יונתן מישרקי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1115/1_1115_3_19849.jpeg?v=20241229_55834"
-    },
-    "1116": {
-      "Name": "דן אילוז",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1116/1_1116_3_19861.jpeg?v=20241229_09797"
-    },
-    
-    "1118": {
-      "Name": "שלי טל מירון",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1118/1_1118_3_19926.jpeg?v=20241229_25527"
-    },
-    "1119": {
-      "Name": "ארז מלול",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1119/1_1119_3_19933.jpeg?v=20241229_33132"
-    },
-    "1120": {
-      "Name": "סימון מושיאשוילי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1120/1_1120_3_19940.jpeg?v=20241229_83295"
-    },
-    "1121": {
-      "Name": "צבי ידידיה סוכות",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1121/1_1121_3_19949.jpeg?v=20241229_76864"
-    },
-    "1122": {
-      "Name": "צגה צגנש מלקו",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1122/1_1122_3_19962.jpeg?v=20241229_05491"
-    },
-    
-    "1125": {
-      "Name": "ששון ששי גואטה ",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1125/1_1125_3_20029.jpeg?v=20241229_09816"
-    },
-    "1126": {
-      "Name": "אביחי אברהם בוארון",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1126/1_1126_3_20040.jpeg?v=20241229_41308"
-    },
-    "1127": {
-      "Name": "ירון לוי",
-      "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1127/1_1127_3_20229.png?v=20241229_71804"
-    },
-    "1014": {
-        "Name": "עידית סילמן",
-        "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1014/1_1014_3_12318.jpeg"
-    }
-    ,
-    "1109":{
-        "Name": "משה סעדה",
-        "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1109/1_1109_3_19733.jpeg?v=20241229_36061"
-
-    }  
+  "1": {
+    "Name": "יולי יואל אדלשטיין",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1/1_1_3_4.jpeg?v=20241229_51053"
+  },
+  "35": {
+    "Name": "משה גפני",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/35/1_35_3_93.jpeg?v=20241229_74267"
+  },
+  "41": {
+    "Name": "אריה מכלוף דרעי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/41/1_41_3_110.jpeg?v=20241229_61348"
+  },
+  "69": {
+    "Name": "ישראל כץ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/69/1_69_3_191.jpeg?v=20241229_49973"
+  },
+  "90": {
+    "Name": "בנימין נתניהו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/90/1_90_3_248.jpeg?v=20241229_49729"
+  },
+  "103": {
+    "Name": "מאיר פרוש",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/103/1_103_3_285.jpeg"
+  },
+  "208": {
+    "Name": "אחמד טיבי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/208/1_208_3_520.jpeg?v=20241229_28252"
+  },
+  "212": {
+    "Name": "חיים כץ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/212/1_212_3_535.jpeg"
+  },
+  "214": {
+    "Name": "אביגדור ליברמן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/214/1_214_3_548.jpeg?v=20241229_19006"
+  },
+  "723": {
+    "Name": "גילה גמליאל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/723/1_723_3_1586.jpeg?v=20241229_17591"
+  },
+  "725": {
+    "Name": "גדעון סער",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/725/1_725_3_1595.jpeg?v=20250101_64404"
+  },
+  "751": {
+    "Name": "יעקב מרגי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/751/1_751_3_1669.jpeg"
+  },
+  "754": {
+    "Name": "ישראל אייכלר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/754/1_754_3_1681.jpeg?v=20241229_90494"
+  },
+  "768": {
+    "Name": "זאב אלקין",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/768/1_768_3_1721.jpeg?v=20241229_90552"
+  },
+  "771": {
+    "Name": "אבי דיכטר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/771/1_771_3_1732.jpeg?v=20241229_16711"
+  },
+  "814": {
+    "Name": "אורי מקלב",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/814/1_814_3_1874.jpeg"
+  },
+  "826": {
+    "Name": "יריב לוין",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/826/1_826_3_1921.jpeg?v=20241229_78388"
+  },
+  "831": {
+    "Name": "מירי מרים רגב",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/831/1_831_3_1946.jpeg"
+  },
+  "837": {
+    "Name": "חמד עמאר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/837/1_837_3_1973.jpeg?v=20250101_41863"
+  },
+  "860": {
+    "Name": "קארין אלהרר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/860/1_860_3_2066.jpeg?v=20241229_25606"
+  },
+  "861": {
+    "Name": "יעקב אשר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/861/1_861_3_2073.jpeg?v=20241229_40656"
+  },
+  "872": {
+    "Name": "בועז טופורובסקי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/872/1_872_3_2141.jpeg?v=20241229_43016"
+  },
+  "874": {
+    "Name": "מאיר כהן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/874/1_874_3_2153.jpeg?v=20241229_23906"
+  },
+  "876": {
+    "Name": "מיקי לוי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/876/1_876_3_2167.jpeg?v=20241229_80647"
+  },
+  "878": {
+    "Name": "יאיר לפיד",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/878/1_878_3_2178.jpeg?v=20241229_24802"
+  },
+  "881": {
+    "Name": "מרב מיכאלי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/881/1_881_3_2196.jpeg?v=20241229_31373"
+  },
+  "884": {
+    "Name": "אורית סטרוק",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/884/1_884_3_2213.jpeg?v=20250101_28891"
+  },
+  "899": {
+    "Name": "אלעזר שטרן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/899/1_899_3_2289.jpeg?v=20250101_01807"
+  },
+  "905": {
+    "Name": "פנינה תמנו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/905/1_905_3_2327.jpeg?v=20250101_35457"
+  },
+  "906": {
+    "Name": "יואב בן צור",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/906/1_906_3_2332.jpeg"
+  },
+  "912": {
+    "Name": "דוד אמסלם",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/912/1_912_3_2364.jpeg"
+  },
+  "914": {
+    "Name": "דוד ביטן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/914/1_914_3_2378.jpeg?v=20241229_70848"
+  },
+  "915": {
+    "Name": "מירב  בן ארי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/915/1_915_3_2385.jpeg?v=20241229_80381"
+  },
+  "921": {
+    "Name": "יואב גלנט",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/921/1_921_3_2424.jpeg?v=20241229_66774"
+  },
+  "922": {
+    "Name": "מכלוף מיקי זוהר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/922/1_922_3_2431.jpeg"
+  },
+  "928": {
+    "Name": "אלי אליהו כהן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/928/1_928_3_2473.jpeg"
+  },
+  "936": {
+    "Name": "בצלאל סמוטריץ'",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/936/1_936_3_2523.jpeg"
+  },
+  "938": {
+    "Name": "איימן עודה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/938/1_938_3_2537.jpeg?v=20250101_21924"
+  },
+  "945": {
+    "Name": "יואב קיש",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/945/1_945_3_2583.jpeg"
+  },
+  "948": {
+    "Name": "עאידה תומא סלימאן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/948/1_948_3_2597.jpeg?v=20250101_21384"
+  },
+  "950": {
+    "Name": "שרן מרים השכל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/950/1_950_3_2607.jpeg?v=20241229_95884"
+  },
+  "951": {
+    "Name": "עודד פורר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/951/1_951_3_2614.jpeg?v=20250101_84748"
+  },
+  "953": {
+    "Name": "אמיר אוחנה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/953/1_953_3_2628.jpeg?v=20241229_12481"
+  },
+  "956": {
+    "Name": "יוליה מלינובסקי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/956/1_956_3_2649.jpeg?v=20241229_52676"
+  },
+  "957": {
+    "Name": "מיכאל  מלכיאלי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/957/1_957_3_2656.jpeg?v=20241229_53318"
+  },
+  "964": {
+    "Name": "יוסף עטאונה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/964/1_964_3_2697.jpeg?v=20250101_35444"
+  },
+  "970": {
+    "Name": "ינון אזולאי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/970/1_970_3_2722.jpeg?v=20241229_99666"
+  },
+  "974": {
+    "Name": "ניר ברקת",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/974/1_974_3_12308.jpeg?v=20241229_20623"
+  },
+  "976": {
+    "Name": "אופיר כץ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/976/1_976_3_12324.jpeg?v=20241229_20347"
+  },
+  "977": {
+    "Name": "אופיר סופר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/977/1_977_3_11108.jpeg?v=20250101_78984"
+  },
+  "978": {
+    "Name": "אורית פרקש הכהן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/978/1_978_3_11111.jpeg?v=20250101_40821"
+  },
+  "982": {
+    "Name": "אלון שוסטר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/982/1_982_3_11099.jpeg?v=20250101_35539"
+  },
+  "987": {
+    "Name": "אריאל קלנר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/987/1_987_3_11129.jpeg?v=20250101_22275"
+  },
+  "988": {
+    "Name": "בני גנץ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/988/1_988_3_12347.jpeg?v=20241229_98211"
+  },
+  "992": {
+    "Name": "חוה אתי עטייה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/992/1_992_3_11212.jpeg?v=20250101_10491"
+  },
+  "994": {
+    "Name": "יבגני סובה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/994/1_994_3_11217.jpeg?v=20241229_58008"
+  },
+  "995": {
+    "Name": "יואב סגלוביץ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/995/1_995_3_11219.jpeg?v=20250101_75604"
+  },
+  "996": {
+    "Name": "יעקב טסלר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/996/1_996_3_11221.jpeg?v=20241229_40197"
+  },
+  "998": {
+    "Name": "יוראי להב הרצנו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/998/1_998_3_11225.jpeg?v=20241229_16083"
+  },
+  "1000": {
+    "Name": "חילי טרופר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1000/1_1000_3_11227.jpeg?v=20241229_33888"
+  },
+  "1001": {
+    "Name": "יצחק זאב פינדרוס",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1001/1_1001_3_11229.jpeg?v=20250101_45784"
+  },
+  "1002": {
+    "Name": "מאי גולן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1002/1_1002_3_12304.jpeg?v=20241229_47235"
+  },
+  "1003": {
+    "Name": "מיכאל מרדכי ביטון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1003/1_1003_3_11237.jpeg?v=20241229_58607"
+  },
+  "1004": {
+    "Name": "מיכל שיר סגמן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1004/1_1004_3_12334.jpeg?v=20250101_16995"
+  },
+  "1006": {
+    "Name": "מירב כהן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1006/1_1006_3_11251.jpeg?v=20241229_05747"
+  },
+  "1007": {
+    "Name": "מנסור עבאס",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1007/1_1007_3_12320.jpeg?v=20250101_69058"
+  },
+  "1008": {
+    "Name": "משה ארבל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1008/1_1008_3_11235.jpeg?v=20241229_38777"
+  },
+  "1009": {
+    "Name": "עידן רול",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1009/1_1009_3_12328.jpeg?v=20250101_28428"
+  },
+  "1011": {
+    "Name": "שלמה קרעי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1011/1_1011_3_12326.jpeg?v=20250101_47456"
+  },
+  "1013": {
+    "Name": "עופר כסיף",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1013/1_1013_3_12312.jpeg?v=20241229_75043"
+  },
+  "1014": {
+    "Name": "עידית סילמן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1014/1_1014_3_12318.jpeg"
+  },
+  "1018": {
+    "Name": "קטי קטרין שטרית",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1018/1_1018_3_12330.jpeg?v=20250101_05393"
+  },
+  "1022": {
+    "Name": "רם בן ברק",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1022/1_1022_3_11242.jpeg?v=20241229_67904"
+  },
+  "1026": {
+    "Name": "ווליד טאהא",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1026/1_1026_3_13539.jpeg?v=20241229_34974"
+  },
+  "1029": {
+    "Name": "משה אבוטבול",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1029/1_1029_3_13527.jpeg?v=20241229_01479"
+  },
+  "1030": {
+    "Name": "מתן כהנא",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1030/1_1030_3_13542.jpeg?v=20241229_25795"
+  },
+  "1032": {
+    "Name": "אימאן ח'טיב יאסין",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1032/1_1032_3_13745.jpeg?v=20241229_58563"
+  },
+  "1039": {
+    "Name": "אוריאל בוסו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1039/1_1039_3_15050.jpeg?v=20241229_56336"
+  },
+  "1042": {
+    "Name": "אליהו ברוכי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1042/1_1042_3_15101.jpeg?v=20241229_40169"
+  },
+  "1043": {
+    "Name": "יוסף טייב",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1043/1_1043_3_15131.jpeg?v=20241229_73603"
+  },
+  "1044": {
+    "Name": "עמית הלוי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1044/1_1044_3_16220.jpeg?v=20241229_97062"
+  },
+  "1045": {
+    "Name": "ניסים ואטורי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1045/1_1045_3_16502.jpeg?v=20241229_33144"
+  },
+  "1049": {
+    "Name": "ולדימיר בליאק",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1049/1_1049_3_16601.jpeg?v=20241229_45433"
+  },
+  "1050": {
+    "Name": "משה טור פז",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1050/1_1050_3_16606.jpeg?v=20241229_43527"
+  },
+  "1055": {
+    "Name": "חיים ביטון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1055/1_1055_3_17783.jpeg"
+  },
+  "1056": {
+    "Name": "איתמר בן גביר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1056/1_1056_3_17788.jpeg?v=20241229_97978"
+  },
+  "1059": {
+    "Name": "גלית דיסטל אטבריאן ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1059/1_1059_3_17778.jpeg?v=20241229_14265"
+  },
+  "1060": {
+    "Name": "מיכל מרים וולדיגר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
+  },
+  "1061": {
+    "Name": "רון כץ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1061/1_1061_3_17813.jpeg?v=20241229_74173"
+  },
+  "1063": {
+    "Name": "אבי מעוז",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1063/1_1063_3_17738.jpeg?v=20241229_92094"
+  },
+  "1066": {
+    "Name": "גלעד קריב",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1066/1_1066_3_17753.jpeg?v=20250101_16506"
+  },
+  "1067": {
+    "Name": "שמחה רוטמן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1067/1_1067_3_17818.jpeg?v=20250101_13257"
+  },
+  "1068": {
+    "Name": "אפרת רייטן מרום",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1068/1_1068_3_17773.jpeg?v=20250101_70475"
+  },
+  "1070": {
+    "Name": "עמיחי שיקלי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1070/1_1070_3_17798.jpeg"
+  },
+  "1076": {
+    "Name": "טטיאנה מזרסקי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1076/1_1076_3_17974.jpeg?v=20241229_79898"
+  },
+  "1079": {
+    "Name": "יסמין פרידמן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1079/1_1079_3_17943.jpeg?v=20250101_57683"
+  },
+  "1082": {
+    "Name": "נעמה לזימי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1082/1_1082_3_17989.jpeg?v=20241229_30264"
+  },
+  "1085": {
+    "Name": "סימון דוידסון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1085/1_1085_3_18028.jpeg?v=20241229_59171"
+  },
+  "1088": {
+    "Name": "מישל בוסקילה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1088/1_1088_3_19591.jpeg?v=20241229_75516"
+  },
+  "1090": {
+    "Name": "אוהד טל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1090/1_1090_3_19702.jpeg?v=20241229_54338"
+  },
+  "1091": {
+    "Name": "מטי צרפתי הרכבי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1091/1_1091_3_19743.jpeg?v=20250101_69077"
+  },
+  "1092": {
+    "Name": "גדי איזנקוט",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1092/1_1092_3_19647.jpeg?v=20241229_45096"
+  },
+  "1093": {
+    "Name": "ואליד אלהואשלה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1093/1_1093_3_19652.jpeg?v=20241229_71754"
+  },
+  "1094": {
+    "Name": "דבי ביטון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1094/1_1094_3_19657.jpeg?v=20241229_72021"
+  },
+  "1095": {
+    "Name": "בועז ביסמוט",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1095/1_1095_3_19662.jpeg?v=20241229_92276"
+  },
+  "1096": {
+    "Name": "עמיחי אליהו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1096/1_1096_3_19667.jpeg"
+  },
+  "1097": {
+    "Name": "אברהם  בצלאל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1097/1_1097_3_19672.jpeg?v=20241229_83413"
+  },
+  "1098": {
+    "Name": "טלי גוטליב",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1098/1_1098_3_19677.jpeg?v=20241229_92354"
+  },
+  "1099": {
+    "Name": "יצחק גולדקנופ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1099/1_1099_3_19749.jpeg"
+  },
+  "1100": {
+    "Name": "אלי דלל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1100/1_1100_3_19682.jpeg?v=20241229_74587"
+  },
+  "1101": {
+    "Name": "שלום דנינו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1101/1_1101_3_19687.jpeg?v=20241229_37794"
+  },
+  "1102": {
+    "Name": "יצחק שמעון וסרלאוף",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1102/1_1102_3_19692.jpeg?v=20241229_.9939"
+  },
+  "1103": {
+    "Name": "יאסר חוג'יראת",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1103/1_1103_3_19697.jpeg?v=20241229_59448"
+  },
+  "1104": {
+    "Name": "אלמוג כהן",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1104/1_1104_3_19707.jpeg?v=20241229_74377"
+  },
+  "1105": {
+    "Name": "חנוך דב מלביצקי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1105/1_1105_3_19712.jpeg?v=20241229_74638"
+  },
+  "1106": {
+    "Name": "שרון ניר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1106/1_1106_3_19718.jpeg?v=20250101_85006"
+  },
+  "1107": {
+    "Name": "משה סולומון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1107/1_1107_3_19723.jpeg?v=20250101_76975"
+  },
+  "1108": {
+    "Name": "לימור סון הר מלך",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1108/1_1108_3_19728.jpeg?v=20241229_67287"
+  },
+  "1109": {
+    "Name": "משה סעדה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1109/1_1109_3_19733.jpeg?v=20241229_36061"
+  },
+  "1110": {
+    "Name": "צביקה פוגל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1110/1_1110_3_19738.jpeg?v=20250101_35778"
+  },
+  "1111": {
+    "Name": "אליהו רביבו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1111/1_1111_3_19753.jpeg?v=20250101_93622"
+  },
+  "1112": {
+    "Name": "נאור שירי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1112/1_1112_3_19758.jpeg?v=20250101_76121"
+  },
+  "1113": {
+    "Name": "רון דרמר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1113/1_1113_3_20015.jpeg"
+  },
+  "1114": {
+    "Name": "יצחק קרויזר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1114/1_1114_3_19866.jpeg?v=20250101_00088"
+  },
+  "1115": {
+    "Name": "יונתן מישרקי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1115/1_1115_3_19849.jpeg?v=20241229_55834"
+  },
+  "1116": {
+    "Name": "דן אילוז",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1116/1_1116_3_19861.jpeg?v=20241229_09797"
+  },
+  "1117": {
+    "Name": "משה רוט",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1117/1_1117_3_19896.jpeg?v=20250101_08755"
+  },
+  "1118": {
+    "Name": "שלי טל מירון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1118/1_1118_3_19926.jpeg?v=20241229_25527"
+  },
+  "1119": {
+    "Name": "ארז מלול",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1119/1_1119_3_19933.jpeg?v=20241229_33132"
+  },
+  "1120": {
+    "Name": "סימון מושיאשוילי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1120/1_1120_3_19940.jpeg?v=20241229_83295"
+  },
+  "1121": {
+    "Name": "צבי ידידיה סוכות",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1121/1_1121_3_19949.jpeg?v=20241229_76864"
+  },
+  "1122": {
+    "Name": "צגה צגנש מלקו",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1122/1_1122_3_19962.jpeg?v=20241229_05491"
+  },
+  "1123": {
+    "Name": "אושר שקלים",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1123/1_1123_3_19975.jpeg?v=20250101_85546"
+  },
+  "1124": {
+    "Name": "משה פסל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1124/1_1124_3_20007.jpeg?v=20250101_02821"
+  },
+  "1125": {
+    "Name": "ששון ששי גואטה ",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1125/1_1125_3_20029.jpeg?v=20241229_09816"
+  },
+  "1126": {
+    "Name": "אביחי אברהם בוארון",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1126/1_1126_3_20040.jpeg?v=20241229_41308"
+  },
+  "1127": {
+    "Name": "ירון לוי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1127/1_1127_3_20229.png?v=20241229_71804"
+  }
 }
