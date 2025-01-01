@@ -161,7 +161,7 @@ fieldset {
   border-radius: var(--border-radius);
   margin: 0.5rem;
   padding: 0.2rem;
-  width: 100%;
+  width: 80%;
 }
 
 .Date-number-fig {
@@ -362,9 +362,10 @@ fieldset {
   text-align: center;
   border-radius: 12px;
   padding: 20px;
-  width: 100%;
+  width: 90%; /* Adjust width for smaller screens */
+  max-width: 400px; /* Limit maximum width */
   max-height: 200px;
-  margin: 0 auto;
+  margin-left: 20px auto;
 }
 
 .attendance-header {
@@ -380,7 +381,7 @@ fieldset {
 .share-icon img {
   width: 24px;
   height: 24px;
-  margin-left: 20px;
+  margin-left: auto;
 }
 
 .attendance-main {
@@ -389,6 +390,9 @@ fieldset {
 
 .attendance-chart {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .chart-wrapper {
@@ -396,9 +400,9 @@ fieldset {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 200px;
-  height: 75px; /* Half of the width to create the semi-circle */
-
+  max-width: 200px;
+  max-height: 75px; /* Half of the width to create the semi-circle */
+  width: 80%;
   border-top-left-radius: 75px; /* Rounded top-left corner */
   border-top-right-radius: 75px; /* Rounded top-right corner */
 }
@@ -419,8 +423,11 @@ fieldset {
 }
 
 .attendance-summary {
+  display: flex;
   font-size: 1.2em;
   margin-top: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-overlay {
@@ -483,4 +490,33 @@ fieldset {
 .mk-image{
   width: 24px;
   height: 24px;
+}
+
+
+@media (max-width: 768px) {
+  .attendance-component {
+    width: 95%; /* Ensure it fits smaller screens */
+    padding: 10px; /* Reduce padding */
+  }
+
+  .Component-header h1 {
+    font-size: 1.2em; /* Adjust font size */
+  }
+
+  .attendance-chart {
+    margin-top: 15px; /* Add spacing */
+  }
+
+  .attendance-summary {
+    font-size: 1em; /* Adjust font size */
+  }
+
+  .chart-circle {
+    width: 6px; /* Further reduce size */
+    height: 6px;
+  }
+
+  .close-modal-button {
+    font-size: 0.9em; /* Adjust button size */
+  }
 }
