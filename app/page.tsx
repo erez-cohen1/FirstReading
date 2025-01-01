@@ -22,9 +22,7 @@ export default function Home() {
           <button className="date-selector-other">יום אחר</button>
         </div>
       </section>
-      <section className="Date">
-        <CurrentDate></CurrentDate>
-      </section>
+      <section className="Date">{/* <CurrentDate></CurrentDate> */}</section>
       <hr />
       <KnessetAttendance></KnessetAttendance>
       <Schedule></Schedule>
