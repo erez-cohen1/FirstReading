@@ -1,3 +1,5 @@
+"use client";
+
 import Schedule from "./Components/Schedule";
 import LawCount from "./Components/Laws";
 import VoteCount from "./Components/Votes";
