@@ -1,5 +1,3 @@
-"use client";
-
 import Schedule from "./Components/Schedule";
 import LawCount from "./Components/Laws";
 import VoteCount from "./Components/Votes";
@@ -27,7 +25,7 @@ export default function Home() {
       </section>
       <hr />
       <KnessetAttendance></KnessetAttendance>
-      {/* <Schedule></Schedule> */}
+      <Schedule></Schedule>
       <LawCount></LawCount>
       <VoteCount></VoteCount>
       {/* <Timeline></Timeline> */}

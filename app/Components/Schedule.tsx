@@ -8,14 +8,14 @@ export default async function Schedule() {
   // get the date of today in the format of the API
   // const today = new Date(Date.now());
   // const todayString = today.toISOString();
-  const schduleParams = {
+  const scheduleParams = {
     SelectedDate: "2024-12-26T00:00:00.000Z",
     // SelectedDate: todayString,
     SelectedMonth: null,
     SelectedYear: null,
   };
   // get the schedule data
-  const events: ScheduleData = await getScheduleData(schduleParams);
+  const events: ScheduleData = await getScheduleData(scheduleParams);
   // split the events to commitees, plenum and special occasions
   const commitees = events.Events.filter(
     (event) => event.EventType === ScheduleEventType.Committee
