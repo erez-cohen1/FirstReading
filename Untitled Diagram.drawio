@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.2">
+  <diagram name="Page-1" id="eq0wE8SwEvedX5aSt8SF">
+    <mxGraphModel dx="954" dy="558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-2" value="User Interface" style="rounded=1;whiteSpace=wrap;html=1;rotation=90;horizontal=0;verticalAlign=top;fontStyle=1;fontSize=14;fontFamily=Comic Sans MS;" vertex="1" parent="1">
+          <mxGeometry x="640" y="190" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-3" value="Component1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="200" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-4" value="Component2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="240" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-5" value="Component3" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="280" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-6" value="getDataComp1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="200" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-7" value="getDataComp2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="240" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-8" value="getDataComp3" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="280" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-9" value="fetchData" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-11" value="Knesset API" style="rounded=1;whiteSpace=wrap;html=1;rotation=90;horizontal=0;verticalAlign=top;fontStyle=1;fontSize=14;fontFamily=Comic Sans MS;" vertex="1" parent="1">
+          <mxGeometry x="105" y="195" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-12" value="Knesset.gov.il" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="190" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-13" value="OData" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="227" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-14" value="OpenKnesset" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="264" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-15" value="בטא-מחוקקים" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="300" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-17" value="Display Data&lt;div&gt;Determine App State&lt;/div&gt;&lt;div&gt;Design&lt;/div&gt;" style="html=1;labelBackgroundColor=none;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontFamily=Comic Sans MS;rounded=1;glass=0;shadow=0;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="665" y="341" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-18" value="" style="html=1;labelBackgroundColor=none;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontFamily=Comic Sans MS;rounded=1;glass=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="473" y="341" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-19" value="Data Analyzing&amp;nbsp;&lt;div&gt;Functions&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;fontStyle=1;fontFamily=Comic Sans MS;horizontal=1;" vertex="1" parent="1">
+          <mxGeometry x="473" y="150" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pHGOKvjHhklqfPr7pu8u-20" value="Data Fetching&amp;nbsp;&lt;div&gt;Function&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;fontStyle=1;fontFamily=Comic Sans MS;horizontal=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="150" width="120" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

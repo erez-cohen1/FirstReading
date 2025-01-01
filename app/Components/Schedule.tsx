@@ -9,8 +9,8 @@ export default async function Schedule() {
   const today = new Date(Date.now());
   const todayString = today.toISOString();
   const schduleParams = {
-    SelectedDate: "2024-12-26T00:00:00.000Z",
-    // SelectedDate: todayString,
+    // SelectedDate: "2024-12-26T00:00:00.000Z",
+    SelectedDate: todayString,
     SelectedMonth: null,
     SelectedYear: null,
   };
@@ -30,11 +30,11 @@ export default async function Schedule() {
   return (
     <>
       <div className="Component" id="Schedule">
-        <header className="Component-header">
+        <header className="Component-header" id="Schedule-header">
           <h1>סדר יום</h1>
-          <a href="#">
+          {/* <a href="#">
             <img src="Share-icon.png" alt="Share icon" />
-          </a>
+          </a> */}
         </header>
         <main className="Component-main">
           <section className="Schedule-section" id="Comeeties">
@@ -70,8 +70,8 @@ export default async function Schedule() {
         <footer className="Component-footer">
           <div>
             <a href="#" className="expand-component">
-              <p>ללו"ז המלא</p>
-              <img src="Schedule-arrow.png" alt="arrow" />
+              <p>לרשימה המלאה</p>
+              {/* <img src="Schedule-arrow.png" alt="arrow" /> */}
             </a>
           </div>
         </footer>

@@ -16,7 +16,6 @@ const KnessetAttendance: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false); // Modal visibility state
   const modalRef = useRef<HTMLDivElement>(null);
-  
 
   const fetchAttendanceData = async () => {
     try {
@@ -25,25 +24,39 @@ const KnessetAttendance: React.FC = () => {
         "https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkPresent?lang=he"
       );
       if (!attendanceResponse.ok) {
-        throw new Error(
-          `Attendance API error: ${attendanceResponse.status}`
-        );
+        throw new Error(`Attendance API error: ${attendanceResponse.status}`);
       }
 
       const attendanceData: { MkId: number; IsPresent: boolean }[] =
         await attendanceResponse.json();
 
       const existingIds = new Set(Object.keys(mkDetails).map(Number)); // Convert keys to numbers
-      const missingData = attendanceData.filter(((mk) => !(mkDetails as { [key: string]: { Name: string; MkImage: string } })[mk.MkId.toString()]));
+      const missingData = attendanceData.filter(
+        (mk) =>
+          !(mkDetails as { [key: string]: { Name: string; MkImage: string } })[
+            mk.MkId.toString()
+          ]
+      );
 
       // Fetch details for each MkId with concurrency limit
       const concurrencyLimit = 10; // Number of simultaneous requests
-      const detailedData = attendanceData.filter(((mk) => (mkDetails as { [key: string]: { Name: string; MkImage: string } })[mk.MkId.toString()])).map((mk) => ({
-        MkId: mk.MkId,
-        IsPresent: mk.IsPresent,
-        Name: (mkDetails as { [key: string]: { Name: string; MkImage: string } })[mk.MkId.toString()]?.Name,
-        MkImage: (mkDetails as { [key: string]: { Name: string; MkImage: string } })[mk.MkId.toString()]?.MkImage
-      }));
+      const detailedData = attendanceData
+        .filter(
+          (mk) =>
+            (mkDetails as { [key: string]: { Name: string; MkImage: string } })[
+              mk.MkId.toString()
+            ]
+        )
+        .map((mk) => ({
+          MkId: mk.MkId,
+          IsPresent: mk.IsPresent,
+          Name: (
+            mkDetails as { [key: string]: { Name: string; MkImage: string } }
+          )[mk.MkId.toString()]?.Name,
+          MkImage: (
+            mkDetails as { [key: string]: { Name: string; MkImage: string } }
+          )[mk.MkId.toString()]?.MkImage,
+        }));
       const queue: Promise<void>[] = [];
 
       for (const mk of missingData) {
@@ -64,16 +77,19 @@ const KnessetAttendance: React.FC = () => {
               MkId: mk.MkId,
               IsPresent: mk.IsPresent,
               Name: details.Name,
-              MkImage: details.MkImage
+              MkImage: details.MkImage,
             });
           } catch (error) {
             detailedData.push({
               MkId: mk.MkId,
               IsPresent: mk.IsPresent,
               Name: String(mk.MkId),
-              MkImage: String(mk.MkId)
+              MkImage: String(mk.MkId),
             });
-            console.error(`Failed to fetch details for MkId ${mk.MkId}:`, error);
+            console.error(
+              `Failed to fetch details for MkId ${mk.MkId}:`,
+              error
+            );
           }
         };
 
@@ -91,9 +107,11 @@ const KnessetAttendance: React.FC = () => {
       // Wait for all remaining requests to complete
       await Promise.all(queue);
       // Convert the list to a dictionary
-      
+
       // Sort data so that present members come first
-      const sortedData = detailedData.sort((a, b) => (b.IsPresent ? 1 : 0) - (a.IsPresent ? 1 : 0));
+      const sortedData = detailedData.sort(
+        (a, b) => (b.IsPresent ? 1 : 0) - (a.IsPresent ? 1 : 0)
+      );
       setMkData(detailedData);
     } catch (err) {
       setError((err as Error).message);
@@ -104,53 +122,50 @@ const KnessetAttendance: React.FC = () => {
 
   useEffect(() => {
     fetchAttendanceData();
-      const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         setShowModal(false);
-      } 
-      };
+      }
+    };
 
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   // Count present and absent members
-  const presentCount = mkData.filter(mk => mk.IsPresent).length;
+  const presentCount = mkData.filter((mk) => mk.IsPresent).length;
   const absentCount = mkData.length - presentCount;
 
   if (loading) return <div className="Component">Loading...</div>;
   if (error) return <div className="Component">Error: {error}</div>;
 
   return (
-    <div className="attendance-component" id="KnessetAttendance">
+    <div className="Component" id="KnessetAttendance">
       <header className="Component-header">
         <h1>נוכחות חכים היום</h1>
-        <a
-          href="#"
-          className="share-icon"
-          onClick={(e) => {
-            e.preventDefault();
-            setShowModal(true);
-          }}
-        >
-          <img src="Share-icon.png" alt="Share" />
-        </a>
+        {/* <img src="Share-icon.png" alt="Share" /> */}
+        {/* </a> */}
       </header>
       <main className="Component-main" style={{ height: "auto" }}>
         <div className="attendance-chart">
+          <div className="attendance-summary">
+            <span className="total-count">120{/*mkData.length*/}</span>/
+            <span className="present-count">{presentCount}</span>
+          </div>
           <div className="chart-wrapper">
             {mkData.map((mk) => (
               <div
                 key={mk.MkId}
-                className={`chart-circle ${mk.IsPresent ? "present" : "absent"}`}
+                className={`chart-circle ${
+                  mk.IsPresent ? "present" : "absent"
+                }`}
               ></div>
             ))}
-          </div>
-          <div className="attendance-summary">
-            <span className="present-count">{presentCount}</span>/
-            <span className="total-count">{mkData.length}</span>
           </div>
         </div>
 
@@ -158,9 +173,9 @@ const KnessetAttendance: React.FC = () => {
           <div className="modal-overlay">
             <div className="modal-content Component" ref={modalRef}>
               <button
-                  onClick={() => setShowModal(false)}
-                  className="close-modal-button"
-                >
+                onClick={() => setShowModal(false)}
+                className="close-modal-button"
+              >
                 Close
               </button>
               <table className="attendance-table">
@@ -194,18 +209,19 @@ const KnessetAttendance: React.FC = () => {
         )}
       </main>
       <footer className="Component-footer">
-        <a href="#" className="expand-component">
-          <p>לרשימה המלאה</p>
-          <img src="Schedule-arrow.png" alt="Expand" 
+        <a
+          href="#"
+          className="share-icon"
           onClick={(e) => {
             e.preventDefault();
             setShowModal(true);
-          }}/>
+          }}
+        >
+          <p>לרשימה המלאה</p>
         </a>
       </footer>
     </div>
   );
 };
-
 
 export default KnessetAttendance;

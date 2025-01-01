@@ -7,13 +7,16 @@
   /* Define design variables */
   --color-primary: #ffffff;
   --color-secondary: #ff6700;
-  --global-bg-color: #040050;
-  --component-bg-color: #3279ff;
+  --global-bg-color: #0900bd;
+  --component-bg-color: #ffffff;
+  --text-color1: var(--global-bg-color);
+  --text-color2: var(--color-primary);
+  --text-color2: var(--color-secondary);
 
-  --border-radius: 0.625rem;
-  --fonts: "narkisim", sans-serif;
+  --border-radius: 0rem;
+  --fonts: "david", sans-serif;
   --font-titles: "Rubik", serif;
-  --font-body: system-ui, sans-serif; /* system-ui matches the user's system font */
+  --font-body: "david", sans-serif; /* system-ui matches the user's system font */
 }
 
 body {
@@ -36,7 +39,7 @@ main {
 
 header {
   padding: 1rem 2rem;
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -152,52 +155,104 @@ fieldset {
   border: 1px solid var(--color-secondary);
 }
 
+/* ----- main page ----- */
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  background-color: var(--global-bg-color);
+}
+
+hr {
+  width: 100%;
+  border: 0.1rem solid var(--color-primary);
+  margin: 0.3rem 0;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  padding-top: 3rem;
+
+  h1 {
+    font-size: 4em;
+    font-family: "david";
+    font-weight: bold;
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 0.8em;
+  }
+
+  .date-selectors {
+    padding-top: 0.7rem;
+  }
+
+  .date-selector-today {
+    border-radius: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 1rem;
+    padding: 0.3em 0.8em;
+  }
+
+  .date-selector-other {
+    border-radius: 0;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 0.3em 0.8em;
+    border: none;
+    font-size: 0.8em;
+  }
+}
+
 /* Components */
 
 .Date {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  border-radius: var(--border-radius);
-  margin: 0.5rem;
-  padding: 0.2rem;
-  width: 80%;
+  width: 100%;
+  margin: 0 0.5rem;
+  padding: 1rem 0rem 0rem 0.2rem;
+  color: var(--color-primary);
+  font-weight: bold;
 }
-
-.Date-number-fig {
-  color: var(--global-bg-color); /* Use 'color' to set text color */
-  font-size: 8rem;
-  margin: 0;
-  line-height: 0.6;
-}
-
 
 .Date-fig {
-  color: var(--global-bg-color); /* Use 'color' to set text color */
-  font-size: 3rem;
+  font-size: 1.5rem;
   margin: 0;
   line-height: 0.6;
 }
-
 
 .Component {
   background-color: var(--component-bg-color);
   border-radius: var(--border-radius);
-  margin: 0.5rem;
-  padding: 0.2rem;
+  border: none;
+  width: 100%;
 }
 
-
 .Component-header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: inherit;
+  background-color: var(--global-bg-color);
   padding: 0rem 0.2rem;
+  border: none;
 
   h1 {
     font-size: 2.5em;
     color: var(--color-primary);
+    font-weight: bold;
     margin: 0;
   }
 }
@@ -206,21 +261,22 @@ fieldset {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  color: var(--text-color1);
   /* align-items: start ; */
 }
 
 .Component-footer {
   display: flex;
   flex-direction: row;
-  justify-content: left;
   align-items: center;
   background-color: inherit;
-  padding: 0rem 0.2rem;
+  padding: 0.4rem 0.2rem;
+  color: var(--text-color1);
 }
 
-.expand-component {
+/* .expand-component {
   text-decoration: none;
-  color: var(--color-primary);
+  color: var(--text-color1);
   align-items: end;
   justify-content: center;
   display: flex;
@@ -230,13 +286,14 @@ fieldset {
     position: relative;
     right: 0.7em;
     top: 0.2em;
+    color: var (var(--text-color2));
   }
-}
+} */
 
 .number-fig {
   font-size: 10em;
-  color: var(--color-primary);
-  margin: 0;
+  color: var(--text-color1);
+  margin: 0.3rem;
   line-height: 0.6;
 }
 
@@ -280,7 +337,7 @@ fieldset {
   width: 0.2rem;
   /* padding: 0 0.8em; */
   /* margin: 0em 1em; */
-  z-index: 1;
+  z-index: 3;
 }
 
 .active-day {
@@ -306,11 +363,16 @@ fieldset {
 }
 
 #Schedule {
-  width: 93%;
   height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#Schedule-header {
+  position: sticky;
+  top: 0rem;
+  z-index: 3;
 }
 
 #Events {
@@ -339,11 +401,10 @@ fieldset {
 
   span {
     font-weight: bold;
-    color: var(--color-secondary);
+    color: var(--text-color1);
   }
-
 }
-.row-display{
+.row-display {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -352,45 +413,16 @@ fieldset {
   /* padding: 0.5rem; */
 }
 
-
-
-
-.attendance-component {
-  background-color: var(--component-bg-color);
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  border-radius: 12px;
-  padding: 20px;
-  width: 90%; /* Adjust width for smaller screens */
-  max-width: 400px; /* Limit maximum width */
-  max-height: 200px;
-  margin-left: 20px auto;
-}
-
-.attendance-header {
-  display: flex;
-  align-items: center;
-}
-
-.attendance-header h1 {
-  font-size: 1.5em;
-  margin: 0;
-}
-
 .share-icon img {
   width: 24px;
   height: 24px;
   margin-left: auto;
 }
 
-.attendance-main {
-  margin-top: 20px;
-}
-
 .attendance-chart {
-  position: relative;
+  /* position: relative; */
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -401,7 +433,7 @@ fieldset {
   justify-content: center;
   flex-wrap: wrap;
   max-width: 200px;
-  max-height: 75px; /* Half of the width to create the semi-circle */
+  /* max-height: 75px; Half of the width to create the semi-circle */
   width: 80%;
   border-top-left-radius: 75px; /* Rounded top-left corner */
   border-top-right-radius: 75px; /* Rounded top-right corner */
@@ -410,22 +442,23 @@ fieldset {
 .chart-circle {
   width: 10px;
   height: 10px;
-  border-radius: 50%;
+  border-radius: 0%;
 }
 
 .present {
-  background-color: orange;
+  background-color: var(--color-secondary);
+  border: 0.1em solid var(--color-primary);
 }
 
 .absent {
-  background-color: white;
-  border: 1px solid orange;
+  background-color: var(--global-bg-color);
+  border: 0.1em solid var(--color-primary);
 }
 
 .attendance-summary {
   display: flex;
-  font-size: 1.2em;
-  margin-top: 10px;
+  font-size: 6em;
+  padding: 0.3rem 0.2rem;
   align-items: center;
   justify-content: center;
 }
@@ -446,6 +479,7 @@ fieldset {
   background: white;
   color: rgb(0, 0, 0);
   padding: 20px;
+  z-index: 5;
   border-radius: 8px;
   max-width: 500px;
   max-height: 70vh;
@@ -459,6 +493,7 @@ fieldset {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  z-index: 5;
 }
 
 .attendance-table th,
@@ -466,6 +501,7 @@ fieldset {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
+  z-index: 5;
 }
 
 .close-modal-button {
@@ -476,6 +512,7 @@ fieldset {
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+  z-index: 5;
 }
 
 .close-modal-button:hover {
@@ -487,11 +524,10 @@ fieldset {
   height: 24px;
 }
 
-.mk-image{
+.mk-image {
   width: 24px;
   height: 24px;
 }
-
 
 @media (max-width: 768px) {
   .attendance-component {
@@ -504,16 +540,18 @@ fieldset {
   }
 
   .attendance-chart {
-    margin-top: 15px; /* Add spacing */
+    margin: 0.5rem 0; /* Add spacing */
   }
 
   .attendance-summary {
-    font-size: 1em; /* Adjust font size */
+    font-size: 2em; /* Adjust font size */
+    font-weight: bold;
   }
 
   .chart-circle {
-    width: 6px; /* Further reduce size */
-    height: 6px;
+    width: 15px; /* Further reduce size */
+    height: 15px;
+    margin: 0.05rem;
   }
 
   .close-modal-button {

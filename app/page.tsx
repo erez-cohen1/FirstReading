@@ -9,20 +9,26 @@ import CurrentDate from "./Components/Date";
 
 export default function Home() {
   return (
-    <main>
-      <h1> מה שקורה בכנסת.</h1>
-      <div className="row-display">
-      <CurrentDate></CurrentDate>
+    <main className="main-page">
+      <section className="main-header">
+        <h1>
+          קריאה <br />
+          ראשונה
+        </h1>
+        <div className="date-selectors">
+          <button className="date-selector-today">היום</button>
+          <button className="date-selector-other">יום אחר</button>
+        </div>
+      </section>
+      <section className="Date">
+        <CurrentDate></CurrentDate>
+      </section>
+      <hr />
       <KnessetAttendance></KnessetAttendance>
-      </div>
-
       <Schedule></Schedule>
-      <div className="row-display">
       <LawCount></LawCount>
       <VoteCount></VoteCount>
-      </div>
-      <Timeline></Timeline>
-      {/* add instance of each component here */}
+      {/* <Timeline></Timeline> */}
     </main>
   );
 }

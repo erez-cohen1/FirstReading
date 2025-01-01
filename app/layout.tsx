@@ -18,9 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="icon" href="/favicon.png" />
       </head>
       <body>
-        <Navbar />
+        {/* <Navbar /> */}
         <div>{children}</div>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

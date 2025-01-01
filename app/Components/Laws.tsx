@@ -34,7 +34,6 @@ const LawCount = () => {
     const matches = text.match(regex);
     return matches ? matches.length : 0;
   };
-  
 
   // Remove HTML tags and links, adding space between text after links
   const removeHtmlTags = (text: string) => {
@@ -57,23 +56,23 @@ const LawCount = () => {
 
   return (
     <>
-    <div onClick={toggleLawDetails} className="Component" id="Schedule" >
-      <header className="Component-header">
-        <h1>חוקים</h1>
-        <a href="#">
-          <img src="Share-icon.png" alt="Share icon" />
-        </a>
-      </header>
-      <main className="Component-main">
-        <section className="Schedule-section" id="Law-Count">
-          <div>
-            <h1 className="number-fig" id="schedule-commitee-number">
-              {totalCount}
-            </h1>
-          </div>
-          <h4>הצעות חוק</h4>
-        </section>
-        {showLawDetails && (
+      <div onClick={toggleLawDetails} className="Component">
+        <header className="Component-header">
+          <h1>חוקים</h1>
+          {/* <a href="#">
+            <img src="Share-icon.png" alt="Share icon" />
+          </a> */}
+        </header>
+        <main className="Component-main">
+          <section className="Schedule-section" id="Law-Count">
+            <div>
+              <h1 className="number-fig" id="schedule-commitee-number">
+                {totalCount}
+              </h1>
+            </div>
+            <h4>הצעות חוק</h4>
+          </section>
+          {/* {showLawDetails && ( */}
           <section className="Schedule-section" id="Law-Details">
             {filteredEvents.map((event, index) => (
               <div key={index}>
@@ -82,17 +81,17 @@ const LawCount = () => {
               </div>
             ))}
           </section>
-        )}
-      </main>
-      <footer className="Component-footer">
-        <div>
-          <a href="#" className="expand-component">
-            <p>להצעות החוק</p>
-            <img src="Schedule-arrow.png" alt="arrow" />
-          </a>
-        </div>
-      </footer>
-    </div>
+          {/* )} */}
+        </main>
+        <footer className="Component-footer">
+          <div>
+            <a href="#" className="expand-component">
+              <p>לרשימה המלאה</p>
+              {/* <img src="Schedule-arrow.png" alt="arrow" /> */}
+            </a>
+          </div>
+        </footer>
+      </div>
     </>
   );
 };
