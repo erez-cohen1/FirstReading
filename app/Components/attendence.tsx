@@ -147,7 +147,7 @@ const KnessetAttendance: React.FC = () => {
   return (
     <div className="Component" id="KnessetAttendance">
       <header className="Component-header">
-        <h1>נוכחות חכים היום</h1>
+        <h1>נוכחות חכים</h1>
         {/* <img src="Share-icon.png" alt="Share" /> */}
         {/* </a> */}
       </header>

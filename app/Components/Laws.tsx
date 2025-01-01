@@ -58,7 +58,7 @@ const LawCount = () => {
     <>
       <div onClick={toggleLawDetails} className="Component">
         <header className="Component-header">
-          <h1>חוקים</h1>
+          <h1>הצעות חוק</h1>
           {/* <a href="#">
             <img src="Share-icon.png" alt="Share icon" />
           </a> */}

@@ -8,7 +8,7 @@
   --color-primary: #ffffff;
   --color-secondary: #ff6700;
   --global-bg-color: #0900bd;
-  --component-bg-color: #ffffff;
+  --component-bg-color: #ffead8;
   --text-color1: var(--global-bg-color);
   --text-color2: var(--color-primary);
   --text-color2: var(--color-secondary);
@@ -168,7 +168,7 @@ fieldset {
 
 hr {
   width: 100%;
-  border: 0.1rem solid var(--color-primary);
+  border: 0.05rem solid var(--color-primary);
   margin: 0.3rem 0;
 }
 
@@ -246,7 +246,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   background-color: var(--global-bg-color);
-  padding: 0rem 0.2rem;
+  padding: 0.2rem;
   border: none;
 
   h1 {
@@ -476,7 +476,7 @@ hr {
 }
 
 .modal-content {
-  background: white;
+  background: #ffead8;
   color: rgb(0, 0, 0);
   padding: 20px;
   z-index: 5;

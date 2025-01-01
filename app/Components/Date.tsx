@@ -36,7 +36,7 @@ export default function CurrentDate() {
         </span>
       </p>
       <p>
-        <span className="Date-fig"> א' בתשרי התשפ"ה</span>
+        <span className="Date-fig"> א&apos; בתשרי התשפ&quot;ה</span>
       </p>
     </>
   );
