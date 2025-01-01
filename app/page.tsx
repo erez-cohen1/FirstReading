@@ -27,7 +27,7 @@ export default function Home() {
       </section>
       <hr />
       <KnessetAttendance></KnessetAttendance>
-      <Schedule></Schedule>
+      {/* <Schedule></Schedule> */}
       <LawCount></LawCount>
       <VoteCount></VoteCount>
       {/* <Timeline></Timeline> */}
