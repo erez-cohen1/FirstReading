@@ -29,31 +29,31 @@ export async function getScheduleData(
 ): Promise<ScheduleData> {
   // Make the HTTP POST request to the API
 
-  // const responseJson: any = await fetchData(
-  //   "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
-  //   {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(props),
-  //   }
-  // );
-  const responseJson: any = {
-    CurrentDateText: [
-      {
-        SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
-      },
-    ],
-    CurrentEvents: [
-      {
-        EventStart: "2024-12-23T08:15:00",
-        StartDate: "23/12/2024",
-        StartTime: "08:15",
-        EventType: 2,
-        EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
-        committee_rank: 62,
-      },
-    ],
-  };
+  const responseJson: any = await fetchData(
+    "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
+    {
+      method: "POST",
+      // headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(props),
+    }
+  );
+  // const responseJson: any = {
+  //   CurrentDateText: [
+  //     {
+  //       SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
+  //     },
+  //   ],
+  //   CurrentEvents: [
+  //     {
+  //       EventStart: "2024-12-23T08:15:00",
+  //       StartDate: "23/12/2024",
+  //       StartTime: "08:15",
+  //       EventType: 2,
+  //       EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+  //       committee_rank: 62,
+  //     },
+  //   ],
+  // };
   // parse the events from the json data
   const events: ScheduleEvent[] = responseJson.CurrentEvents.map(
     (event: any) => {
