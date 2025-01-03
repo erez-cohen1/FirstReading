@@ -1,29 +1,10 @@
-interface ScheduleDataProps {
-  SelectedDate: string;
-  SelectedMonth: string | null;
-  SelectedYear: string | null;
-}
-
-interface ScheduleEvent {
-  EventStart: string;
-  StartDate: string; //change to time format
-  StartTime: string; // change to time format
-  EventType: ScheduleEventType;
-  EventName: string;
-  committee_rank: number;
-}
-
-export enum ScheduleEventType {
-  Plenum = 1,
-  Committee,
-  SpecialOccasion,
-}
-
-export interface ScheduleData {
-  CommiteesNumber?: number;
-  Events: ScheduleEvent[];
-}
-
+"use server";
+import {
+  ScheduleData,
+  ScheduleDataProps,
+  ScheduleEventType,
+  ScheduleEvent,
+} from "./Components/Schedule";
 export async function getScheduleData(
   props: ScheduleDataProps
 ): Promise<ScheduleData> {
@@ -110,24 +91,24 @@ export async function fetchData(
   //   console.error("Expected JSON, but received:", contentType);
   //   throw new Error("Failed to fetch data: Invalid response type");
   // }
-  const jsonResponse = await response.json();
-  return {
-    CurrentDateText: [
-      {
-        SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
-      },
-    ],
-    CurrentEvents: [
-      {
-        EventStart: "2024-12-23T08:15:00",
-        StartDate: "23/12/2024",
-        StartTime: "08:15",
-        EventType: 2,
-        EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
-        committee_rank: 62,
-      },
-    ],
-  };
+  // console.log(response.json());
+  // return {
+  //   CurrentDateText: [
+  //     {
+  //       SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
+  //     },
+  //   ],
+  //   CurrentEvents: [
+  //     {
+  //       EventStart: "2024-12-23T08:15:00",
+  //       StartDate: "23/12/2024",
+  //       StartTime: "08:15",
+  //       EventType: 2,
+  //       EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+  //       committee_rank: 62,
+  //     },
+  //   ],
+  // };
 
-  // return await response.json();
+  return await response.json();
 }

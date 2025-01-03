@@ -1,8 +1,29 @@
-import {
-  getScheduleData,
-  ScheduleData,
-  ScheduleEventType,
-} from "../getKnessetData";
+import { getScheduleData } from "../getKnessetData";
+
+export enum ScheduleEventType {
+  Plenum = 1,
+  Committee,
+  SpecialOccasion,
+}
+
+export interface ScheduleData {
+  CommiteesNumber?: number;
+  Events: ScheduleEvent[];
+}
+export interface ScheduleDataProps {
+  SelectedDate: string;
+  SelectedMonth: string | null;
+  SelectedYear: string | null;
+}
+
+export interface ScheduleEvent {
+  EventStart: string;
+  StartDate: string; //change to time format
+  StartTime: string; // change to time format
+  EventType: ScheduleEventType;
+  EventName: string;
+  committee_rank: number;
+}
 
 export default async function Schedule() {
   // get the date of today in the format of the API
