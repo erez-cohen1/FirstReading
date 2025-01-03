@@ -110,6 +110,7 @@ export async function fetchData(
   //   console.error("Expected JSON, but received:", contentType);
   //   throw new Error("Failed to fetch data: Invalid response type");
   // }
+  const jsonResponse = await response.json();
   return {
     CurrentDateText: [
       {
