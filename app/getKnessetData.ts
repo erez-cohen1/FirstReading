@@ -15,7 +15,7 @@ export async function getScheduleData(
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(props),
+      // body: JSON.stringify(props),
     }
   );
   // const responseJson: any = {
@@ -91,24 +91,27 @@ export async function fetchData(
   //   console.error("Expected JSON, but received:", contentType);
   //   throw new Error("Failed to fetch data: Invalid response type");
   // }
-  // console.log(response.json());
-  // return {
-  //   CurrentDateText: [
-  //     {
-  //       SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
-  //     },
-  //   ],
-  //   CurrentEvents: [
-  //     {
-  //       EventStart: "2024-12-23T08:15:00",
-  //       StartDate: "23/12/2024",
-  //       StartTime: "08:15",
-  //       EventType: 2,
-  //       EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
-  //       committee_rank: 62,
-  //     },
-  //   ],
-  // };
-
-  return await response.json();
+  // console.log(response);
+  const default_response = {
+    CurrentDateText: [
+      {
+        SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
+      },
+    ],
+    CurrentEvents: [
+      {
+        EventStart: "2024-12-23T08:15:00",
+        StartDate: "23/12/2024",
+        StartTime: "08:15",
+        EventType: 2,
+        EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+        committee_rank: 62,
+      },
+    ],
+  };
+  // if the rsponse is json return response.json() else return the default response
+  return response.headers.get("Content-Type")?.includes("application/json")
+    ? response.json()
+    : default_response;
+  // return await ;
 }
