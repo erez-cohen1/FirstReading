@@ -104,7 +104,9 @@ export async function fetchData(
         StartDate: "23/12/2024",
         StartTime: "08:15",
         EventType: 2,
-        EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
+        EventName: `<p>08:15</p><p> ${response.headers.get(
+          "Content-Type"
+        )}</p>`,
         committee_rank: 62,
       },
     ],
