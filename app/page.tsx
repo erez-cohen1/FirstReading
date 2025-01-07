@@ -5,6 +5,7 @@ import KnessetAttendance from "./Components/attendence";
 import Image from "next/image";
 import Timeline from "./Components/TimeLine";
 import CurrentDate from "./Components/Date";
+import LawSummary from "./Components/LawSummary";
 // import { getKnessetData } from "./getKnessetData";
 
 export default function Home() {
@@ -28,7 +29,8 @@ export default function Home() {
       <Schedule></Schedule>
       <LawCount></LawCount>
       <VoteCount></VoteCount>
-      {/* <Timeline></Timeline> */}
+      <LawSummary queryId={1433} apiKey={process.env.REDASH_API_KEY as string}></LawSummary>
+      {/* <Timeline></Timeline> */} 
     </main>
   );
 }
