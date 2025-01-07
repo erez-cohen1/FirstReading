@@ -14,7 +14,10 @@ export async function getScheduleData(
     "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+      },
       // body: JSON.stringify(props),
     }
   );
@@ -47,7 +50,7 @@ export async function getScheduleData(
         StartDate: event.StartDate,
         StartTime: event.StartTime,
         EventType: event.EventType,
-        EventName: event.EventName,
+        EventName: cleanName,
         committee_rank: event.committee_rank,
       };
     }
@@ -104,7 +107,7 @@ export async function fetchData(
         StartDate: "23/12/2024",
         StartTime: "08:15",
         EventType: 2,
-        EventName: `<p>08:15</p><p> ${response.text()}</p>`,
+        EventName: `<p>08:15</p><p> </p>`,
         committee_rank: 62,
       },
     ],
