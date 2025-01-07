@@ -47,7 +47,7 @@ export async function getScheduleData(
         StartDate: event.StartDate,
         StartTime: event.StartTime,
         EventType: event.EventType,
-        EventName: cleanName,
+        EventName: event.EventName,
         committee_rank: event.committee_rank,
       };
     }
@@ -104,14 +104,12 @@ export async function fetchData(
         StartDate: "23/12/2024",
         StartTime: "08:15",
         EventType: 2,
-        EventName: `<p>08:15</p><p> ${response.headers.get(
-          "Content-Type"
-        )}</p>`,
+        EventName: `<p>08:15</p><p> ${response.text()}</p>`,
         committee_rank: 62,
       },
     ],
   };
-  // if the rsponse is json return response.json() else return the default response
+  // if the rsponse is json return response.json() else if the response is html
   return response.headers.get("Content-Type")?.includes("application/json")
     ? response.json()
     : default_response;
