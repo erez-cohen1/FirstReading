@@ -22,7 +22,12 @@ export async function getScheduleData(
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
       },
-      body: JSON.stringify(props),
+      body: JSON.stringify({
+        SelectedDate: "2024-12-26T00:00:00.000Z",
+        // SelectedDate: todayString,
+        SelectedMonth: null,
+        SelectedYear: null,
+      }),
     }
   );
   // const responseJson: any = {
@@ -85,7 +90,25 @@ export async function fetchData(
   url: string,
   requestInit: RequestInit
 ): Promise<any> {
-  const response = await fetch(url, requestInit);
+  const response = await fetch(
+    "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/javascript, */*; q=0.01",
+        "Content-Type": "application/json",
+        Origin: "https://main.knesset.gov.il",
+        Referer: "https://main.knesset.gov.il/",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+      },
+      body: JSON.stringify({
+        SelectedDate: "2024-12-26T00:00:00.000Z",
+        SelectedMonth: null,
+        SelectedYear: null,
+      }),
+    }
+  );
   // const contentType = response.headers.get("Content-Type");
 
   if (!response.ok) {
