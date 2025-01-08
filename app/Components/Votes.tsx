@@ -42,12 +42,7 @@ const VoteCount = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              SelectedDate: "2024-12-26T00:00:00.000Z",
-              // SelectedDate: todayString,
-              SelectedMonth: null,
-              SelectedYear: null,
-            }),
+            body: JSON.stringify(payload),
           }
         );
 
