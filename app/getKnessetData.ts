@@ -15,12 +15,7 @@ export async function getScheduleData(
     {
       method: "POST",
       headers: {
-        Accept: "application/json, text/javascript, */*; q=0.01",
         "Content-Type": "application/json",
-        Origin: "https://main.knesset.gov.il",
-        Referer: "https://main.knesset.gov.il/",
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
       },
       body: JSON.stringify({
         SelectedDate: "2024-12-26T00:00:00.000Z",
@@ -30,23 +25,6 @@ export async function getScheduleData(
       }),
     }
   );
-  // const responseJson: any = {
-  //   CurrentDateText: [
-  //     {
-  //       SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
-  //     },
-  //   ],
-  //   CurrentEvents: [
-  //     {
-  //       EventStart: "2024-12-23T08:15:00",
-  //       StartDate: "23/12/2024",
-  //       StartTime: "08:15",
-  //       EventType: 2,
-  //       EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
-  //       committee_rank: 62,
-  //     },
-  //   ],
-  // };
   // parse the events from the json data
   const events: ScheduleEvent[] = responseJson.CurrentEvents.map(
     (event: any) => {
@@ -90,38 +68,11 @@ export async function fetchData(
   url: string,
   requestInit: RequestInit
 ): Promise<any> {
-  const response = await fetch(
-    "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/javascript, */*; q=0.01",
-        "Content-Type": "application/json",
-        Origin: "https://main.knesset.gov.il",
-        Referer: "https://main.knesset.gov.il/",
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-      },
-      body: JSON.stringify({
-        SelectedDate: "2024-12-26T00:00:00.000Z",
-        SelectedMonth: null,
-        SelectedYear: null,
-      }),
-    }
-  );
-  // const contentType = response.headers.get("Content-Type");
-
+  const response = await fetch(url, requestInit);
   if (!response.ok) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
   }
-  // if (contentType && contentType.includes("application/json")) {
-  //   const data = await response.json();
-  // } else {
-  //   // Handle non-JSON responses appropriately
-  //   console.error("Expected JSON, but received:", contentType);
-  //   throw new Error("Failed to fetch data: Invalid response type");
-  // }
-  // console.log(response);
+
   const default_response = {
     CurrentDateText: [
       {
@@ -139,6 +90,7 @@ export async function fetchData(
       },
     ],
   };
+
   // if the rsponse is json return response.json() else if the response is html
   return response.headers.get("Content-Type")?.includes("application/json")
     ? response.json()

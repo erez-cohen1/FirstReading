@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 
 type Vote = {
@@ -21,8 +21,8 @@ const VoteCount = () => {
   const getTodayDate = () => {
     const today = new Date();
     const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-based, so add 1
-    const day = today.getDate().toString().padStart(2, '0'); // Ensure day is always 2 digits
+    const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-based, so add 1
+    const day = today.getDate().toString().padStart(2, "0"); // Ensure day is always 2 digits
     return `${year}-${month}-${day}`;
   };
 
@@ -31,8 +31,8 @@ const VoteCount = () => {
       try {
         const payload = {
           SearchType: 1,
-          FromDate: getTodayDate(),  // Use today's date
-          ToDate: getTodayDate(),    // Use today's date
+          FromDate: getTodayDate(), // Use today's date
+          ToDate: getTodayDate(), // Use today's date
         };
 
         const response = await fetch(
@@ -42,7 +42,12 @@ const VoteCount = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(payload),
+            body: JSON.stringify({
+              SelectedDate: "2024-12-26T00:00:00.000Z",
+              // SelectedDate: todayString,
+              SelectedMonth: null,
+              SelectedYear: null,
+            }),
           }
         );
 
@@ -76,7 +81,7 @@ const VoteCount = () => {
         </header>
         <main className="Component-main">
           <section className="Schedule-section" id="General-Assembly">
-            <ul> 
+            <ul>
               {voteData.Table.map((vote, index) => (
                 <li key={index}>
                   <div>
