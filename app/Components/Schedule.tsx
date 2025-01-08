@@ -1,4 +1,7 @@
-import { getScheduleData } from "../getKnessetData";
+"use client";
+
+import { useEffect, useState } from "react";
+// import { getScheduleData } from "../getKnessetData";
 
 export enum ScheduleEventType {
   Plenum = 1,
@@ -17,36 +20,69 @@ export interface ScheduleDataProps {
 }
 
 export interface ScheduleEvent {
+  EventName: string;
   EventStart: string;
   StartDate: string; //change to time format
   StartTime: string; // change to time format
   EventType: ScheduleEventType;
-  EventName: string;
   committee_rank: number;
 }
 
-export default async function Schedule() {
+export default function Schedule() {
+  const [events, setEvents] = useState<ScheduleData>({ Events: [] });
   // get the date of today in the format of the API
   const today = new Date(Date.now());
   const todayString = today.toISOString();
-  const scheduleParams = {
-    // SelectedDate: "2024-12-26T00:00:00.000Z",
-    SelectedDate: todayString,
-    SelectedMonth: null,
-    SelectedYear: null,
-  };
+
   // get the schedule data
-  const events: ScheduleData = await getScheduleData(scheduleParams);
+  // const events: ScheduleData = await getScheduleData(scheduleParams);
+  // write a useEffect that fetches the data from the url https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday
+  // and stores it in the state
+  useEffect(() => {
+    const fetchScheduleData = async () => {
+      try {
+        const scheduleParams = {
+          SelectedDate: "2024-12-26T00:00:00.000Z",
+          // SelectedDate: todayString,
+          SelectedMonth: null,
+          SelectedYear: null,
+        };
+        const response = await fetch(
+          "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(scheduleParams),
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log(data);
+        setEvents({ Events: data.CurrentEvents });
+      } catch (error) {
+        console.error("Error fetching schedule data:", error);
+      }
+    };
+    fetchScheduleData();
+  }, []);
+
   // split the events to commitees, plenum and special occasions
-  const commitees = events.Events.filter(
-    (event) => event.EventType === ScheduleEventType.Committee
-  );
-  const plenum = events.Events.filter(
-    (event) => event.EventType === ScheduleEventType.Plenum
-  );
-  const specialOccasion = events.Events.filter(
-    (event) => event.EventType === ScheduleEventType.SpecialOccasion
-  );
+  const committees =
+    events.Events.filter(
+      (event) => event.EventType === ScheduleEventType.Committee
+    ) || [];
+  const plenum =
+    events?.Events?.filter(
+      (event) => event.EventType === ScheduleEventType.Plenum
+    ) || [];
+  const specialOccasion =
+    events?.Events?.filter(
+      (event) => event.EventType === ScheduleEventType.SpecialOccasion
+    ) || [];
 
   return (
     <>
@@ -60,13 +96,13 @@ export default async function Schedule() {
         <main className="Component-main">
           <section className="Schedule-section" id="Comeeties">
             <div>
-              <h1 className="number-fig">{events.CommiteesNumber}</h1>
+              <h1 className="number-fig">{events?.CommiteesNumber}</h1>
             </div>
             <h4>ועדות כונסו</h4>
           </section>
           <section className="Schedule-section" id="General-Assembly">
             <ul>
-              {commitees.map((event) => (
+              {committees.map((event) => (
                 <li key={event.EventName}>
                   <b>{event.StartTime}</b> <br /> {event.EventName}
                 </li>
