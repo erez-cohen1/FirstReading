@@ -84,7 +84,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, apiKey }) => {
                                     padding: '15px',
                                     marginBottom: '10px',
                                     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                                    width: '50rem', // Set the width to a fixed value
+                                    width: '100%', // Set the width to a fixed value
                                 }}                                
                             >
                                 {Object.entries(item)

@@ -1,17 +1,12 @@
-"use client";
+'use client';
 import React, { useEffect, useState } from "react";
 
 type Vote = {
-  VoteId: number;
-  VoteProtocolNo: number;
   VoteDate: string;
   VoteDateStr: string;
   VoteTimeStr: string;
   VoteType: string;
   ItemTitle: string;
-  VoteDateLongStr: string;
-  KnessetId: number;
-  SessionId: number;
 };
 
 type VoteData = {
@@ -22,60 +17,89 @@ const VoteCount = () => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
   const [showItemTitles, setShowItemTitles] = useState(false);
 
-  useEffect(() => {
-    fetch("/mock_data_votes.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setVoteData(data);
-      });
-  }, []);
+  // Helper function to get today's date in the "YYYY-MM-DD" format
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-based, so add 1
+    const day = today.getDate().toString().padStart(2, '0'); // Ensure day is always 2 digits
+    return `${year}-${month}-${day}`;
+  };
 
-  if (!voteData) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    const fetchVoteData = async () => {
+      try {
+        const payload = {
+          SearchType: 1,
+          FromDate: getTodayDate(),  // Use today's date
+          ToDate: getTodayDate(),    // Use today's date
+        };
+
+        const response = await fetch(
+          "https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch votes data");
+        }
+
+        const data: VoteData = await response.json();
+        setVoteData(data);
+      } catch (error) {
+        console.error("Error fetching votes data:", error);
+      }
+    };
+
+    fetchVoteData();
+  }, []);
 
   const toggleItemTitles = () => {
     setShowItemTitles(!showItemTitles);
   };
+
+  if (!voteData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <div className="Component" onClick={toggleItemTitles} id="Schedule">
         <header className="Component-header">
           <h1>הצבעות</h1>
-          {/* <a href="#">
-            <img src="Share-icon.png" alt="Share icon" />
-          </a> */}
         </header>
         <main className="Component-main">
-          <section className="Schedule-section" id="Comeeties">
-            <div>
-              <h1
-                className="number-fig"
-                id="schedule-vote-number"
-                style={{ cursor: "pointer" }}
-              >
-                {voteData.Table.length}
-              </h1>
-            </div>
-            <h4>הצבעות</h4>
-          </section>
-
-          {/* {showItemTitles && ( */}
-          <section className="Schedule-section" id="Comeeties">
-            <ul>
-              {voteData.Table.map((vote) => (
-                <li key={vote.VoteId}>{vote.ItemTitle}</li>
+          <section className="Schedule-section" id="General-Assembly">
+            <ul> 
+              {voteData.Table.map((vote, index) => (
+                <li key={index}>
+                  <div>
+                    <strong>נושא הדיון:</strong> {vote.ItemTitle}
+                  </div>
+                  <div>
+                    <strong>תאריך:</strong> {vote.VoteDateStr}
+                  </div>
+                  <div>
+                    <strong>זמן:</strong> {vote.VoteTimeStr}
+                  </div>
+                  <div>
+                    <strong>אופן ההצבעה:</strong> {vote.VoteType}
+                  </div>
+                </li>
               ))}
             </ul>
           </section>
-          {/* )} */}
         </main>
         <footer className="Component-footer">
           <div>
             <a href="#" className="expand-component">
               <p>לרשימה המלאה</p>
-              {/* <img src="Schedule-arrow.png" alt="arrow" /> */}
             </a>
           </div>
         </footer>
