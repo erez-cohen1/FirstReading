@@ -68,7 +68,21 @@ export async function fetchData(
   url: string,
   requestInit: RequestInit
 ): Promise<any> {
-  const response = await fetch(url, requestInit);
+  const response = await fetch(
+    "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        SelectedDate: "2024-12-26T00:00:00.000Z",
+        // SelectedDate: todayString,
+        SelectedMonth: null,
+        SelectedYear: null,
+      }),
+    }
+  );
   if (!response.ok) {
     throw new Error(`Failed to fetch data: ${response.statusText}`);
   }
