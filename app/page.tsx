@@ -27,11 +27,12 @@ export default function Home() {
       <hr />
       <KnessetAttendance></KnessetAttendance>
       <Schedule></Schedule>
-      <LawSummary queryId={1433} apiKey={process.env.REDASH_API_KEY as string}></LawSummary>
+      <LawSummary
+        queryId={1433}
+        apiKey={process.env.REDASH_API_KEY as string}
+      ></LawSummary>
       {/* <LawCount></LawCount> */}
       <VoteCount></VoteCount>
-      
-      {/* <Timeline></Timeline> */} 
     </main>
   );
 }
