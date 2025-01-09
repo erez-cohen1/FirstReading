@@ -1,4 +1,8 @@
-import { getScheduleData } from "../getKnessetData";
+"use client";
+
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { fetchScheduleData } from "../getKnessetData";
+import { get } from "axios";
 
 export enum ScheduleEventType {
   Plenum = 1,
@@ -17,36 +21,41 @@ export interface ScheduleDataProps {
 }
 
 export interface ScheduleEvent {
+  EventName: string;
   EventStart: string;
   StartDate: string; //change to time format
   StartTime: string; // change to time format
   EventType: ScheduleEventType;
-  EventName: string;
   committee_rank: number;
 }
 
-export default async function Schedule() {
-  // get the date of today in the format of the API
-  // const today = new Date(Date.now());
-  // const todayString = today.toISOString();
-  const scheduleParams = {
-    SelectedDate: "2024-12-26T00:00:00.000Z",
-    // SelectedDate: todayString,
-    SelectedMonth: null,
-    SelectedYear: null,
-  };
-  // get the schedule data
-  const events: ScheduleData = await getScheduleData(scheduleParams);
+export default function Schedule() {
+  const [events, setEvents] = useState<ScheduleData>({ Events: [] });
+
+  useEffect(() => {
+    const today = new Date(Date.now());
+    const todayString = today.toISOString();
+    const scheduleParams = {
+      SelectedDate: todayString,
+      SelectedMonth: null,
+      SelectedYear: null,
+    };
+    fetchScheduleData(scheduleParams, setEvents);
+  }, []);
+
   // split the events to commitees, plenum and special occasions
-  const commitees = events.Events.filter(
-    (event) => event.EventType === ScheduleEventType.Committee
-  );
-  const plenum = events.Events.filter(
-    (event) => event.EventType === ScheduleEventType.Plenum
-  );
-  const specialOccasion = events.Events.filter(
-    (event) => event.EventType === ScheduleEventType.SpecialOccasion
-  );
+  const committees =
+    events.Events.filter(
+      (event) => event.EventType === ScheduleEventType.Committee
+    ) || [];
+  const plenum =
+    events?.Events?.filter(
+      (event) => event.EventType === ScheduleEventType.Plenum
+    ) || [];
+  const specialOccasion =
+    events?.Events?.filter(
+      (event) => event.EventType === ScheduleEventType.SpecialOccasion
+    ) || [];
 
   return (
     <>
@@ -60,13 +69,13 @@ export default async function Schedule() {
         <main className="Component-main">
           <section className="Schedule-section" id="Comeeties">
             <div>
-              <h1 className="number-fig">{events.CommiteesNumber}</h1>
+              <h1 className="number-fig">{events?.CommiteesNumber}</h1>
             </div>
             <h4>ועדות כונסו</h4>
           </section>
           <section className="Schedule-section" id="General-Assembly">
             <ul>
-              {commitees.map((event) => (
+              {committees.map((event) => (
                 <li key={event.EventName}>
                   <b>{event.StartTime}</b> <br /> {event.EventName}
                 </li>

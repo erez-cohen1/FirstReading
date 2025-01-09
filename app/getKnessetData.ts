@@ -1,55 +1,48 @@
-"use server";
+import { Dispatch, SetStateAction } from "react";
 import {
   ScheduleData,
   ScheduleDataProps,
   ScheduleEventType,
   ScheduleEvent,
 } from "./Components/Schedule";
-export async function getScheduleData(
-  props: ScheduleDataProps
-): Promise<ScheduleData> {
-  // Make the HTTP POST request to the API
 
-  const responseJson: any = await fetchData(
-    "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/javascript, */*; q=0.01",
-        "Content-Type": "application/json",
-        Origin: "https://main.knesset.gov.il",
-        Referer: "https://main.knesset.gov.il/",
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-      },
-      body: JSON.stringify({
-        SelectedDate: "2024-12-26T00:00:00.000Z",
-        // SelectedDate: todayString,
-        SelectedMonth: null,
-        SelectedYear: null,
-      }),
+export async function fetchData(url: string, requestInit?: RequestInit) {
+  try {
+    const response = await fetch(url, requestInit);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
-  );
-  // const responseJson: any = {
-  //   CurrentDateText: [
-  //     {
-  //       SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
-  //     },
-  //   ],
-  //   CurrentEvents: [
-  //     {
-  //       EventStart: "2024-12-23T08:15:00",
-  //       StartDate: "23/12/2024",
-  //       StartTime: "08:15",
-  //       EventType: 2,
-  //       EventName: "<p>08:15</p><p> ישיבת הוועדה לביטחון לאומי</p>",
-  //       committee_rank: 62,
-  //     },
-  //   ],
-  // };
-  // parse the events from the json data
-  const events: ScheduleEvent[] = responseJson.CurrentEvents.map(
-    (event: any) => {
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
+export const fetchScheduleData = async (
+  scheduleParams: ScheduleDataProps,
+  setEvents: Dispatch<SetStateAction<ScheduleData>>
+) => {
+  try {
+    const data = await fetchData(
+      "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(scheduleParams),
+      }
+    );
+    // if (!response.ok) {
+    //   throw new Error(`Failed to fetch data: ${response.statusText}`);
+    // }
+    // const data = await response.json();
+
+    // parse the events from the json data
+    const events: ScheduleEvent[] = data.CurrentEvents.map((event: any) => {
       // remove html tags and time from the event name
       const cleanName: string = event.EventName.replace(/<\/?[^>]+(>|$)/g, "")
         .replace(/\d{2}:\d{2}/, "")
@@ -62,86 +55,30 @@ export async function getScheduleData(
         EventName: cleanName,
         committee_rank: event.committee_rank,
       };
-    }
-  );
-  //count the number of committees
-  const commiteesNumber = events.filter(
-    (event) => event.EventType === ScheduleEventType.Committee
-  ).length;
-  const Comittees = events.filter(
-    (event) => event.EventType === ScheduleEventType.Committee
-  );
-  const Plenum = events.filter(
-    (event) => event.EventType === ScheduleEventType.Plenum
-  );
-  const SpecialOccasions = events.filter(
-    (event) => event.EventType === ScheduleEventType.SpecialOccasion
-  );
-  return {
-    Events: [...Comittees, ...Plenum, ...SpecialOccasions],
-    CommiteesNumber: commiteesNumber,
-  };
-}
+    });
+    //count the number of committees
+    // const commiteesNumber = events.filter(
+    //   (event) => event.EventType === ScheduleEventType.Committee
+    // ).length;
+    // const Comittees = events.filter(
+    //   (event) => event.EventType === ScheduleEventType.Committee
+    // );
+    // const Plenum = events.filter(
+    //   (event) => event.EventType === ScheduleEventType.Plenum
+    // );
+    // const SpecialOccasions = events.filter(
+    //   (event) => event.EventType === ScheduleEventType.SpecialOccasion
+    // );
+    setEvents({ Events: events });
+    // return {
+    //   Events: [...Comittees, ...Plenum, ...SpecialOccasions],
+    //   CommiteesNumber: commiteesNumber,
+    // };
+    // const events = { Events: data.CurrentEvents };
 
-/*
-global fetching function for all fetch requests
-*/
-export async function fetchData(
-  url: string,
-  requestInit: RequestInit
-): Promise<any> {
-  const response = await fetch(
-    "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/javascript, */*; q=0.01",
-        "Content-Type": "application/json",
-        Origin: "https://main.knesset.gov.il",
-        Referer: "https://main.knesset.gov.il/",
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-      },
-      body: JSON.stringify({
-        SelectedDate: "2024-12-26T00:00:00.000Z",
-        SelectedMonth: null,
-        SelectedYear: null,
-      }),
-    }
-  );
-  // const contentType = response.headers.get("Content-Type");
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
+    // return events;
+  } catch (error) {
+    console.error("Error fetching schedule data:", error);
+    return { Events: [] };
   }
-  // if (contentType && contentType.includes("application/json")) {
-  //   const data = await response.json();
-  // } else {
-  //   // Handle non-JSON responses appropriately
-  //   console.error("Expected JSON, but received:", contentType);
-  //   throw new Error("Failed to fetch data: Invalid response type");
-  // }
-  // console.log(response);
-  const default_response = {
-    CurrentDateText: [
-      {
-        SelectedDate: '23 בדצמבר 2024, כ"ב בכסלו תשפ"ה',
-      },
-    ],
-    CurrentEvents: [
-      {
-        EventStart: "2024-12-23T08:15:00",
-        StartDate: "23/12/2024",
-        StartTime: "08:15",
-        EventType: 2,
-        EventName: `<p>08:15</p><p> </p>`,
-        committee_rank: 62,
-      },
-    ],
-  };
-  // if the rsponse is json return response.json() else if the response is html
-  return response.headers.get("Content-Type")?.includes("application/json")
-    ? response.json()
-    : default_response;
-  // return await ;
-}
+};

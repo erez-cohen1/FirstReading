@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 import VoteDetails from "./VotesResults";  // Make sure to import VoteDetails
 
