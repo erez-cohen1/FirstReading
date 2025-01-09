@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { fetchScheduleData, getScheduleData } from "../getKnessetData";
+import { fetchScheduleData } from "../getKnessetData";
 import { get } from "axios";
 
 export enum ScheduleEventType {
@@ -31,13 +31,11 @@ export interface ScheduleEvent {
 
 export default function Schedule() {
   const [events, setEvents] = useState<ScheduleData>({ Events: [] });
-  // get the date of today in the format of the API
 
   useEffect(() => {
     const today = new Date(Date.now());
     const todayString = today.toISOString();
     const scheduleParams = {
-      // SelectedDate: "2024-12-26T00:00:00.000Z",
       SelectedDate: todayString,
       SelectedMonth: null,
       SelectedYear: null,
