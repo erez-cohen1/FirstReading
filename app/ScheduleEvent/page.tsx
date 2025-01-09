@@ -1,3 +1,5 @@
+"use client";
+
 /*
 create a new component called ScheduleEvent that will be the page that will be displayed when clicking on a certain event in the Schedule page. this component should contain the following:
 1. a header with the committee name and event name
@@ -8,7 +10,7 @@ create a new component called ScheduleEvent that will be the page that will be d
 */
 import { CommitteeEvent } from "../Components/Schedule";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import {
   fetchEventDescription,
   fetchEventParticipants,
