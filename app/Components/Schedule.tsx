@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-// import { getScheduleData } from "../getKnessetData";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { fetchScheduleData, getScheduleData } from "../getKnessetData";
+import { get } from "axios";
 
 export enum ScheduleEventType {
   Plenum = 1,
@@ -31,43 +32,17 @@ export interface ScheduleEvent {
 export default function Schedule() {
   const [events, setEvents] = useState<ScheduleData>({ Events: [] });
   // get the date of today in the format of the API
-  const today = new Date(Date.now());
-  const todayString = today.toISOString();
 
-  // get the schedule data
-  // const events: ScheduleData = await getScheduleData(scheduleParams);
-  // write a useEffect that fetches the data from the url https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday
-  // and stores it in the state
   useEffect(() => {
-    const fetchScheduleData = async () => {
-      try {
-        const scheduleParams = {
-          SelectedDate: "2024-12-26T00:00:00.000Z",
-          // SelectedDate: todayString,
-          SelectedMonth: null,
-          SelectedYear: null,
-        };
-        const response = await fetch(
-          "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(scheduleParams),
-          }
-        );
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data: ${response.statusText}`);
-        }
-        const data = await response.json();
-        console.log(data);
-        setEvents({ Events: data.CurrentEvents });
-      } catch (error) {
-        console.error("Error fetching schedule data:", error);
-      }
+    const today = new Date(Date.now());
+    const todayString = today.toISOString();
+    const scheduleParams = {
+      // SelectedDate: "2024-12-26T00:00:00.000Z",
+      SelectedDate: todayString,
+      SelectedMonth: null,
+      SelectedYear: null,
     };
-    fetchScheduleData();
+    fetchScheduleData(scheduleParams, setEvents);
   }, []);
 
   // split the events to commitees, plenum and special occasions

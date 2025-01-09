@@ -1,4 +1,4 @@
-"use server";
+import { Dispatch, SetStateAction } from "react";
 import {
   ScheduleData,
   ScheduleDataProps,
@@ -74,6 +74,7 @@ export async function fetchData(
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Sec-Fetch-Mode": "cors",
       },
       body: JSON.stringify({
         SelectedDate: "2024-12-26T00:00:00.000Z",
@@ -111,3 +112,40 @@ export async function fetchData(
     : default_response;
   // return await ;
 }
+
+export const fetchScheduleData = async (
+  scheduleParams: ScheduleDataProps,
+  setEvents: Dispatch<SetStateAction<ScheduleData>>
+) => {
+  try {
+    // const today = new Date(Date.now());
+    // const todayString = today.toISOString();
+    // const scheduleParams = {
+    //   // SelectedDate: "2024-12-26T00:00:00.000Z",
+    //   SelectedDate: todayString,
+    //   SelectedMonth: null,
+    //   SelectedYear: null,
+    // };
+    const response = await fetch(
+      "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsToday",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(scheduleParams),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    const events = { Events: data.CurrentEvents };
+    setEvents(events);
+    // return events;
+  } catch (error) {
+    console.error("Error fetching schedule data:", error);
+    return { Events: [] };
+  }
+};
