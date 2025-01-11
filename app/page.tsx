@@ -30,8 +30,6 @@ export default function Home() {
       <LawSummary queryId={1433}></LawSummary>
       {/* <LawCount></LawCount> */}
       <VoteCount></VoteCount>
-      
-      {/* <Timeline></Timeline> */} 
     </main>
   );
 }
