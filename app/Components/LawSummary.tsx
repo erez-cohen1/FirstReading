@@ -27,7 +27,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api"); // Call the API route we just created
+        const response = await axios.get("/api"); 
         const responseData = response.data as { query_result: { data: { rows: any[] } } };
         setData(responseData.query_result.data.rows);
         setLoading(false);
@@ -80,7 +80,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                   padding: "15px",
                   marginBottom: "10px",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  width: "50rem", // Fixed width
+                  width: "100%", 
                 }}
               >
                 {Object.entries(item)
