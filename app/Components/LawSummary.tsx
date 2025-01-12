@@ -28,7 +28,9 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/api"); // Call the API route we just created
-        const responseData = response.data as { query_result: { data: { rows: any[] } } };
+        const responseData = response.data as {
+          query_result: { data: { rows: any[] } };
+        };
         setData(responseData.query_result.data.rows);
         setLoading(false);
       } catch (err) {
@@ -50,7 +52,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
 
   const sortedData = [...data].sort(
     (a, b) =>
-      new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime()
+      new Date(b.LastUpdatedDate).getTime() -
+      new Date(a.LastUpdatedDate).getTime()
   );
 
   const formatDate = (dateString: string) => {
@@ -80,11 +83,13 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                   padding: "15px",
                   marginBottom: "10px",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  width: "50rem", // Fixed width
+                  // width: "50rem", // Fixed width
                 }}
               >
                 {Object.entries(item)
-                  .filter(([key, value]) => value !== null && key !== "StatusID")
+                  .filter(
+                    ([key, value]) => value !== null && key !== "StatusID"
+                  )
                   .map(([key, value]) => (
                     <p key={key} style={{ margin: "5px 0" }}>
                       <strong>{columnNames[key] || key}:</strong>{" "}

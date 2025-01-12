@@ -20,7 +20,7 @@
 }
 
 body {
-  color: var(--color-primary);
+  /* color: var(--color-primary); */
   background-color: var(--color-background);
   font-family: var(--font-body);
   line-height: 1;
@@ -121,7 +121,7 @@ blockquote {
 
 /* Links */
 a {
-  color: var(--color-accent);
+  color: black;
   text-decoration: underline;
 }
 a:hover {
