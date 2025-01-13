@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import initiatorsData from "./mkDetails.json"; // Adjust the path as needed
 
 interface LawSummaryProps {
   queryId: number;
@@ -63,6 +64,12 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
 
   const displayedData = showAll ? sortedData : sortedData.slice(0, 3);
 
+  const getInitiatorImage = (initiatorName: string) => {
+    const initiator = Object.values(initiatorsData).find(
+      (entry: any) => entry.Name === initiatorName
+    );
+    return initiator ? initiator.MkImage : null;
+  };
   return (
     <>
       <div className="Component" id="Schedule">
@@ -75,37 +82,72 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
               <div
                 key={index}
                 style={{
-                  border: "1px solid #ddd",
-                  borderRadius: "8px",
-                  padding: "15px",
-                  marginBottom: "10px",
-                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  width: "100%", 
+                  width: "100%",
                 }}
               >
                 {Object.entries(item)
                   .filter(([key, value]) => value !== null && key !== "StatusID")
                   .map(([key, value]) => (
-                    <p key={key} style={{ margin: "5px 0" }}>
+                    <p key={key} style={{ margin: "0.5rem 0" }}>
                       <strong>{columnNames[key] || key}:</strong>{" "}
                       {key === "StartDate"
                         ? formatDate(value as string)
                         : (value as string)}
                     </p>
                   ))}
+                {/* Render initiator images */}
+                {item.initiatorsfullnames && (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.5rem",
+                      marginTop: "0.5rem",
+                    }}
+                  >
+                    {item.initiatorsfullnames.split(",").map((name: string) => {
+                      const imageUrl = getInitiatorImage(name.trim());
+                      return (
+                        <div
+                          key={name}
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            textAlign: "center",
+                            maxWidth: "calc(25% - 0.5rem)",
+                          }}
+                        >
+                          {imageUrl && (
+                            <img
+                              src={imageUrl}
+                              alt={name}
+                              style={{
+                                width: "10rem", 
+                                height: "10rem", 
+                                objectFit: "cover", // Ensures content fits without distortion
+                              }}
+                            />
+                          )}
+                          <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{name}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             ))}
           </section>
           <button
             onClick={() => setShowAll(!showAll)}
             style={{
-              padding: "10px 20px",
+              padding: "0.5rem 1rem",
               backgroundColor: "#007BFF",
               color: "white",
               border: "none",
-              borderRadius: "5px",
+              borderRadius: "0.1rem",
               cursor: "pointer",
-              margin: "20px auto",
+              margin: "1rem auto",
               display: "block",
             }}
           >
