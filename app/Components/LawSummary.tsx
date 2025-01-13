@@ -28,8 +28,10 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api"); 
-        const responseData = response.data as { query_result: { data: { rows: any[] } } };
+        const response = await axios.get("/api");
+        const responseData = response.data as {
+          query_result: { data: { rows: any[] } };
+        };
         setData(responseData.query_result.data.rows);
         setLoading(false);
       } catch (err) {
@@ -51,7 +53,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
 
   const sortedData = [...data].sort(
     (a, b) =>
-      new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime()
+      new Date(b.LastUpdatedDate).getTime() -
+      new Date(a.LastUpdatedDate).getTime()
   );
 
   const formatDate = (dateString: string) => {
@@ -82,11 +85,18 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
               <div
                 key={index}
                 style={{
+                  border: "1px solid #ddd",
+                  borderRadius: "8px",
+                  padding: "15px",
+                  marginBottom: "10px",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                   width: "100%",
                 }}
               >
                 {Object.entries(item)
-                  .filter(([key, value]) => value !== null && key !== "StatusID")
+                  .filter(
+                    ([key, value]) => value !== null && key !== "StatusID"
+                  )
                   .map(([key, value]) => (
                     <p key={key} style={{ margin: "0.5rem 0" }}>
                       <strong>{columnNames[key] || key}:</strong>{" "}

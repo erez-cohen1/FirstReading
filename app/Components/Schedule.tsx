@@ -1,7 +1,8 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { fetchScheduleData } from "../getScheduleData";
+import { fetchEvent, fetchScheduleData } from "../getScheduleData";
+import Link from "next/link";
 
 export enum ScheduleEventType {
   Plenum = 1,
@@ -24,6 +25,7 @@ export interface ScheduleDataProps {
 }
 
 export interface CommitteeEvent {
+  id: number;
   EventStart: Date; // "2025-01-07T10:30:00"
   // StartTime: Date; // "בשעה 10:30"
   // StartTimeClean: Date; // "10:30"
@@ -33,9 +35,13 @@ export interface CommitteeEvent {
   rnkParent: number; // hour group rank
   groups: number[]; // list of all ranks of hour groups "22, 20, 18, 12, 7, 6, 4, 3, 1"
   rnkChilds: number; // id in the hour group
+  EventDiscription?: string; // full discription of the event
+  EventParticipants?: string[];
+  EventLiveStream?: string; // url to live stream
 }
 
 export interface PlenumEvent {
+  id: number;
   RowNum: number;
   // startTimeStr: Date;
   EventStart: Date;
@@ -50,6 +56,7 @@ export interface PlenumEvent {
 }
 
 export interface KnsEvent {
+  id: number;
   EventStart: Date; // "2025-01-07T12:00:00";
   // StartDate: Date; // "07/01/2025";
   // StartTime: Date; //"בשעה 12:00";
@@ -75,7 +82,7 @@ export default function Schedule() {
     const yesterday = new Date(
       today.getFullYear(),
       today.getMonth(),
-      today.getDate()
+      today.getDate() - 2
     );
     const todayString = today.toISOString();
     const yesterdayString = yesterday.toISOString();
@@ -92,6 +99,7 @@ export default function Schedule() {
       <div className="Component" id="Schedule">
         <header className="Component-header" id="Schedule-header">
           <h1>סדר יום</h1>
+          <h1></h1>
           {/* <a href="#">
             <img src="Share-icon.png" alt="Share icon" />
           </a> */}
@@ -100,16 +108,18 @@ export default function Schedule() {
           <section className="Schedule-section" id="General-Assembly">
             <ul>
               {events.CurrentCommitteeEvents.map((event) => (
-                <li key={event.EventName}>
-                  <b>
-                    {event.EventStart.getHours()}:
-                    {event.EventStart.getMinutes() == 0
-                      ? event.EventStart.getMinutes() + "0"
-                      : event.EventStart.getMinutes()}
-                    {" " + event.CommitteeName}
-                  </b>{" "}
-                  <br /> {event.EventName}
-                </li>
+                <Link href={`/CommitteeEvent/${event.id}`} key={event.id}>
+                  <li key={event.id}>
+                    <b>
+                      {event.EventStart.getHours()}:
+                      {event.EventStart.getMinutes() == 0
+                        ? event.EventStart.getMinutes() + "0"
+                        : event.EventStart.getMinutes()}
+                      {" " + event.CommitteeName}
+                    </b>{" "}
+                    <br /> {event.EventName}
+                  </li>
+                </Link>
               ))}
               {events.CurrentPlenumEvents.map((event) => (
                 <li key={event.FK_ItemID}>
@@ -125,7 +135,7 @@ export default function Schedule() {
                 </li>
               ))}
               {events.CurrentKnsEvents.map((event) => (
-                <li key={event.EventName}>
+                <li key={event.id}>
                   <b>{event.EventStart.toISOString()}</b> <br />{" "}
                   {event.EventName}
                 </li>
@@ -148,10 +158,13 @@ export default function Schedule() {
 
 /*
 TODO:
-1. add a button to each event that will navigate to the ScheduleEvent component
-2. add a function that will fetch the event description and participants
-3. add a function that will fetch the event live stream
+1. order in the code of events navigation
+2. make page for plenum and kns events
+3. add to the fetchEvent function the all the event's data
 4. display only 5 events in the Schedule component
 5. add a button that will display more events
-6. create component PlenumEvent that will display the plenum events
+6. add internal scroll in the event name
+
+7. add state for main page of the date
+8. search for more data about the events.
 */
