@@ -19,6 +19,9 @@ export async function GET() {
     nextResponse.headers.set('Pragma', 'no-cache');
     nextResponse.headers.set('Expires', '0');
 
+    // Use Vercel's revalidate feature to ensure fresh data
+    nextResponse.headers.set('x-vercel-revalidate', '1');
+
     return nextResponse;
   } catch (error) {
     console.error('Error fetching data from Redash:', error);
