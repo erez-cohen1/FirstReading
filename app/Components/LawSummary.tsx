@@ -90,7 +90,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                   padding: "15px",
                   marginBottom: "10px",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  width: "100%",
+                  width: "100%", 
                 }}
               >
                 {Object.entries(item)
@@ -105,8 +105,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                         : (value as string)}
                     </p>
                   ))}
-                {/* Render initiator images */}
-                {item.initiatorsfullnames && (
+               {/* Render initiator images */}
+               {item.initiatorsfullnames && (
                   <div
                     style={{
                       display: "flex",
