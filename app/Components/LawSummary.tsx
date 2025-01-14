@@ -133,8 +133,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                               src={imageUrl}
                               alt={name}
                               style={{
-                                width: "10rem", 
-                                height: "10rem", 
+                                width: "6rem", 
+                                height: "6rem", 
                                 objectFit: "cover", // Ensures content fits without distortion
                               }}
                             />

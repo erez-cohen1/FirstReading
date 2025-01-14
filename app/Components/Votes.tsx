@@ -102,7 +102,7 @@ const Votes = () => {
           <section className="Schedule-section" id="General-Assembly">
             <ul>
               {voteData.Table.map((vote) => (
-                <li key={vote.VoteId} onClick={() => handleVoteClick(vote.VoteId)}>
+                <li key={vote.VoteId} className = "vote-item" onClick={() => handleVoteClick(vote.VoteId)}>
                   <div>
                     <strong>נושא הדיון:</strong> {vote.ItemTitle || "N/A"}
                   </div>

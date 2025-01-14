@@ -10,10 +10,11 @@
     "info": "next info"
   },
   "dependencies": {
-    "@hebcal/core": "^5.8.8",
+    "@hebcal/core": "^5.8.13",
     "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.39.1",
     "axios": "^1.7.9",
+    "jewish-date": "^2.0.17",
     "next": "^14.0.4",
     "nodemailer": "^6.9.5",
     "react": "^18.2.0",

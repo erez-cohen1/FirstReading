@@ -1,42 +1,46 @@
 "use client";
+
 import { useState, useEffect } from "react";
-export default function CurrentDate() {
-  const [date, setDate] = useState({ day: "", month: "", year: "" });
+import {
+  toJewishDate,
+  formatJewishDateInHebrew,
+} from "jewish-date";
+
+export default function HebrewDateComponent() {
+  const [gregorianDateHebrew, setGregorianDateHebrew] = useState("");
+  const [hebrewDate, setHebrewDate] = useState("");
 
   useEffect(() => {
-    const updateDate = () => {
+    const updateDates = () => {
       const today = new Date();
 
-      // Format the date (day, month, year) in Hebrew
-      const formattedDate = new Intl.DateTimeFormat("he-IL", {
-        day: "numeric",
-        month: "long",
+      // Format Gregorian date in Hebrew
+      const formattedGregorianDateHebrew = today.toLocaleDateString("he-IL", {
         year: "numeric",
-      }).format(today);
+        month: "long",
+        day: "numeric",
+      });
+      setGregorianDateHebrew(formattedGregorianDateHebrew);
 
-      // Split the formatted date into day, month, and year
-      const [day, month, year] = formattedDate.split(" ");
-
-      setDate({ day, month, year }); // Store day, month, and year separately
+      // Convert and format Hebrew date
+      const jewishDate = toJewishDate(today);
+      const formattedHebrewDate = formatJewishDateInHebrew(jewishDate);
+      setHebrewDate(formattedHebrewDate);
     };
 
-    updateDate(); // Set the initial date
-    const interval = setInterval(updateDate, 86400000); // Update once a day
+    updateDates(); // Initialize
+    const interval = setInterval(updateDates, 86400000); // Update every 24 hours
 
-    return () => clearInterval(interval); // Clean up when the component is unmounted
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   return (
     <>
-      <p>
-        <span className="Date-fig">
-          {date.day + " "}
-          {date.month + " "}
-          {date.year + " "}
-        </span>
+      <p  className="Date-fig">
+        <strong></strong> {gregorianDateHebrew}
       </p>
-      <p>
-        <span className="Date-fig"> א&apos; בתשרי התשפ&quot;ה</span>
+      <p  className="Date-fig">
+        <strong></strong> {hebrewDate}
       </p>
     </>
   );

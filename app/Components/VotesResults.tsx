@@ -34,6 +34,8 @@ type VoteDetailsData = {
 
 const VoteDetails = ({ voteId, onBack }: VoteDetailsProps) => {
   const [voteDetails, setVoteDetails] = useState<VoteDetailsData | null>(null);
+  const [filterTitle, setFilterTitle] = useState<string>('');
+  const [filterFaction, setFilterFaction] = useState<string>('');
 
   useEffect(() => {
     const fetchVoteDetails = async () => {
@@ -66,14 +68,21 @@ const VoteDetails = ({ voteId, onBack }: VoteDetailsProps) => {
   // Extracting the first vote header (as the JSON suggests an array)
   const voteHeader = voteDetails.VoteHeader[0];
 
+  // Apply filters to VoteDetails
+  const filteredVoteDetails = voteDetails.VoteDetails.filter(detail => {
+    return (
+      (filterTitle === '' || detail.Title === filterTitle) &&
+      (filterFaction === '' || detail.FactionName.includes(filterFaction))
+    );
+  });
+
   return (
     <div className="Component">
       <header className="Component-header">
-      {/* <h1>פרטי ההצבעה</h1> */}
-        <button onClick={onBack} className="back-button">
+      </header>
+      <button onClick={onBack} className="back-button">
           חזרה לרשימה
         </button>
-      </header>
       <main className="Component-main">
         <section className="Schedule-section" id="Vote-Details">
           <div>
@@ -105,9 +114,32 @@ const VoteDetails = ({ voteId, onBack }: VoteDetailsProps) => {
             </ul>
           </div>
           <div>
+            <label>
+              סינון לפי הצבעה:
+              <select value={filterTitle} onChange={(e) => setFilterTitle(e.target.value)}>
+              <option value="">כל ההצבעות</option>
+              <option value="בעד">בעד</option>
+              <option value="נגד">נגד</option>
+              <option value="נמנע">נמנע</option>
+              <option value="נוכח ולא הצביע">נוכח ולא הצביע</option>
+            </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              סינון לפי סיעה:
+              <input
+                type="text"
+                value={filterFaction}
+                onChange={(e) => setFilterFaction(e.target.value)}
+                placeholder="הקש שם של סיעה"
+              />
+            </label>
+          </div>
+          <div>
             <strong>פירוט ההצבעות:</strong>
             <ul>
-              {voteDetails.VoteDetails.map((detail, idx) => (
+              {filteredVoteDetails.map((detail, idx) => (
                 <li key={idx}>
                   {detail.MkName} ({detail.FactionName}): {detail.Title}
                 </li>
