@@ -55,3 +55,6 @@ export const SUPABASE_ENABLED =
     : false;
 
 export const NASA_API_KEY = process.env.NASA_API_KEY || "";
+
+export const REDASH_URL = process.env.REDASH_URL;
+export const REDASH_API_KEY = process.env.REDASH_API_KEY;

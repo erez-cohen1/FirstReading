@@ -128,7 +128,7 @@
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/914/1_914_3_2378.jpeg?v=20241229_70848"
   },
   "915": {
-    "Name": "מירב  בן ארי",
+    "Name": "מירב בן ארי",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/915/1_915_3_2385.jpeg?v=20241229_80381"
   },
   "921": {
@@ -344,7 +344,7 @@
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1056/1_1056_3_17788.jpeg?v=20241229_97978"
   },
   "1059": {
-    "Name": "גלית דיסטל אטבריאן ",
+    "Name": "גלית דיסטל אטבריאן",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1059/1_1059_3_17778.jpeg?v=20241229_14265"
   },
   "1060": {
@@ -424,7 +424,7 @@
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1096/1_1096_3_19667.jpeg"
   },
   "1097": {
-    "Name": "אברהם  בצלאל",
+    "Name": "אברהם בצלאל",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1097/1_1097_3_19672.jpeg?v=20241229_83413"
   },
   "1098": {
@@ -546,5 +546,18 @@
   "1127": {
     "Name": "ירון לוי",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1127/1_1127_3_20229.png?v=20241229_71804"
+  },
+  "1128": {
+    "Name": "ששון ששי גואטה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1125/1_1125_3_20029.jpeg?v=20250113_09581"
+  },
+  "1129": {
+    "Name": "צגה מלקו", 
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1122/1_1122_3_19962.jpeg?v=20250113_02775"
+  },
+
+  "1130": {
+    "Name": "יצחק פינדרוס",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1001/1_1001_3_11229.jpeg?v=20250101_45784"
   }
 }

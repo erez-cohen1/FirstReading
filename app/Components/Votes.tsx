@@ -1,28 +1,29 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import VoteDetails from "./VotesResults";  // Make sure to import VoteDetails
 
 type Vote = {
-  VoteDate: string;
+  VoteId: number;
   VoteDateStr: string;
   VoteTimeStr: string;
   VoteType: string;
   ItemTitle: string;
+  AcceptedText: string;
 };
 
 type VoteData = {
   Table: Vote[];
 };
 
-const VoteCount = () => {
+const Votes = () => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
-  const [showItemTitles, setShowItemTitles] = useState(false);
+  const [selectedVoteId, setSelectedVoteId] = useState<number | null>(null);  // Track the selected vote
 
-  // Helper function to get today's date in the "YYYY-MM-DD" format
   const getTodayDate = () => {
     const today = new Date();
     const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Month is 0-based, so add 1
-    const day = today.getDate().toString().padStart(2, "0"); // Ensure day is always 2 digits
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const day = today.getDate().toString().padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -31,8 +32,8 @@ const VoteCount = () => {
       try {
         const payload = {
           SearchType: 1,
-          FromDate: getTodayDate(), // Use today's date
-          ToDate: getTodayDate(), // Use today's date
+          FromDate: getTodayDate(),
+          ToDate: getTodayDate(),
         };
 
         const response = await fetch(
@@ -42,12 +43,7 @@ const VoteCount = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              SelectedDate: "2024-12-26T00:00:00.000Z",
-              // SelectedDate: todayString,
-              SelectedMonth: null,
-              SelectedYear: null,
-            }),
+            body: JSON.stringify(payload),
           }
         );
 
@@ -56,7 +52,24 @@ const VoteCount = () => {
         }
 
         const data: VoteData = await response.json();
-        setVoteData(data);
+        const votesWithDetails = await Promise.all(
+          data.Table.map(async (vote) => {
+            const voteDetailsResponse = await fetch(
+              `https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVoteDetails/${vote.VoteId}`
+            );
+
+            if (!voteDetailsResponse.ok) {
+              throw new Error("Failed to fetch vote details");
+            }
+
+            const voteDetails = await voteDetailsResponse.json();
+            const acceptanceText = voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
+
+            return { ...vote, AcceptedText: acceptanceText };
+          })
+        );
+
+        setVoteData({ Table: votesWithDetails });
       } catch (error) {
         console.error("Error fetching votes data:", error);
       }
@@ -65,52 +78,59 @@ const VoteCount = () => {
     fetchVoteData();
   }, []);
 
-  const toggleItemTitles = () => {
-    setShowItemTitles(!showItemTitles);
+  const handleVoteClick = (voteId: number) => {
+    setSelectedVoteId(voteId);  // Set the selected vote ID
+  };
+
+  const handleBack = () => {
+    setSelectedVoteId(null);  // Go back to the vote list
   };
 
   if (!voteData) {
-    return <div>Loading...</div>;
+    return <div>Loading votes...</div>;
   }
 
   return (
-    <>
-      <div className="Component" onClick={toggleItemTitles} id="Schedule">
-        <header className="Component-header">
-          <h1>הצבעות</h1>
-        </header>
-        <main className="Component-main">
+    <div className="Component">
+      <header className="Component-header">
+        <h1>הצבעות</h1>
+      </header>
+      <main className="Component-main">
+        {selectedVoteId ? (
+          <VoteDetails voteId={selectedVoteId} onBack={handleBack} />
+        ) : (
           <section className="Schedule-section" id="General-Assembly">
             <ul>
-              {voteData.Table.map((vote, index) => (
-                <li key={index}>
+              {voteData.Table.map((vote) => (
+                <li key={vote.VoteId} onClick={() => handleVoteClick(vote.VoteId)}>
                   <div>
-                    <strong>נושא הדיון:</strong> {vote.ItemTitle}
+                    <strong>נושא הדיון:</strong> {vote.ItemTitle || "N/A"}
                   </div>
                   <div>
-                    <strong>תאריך:</strong> {vote.VoteDateStr}
+                    <strong>תאריך:</strong> {vote.VoteDateStr || "N/A"}
                   </div>
                   <div>
-                    <strong>זמן:</strong> {vote.VoteTimeStr}
+                    <strong>שעה:</strong> {vote.VoteTimeStr || "N/A"}
                   </div>
                   <div>
-                    <strong>אופן ההצבעה:</strong> {vote.VoteType}
+                    <strong>אופן ההצבעה:</strong> {vote.VoteType || "N/A"}
+                  </div>
+                  <div>
+                    <strong>תוצאה:</strong> {vote.AcceptedText || "N/A"}
                   </div>
                 </li>
               ))}
             </ul>
           </section>
-        </main>
-        <footer className="Component-footer">
-          <div>
-            <a href="#" className="expand-component">
-              <p>לרשימה המלאה</p>
-            </a>
-          </div>
-        </footer>
-      </div>
-    </>
+        )}
+      </main>
+      <footer className="Component-footer">
+        <a href="#" className="expand-component">
+          <p>לרשימה המלאה</p>
+        </a>
+      </footer>
+    </div>
   );
 };
 
-export default VoteCount;
+export default Votes;
