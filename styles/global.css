@@ -17,7 +17,6 @@
   --fonts: "david", sans-serif;
   --font-titles: "Rubik", serif;
   --font-body: "david", sans-serif; /* system-ui matches the user's system font */
-}
 
 body {
   /* color: var(--color-primary); */
@@ -633,8 +632,8 @@ hr {
 @media (max-width: 768px) {
   .attendance-component {
     width: 95%; /* Ensure it fits smaller screens */
-    /* padding: 10px; /* Reduce padding  */
-  /* }*/ */
+    padding: 10px; /* Reduce padding */
+  }
 
   .Component-header h1 {
     font-size: 1.2em; /* Adjust font size */
@@ -658,22 +657,21 @@ hr {
   .close-modal-button {
     font-size: 0.9em; /* Adjust button size */
   }
-
-
-
-.vote-item {
-  cursor: pointer;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: background-color 0.4s ease, box-shadow 0.15s ease;
-}
-
-.vote-item:hover {
-  background-color:var(--color-secondary); /* Change to your desired hover color */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.mk-image.grayscale {
-  filter: grayscale(100%);
-} 
+  
+  .vote-item {
+    cursor: pointer;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.4s ease, box-shadow 0.15s ease;
+  }
+  
+  .vote-item:hover {
+    background-color: var(--color-secondary); /* Change to your desired hover color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mk-image.grayscale {
+    filter: grayscale(100%);
+  }
