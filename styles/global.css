@@ -274,7 +274,23 @@ hr {
   color: var(--text-color1);
 }
 
-/* .expand-component {
+
+
+.Component-footer.attendance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center; /* Center the content horizontally */
+  padding: 5px;
+  margin: 4px;
+  width: 100%;
+  border: 2px solid #0900BD;
+  background-color: transparent; /* Adjust as needed */
+}
+
+.expand-component {
   text-decoration: none;
   color: var(--text-color1);
   align-items: end;
@@ -288,7 +304,7 @@ hr {
     top: 0.2em;
     color: var (var(--text-color2));
   }
-} */
+}
 
 .number-fig {
   font-size: 10em;
@@ -420,7 +436,10 @@ hr {
 }
 
 .attendance-chart {
-  /* position: relative; */
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -428,20 +447,20 @@ hr {
 }
 
 .chart-wrapper {
+  width:100%;
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(15, minmax(22px, 1fr)); /* Flexible columns */
+  grid-template-rows: repeat(8, 20px); /* Exactly 8 rows, each 20px high */
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 200px;
   /* max-height: 75px; Half of the width to create the semi-circle */
   width: 80%;
-  border-top-left-radius: 75px; /* Rounded top-left corner */
-  border-top-right-radius: 75px; /* Rounded top-right corner */
 }
 
 .chart-circle {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   border-radius: 0%;
 }
 
@@ -455,25 +474,67 @@ hr {
   border: 0.1em solid var(--color-primary);
 }
 
-.attendance-summary {
+.dimmed {
+  background-color: var(--global-bg-color);
+  opacity: 0.2;
+}
+
+
+
+.display-options {
+  border-top: 2px solid var(--global-bg-color);
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
   display: flex;
-  font-size: 6em;
-  padding: 0.3rem 0.2rem;
+  margin-top: 10px;
+  flex-direction: row;
+  width: 100%;
+  align-items: center; 
+}
+
+
+
+.display-options button {
+  position: bottom;
+  border: solid transparent;
+  flex-direction: column;
+  background-color: transparent;
+  font-family: 'VC_david';
+  font-style: normal;
+  font-weight: 600;
+  width: 25%;
+  font-size: 24px;
+  line-height: 90%;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  color: rgba(9, 0, 189, 0.2);
+  p{
+    font-size: 24px;
+  }
+  
+  }
+
+.display-options button.active {
+  background-color: var(--global-bg-color); /* Blue background for active button */
+  color: #FFEAD8; /* White text for active button */
+}
+
+.display-options button:hover {
+  opacity: 0.8; /* Slightly dim when hovering */
 }
 
 .modal-overlay {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   pointer-events: none; /* Ensures the overlay doesn't block interactions */
 }
+
 
 .modal-content {
   background: #ffead8;
@@ -482,27 +543,66 @@ hr {
   z-index: 5;
   border-radius: 8px;
   max-width: 500px;
-  max-height: 70vh;
   overflow-y: auto;
   text-align: left;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   pointer-events: auto; /* Enables interaction within the modal */
 }
 
-.attendance-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  z-index: 5;
+
+.grid-header {
+  display: none; /* Optional: Hide the header to focus on grid items */
 }
 
-.attendance-table th,
-.attendance-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-  z-index: 5;
+.grid-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+  gap: 1rem;
 }
+
+.grid-item {
+  font-family: 'VC_david';
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  height: 200px; /* Adjust height as needed */
+  text-align: center;
+  background: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--global-bg-color);
+}
+
+.mk-image {
+  min-width: 100%;
+  min-height: 80%;
+}
+
+.mk-image.grayscale {
+  filter: grayscale(100%);
+}
+
+.mk-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mk-name {
+  min-height: 20%;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: #fff; /* Optional: Add a background to separate the text */
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+  border: 2px solid var(--global-bg-color);
+}
+
 
 .close-modal-button {
   margin-top: 10px;
@@ -524,37 +624,12 @@ hr {
   height: 24px;
 }
 
-.mk-image {
-  width: 24px;
-  height: 24px;
+/* .mk-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
-@media (max-width: 768px) {
-  .attendance-component {
-    width: 95%; /* Ensure it fits smaller screens */
-    padding: 10px; /* Reduce padding */
-  }
-
-  .Component-header h1 {
-    font-size: 1.2em; /* Adjust font size */
-  }
-
-  .attendance-chart {
-    margin: 0.5rem 0; /* Add spacing */
-  }
-
-  .attendance-summary {
-    font-size: 2em; /* Adjust font size */
-    font-weight: bold;
-  }
-
-  .chart-circle {
-    width: 15px; /* Further reduce size */
-    height: 15px;
-    margin: 0.05rem;
-  }
-
-  .close-modal-button {
-    font-size: 0.9em; /* Adjust button size */
-  }
-}
+.mk-image.grayscale {
+  filter: grayscale(100%);
+} */
