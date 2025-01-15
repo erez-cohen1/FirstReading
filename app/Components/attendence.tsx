@@ -1,118 +1,60 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import mkDetails from "./mkDetails.json";
 
 interface MkData {
   MkId: number;
   IsPresent: boolean;
+  IsCoalition: boolean;
   Name: string;
   MkImage: string;
+  FactionName: string;
+  Phone: string;
+  isGoverment: boolean;
 }
 
 const KnessetAttendance: React.FC = () => {
   const [mkData, setMkData] = useState<MkData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const [showModal, setShowModal] = useState(false);
+  const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const modalRef = useRef<HTMLDivElement>(null);
+  const [flippedId, setFlippedId] = useState<number | null>(null);
+
+  const handleFlip = (id: number) => {
+    setFlippedId(flippedId === id ? null : id); // Toggle the flip state
+  };
 
   const fetchAttendanceData = async () => {
     try {
-      // Fetch attendance data
-      const attendanceResponse = await fetch(
-        "https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkPresent?lang=he"
+      const response = await fetch(
+        "https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkLobbyData?lang=he"
       );
-      if (!attendanceResponse.ok) {
-        throw new Error(`Attendance API error: ${attendanceResponse.status}`);
+      if (!response.ok) {
+        throw new Error(`Attendance API error: ${response.status}`);
       }
 
-      const attendanceData: { MkId: number; IsPresent: boolean }[] =
-        await attendanceResponse.json();
+      const data = await response.json();
 
-      const existingIds = new Set(Object.keys(mkDetails).map(Number)); // Convert keys to numbers
-      const missingData = attendanceData.filter(
-        (mk) =>
-          !(mkDetails as { [key: string]: { Name: string; MkImage: string } })[
-            mk.MkId.toString()
-          ]
+      const formattedData = data.mks.map((mk: any) => ({
+        MkId: mk.MkId,
+        IsPresent: mk.IsPresent,
+        IsCoalition: mk.IsCoalition,
+        Name: `${mk.Firstname} ${mk.Lastname}`,
+        MkImage: mk.ImagePath,
+        FactionName: mk.FactionName,
+        Phone: mk.Phone,
+        isGoverment: data.governmentPositions.some(
+          (position: any) => position.IsMk && position.MkId === mk.MkId
+        ),
+      }));
+
+      const sortedData = formattedData.sort((a: MkData, b: MkData) =>
+        b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1
       );
 
-      // Fetch details for each MkId with concurrency limit
-      const concurrencyLimit = 10; // Number of simultaneous requests
-      const detailedData = attendanceData
-        .filter(
-          (mk) =>
-            (mkDetails as { [key: string]: { Name: string; MkImage: string } })[
-              mk.MkId.toString()
-            ]
-        )
-        .map((mk) => ({
-          MkId: mk.MkId,
-          IsPresent: mk.IsPresent,
-          Name: (
-            mkDetails as { [key: string]: { Name: string; MkImage: string } }
-          )[mk.MkId.toString()]?.Name,
-          MkImage: (
-            mkDetails as { [key: string]: { Name: string; MkImage: string } }
-          )[mk.MkId.toString()]?.MkImage,
-        }));
-      const queue: Promise<void>[] = [];
-
-      for (const mk of missingData) {
-        const fetchMkDetails = async () => {
-          try {
-            const detailsResponse = await fetch(
-              `https://knesset.gov.il/WebSiteApi/knessetapi/MKs/GetMkdetailsHeader?mkId=${mk.MkId}&languageKey=he`
-            );
-            if (!detailsResponse.ok) {
-              throw new Error(
-                `Details API error for MkId ${mk.MkId}: ${detailsResponse.status}`
-              );
-            }
-
-            const details = await detailsResponse.json();
-
-            detailedData.push({
-              MkId: mk.MkId,
-              IsPresent: mk.IsPresent,
-              Name: details.Name,
-              MkImage: details.MkImage,
-            });
-          } catch (error) {
-            detailedData.push({
-              MkId: mk.MkId,
-              IsPresent: mk.IsPresent,
-              Name: String(mk.MkId),
-              MkImage: String(mk.MkId),
-            });
-            console.error(
-              `Failed to fetch details for MkId ${mk.MkId}:`,
-              error
-            );
-          }
-        };
-
-        // Add the request to the queue
-        const task = fetchMkDetails();
-        queue.push(task);
-
-        // Wait if concurrency limit is reached
-        if (queue.length >= concurrencyLimit) {
-          await Promise.race(queue);
-          queue.splice(0, queue.findIndex((t) => t === task) + 1); // Remove resolved tasks
-        }
-      }
-
-      // Wait for all remaining requests to complete
-      await Promise.all(queue);
-      // Convert the list to a dictionary
-
-      // Sort data so that present members come first
-      const sortedData = detailedData.sort(
-        (a, b) => (b.IsPresent ? 1 : 0) - (a.IsPresent ? 1 : 0)
-      );
-      setMkData(detailedData);
+      setMkData(formattedData);
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -123,10 +65,7 @@ const KnessetAttendance: React.FC = () => {
   useEffect(() => {
     fetchAttendanceData();
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setShowModal(false);
       }
     };
@@ -137,38 +76,138 @@ const KnessetAttendance: React.FC = () => {
     };
   }, []);
 
-  // Count present and absent members
-  const presentCount = mkData.filter((mk) => mk.IsPresent).length;
-  const absentCount = mkData.length - presentCount;
+  
+
+  const getCounts = () => {
+    const coalition = mkData.filter((mk) => mk.IsCoalition);
+    const opposition = mkData.filter((mk) => !mk.IsCoalition);
+    const goverment = mkData.filter((mk) => mk.isGoverment);
+
+    return {
+      coalitionPresent: coalition.filter((mk) => mk.IsPresent).length,
+      coalitionAbsent: coalition.filter((mk) => !mk.IsPresent).length,
+      oppositionPresent: opposition.filter((mk) => mk.IsPresent).length,
+      oppositionAbsent: opposition.filter((mk) => !mk.IsPresent).length,
+      govermentPresent: goverment.filter((mk) => mk.IsPresent).length,
+      govermentAbsent: goverment.filter((mk) => !mk.IsPresent).length,
+    };
+  };
+
+  const counts = getCounts();
+
+  const filteredData =
+    displayOption === "coalition"
+      ? mkData.filter((mk) => mk.IsCoalition)
+      : displayOption === "opposition"
+      ? mkData.filter((mk) => !mk.IsCoalition)
+      : displayOption == "goverment"
+      ? mkData.filter((mk) => mk.isGoverment)
+      : mkData
+
+    const presentCount = filteredData.filter((mk) => mk.IsPresent).length;
 
   if (loading) return <div className="Component">Loading...</div>;
   if (error) return <div className="Component">Error: {error}</div>;
-
+        
   return (
-    <div className="Component" id="KnessetAttendance">
+    <div className="Component" style={{ position: "relative", height: "100%" }} id="KnessetAttendance">
       <header className="Component-header">
         <h1>נוכחות חכים</h1>
-        {/* <img src="Share-icon.png" alt="Share" /> */}
-        {/* </a> */}
       </header>
       <main className="Component-main" style={{ height: "auto" }}>
-        <div className="attendance-chart">
-          <div className="attendance-summary">
-            <span className="total-count">120{/*mkData.length*/}</span>/
-            <span className="present-count">{presentCount}</span>
-          </div>
+
+      <div className="attendance-chart">
           <div className="chart-wrapper">
-            {mkData.map((mk) => (
-              <div
-                key={mk.MkId}
-                className={`chart-circle ${
-                  mk.IsPresent ? "present" : "absent"
-                }`}
-              ></div>
-            ))}
-          </div>
+            {mkData
+              .slice() // Create a shallow copy of the data
+              .sort((a, b) => {
+                if (displayOption === "coalition") {
+                  // Sort coalition members first
+                  if (a.IsCoalition !== b.IsCoalition) return b.IsCoalition ? 1 : -1;
+                } else if (displayOption === "opposition") {
+                  // Sort opposition members first
+                  if (a.IsCoalition !== b.IsCoalition) return b.IsCoalition ? -1 : 1;
+                }
+                else if (displayOption === "goverment") {
+                  // Sort opposition members first
+                  if (a.isGoverment !== b.isGoverment) return b.isGoverment ? 1 : -1;
+                }
+                // Sort within each group by presence
+                return b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1;
+              })
+              .map((mk) => {
+                const isMatchingOption =
+                  (displayOption === "coalition" && mk.IsCoalition) ||
+                  (displayOption === "opposition" && !mk.IsCoalition) ||
+                  (displayOption === "goverment" && mk.isGoverment) ||
+                  displayOption === "all";
+
+                return (
+                  <div
+                    key={mk.MkId}
+                    className={`chart-circle ${mk.IsPresent ? "present" : "absent"} ${
+                      isMatchingOption ? "" : "dimmed"
+                    }`}
+                  ></div>
+                );
+              })}
         </div>
 
+        <div className="display-options">
+          <button
+            onClick={() => setDisplayOption("goverment")}
+            className={displayOption === "goverment" ? "active" : ""}
+          >
+            <p>ממשלה</p>
+            <div>
+              <span>{counts.govermentPresent}</span>/
+              <span>{counts.govermentPresent + counts.govermentAbsent}</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setDisplayOption("coalition")}
+            className={displayOption === "coalition" ? "active" : ""}
+          >
+             <p>קואליציה</p>
+            <div>
+              <span>{counts.coalitionPresent}</span>/
+              <span>{counts.coalitionAbsent + counts.coalitionPresent}</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setDisplayOption("opposition")}
+            className={displayOption === "opposition" ? "active" : ""}
+          >
+             <p>אופוזיציה</p>
+            <div>
+              <span>{counts.oppositionPresent}</span>/
+              <span>{counts.oppositionAbsent + counts.oppositionPresent}</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setDisplayOption("all")}
+            className={displayOption === "all" ? "active" : ""}
+          >
+            <p>במשכן</p>
+            <div>
+              <span>{counts.oppositionPresent + counts.coalitionPresent}</span>/<span>{mkData.length}</span>
+            </div>
+          </button>
+        </div>
+        
+        </div>
+
+      </main>
+      <div className="Component-footer attendance">
+        <p>לרשימה המלאה</p>
+        <a
+          onClick={(e) => {
+            e.preventDefault();
+            setShowModal(true);
+          }}
+        >
+          <span>🔗</span> Sign
+        </a>
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content Component" ref={modalRef}>
@@ -178,48 +217,38 @@ const KnessetAttendance: React.FC = () => {
               >
                 Close
               </button>
-              <table className="attendance-table">
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {mkData.map((mk) => (
-                    <tr key={mk.MkId}>
-                      <td>
-                        <img
-                          src={mk.MkImage}
-                          alt={mk.Name}
-                          className="mk-image"
-                        />
-                      </td>
-                      <td>{mk.Name}</td>
-                      <td className={mk.IsPresent ? "present" : "absent"}>
-                        {mk.IsPresent ? "Present" : "Absent"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="attendance-grid">
+      <div className="grid-content">
+        {filteredData.map((mk) => (
+          <div
+            className={`grid-item ${flippedId === mk.MkId ? "flipped" : ""}`}
+            key={mk.MkId}
+            onClick={() => handleFlip(mk.MkId)}
+          >
+            {flippedId === mk.MkId ? (
+              <div className="mk-info">
+                <div className="mk-name">{mk.Name}</div>
+                <div className="mk-name">{mk.FactionName}</div>
+                <div className="mk-name">{mk.Phone}</div>
+              </div>
+            ) : (
+              <>
+                <img
+                  src={mk.MkImage}
+                  alt={mk.Name}
+                  className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
+                />
+                <div className="mk-name">{mk.Name}</div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
             </div>
           </div>
         )}
-      </main>
-      <footer className="Component-footer">
-        <a
-          href="#"
-          className="share-icon"
-          onClick={(e) => {
-            e.preventDefault();
-            setShowModal(true);
-          }}
-        >
-          <p>לרשימה המלאה</p>
-        </a>
-      </footer>
+      </div>
     </div>
   );
 };
