@@ -1,72 +1,9 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { fetchEvent, fetchScheduleData } from "../getScheduleData";
+import { useEffect, useState } from "react";
+import { fetchScheduleData } from "../getScheduleData";
 import Link from "next/link";
-
-export enum ScheduleEventType {
-  Plenum = 1,
-  Committee,
-  SpecialOccasion,
-}
-
-export interface ScheduleData {
-  CommiteesNumber?: number;
-  CurrentDateText?: string;
-  CurrentPlenumEvents: PlenumEvent[];
-  CurrentCommitteeEvents: CommitteeEvent[];
-  CurrentKnsEvents: KnsEvent[];
-}
-
-export interface ScheduleDataProps {
-  SelectedDate: string;
-  SelectedMonth: string | null;
-  SelectedYear: string | null;
-}
-
-export interface CommitteeEvent {
-  id: number;
-  EventStart: Date; // "2025-01-07T10:30:00"
-  // StartTime: Date; // "בשעה 10:30"
-  // StartTimeClean: Date; // "10:30"
-  IsCanceled: boolean;
-  CommitteeName: string;
-  EventName: string;
-  rnkParent: number; // hour group rank
-  groups: number[]; // list of all ranks of hour groups "22, 20, 18, 12, 7, 6, 4, 3, 1"
-  rnkChilds: number; // id in the hour group
-  EventDiscription?: string; // full discription of the event
-  EventParticipants?: string[];
-  EventLiveStream?: string; // url to live stream
-}
-
-export interface PlenumEvent {
-  id: number;
-  RowNum: number;
-  // startTimeStr: Date;
-  EventStart: Date;
-  SessionNumber: number;
-  SessionTitleStr: string; // title of the plenum session
-  FK_SessionID: number;
-  Name: string;
-  FK_ItemID: number;
-  IsBill: boolean;
-  IsAgendaSug: boolean;
-  FK_StatusID: number;
-}
-
-export interface KnsEvent {
-  id: number;
-  EventStart: Date; // "2025-01-07T12:00:00";
-  // StartDate: Date; // "07/01/2025";
-  // StartTime: Date; //"בשעה 12:00";
-  // StartTimeClean: string; //"12:00";
-  EventType: number; //3;
-  EventName: string;
-  rnkParent: number; // hour group rank
-  groups: number[]; // list of all ranks of hour groups "22, 20, 18, 12, 7, 6, 4, 3, 1"
-  rnkChilds: number; // id in the hour group
-}
+import { KnsEvent, PlenumEvent, ScheduleEventType, ScheduleData } from "./ScheduleDataTypes";
 
 export default function Schedule() {
   const [events, setEvents] = useState<ScheduleData>({
@@ -77,22 +14,18 @@ export default function Schedule() {
     CurrentKnsEvents: [],
   });
 
+  const [date, setDate] = useState<Date>(new Date(Date.now()));
+
   useEffect(() => {
-    const today = new Date(Date.now());
-    const yesterday = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() - 2
-    );
-    const todayString = today.toISOString();
-    const yesterdayString = yesterday.toISOString();
-    const scheduleParams = {
-      SelectedDate: todayString,
-      SelectedMonth: null,
-      SelectedYear: null,
-    };
-    fetchScheduleData(scheduleParams, setEvents);
-  }, []);
+    // const today = new Date(Date.now());
+    // const yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 2);
+    // const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    const checkString = "2025-01-07T16:00:00";
+    // const todayString = today.toISOString();
+    // const yesterdayString = yesterday.toISOString();
+    fetchScheduleData(checkString, -1, ScheduleEventType.Plenum, setEvents);
+    // fetchScheduleData(date.toISOString(), -1, ScheduleEventType.Plenum, setEvents);
+  }, [date]);
 
   return (
     <>
@@ -108,37 +41,54 @@ export default function Schedule() {
           <section className="Schedule-section" id="General-Assembly">
             <ul>
               {events.CurrentCommitteeEvents.map((event) => (
-                <Link href={`/CommitteeEvent/${event.id}`} key={event.id}>
+                //pass the event id and another argument to the link
+                <Link
+                  href={{
+                    pathname: `/CommitteeEvent/${event.id}`,
+                    query: { dateString: event.EventStart.toISOString(), type: ScheduleEventType.Committee },
+                  }}
+                  key={event.id}
+                >
                   <li key={event.id}>
                     <b>
                       {event.EventStart.getHours()}:
-                      {event.EventStart.getMinutes() == 0
-                        ? event.EventStart.getMinutes() + "0"
-                        : event.EventStart.getMinutes()}
+                      {event.EventStart.getMinutes() == 0 ? event.EventStart.getMinutes() + "0" : event.EventStart.getMinutes()}
                       {" " + event.CommitteeName}
                     </b>{" "}
                     <br /> {event.EventName}
                   </li>
                 </Link>
               ))}
-              {events.CurrentPlenumEvents.map((event) => (
-                <li key={event.FK_ItemID}>
-                  <b>
-                    {" "}
-                    {event.EventStart.getHours()}:
-                    {event.EventStart.getMinutes() == 0
-                      ? event.EventStart.getMinutes() + "0"
-                      : event.EventStart.getMinutes()}
-                    {" ישיבת מליאה "}
-                  </b>{" "}
-                  <br /> {event.Name}
-                </li>
-              ))}
+              {events.CurrentPlenumEvents.length > 0 && (
+                <Link href={`/PlenumEvent/${events.CurrentPlenumEvents[0].EventStart.toISOString()}`} key="0">
+                  <li>
+                    <b>ישיבת מליאה:</b>
+                    <ul>
+                      {events.CurrentPlenumEvents.map((event) => (
+                        <li key={event.FK_ItemID}>
+                          {event.EventStart.getHours()}:
+                          {event.EventStart.getMinutes() == 0
+                            ? event.EventStart.getMinutes() + "0"
+                            : event.EventStart.getMinutes()}
+                          {" - " + event.Name}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </Link>
+              )}
               {events.CurrentKnsEvents.map((event) => (
-                <li key={event.id}>
-                  <b>{event.EventStart.toISOString()}</b> <br />{" "}
-                  {event.EventName}
-                </li>
+                <Link
+                  href={{
+                    pathname: `/KnsEvents/0`,
+                    query: { dateString: "2025-01-07T16:00:00", type: ScheduleEventType.SpecialOccasion },
+                  }}
+                  key="0"
+                >
+                  <li key={event.id}>
+                    <b>{event.EventStart.toISOString()}</b> <br /> {event.EventName}
+                  </li>
+                </Link>
               ))}
             </ul>
           </section>
@@ -158,13 +108,11 @@ export default function Schedule() {
 
 /*
 TODO:
-1. order in the code of events navigation
-2. make page for plenum and kns events
-3. add to the fetchEvent function the all the event's data
+3. add to the fetchEvent function the all the event's data - url, participants, description, etc.
 4. display only 5 events in the Schedule component
 5. add a button that will display more events
+7. add state for main page of the date
 6. add internal scroll in the event name
 
-7. add state for main page of the date
 8. search for more data about the events.
 */

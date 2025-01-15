@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/getKnessetDataCheck.js",
-    "app/getKnessetData.js"
+    "app/getKnessetData.js",
+    "app/Components/ScheduleData.js"
   ],
   "exclude": ["node_modules"]
 }
