@@ -2,14 +2,14 @@
 
 import { CommitteeEvent, ScheduleEventType } from "@/app/Components/ScheduleDataTypes";
 import { useEffect, useState } from "react";
-import { fetchScheduleData } from "../../getScheduleData";
+import { fetchCommitteeData, fetchScheduleData } from "../../getScheduleData";
 
 export default function CommitteeEventComp({
   params,
   searchParams,
 }: {
   params: { id: number };
-  searchParams: { dateString: string; type: ScheduleEventType };
+  searchParams: { dateString: string };
 }) {
   const [event, setEvent] = useState<CommitteeEvent>({
     id: 0,
@@ -23,12 +23,13 @@ export default function CommitteeEventComp({
   });
 
   useEffect(() => {
-    fetchScheduleData(searchParams.dateString, params.id, searchParams.type).then((event) => {
+    fetchScheduleData(searchParams.dateString, params.id, ScheduleEventType.Committee).then((event) => {
       if (event != undefined) {
         setEvent(event);
       }
     });
-  }, [params.id, searchParams?.dateString, searchParams.type]);
+    fetchCommitteeData(event);
+  }, [params.id, searchParams?.dateString, event]);
 
   return (
     <div>

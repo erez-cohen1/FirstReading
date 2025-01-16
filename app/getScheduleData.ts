@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import { ScheduleData, ScheduleEventType, PlenumEvent, CommitteeEvent, KnsEvent } from "./Components/ScheduleDataTypes";
 
+import axios from "axios";
+import Papa from "papaparse";
+import { head } from "axios";
 /*
  * Fetch data from the Knesset API
  * @param url - the url to fetch data from
@@ -80,7 +83,12 @@ export async function fetchScheduleData(
   }
 }
 
-function processKnsEvents(data: any): KnsEvent[] {
+/*
+ * Process the fetched data of special occasions
+ * @param data - the fetched data
+ * @returns the processed data
+ */
+function processKnsEvents(data: ScheduleData): KnsEvent[] {
   return data.CurrentKnsEvents?.map((event: any, index: number) => {
     const cleanName: string = event.EventName.replace(/<\/?[^>]+(>|$)/g, "")
       .replace(/\d{2}:\d{2}/, "")
@@ -100,8 +108,12 @@ function processKnsEvents(data: any): KnsEvent[] {
     };
   });
 }
-
-function processCommitteeEvents(data: any): CommitteeEvent[] {
+/*
+ * Process the fetched data of committee events
+ * @param data - the fetched data
+ * @returns the processed data
+ */
+function processCommitteeEvents(data: ScheduleData): CommitteeEvent[] {
   return data.CurrentCommitteeEvents?.map((event: any, index: number) => {
     let names: string[] = ["", ""];
     if (event.EventName != null) {
@@ -130,8 +142,12 @@ function processCommitteeEvents(data: any): CommitteeEvent[] {
     };
   });
 }
-
-function processPlenumEvents(data: any): PlenumEvent[] {
+/*
+ * Process the fetched data of plenum events
+ * @param data - the fetched data
+ * @returns the processed data
+ */
+function processPlenumEvents(data: ScheduleData): PlenumEvent[] {
   return data.CurrentPlenumEvents?.map((event: any, index: number) => {
     return {
       id: index,
@@ -147,4 +163,42 @@ function processPlenumEvents(data: any): PlenumEvent[] {
       FK_StatusID: event.FK_StatusID,
     };
   });
+}
+
+//create a function that fetches csv data from the url https://production.oknesset.org/pipelines/data/committees/kns_committeesession/kns_committeesession.csv
+// in addition, the function will filter the rows according to one column and return the data
+
+export async function fetchCommitteeData(committee: CommitteeEvent) {
+  // const response = await fetch(
+  //   "https://production.oknesset.org/pipelines/data/committees/kns_committeesession/kns_committeesession.csv",
+  //   {
+  //     headers: {
+  //       "sec-fetch-mode": "no-cors",
+  //       "access-control-allow-origin": "*",
+  //     },
+  //   }
+  // );
+  // if (!response.ok) {
+  //   throw new Error(`Failed to fetch data: ${response.statusText}`);
+  // }
+  // const responseText = await response.text();
+  // const csv = Papa.parse(responseText, { header: true, skipEmptyLines: true });
+  // console.log(csv.data);
+  // const filteredData = csv.data.filter((row: any) => row.committee_name == committee.CommitteeName && row.StartDate);
+  try {
+    console.log("starting fetch CSV file");
+    const response = await axios.get("/api-schedule");
+    const responseData = response.data as {
+      query_result: { data: { rows: any[] } };
+    };
+    // const parsedData = Papa.parse(csvText, {
+    //   header: true,
+    //   skipEmptyLines: true,
+    // });
+    console.log(responseData.query_result.data);
+    // return parsedData.data.filter((row) => row[filterColumn] === filterValue);
+  } catch (error) {
+    console.error("Error fetching or parsing CSV data:", error);
+    throw error;
+  }
 }

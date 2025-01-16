@@ -51,26 +51,17 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
     return <div>{error}</div>;
   }
 
-  const sortedData = [...data].sort(
-    (a, b) =>
-      new Date(b.LastUpdatedDate).getTime() -
-      new Date(a.LastUpdatedDate).getTime()
-  );
+  const sortedData = [...data].sort((a, b) => new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime());
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return `${date.toLocaleDateString("he-IL")} ${date.toLocaleTimeString(
-      "he-IL",
-      { hour: "2-digit", minute: "2-digit" }
-    )}`;
+    return `${date.toLocaleDateString("he-IL")} ${date.toLocaleTimeString("he-IL", { hour: "2-digit", minute: "2-digit" })}`;
   };
 
   const displayedData = showAll ? sortedData : sortedData.slice(0, 3);
 
   const getInitiatorImage = (initiatorName: string) => {
-    const initiator = Object.values(initiatorsData).find(
-      (entry: any) => entry.Name === initiatorName
-    );
+    const initiator = Object.values(initiatorsData).find((entry: any) => entry.Name === initiatorName);
     return initiator ? initiator.MkImage : null;
   };
   return (
@@ -90,23 +81,19 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                   padding: "15px",
                   marginBottom: "10px",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  width: "100%", 
+                  width: "100%",
                 }}
               >
                 {Object.entries(item)
-                  .filter(
-                    ([key, value]) => value !== null && key !== "StatusID"
-                  )
+                  .filter(([key, value]) => value !== null && key !== "StatusID")
                   .map(([key, value]) => (
                     <p key={key} style={{ margin: "0.5rem 0" }}>
                       <strong>{columnNames[key] || key}:</strong>{" "}
-                      {key === "StartDate"
-                        ? formatDate(value as string)
-                        : (value as string)}
+                      {key === "StartDate" ? formatDate(value as string) : (value as string)}
                     </p>
                   ))}
-               {/* Render initiator images */}
-               {item.initiatorsfullnames && (
+                {/* Render initiator images */}
+                {item.initiatorsfullnames && (
                   <div
                     style={{
                       display: "flex",
@@ -133,8 +120,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
                               src={imageUrl}
                               alt={name}
                               style={{
-                                width: "6rem", 
-                                height: "6rem", 
+                                width: "6rem",
+                                height: "6rem",
                                 objectFit: "cover", // Ensures content fits without distortion
                               }}
                             />

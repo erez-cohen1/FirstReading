@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { fetchScheduleData } from "../getScheduleData";
 import Link from "next/link";
+import axios from "axios";
 import { KnsEvent, PlenumEvent, ScheduleEventType, ScheduleData } from "./ScheduleDataTypes";
 
-export default function Schedule() {
+export default function Schedule({ date }: { date: Date }) {
   const [events, setEvents] = useState<ScheduleData>({
     CommiteesNumber: 0,
     CurrentDateText: " ",
@@ -14,16 +15,32 @@ export default function Schedule() {
     CurrentKnsEvents: [],
   });
 
-  const [date, setDate] = useState<Date>(new Date(Date.now()));
+  // const [date, setDate] = useState<Date>(dateProp);
 
   useEffect(() => {
     // const today = new Date(Date.now());
     // const yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 2);
     // const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     const checkString = "2025-01-07T16:00:00";
+    const dateString = date.toISOString();
     // const todayString = today.toISOString();
     // const yesterdayString = yesterday.toISOString();
-    fetchScheduleData(checkString, -1, ScheduleEventType.Plenum, setEvents);
+    fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setEvents);
+    const fetchRedashData = async () => {
+      try {
+        const response = await axios.get("/api-schedule");
+        const responseData = response.data as {
+          query_result: { data: { rows: any[] } };
+        };
+        console.log(responseData.query_result.data.rows);
+      } catch (err) {
+        console.error("Error redash data:", err);
+      }
+    };
+
+    //
+
+    // fetchRedashData();
     // fetchScheduleData(date.toISOString(), -1, ScheduleEventType.Plenum, setEvents);
   }, [date]);
 
@@ -45,7 +62,7 @@ export default function Schedule() {
                 <Link
                   href={{
                     pathname: `/CommitteeEvent/${event.id}`,
-                    query: { dateString: event.EventStart.toISOString(), type: ScheduleEventType.Committee },
+                    query: { dateString: event.EventStart.toISOString() },
                   }}
                   key={event.id}
                 >
@@ -80,8 +97,8 @@ export default function Schedule() {
               {events.CurrentKnsEvents.map((event) => (
                 <Link
                   href={{
-                    pathname: `/KnsEvents/0`,
-                    query: { dateString: "2025-01-07T16:00:00", type: ScheduleEventType.SpecialOccasion },
+                    pathname: `/KnsEvents/${event.id}`,
+                    query: { dateString: event.EventStart.toISOString() },
                   }}
                   key="0"
                 >
@@ -111,8 +128,6 @@ TODO:
 3. add to the fetchEvent function the all the event's data - url, participants, description, etc.
 4. display only 5 events in the Schedule component
 5. add a button that will display more events
-7. add state for main page of the date
 6. add internal scroll in the event name
-
 8. search for more data about the events.
 */
