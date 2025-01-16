@@ -644,6 +644,7 @@
   margin: 0.05rem;
 }
 
+<<<<<<< HEAD
 .close-modal-button {
   font-size: 0.9em; /* Adjust button size */
 }
@@ -665,3 +666,30 @@
 .mk-image.grayscale {
   filter: grayscale(100%);
 }
+=======
+  .close-modal-button {
+    font-size: 0.9em; /* Adjust button size */
+  }
+  
+  .vote-item {
+    cursor: pointer;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.4s ease, box-shadow 0.15s ease;
+  }
+  
+  .vote-item:hover {
+    background-color: var(--color-secondary); /* Change to your desired hover color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mk-image.grayscale {
+    filter: grayscale(100%);
+  }
+
+
+
+  
+>>>>>>> 3b33fe0ecd6175bc2deddbb67e2e4cf0611fb2dd

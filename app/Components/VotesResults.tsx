@@ -62,7 +62,7 @@ const VoteDetails = ({ voteId, onBack }: VoteDetailsProps) => {
   }, [voteId]);
 
   if (!voteDetails) {
-    return <div>Loading vote details...</div>;
+    return <div>טוען פרטי הצבעה</div>;
   }
 
   // Extracting the first vote header (as the JSON suggests an array)
@@ -121,7 +121,7 @@ const VoteDetails = ({ voteId, onBack }: VoteDetailsProps) => {
               <option value="בעד">בעד</option>
               <option value="נגד">נגד</option>
               <option value="נמנע">נמנע</option>
-              <option value="נוכח ולא הצביע">נוכח ולא הצביע</option>
+              <option value="נוכח">נוכח ולא הצביע</option>
             </select>
             </label>
           </div>
