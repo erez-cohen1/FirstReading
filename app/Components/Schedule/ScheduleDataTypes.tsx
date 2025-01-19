@@ -7,7 +7,7 @@ export enum ScheduleEventType {
 }
 
 export interface ScheduleData {
-  CommiteesNumber?: number;
+  eventsNumber?: number;
   CurrentDateText?: string;
   CurrentPlenumEvents: PlenumEvent[];
   CurrentCommitteeEvents: CommitteeEvent[];
@@ -25,13 +25,24 @@ export interface CommitteeEvent {
   EventStart: Date; // "2025-01-07T10:30:00"
   IsCanceled: boolean;
   CommitteeName: string;
+  CommitteeId: number;
   EventName: string;
-  rnkParent: number; // hour group rank
-  groups: number[]; // list of all ranks of hour groups "22, 20, 18, 12, 7, 6, 4, 3, 1"
-  rnkChilds: number; // id in the hour group
   EventDiscription?: string; // full discription of the event
-  EventParticipants?: string[];
+  EventParticipants: CommitteeParticipant[];
   EventLiveStream?: string; // url to live stream
+}
+
+export interface CommitteeParticipantsData {
+  CommitteeId: number;
+  CommitteeName: string;
+  Participants: CommitteeParticipant[];
+}
+
+export interface CommitteeParticipant {
+  ParticipantId: number;
+  ParticipantName: string;
+  ParticipantRole: string;
+  ParticipantImage: string;
 }
 
 export interface PlenumEvent {

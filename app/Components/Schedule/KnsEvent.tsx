@@ -1,16 +1,10 @@
 "use client";
 
-import { KnsEvent, ScheduleEventType } from "@/app/Components/ScheduleDataTypes";
+import { KnsEvent, ScheduleEventType } from "@/app/Components/Schedule/ScheduleDataTypes";
 import { useEffect, useState } from "react";
-import { fetchScheduleData } from "../../getScheduleData";
+import { fetchScheduleData } from "./getScheduleData";
 
-export default function KnsEventComp({
-  params,
-  searchParams,
-}: {
-  params: { id: number };
-  searchParams: { dateString: string; type: ScheduleEventType };
-}) {
+export default function KnsEventComp({ params, searchParams }: { params: { id: number }; searchParams: { dateString: string } }) {
   const [event, setEvent] = useState<KnsEvent>({
     id: 0,
     EventStart: new Date(searchParams.dateString),
@@ -21,12 +15,12 @@ export default function KnsEventComp({
     rnkChilds: 0,
   });
   useEffect(() => {
-    fetchScheduleData(searchParams.dateString, -1, searchParams.type).then((event) => {
+    fetchScheduleData(searchParams.dateString, -1, ScheduleEventType.SpecialOccasion).then((event) => {
       if (event != undefined) {
         setEvent(event);
       }
     });
-  }, [params.id, searchParams?.dateString, searchParams.type]);
+  }, [params.id, searchParams?.dateString]);
 
   return (
     <div>

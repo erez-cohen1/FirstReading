@@ -1,8 +1,8 @@
 "use client";
 
-import { ScheduleEventType, ScheduleData, PlenumEvent, PlenumMainEvent } from "@/app/Components/ScheduleDataTypes";
+import { ScheduleEventType, ScheduleData, PlenumEvent, PlenumMainEvent } from "@/app/Components/Schedule/ScheduleDataTypes";
 import { useEffect, useState } from "react";
-import { fetchScheduleData } from "../../getScheduleData";
+import { fetchScheduleData } from "./getScheduleData";
 
 export default function PlenumEventComp({ params }: { params: { dateString: string } }) {
   const [mainEvent, setMainEvent] = useState<PlenumMainEvent>({
