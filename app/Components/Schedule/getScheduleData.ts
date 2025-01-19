@@ -45,8 +45,8 @@ export async function fetchScheduleData(
   date: string,
   id: number,
   type: ScheduleEventType,
-  setEvents: Dispatch<SetStateAction<ScheduleData>>,
-  setLoading: Dispatch<SetStateAction<boolean>>
+  setLoading?: Dispatch<SetStateAction<boolean>>,
+  setEvents?: Dispatch<SetStateAction<ScheduleData>>
 ): Promise<any> {
   try {
     const rawScheduleData = await fetchData(
@@ -104,7 +104,7 @@ export async function fetchScheduleData(
       CurrentKnsEvents: [],
     };
   } finally {
-    setLoading(false);
+    if (setLoading) setLoading(false);
   }
 }
 

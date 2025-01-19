@@ -18,7 +18,7 @@ export default function Schedule({ date }: { date: Date }) {
   });
   useEffect(() => {
     const dateString = date.toISOString();
-    fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setEvents, setLoading);
+    fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setLoading, setEvents);
   }, [date]);
 
   if (loading) {
