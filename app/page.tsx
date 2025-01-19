@@ -27,7 +27,7 @@ export default function Home() {
       <hr />
       <KnessetAttendance></KnessetAttendance>
       <Schedule></Schedule>
-      <LawSummary queryId={1433}></LawSummary>
+\      <LawSummary queryId={1433}></LawSummary>
       {/* <LawCount></LawCount> */}
       <VoteCount></VoteCount>
     </main>
