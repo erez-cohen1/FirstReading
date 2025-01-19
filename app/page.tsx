@@ -1,15 +1,11 @@
 "use client";
-import Schedule from "./Components/Schedule";
-import LawCount from "./Components/Laws";
+import Schedule from "./Components/Schedule/Schedule";
 import VoteCount from "./Components/Votes";
 import DateSelector from "./Components/dateSelector";
 import KnessetAttendance from "./Components/attendence";
-import Image from "next/image";
-import Timeline from "./Components/TimeLine";
 import CurrentDate from "./Components/Date";
 import LawSummary from "./Components/LawSummary";
 import { useState } from "react";
-// import { getKnessetData } from "./getKnessetData";
 
 export default function Home() {
   const [date, setDate] = useState(new Date(Date.now()));

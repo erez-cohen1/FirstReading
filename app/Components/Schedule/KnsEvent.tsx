@@ -1,8 +1,8 @@
 "use client";
 
-import { KnsEvent, ScheduleEventType } from "@/app/Components/ScheduleDataTypes";
+import { KnsEvent, ScheduleEventType } from "@/app/Components/Schedule/ScheduleDataTypes";
 import { useEffect, useState } from "react";
-import { fetchScheduleData } from "../../getScheduleData";
+import { fetchScheduleData } from "./getScheduleData";
 
 export default function KnsEventComp({ params, searchParams }: { params: { id: number }; searchParams: { dateString: string } }) {
   const [event, setEvent] = useState<KnsEvent>({
