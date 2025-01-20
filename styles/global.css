@@ -443,9 +443,12 @@
   .Schedule-table-separator {
     position: relative;
     padding: 0 0.5rem;
+    /* width: 50%; */
   }
   .Schedule-table-horizontal-separator {
     position: relative;
+
+    padding: 0.5rem 0.2rem;
   }
 
   .Schedule-vertical-line {
@@ -477,7 +480,7 @@
   }
 
   .schedule-event-row {
-    /* padding: 0.5rem; */
+    padding: 0.5rem;
   }
 
   /* make text fade */
@@ -492,14 +495,21 @@
 
   .schedule-event-cell-opened {
     height: 50%;
-    max-width: 100%;
+    /* max-width: 100%; */
     padding: 0.2rem;
 
-    summary::marker {
-      color: #e162bf;
-      font-size: 1.2em;
-    }
+    details {
+      interpolate-size: allow-keywords;
+      &::details-content {
+        transition: block-size 1s, content-visibility 1s allow-discrete;
+        overflow: hidden;
+        block-size: 0; /* Or also:  height:0; */
+      }
 
+      &[open]::details-content {
+        block-size: auto; /* Or also:  height:auto; */
+      }
+    }
     details[open] summary {
       i {
         transform: rotate(-135deg);
@@ -510,12 +520,10 @@
     summary {
       display: flex;
       flex-direction: row;
-      /* justify-content: start; */
       align-items: flex-start;
       div {
         display: flex;
         flex-direction: column;
-        /* margin: 0.5rem; */
       }
     }
   }
@@ -546,6 +554,17 @@
     margin-top: 0.5rem;
   }
 
+  .schedule-event-title {
+    h3 {
+      text-decoration: none;
+    }
+  }
+
+  .canceled {
+    h3 {
+      text-decoration: line-through;
+    }
+  }
   .schedule-event-participant-cell {
     display: flex;
     flex-direction: column;
@@ -816,7 +835,3 @@
 .mk-image.grayscale {
   filter: grayscale(100%);
 }
-
-
-
-

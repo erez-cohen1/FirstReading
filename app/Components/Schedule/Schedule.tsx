@@ -21,6 +21,8 @@ export default function Schedule({ date }: { date: Date }) {
     fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setLoading, setEvents);
   }, [date]);
 
+  const rows = (events.eventsNumber - 1) * 2 + 1;
+
   if (loading) {
     return (
       <div className="Component" id="Schedule">
@@ -63,7 +65,7 @@ export default function Schedule({ date }: { date: Date }) {
                       </h3>
                     </td>
                     {event.id == 0 ? (
-                      <td rowSpan={events.eventsNumber == 0 ? 3 : events.eventsNumber} className="Schedule-table-separator">
+                      <td rowSpan={rows} className="Schedule-table-separator">
                         <div className="Schedule-vertical-line"></div>
                       </td>
                     ) : null}

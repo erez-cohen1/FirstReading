@@ -13,7 +13,7 @@ export default function CommitteeEventComp({ event }: { event: CommitteeEvent })
     <td className="schedule-event-cell-opened">
       <details>
         <summary>
-          <div>
+          <div className={`schedule-event-title${event.IsCanceled ? " canceled" : ""}`}>
             <h3>{event.CommitteeName}</h3>
             <p className="schdule-event-description">{event.EventName}</p>
           </div>

@@ -7,7 +7,7 @@ export enum ScheduleEventType {
 }
 
 export interface ScheduleData {
-  eventsNumber?: number;
+  eventsNumber: number;
   CurrentDateText?: string;
   CurrentPlenumEvents: PlenumEvent[];
   CurrentCommitteeEvents: CommitteeEvent[];
