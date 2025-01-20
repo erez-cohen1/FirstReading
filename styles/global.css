@@ -835,3 +835,75 @@
 .mk-image.grayscale {
   filter: grayscale(100%);
 }
+
+
+.law-section {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+
+.law-horizontal-line {
+  width: 85%;
+  height: 0.1rem;
+  background-color: var(--color-secondary);
+  position: absolute;
+  /* left: 50%; */
+  /* top: 0; */
+}
+
+
+
+.law {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+
+.law .law-content {
+  display: flex;
+  flex-direction: row !important;
+  width: 100%; /* Ensure content takes full width when open */
+}
+
+
+.law.open .law-content {
+  display: flex;
+  flex-direction: column !important;
+  width: 100%; /* Ensure content takes full width when open */
+}
+
+.law-name {
+  font-weight: normal;
+  max-width: 55%; /* Ensure the name takes up appropriate width */
+  margin-left: 1rem; 
+}
+
+.law.open .law-name {
+  font-weight: bold; /* Make name bold when open */
+  max-width: 90%;  /* Adjust max-width when open */
+}
+
+.law-status {
+  color: var(--color-secondary);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.up {
+  transform: rotate(-135deg); /* Rotate arrow up when open */
+}
+
+.arrow.down {
+  transform: rotate(45deg); /* Rotate arrow down when closed */
+}
