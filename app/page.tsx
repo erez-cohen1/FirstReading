@@ -1,6 +1,6 @@
 "use client";
 import Schedule from "./Components/Schedule/Schedule";
-import VoteCount from "./Components/Votes";
+import Votes from "./Components/Votes";
 import DateSelector from "./Components/dateSelector";
 import KnessetAttendance from "./Components/attendence";
 import CurrentDate from "./Components/Date";
@@ -20,14 +20,14 @@ export default function Home() {
         <DateSelector date={date} setDate={setDate}></DateSelector>
       </section>
       <section className="Date">
-        <CurrentDate></CurrentDate>
+        <CurrentDate date={date}></CurrentDate>
       </section>
       <hr />
       <KnessetAttendance></KnessetAttendance>
       <Schedule date={date}></Schedule>
       <LawSummary queryId={1433}></LawSummary>
       {/* <LawCount></LawCount> */}
-      <VoteCount></VoteCount>
+      <Votes date={date}></Votes>
     </main>
   );
 }

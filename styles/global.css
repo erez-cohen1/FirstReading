@@ -805,4 +805,128 @@
     width: 24px;
     height: 24px;
   }
+
+  /* .mk-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .attendance-component {
+    width: 95%; /* Ensure it fits smaller screens */
+  padding: 10px; /* Reduce padding */
+}
+
+.Component-header h1 {
+  font-size: 1.2em; /* Adjust font size */
+}
+
+.attendance-chart {
+  margin: 0.5rem 0; /* Add spacing */
+}
+
+.attendance-summary {
+  font-size: 2em; /* Adjust font size */
+  font-weight: bold;
+}
+
+.chart-circle {
+  width: 15px; /* Further reduce size */
+  height: 15px;
+  margin: 0.05rem;
+}
+
+.close-modal-button {
+  font-size: 0.9em; /* Adjust button size */
+}
+
+.vote-item {
+  cursor: pointer;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.4s ease, box-shadow 0.15s ease;
+}
+
+.vote-item:hover {
+  background-color: var(--color-secondary); /* Change to your desired hover color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mk-image.grayscale {
+  filter: grayscale(100%);
+}
+
+
+.law-section {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+
+.law-horizontal-line {
+  width: 85%;
+  height: 0.1rem;
+  background-color: var(--color-secondary);
+  position: absolute;
+  /* left: 50%; */
+  /* top: 0; */
+}
+
+
+
+.law {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+
+.law .law-content {
+  display: flex;
+  flex-direction: row !important;
+  width: 100%; /* Ensure content takes full width when open */
+}
+
+
+.law.open .law-content {
+  display: flex;
+  flex-direction: column !important;
+  width: 100%; /* Ensure content takes full width when open */
+}
+
+.law-name {
+  font-weight: normal;
+  max-width: 55%; /* Ensure the name takes up appropriate width */
+  margin-left: 1rem; 
+}
+
+.law.open .law-name {
+  font-weight: bold; /* Make name bold when open */
+  max-width: 90%;  /* Adjust max-width when open */
+}
+
+.law-status {
+  color: var(--color-secondary);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.up {
+  transform: rotate(-135deg); /* Rotate arrow up when open */
+}
+
+.arrow.down {
+  transform: rotate(45deg); /* Rotate arrow down when closed */
 }
