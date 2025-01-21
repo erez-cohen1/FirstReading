@@ -276,14 +276,23 @@
   .Component-footer.attendance {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    font-size: 20px;
+    color: #0900BD;
+    text-align: right;
+    /* Section Style */
+    font-family: VC_david;
+    font-size: 1.25rem;
+    font-style: normal;
     font-weight: 500;
-    justify-content: center; /* Center the content horizontally */
+    line-height: 100%; /* 1.375rem */
+    
     padding: 5px;
-    margin: 4px;
-    width: 100%;
-    border: 2px solid #0900bd;
+    margin-top: 5px;
+    margin-right: 10px;
+    width: 95%;
+    border-top: 2px solid var(--color-secondary);
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
     background-color: transparent; /* Adjust as needed */
   }
 
@@ -547,6 +556,22 @@
     -webkit-transform: rotate(45deg);
   }
 
+  .fixed-arrow{
+    position: fixed;
+    top: 55%;
+    z-index: 1000;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  }
+  
+  .fixed-arrow.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .schedule-event-participants-div {
     display: flex;
     flex-wrap: wrap;
@@ -653,7 +678,7 @@
     display: flex;
     margin-top: 10px;
     flex-direction: row;
-    width: 100%;
+    width: 95%;
     align-items: center;
   }
 
@@ -688,10 +713,8 @@
 
   .modal-overlay {
     position: relative;
-    top: 0;
-    left: 0;
     display: flex;
-    justify-content: flex-start;
+    margin-top: 1rem;
     align-items: center;
     pointer-events: none; /* Ensures the overlay doesn't block interactions */
   }
@@ -703,9 +726,8 @@
     z-index: 5;
     border-radius: 8px;
     max-width: 500px;
-    overflow-y: auto;
+    
     text-align: left;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     pointer-events: auto; /* Enables interaction within the modal */
   }
 
@@ -720,25 +742,28 @@
   }
 
   .grid-item {
-    font-family: "VC_david";
+    color: #0900BD;
+
+    text-align: center;
+    font-family: VC_NarkisBlock;
+    font-size: 0.8125rem;
     font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 0.8125rem */
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     /* height: 200px; Adjust height as needed */
     text-align: center;
     background: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--global-bg-color);
   }
 
   .mk-image {
-    object-fit: contain;
-    /* min-width: 100%; */
-    /* min-height: 80%; */
+    min-width: 100%;
+    min-height: 70%;
   }
 
   .mk-image.grayscale {
@@ -752,15 +777,13 @@
   }
 
   .mk-name {
-    min-height: 20%;
+    min-height: 30%;
     padding: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: bold;
     background-color: #fff; /* Optional: Add a background to separate the text */
     width: 100%;
     text-align: center;
-    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
-    border: 2px solid var(--global-bg-color);
+    border: 1px solid var(--global-bg-color);
+    border-top: sold transparent;
   }
 
   .close-modal-button {
@@ -782,56 +805,4 @@
     width: 24px;
     height: 24px;
   }
-
-  /* .mk-image {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .attendance-component {
-    width: 95%; /* Ensure it fits smaller screens */
-  padding: 10px; /* Reduce padding */
-}
-
-.Component-header h1 {
-  font-size: 1.2em; /* Adjust font size */
-}
-
-.attendance-chart {
-  margin: 0.5rem 0; /* Add spacing */
-}
-
-.attendance-summary {
-  font-size: 2em; /* Adjust font size */
-  font-weight: bold;
-}
-
-.chart-circle {
-  width: 15px; /* Further reduce size */
-  height: 15px;
-  margin: 0.05rem;
-}
-
-.close-modal-button {
-  font-size: 0.9em; /* Adjust button size */
-}
-
-.vote-item {
-  cursor: pointer;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: background-color 0.4s ease, box-shadow 0.15s ease;
-}
-
-.vote-item:hover {
-  background-color: var(--color-secondary); /* Change to your desired hover color */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.mk-image.grayscale {
-  filter: grayscale(100%);
 }
