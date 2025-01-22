@@ -4,42 +4,58 @@ import { ScheduleEventType, ScheduleData, PlenumEvent, PlenumMainEvent } from "@
 import { useEffect, useState } from "react";
 import { fetchScheduleData } from "./getScheduleData";
 
-export default function PlenumEventComp({ params }: { params: { dateString: string } }) {
-  const [mainEvent, setMainEvent] = useState<PlenumMainEvent>({
-    EventStart: new Date(params.dateString),
-    SessionNumber: 0, // plenum session number
-    SessionTitleStr: "", // title of the plenum session
-    FK_SessionID: 0, // plenum session id
-    PlenumEvents: [],
-  });
-  useEffect(() => {
-    fetchScheduleData(params.dateString, -1, ScheduleEventType.Plenum).then((event) => {
-      const events = event.CurrentPlenumEvents;
-      if (events != undefined) {
-        setMainEvent({
-          EventStart: events[0].EventStart,
-          SessionNumber: events[0].SessionNumber,
-          SessionTitleStr: events[0].SessionTitleStr,
-          FK_SessionID: events[0].FK_SessionID,
-          PlenumEvents: events,
-        });
-      }
-    });
-  }, [params.dateString]);
-
+export default function PlenumEventComp({ events, index, rows }: { events: PlenumEvent[]; index: number; rows: number }) {
   return (
-    <div>
-      <h2>{mainEvent.SessionTitleStr}</h2>
-      {mainEvent.PlenumEvents.map((event: PlenumEvent) => (
-        <li key={event.FK_ItemID}>
-          {event.EventStart.getHours()}:
-          {event.EventStart.getMinutes() == 0 ? event.EventStart.getMinutes() + "0" : event.EventStart.getMinutes()}
-          {" - " + event.Name}
-        </li>
-      ))}
-      <a href="/">
-        <button>Back to Schedule</button>
-      </a>
-    </div>
+    <>
+      {index != 0 ? (
+        <tr>
+          <td></td>
+          <td colSpan={2} className="Schedule-table-horizontal-separator">
+            <div className="Schedule-horizontal-line"></div>
+          </td>
+        </tr>
+      ) : null}
+      <tr className="schedule-event-row">
+        <td className="schedule-hour-cell">
+          {events.length > 0 && (
+            <h3>
+              {events[0].EventStart.getHours()}:
+              {events[0].EventStart.getMinutes() == 0
+                ? events[0].EventStart.getMinutes() + "0"
+                : events[0].EventStart.getMinutes()}
+            </h3>
+          )}
+        </td>
+        {index == 0 ? (
+          <td rowSpan={rows} className="Schedule-table-separator">
+            <div className="Schedule-vertical-line"></div>
+          </td>
+        ) : null}
+        <td className="schedule-event-cell-opened">
+          <details>
+            <summary>
+              <div className={`schedule-event-title`}>
+                <h3>ישיבת מליאה</h3>
+                <p>סדר יום המליאה:</p>
+                <div className="schedule-event-description">
+                  <p key={index}>1. {events[0].Name}</p>
+                </div>
+              </div>
+              <i className="arrow down"></i>
+            </summary>
+            <div className="schedule-event-description">
+              {events.map(
+                (event, index) =>
+                  index != 0 && (
+                    <p key={index}>
+                      {index + 1}. {event.Name}
+                    </p>
+                  )
+              )}
+            </div>
+          </details>
+        </td>
+      </tr>
+    </>
   );
 }

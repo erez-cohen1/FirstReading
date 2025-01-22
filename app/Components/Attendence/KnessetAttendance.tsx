@@ -14,17 +14,13 @@ const KnessetAttendance: React.FC = () => {
   if (error) return <div className="Component">Error: {error}</div>;
 
   return (
-    <div className="Component" style={{ position: "relative", height: "100%" }} id="KnessetAttendance">
-      <header className="Component-header">
+    <>
+      <header className="Component-header header-0">
         <h1>נוכחות חכים</h1>
       </header>
       <main className="Component-main" style={{ height: "auto" }}>
         <AttendanceChart mkData={mkData} displayOption={displayOption} />
-        <DisplayOptions
-          mkData={mkData}
-          displayOption={displayOption}
-          setDisplayOption={setDisplayOption}
-        />
+        <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
       </main>
       <div className="Component-footer attendance">
         <div>לרשימה המלאה</div>

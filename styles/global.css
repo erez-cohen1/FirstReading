@@ -2,6 +2,30 @@
 /* This is a custom font from google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
+@font-face {
+  font-family: "VC_david-Regular";
+  src: url("/VC_david-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "VC_david-Bold";
+  src: url("/VC_david-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "VC_david-Cursive";
+  src: url("/VC_david-Cursive.otf") format("opentype");
+}
+@font-face {
+  font-family: "VC_david-Medium";
+  src: url("/VC_david-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "VC_NarkisBlock-Regular";
+  src: url("/VC_NarkisBlock-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "VC_NarkisBlock-Bold";
+  src: url("/VC_NarkisBlock-Bold.otf") format("opentype");
+}
 /* what is :root? https://developer.mozilla.org/en-US/docs/Web/CSS/:root */
 :root {
   /* Define design variables */
@@ -13,6 +37,7 @@
   --text-color2: var(--color-primary);
   --text-color2: var(--color-secondary);
 
+  --check-font: "VC_NarkisBlock-Regular", sans-serif;
   --border-radius: 0rem;
   --fonts: "david", sans-serif;
   --font-titles: "Rubik", serif;
@@ -25,6 +50,10 @@
     line-height: 1;
   }
 
+  html {
+    scroll-behavior: smooth;
+    /* scroll-padding-top: 3rem; */
+  }
   /* Layout */
   main {
     /* max-width: 60rem; */
@@ -37,7 +66,7 @@
   }
 
   header {
-    padding: 1rem 2rem;
+    /* padding: 1rem 2rem; */
     /* background-color: var(--color-primary); */
     display: flex;
     justify-content: space-between;
@@ -161,7 +190,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0.3rem;
+    padding: 0.3 rem;
     background-color: var(--global-bg-color);
   }
 
@@ -178,6 +207,7 @@
     align-items: start;
     width: 100%;
     padding-top: 3rem;
+    /* padding-right: 0.5rem; */
 
     h1 {
       font-size: 4em;
@@ -187,91 +217,162 @@
       margin: 0;
       line-height: 0.8em;
     }
-
-    .date-selectors {
-      padding-top: 0.7rem;
-    }
-
-    .date-selector-today {
-      border-radius: 0;
-      background-color: var(--color-secondary);
-      color: var(--color-primary);
-      font-size: 1rem;
-      padding: 0.3em 0.8em;
-    }
-
-    .date-selector-other {
-      border-radius: 0;
-      background-color: var(--color-primary);
-      color: var(--color-secondary);
-      padding: 0.3em 0.8em;
-      border: none;
-      font-size: 0.8em;
-    }
   }
 
-  /* Components */
+  .date-selector {
+    background-color: var(--global-bg-color);
+    color: var(--component-bg-color);
+  }
 
-  .Date {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin: 0 0.5rem;
-    padding: 1rem 0rem 0rem 0.2rem;
+  .selected {
+    background-color: var(--component-bg-color);
+    color: var(--global-bg-color);
+  }
+
+  .date-selector-today {
+    border-radius: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 1rem;
+    padding: 0.3em 0.8em;
+  }
+
+  .date-selector-other {
+    border-radius: 0;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 0.3em 0.8em;
+    border: none;
+    font-size: 0.8em;
+  }
+}
+
+/* Components */
+
+.date-vertical-line {
+  height: 1.2rem;
+  width: 0.1rem;
+  background-color: var(--color-primary);
+  /* position: absolute; */
+  /* left: 25%; */
+  /* top: 0; */
+}
+
+.dates-table-cur-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 0.1rem solid #ffead8;
+  p {
+    vertical-align: middle;
+    font-size: 1.25rem;
+    padding: 0.3rem;
+  }
+}
+
+.dates-table-date-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  /* position: relative; */
+  width: 100%;
+  border: 0.1rem solid #ffead8;
+  border-top: 0rem solid #ffead8;
+  p {
+    vertical-align: middle;
+    font-size: 1.25rem;
+    padding: 0.3rem;
+  }
+}
+
+.Date {
+  font-family: "VC_NarkisBlock-Regular";
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 0.7rem;
+  padding: 1rem 0rem 0rem 0.2rem;
+  color: var(--color-primary);
+  /* font-weight: bold; */
+}
+
+.Date-fig {
+  font-size: 1.5rem;
+  margin: 0;
+  line-height: 0.6;
+}
+
+.Component {
+  background-color: var(--component-bg-color);
+  border-radius: var(--border-radius);
+  border: none;
+  width: 100%;
+}
+
+.Component-header {
+  padding: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--global-bg-color);
+  /* padding: 0.2rem; */
+  border: none;
+  width: 100%;
+  height: 3rem;
+  position: sticky;
+  z-index: 1000; /* Adjust z-index to ensure proper stacking order */
+
+  h1 {
+    font-size: 2.5em;
     color: var(--color-primary);
     font-weight: bold;
-  }
-
-  .Date-fig {
-    font-size: 1.5rem;
     margin: 0;
-    line-height: 0.6;
   }
+}
 
-  .Component {
-    background-color: var(--component-bg-color);
-    border-radius: var(--border-radius);
-    border: none;
-    width: 100%;
-  }
+.header-0 {
+  top: 0;
+}
 
-  .Component-header {
-    position: sticky;
-    top: 0;
-    z-index: 3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--global-bg-color);
-    padding: 0.2rem;
-    border: none;
+.header-1 {
+  top: 3rem;
+}
 
-    h1 {
-      font-size: 2.5em;
-      color: var(--color-primary);
-      font-weight: bold;
-      margin: 0;
-    }
-  }
+.header-2 {
+  top: 6rem; /* Positioned below the first header */
+}
 
-  .Component-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    color: var(--text-color1);
-    /* align-items: start ; */
-  }
+.header-3 {
+  top: 9rem;
+}
 
-  .Component-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: inherit;
-    padding: 0.4rem 0.2rem;
-    color: var(--text-color1);
-  }
+.Component-main {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--component-bg-color);
+  justify-content: space-evenly;
+  color: var(--text-color1);
+  /* align-items: start ; */
+}
+
+.Component-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: inherit;
+  padding: 0.4rem 0.2rem;
+  color: var(--text-color1);
+}
 
   .Component-footer.attendance {
     position: sticky;
@@ -297,346 +398,429 @@
     background-color: transparent; /* Adjust as needed */
   }
 
-  .expand-component {
-    text-decoration: none;
-    color: var(--text-color1);
-    align-items: end;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    p {
-      margin: 0.7em 0em;
-      position: relative;
-      right: 0.7em;
-      top: 0.2em;
-      color: var (var(--text-color2));
-    }
-  }
-
-  .number-fig {
-    font-size: 10em;
-    color: var(--text-color1);
-    margin: 0.3rem;
-    line-height: 0.6;
-  }
-
-  #Timeline-component {
-    padding: 1rem;
-    width: 93%;
-    height: 3.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    justify-content: center;
-  }
-
-  #legend {
-    display: flex;
+.expand-component {
+  text-decoration: none;
+  color: var(--text-color1);
+  align-items: end;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  p {
+    margin: 0.7em 0em;
     position: relative;
-    list-style: none;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    height: 50%;
-    background-color: inherit;
-    padding: 0rem 0rem;
+    right: 0.7em;
+    top: 0.2em;
+    color: var (var(--text-color2));
+  }
+}
+
+.number-fig {
+  font-size: 10em;
+  color: var(--text-color1);
+  margin: 0.3rem;
+  line-height: 0.6;
+}
+
+#Timeline-component {
+  padding: 1rem;
+  width: 93%;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+}
+
+#legend {
+  display: flex;
+  position: relative;
+  list-style: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 50%;
+  background-color: inherit;
+  padding: 0rem 0rem;
+  font-weight: bold;
+}
+
+.timeline-legend-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+}
+
+.shnata {
+  content: "";
+  position: relative;
+  height: 1em;
+  background-color: black;
+  width: 0.2rem;
+  /* padding: 0 0.8em; */
+  /* margin: 0em 1em; */
+  z-index: 3;
+}
+
+.active-day {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  height: 1em;
+  width: 1em;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  z-index: 2;
+}
+
+.timeline-x-axis {
+  /* position: relative; */
+  background-color: black;
+  left: 0;
+  right: 0;
+  height: 0.3rem;
+  top: 0em;
+  width: 100%;
+  z-index: 1;
+  /* margin: 0.1em auto; */
+}
+
+#Events {
+  align-self: start;
+}
+.Schedule-section {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    padding: 0.2rem;
+  }
+
+  span {
     font-weight: bold;
+    color: var(--text-color1);
   }
+}
 
-  .timeline-legend-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0.2rem;
-  }
+.Schedule-table {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--component-bg-color);
+  /* border-radius: var(--border-radius); */
+  border: none;
+  max-height: fit-content;
 
-  .shnata {
-    content: "";
-    position: relative;
-    height: 1em;
-    background-color: black;
-    width: 0.2rem;
-    /* padding: 0 0.8em; */
-    /* margin: 0em 1em; */
-    z-index: 3;
-  }
-
-  .active-day {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    height: 1em;
-    width: 1em;
-    padding: 0.2rem;
-    margin: 0.2rem;
-    z-index: 2;
-  }
-
-  .timeline-x-axis {
-    /* position: relative; */
-    background-color: black;
-    left: 0;
-    right: 0;
-    height: 0.3rem;
-    top: 0em;
-    width: 100%;
-    z-index: 1;
-    /* margin: 0.1em auto; */
-  }
-
-  #Schedule {
-    height: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  #Schedule-header {
-    position: sticky;
-    top: 0rem;
-    z-index: 3;
-  }
-
-  #Events {
-    align-self: start;
-  }
-  .Schedule-section {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    li {
-      padding: 0.2rem;
-    }
-
-    span {
-      font-weight: bold;
-      color: var(--text-color1);
-    }
-  }
-
-  .Schedule-table {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0.5rem;
-    background-color: var(--component-bg-color);
-    /* border-radius: var(--border-radius); */
-    border: none;
-
-    p {
+  /* p {
       color: var(--global-bg-color);
       margin-bottom: 0.4rem;
+    } */
+  h5 {
+    color: var(--color-secondary);
+    font-weight: bold;
+  }
+  h3 {
+    color: var(--global-bg-color);
+    font-weight: bold;
+  }
+  br {
+    line-height: 30%;
+  }
+}
+
+.Schedule-table-body {
+  /* height: 100px; */
+  transition: all 3s ease-in-out;
+}
+
+.showAll {
+  /* height: 200px; */
+}
+
+.Schedule-table-separator {
+  position: relative;
+  padding: 0 0.5rem;
+  /* width: 50%; */
+}
+.Schedule-table-horizontal-separator {
+  position: relative;
+
+  padding: 0.5rem 0.2rem;
+}
+
+.Schedule-vertical-line {
+  height: 100%;
+  width: 0.1rem;
+  background-color: var(--color-secondary);
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
+.schedule-event-description {
+  /* height: 2em; */
+  overflow: hidden;
+  max-height: 3rem;
+  background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* transition: all 1s ease-in-out; */
+}
+
+.canceled {
+  text-decoration: line-through;
+  -webkit-text-fill-color: unset;
+}
+
+.schedule-hour-cell {
+  vertical-align: top;
+  text-align: center;
+  padding: 0.2rem 0.5rem;
+}
+
+.Schedule-horizontal-line {
+  width: 95%;
+  height: 0.1rem;
+  background-color: var(--color-secondary);
+  position: absolute;
+  /* left: 50%; */
+  /* top: 0; */
+}
+
+.schedule-event-row {
+  padding: 0.5rem;
+  transition: height 3s ease-in-out;
+}
+
+.event-row {
+  transition: all ease-in-out;
+}
+
+.showMoreRow {
+  /* cursor: pointer; */
+  text-align: center;
+}
+
+.Schedule-footer {
+  /* display: block; */
+  padding: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Schedule-footer-link {
+  display: block;
+  /* block-direction: row; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+}
+.schedule-event-cell-opened {
+  height: 70%;
+  /* max-width: 100%; */
+  padding: 0.2rem;
+
+  details {
+    transition: all 1s ease-in-out;
+    interpolate-size: allow-keywords;
+    &::details-content {
+      transition: all 1s, content-visibility 1s allow-discrete;
+      overflow: hidden;
+      block-size: 0; /* Or also:  height:0; */
     }
-    h5 {
-      color: var(--color-secondary);
-      font-weight: bold;
+
+    .schdule-event-description {
+      overflow: visible;
+      max-height: 3rem;
+      background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    h3 {
-      color: var(--global-bg-color);
-      font-weight: bold;
-    }
-    br {
-      line-height: 30%;
-    }
-  }
-  .Schedule-table-separator {
-    position: relative;
-    padding: 0 0.5rem;
-    /* width: 50%; */
-  }
-  .Schedule-table-horizontal-separator {
-    position: relative;
-
-    padding: 0.5rem 0.2rem;
-  }
-
-  .Schedule-vertical-line {
-    height: 100%;
-    width: 0.1rem;
-    background-color: var(--color-secondary);
-    position: absolute;
-    left: 50%;
-    top: 0;
-  }
-  .schdule-event-description {
-    height: 2em;
-    overflow: hidden;
-  }
-
-  .schedule-hour-cell {
-    vertical-align: top;
-    text-align: center;
-    padding: 0.2rem 0.5rem;
-  }
-
-  .Schedule-horizontal-line {
-    width: 95%;
-    height: 0.1rem;
-    background-color: var(--color-secondary);
-    position: absolute;
-    /* left: 50%; */
-    /* top: 0; */
-  }
-
-  .schedule-event-row {
-    padding: 0.5rem;
-  }
-
-  /* make text fade */
-  /* .schedule-event-cell {
-    height: 50%;
-    background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 5px;
-  } */
-
-  .schedule-event-cell-opened {
-    height: 50%;
-    /* max-width: 100%; */
-    padding: 0.2rem;
-
-    details {
-      interpolate-size: allow-keywords;
-      &::details-content {
-        transition: block-size 1s, content-visibility 1s allow-discrete;
-        overflow: hidden;
-        block-size: 0; /* Or also:  height:0; */
-      }
-
-      &[open]::details-content {
-        block-size: auto; /* Or also:  height:auto; */
-      }
-    }
-    details[open] summary {
-      i {
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-      }
-    }
-
-    summary {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      div {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  }
-
-  .arrow {
-    border: solid var(--global-bg-color);
-    border-width: 0 3px 3px 0;
-    display: inline-flex;
-    padding: 0.5rem;
-    margin: 0rem 1rem;
-    object-fit: cover;
-  }
-
-  .up {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-  }
-
-  .down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  }
-
-  .fixed-arrow{
-    position: fixed;
-    top: 55%;
-    z-index: 1000;
-    left: 1%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-
-  }
-  
-  .fixed-arrow.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .schedule-event-participants-div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .schedule-event-title {
-    h3 {
-      text-decoration: none;
+    &[open]::details-content {
+      block-size: auto; /* Or also:  height:auto; */
+      /* overflow: visible; */
     }
   }
-
-  .canceled {
-    h3 {
-      text-decoration: line-through;
+  details[open] summary {
+    i {
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      margin: 0.7rem 1rem;
+      /* block-size: auto; */
     }
-  }
-  .schedule-event-participant-cell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: calc(25% - 0.5rem);
-
-    img {
-      width: 6rem;
-      height: 6rem;
-      object-fit: contain;
+    .schedule-event-description {
+      max-height: fit-content;
+      overflow: visible;
+      -webkit-text-fill-color: var(--global-bg-color);
+      transition: all 1s ease-in-out;
     }
-    p {
-      margin: 0.1rem 0;
-      font-size: 1rem;
-      b {
-        font-weight: bold;
-      }
+
+    .schedule-event-title {
+      /* margin-bottom: 0.3rem;
+        margin-top: 0; */
     }
   }
 
-  .row-display {
+  details[open] {
+    .schedule-event-description {
+      max-height: fit-content;
+      overflow: visible;
+      -webkit-text-fill-color: var(--global-bg-color);
+      transition: all 1s ease-in-out;
+    }
+  }
+
+  summary {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    width: 93%;
-    /* padding: 0.5rem; */
+    align-items: flex-start;
+    div {
+      display: flex;
+      flex-direction: column;
+    }
   }
+}
 
-  .share-icon img {
-    width: 24px;
-    height: 24px;
-    margin-left: auto;
+.schedule-expand-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.Schedule-table-footer {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  align-items: flex-start;
+}
+.special-event-title {
+  h3 {
+    color: var(--color-secondary);
+    font-weight: bold;
   }
+}
+.arrow {
+  width: 1.3rem;
+  height: 1.3rem;
+  transition: all ease 0.5s;
+  border: solid var(--global-bg-color);
+  border-width: 0 3px 3px 0;
+  display: inline-flex;
+  padding: 0.5rem;
 
-  .attendance-chart {
-    position: relative;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  object-fit: cover;
+}
+
+.up {
+  margin: 0.7rem 1rem;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.fixed-arrow {
+  position: fixed;
+  top: 55%;
+  z-index: 1000;
+  left: 1%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.fixed-arrow.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.schedule-event-participants-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.schedule-event-title {
+  margin-top: 0.3rem;
+  h3 {
+    text-decoration: none;
+    /* overflow: hidden;
+        max-height: 5rem;
+        background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; */
   }
+}
+
+/* .canceled {
+    .schedule-event-description {
+      text-decoration: line-through;
+    }
+  } */
+.schedule-event-participant-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: calc(25% - 0.5rem);
+
+  img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+  }
+  p {
+    margin: 0.1rem 0;
+    font-size: 1rem;
+    b {
+      font-weight: bold;
+    }
+  }
+}
+
+.row-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 93%;
+  /* padding: 0.5rem; */
+}
+
+.share-icon img {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+}
+
+.attendance-chart {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
   .chart-wrapper {
     width: 100%;
@@ -651,165 +835,165 @@
     width: 80%;
   }
 
-  .chart-circle {
-    width: 20px;
-    height: 20px;
-    border-radius: 0%;
-  }
+.chart-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 0%;
+}
 
-  .present {
-    background-color: var(--color-secondary);
-    border: 0.1em solid var(--color-primary);
-  }
+.present {
+  background-color: var(--color-secondary);
+  border: 0.1em solid var(--color-primary);
+}
 
-  .absent {
-    background-color: var(--global-bg-color);
-    border: 0.1em solid var(--color-primary);
-  }
+.absent {
+  background-color: var(--global-bg-color);
+  border: 0.1em solid var(--color-primary);
+}
 
-  .dimmed {
-    background-color: var(--global-bg-color);
-    opacity: 0.2;
-  }
+.dimmed {
+  background-color: var(--global-bg-color);
+  opacity: 0.2;
+}
 
-  .display-options {
-    border-top: 2px solid var(--global-bg-color);
-    border-right: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-    border-left: 2px solid transparent;
-    display: flex;
-    margin-top: 10px;
-    flex-direction: row;
-    width: 95%;
-    align-items: center;
-  }
+.display-options {
+  border-top: 2px solid var(--global-bg-color);
+  border-right: 2px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  display: flex;
+  margin-top: 10px;
+  flex-direction: row;
+  width: 95%;
+  align-items: center;
+}
 
-  .display-options button {
-    position: bottom;
-    border: solid transparent;
-    flex-direction: column;
-    background-color: transparent;
-    font-family: "VC_david";
-    font-style: normal;
-    font-weight: 600;
-    width: 25%;
+.display-options button {
+  position: bottom;
+  border: solid transparent;
+  flex-direction: column;
+  background-color: transparent;
+  font-family: "VC_david";
+  font-style: normal;
+  font-weight: 600;
+  width: 25%;
+  font-size: 24px;
+  line-height: 90%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: rgba(9, 0, 189, 0.2);
+  p {
     font-size: 24px;
-    line-height: 90%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: rgba(9, 0, 189, 0.2);
-    p {
-      font-size: 24px;
-    }
   }
+}
 
-  .display-options button.active {
-    background-color: var(--global-bg-color); /* Blue background for active button */
-    color: #ffead8; /* White text for active button */
-  }
+.display-options button.active {
+  background-color: var(--global-bg-color); /* Blue background for active button */
+  color: #ffead8; /* White text for active button */
+}
 
-  .display-options button:hover {
-    opacity: 0.8; /* Slightly dim when hovering */
-  }
+.display-options button:hover {
+  opacity: 0.8; /* Slightly dim when hovering */
+}
 
-  .modal-overlay {
-    position: relative;
-    display: flex;
-    margin-top: 1rem;
-    align-items: center;
-    pointer-events: none; /* Ensures the overlay doesn't block interactions */
-  }
+.modal-overlay {
+  position: relative;
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+  pointer-events: none; /* Ensures the overlay doesn't block interactions */
+}
 
-  .modal-content {
-    background: #ffead8;
-    color: rgb(0, 0, 0);
-    padding: 20px;
-    z-index: 5;
-    border-radius: 8px;
-    max-width: 500px;
-    
-    text-align: left;
-    pointer-events: auto; /* Enables interaction within the modal */
-  }
+.modal-content {
+  background: #ffead8;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  z-index: 5;
+  border-radius: 8px;
+  max-width: 500px;
 
-  .grid-header {
-    display: none; /* Optional: Hide the header to focus on grid items */
-  }
+  text-align: left;
+  pointer-events: auto; /* Enables interaction within the modal */
+}
 
-  .grid-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
-    gap: 1rem;
-  }
+.grid-header {
+  display: none; /* Optional: Hide the header to focus on grid items */
+}
 
-  .grid-item {
-    color: #0900BD;
+.grid-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+  gap: 1rem;
+}
 
-    text-align: center;
-    font-family: VC_NarkisBlock;
-    font-size: 0.8125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%; /* 0.8125rem */
-    min-width: 20%;
+.grid-item {
+  color: #0900bd;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    /* height: 200px; Adjust height as needed */
-    text-align: center;
-    background: #f9f9f9;
-    border: 2px solid var(--global-bg-color);
-  }
+  text-align: center;
+  font-family: VC_NarkisBlock;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 0.8125rem */
+  min-width: 20%;
 
-  .mk-image {
-    min-width: 100%;
-    min-height: 70%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* height: 200px; Adjust height as needed */
+  text-align: center;
+  background: #f9f9f9;
+  border: 2px solid var(--global-bg-color);
+}
 
-  .mk-image.grayscale {
-    filter: grayscale(100%);
-  }
+.mk-image {
+  min-width: 100%;
+  min-height: 70%;
+}
 
-  .mk-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.mk-image.grayscale {
+  filter: grayscale(100%);
+}
 
-  .mk-name {
-    min-height: 30%;
-    padding: 0.5rem;
-    background-color: #fff; /* Optional: Add a background to separate the text */
-    width: 100%;
-    text-align: center;
-    border: 1px solid var(--global-bg-color);
-    border-top: sold transparent;
-  }
+.mk-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .close-modal-button {
-    margin-top: 10px;
-    background-color: #0046ad;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 5;
-  }
+.mk-name {
+  min-height: 30%;
+  padding: 0.5rem;
+  background-color: #fff; /* Optional: Add a background to separate the text */
+  width: 100%;
+  text-align: center;
+  border: 1px solid var(--global-bg-color);
+  border-top: sold transparent;
+}
 
-  .close-modal-button:hover {
-    background-color: #002f6e;
-  }
+.close-modal-button {
+  margin-top: 10px;
+  background-color: #0046ad;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 5;
+}
 
-  .attendance-footer .expand-icon img {
-    width: 24px;
-    height: 24px;
-  }
+.close-modal-button:hover {
+  background-color: #002f6e;
+}
 
-  /* .mk-image {
+.attendance-footer .expand-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+/* .mk-image {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -818,11 +1002,10 @@
 @media (max-width: 768px) {
   .attendance-component {
     width: 95%; /* Ensure it fits smaller screens */
-  padding: 10px; /* Reduce padding */
-}
+/* padding: 10px; Reduce padding */
 
 .Component-header h1 {
-  font-size: 1.2em; /* Adjust font size */
+  font-size: 1.6em; /* Adjust font size */
 }
 
 .attendance-chart {
@@ -862,7 +1045,6 @@
   filter: grayscale(100%);
 }
 
-
 .law-section {
   display: flex;
   flex-direction: column;
@@ -871,7 +1053,6 @@
   justify-content: space-between;
   padding: 0.5rem;
 }
-
 
 .law-horizontal-line {
   width: 85%;
@@ -882,8 +1063,6 @@
   /* top: 0; */
 }
 
-
-
 .law {
   cursor: pointer;
   display: flex;
@@ -893,13 +1072,11 @@
   width: 100%;
 }
 
-
 .law .law-content {
   display: flex;
   flex-direction: row !important;
   width: 100%; /* Ensure content takes full width when open */
 }
-
 
 .law.open .law-content {
   display: flex;
@@ -910,12 +1087,12 @@
 .law-name {
   font-weight: normal;
   max-width: 55%; /* Ensure the name takes up appropriate width */
-  margin-left: 1rem; 
+  margin-left: 1rem;
 }
 
 .law.open .law-name {
   font-weight: bold; /* Make name bold when open */
-  max-width: 90%;  /* Adjust max-width when open */
+  max-width: 90%; /* Adjust max-width when open */
 }
 
 .law-status {

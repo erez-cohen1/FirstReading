@@ -203,24 +203,26 @@ const KnessetAttendance: React.FC = () => {
       </main>
       <div className="Component-footer attendance" ref={footerRef}>
         <div>לרשימה המלאה</div>
-        {!showModal && (<i className="arrow down"
-          onClick={(e) => {
-            e.preventDefault();
-            setShowModal(true);
-          }}
-        >
-        </i>)}
+        {!showModal && (
+          <i
+            className="arrow down"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowModal(true);
+            }}
+          ></i>
+        )}
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content Component" ref={modalRef}>
-            <div
-              ref={arrowRef}
-              className={`arrow up fixed-arrow ${isArrowVisible ? "visible" : "hidden"}`}
-              onClick={() => {
-                setShowModal(false); // Close the modal
-                window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
-              }}
-            ></div>
+              <div
+                ref={arrowRef}
+                className={`arrow up fixed-arrow ${isArrowVisible ? "visible" : "hidden"}`}
+                onClick={() => {
+                  setShowModal(false); // Close the modal
+                  window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
+                }}
+              ></div>
               <div className="attendance-grid">
                 <div className="grid-content">
                   {filteredData.map((mk) => (

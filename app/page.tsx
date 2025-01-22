@@ -17,10 +17,10 @@ export default function Home() {
           קריאה <br />
           ראשונה
         </h1>
-        <DateSelector date={date} setDate={setDate}></DateSelector>
       </section>
       <section className="Date">
         <CurrentDate date={date}></CurrentDate>
+        <DateSelector date={date} setDate={setDate}></DateSelector>
       </section>
       <hr />
       <KnessetAttendance></KnessetAttendance>
