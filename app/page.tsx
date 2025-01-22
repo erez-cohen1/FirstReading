@@ -1,8 +1,8 @@
 "use client";
 import Schedule from "./Components/Schedule/Schedule";
-import VoteCount from "./Components/Votes";
+import Votes from "./Components/Votes";
 import DateSelector from "./Components/dateSelector";
-import KnessetAttendance from "./Components/attendence";
+import KnessetAttendance from "./Components/Attendence/KnessetAttendance";
 import CurrentDate from "./Components/Date";
 import LawSummary from "./Components/LawSummary";
 import { useState } from "react";
@@ -19,7 +19,7 @@ export default function Home() {
         </h1>
       </section>
       <section className="Date">
-        <CurrentDate></CurrentDate>
+        <CurrentDate date={date}></CurrentDate>
         <DateSelector date={date} setDate={setDate}></DateSelector>
       </section>
       <hr />
@@ -27,7 +27,7 @@ export default function Home() {
       <Schedule date={date}></Schedule>
       <LawSummary queryId={1433}></LawSummary>
       {/* <LawCount></LawCount> */}
-      <VoteCount></VoteCount>
+      <Votes date={date}></Votes>
     </main>
   );
 }

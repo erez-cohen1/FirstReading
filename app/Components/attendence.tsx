@@ -20,7 +20,39 @@ const KnessetAttendance: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const modalRef = useRef<HTMLDivElement>(null);
+  const compRef = useRef<HTMLDivElement>(null);
   const [flippedId, setFlippedId] = useState<number | null>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [isArrowVisible, setIsArrowVisible] = useState(true);
+  const arrowRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (compRef.current && arrowRef.current) {
+      const footerBounds = compRef.current.getBoundingClientRect();
+      const arrowBounds = arrowRef.current.getBoundingClientRect();
+
+      // Check if the arrow is within the bounds of the footer
+      const isWithinFooter =
+        arrowBounds.bottom <= footerBounds.bottom &&
+        arrowBounds.top >= footerBounds.top &&
+        arrowBounds.left >= footerBounds.left &&
+        arrowBounds.right <= footerBounds.right;
+
+      // Update visibility state based on position
+      setIsArrowVisible(isWithinFooter);
+    }
+  };
+
+  useEffect(() => {
+    // Attach scroll event listener
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      // Cleanup listener on unmount
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleFlip = (id: number) => {
     setFlippedId(flippedId === id ? null : id); // Toggle the flip state
@@ -102,7 +134,7 @@ const KnessetAttendance: React.FC = () => {
   if (error) return <div className="Component">Error: {error}</div>;
 
   return (
-    <div className="Component" style={{ position: "relative", height: "100%" }} id="KnessetAttendance">
+    <div className="Component" style={{ position: "relative", height: "100%" }} id="KnessetAttendance" ref={compRef}>
       <header className="Component-header">
         <h1>נוכחות חכים</h1>
       </header>
@@ -169,22 +201,26 @@ const KnessetAttendance: React.FC = () => {
           </div>
         </div>
       </main>
-      <div className="Component-footer attendance">
-        <p>לרשימה המלאה</p>
-        <a
+      <div className="Component-footer attendance" ref={footerRef}>
+        <div>לרשימה המלאה</div>
+        {!showModal && (<i className="arrow down"
           onClick={(e) => {
             e.preventDefault();
             setShowModal(true);
           }}
         >
-          <span>🔗</span> Sign
-        </a>
+        </i>)}
         {showModal && (
           <div className="modal-overlay">
             <div className="modal-content Component" ref={modalRef}>
-              <button onClick={() => setShowModal(false)} className="close-modal-button">
-                Close
-              </button>
+            <div
+              ref={arrowRef}
+              className={`arrow up fixed-arrow ${isArrowVisible ? "visible" : "hidden"}`}
+              onClick={() => {
+                setShowModal(false); // Close the modal
+                window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
+              }}
+            ></div>
               <div className="attendance-grid">
                 <div className="grid-content">
                   {filteredData.map((mk) => (
