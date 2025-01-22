@@ -26,8 +26,12 @@ const KnessetAttendance: React.FC = () => {
         <div>לרשימה המלאה</div>
         <i className="arrow down" onClick={() => setShowModal(!showModal)}></i>
       </div>
+<<<<<<< HEAD
       {showModal && <Modal mkData={mkData} displayOption={displayOption} setShowModal={setShowModal} />}
     </div>
+=======
+    </>
+>>>>>>> 05764947919f08846353bf7b68a22d1ac6b5d2c4
   );
 };
 
