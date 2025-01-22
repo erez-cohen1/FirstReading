@@ -62,22 +62,21 @@ export default function Schedule({ date }: { date: Date }) {
 
   if (loading) {
     return (
-      <div className="Component" id="Schedule">
-        <header className="Component-header" id="Schedule-header">
+      <>
+        <header className="Component-header header-1" id="Schedule-header">
           <h1>סדר יום</h1>
           <h1></h1>
         </header>
         <main>
           <h2>טוען סדר יום...</h2>
         </main>
-      </div>
+      </>
     );
   }
 
   return (
     <>
-      {/* <div className="Component" id="Schedule"> */}
-      <header className="Component-header" id="Schedule-header">
+      <header className="Component-header header-1" id="Schedule-header">
         <h1>סדר יום</h1>
         <h1></h1>
       </header>
@@ -134,8 +133,6 @@ export default function Schedule({ date }: { date: Date }) {
           </tbody>
         </table>
       </main>
-      <footer className="Component-footer"></footer>
-      {/* </div> */}
     </>
   );
 }
