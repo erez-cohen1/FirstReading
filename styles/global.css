@@ -274,6 +274,7 @@
   }
 
   .Component-footer.attendance {
+    position: sticky;
     display: flex;
     flex-direction: column;
     color: #0900BD;
@@ -643,6 +644,7 @@
     display: grid;
     grid-template-columns: repeat(15, minmax(22px, 1fr)); /* Flexible columns */
     grid-template-rows: repeat(8, 20px); /* Exactly 8 rows, each 20px high */
+    grid-auto-flow: column;
     justify-content: center;
     flex-wrap: wrap;
     /* max-height: 75px; Half of the width to create the semi-circle */

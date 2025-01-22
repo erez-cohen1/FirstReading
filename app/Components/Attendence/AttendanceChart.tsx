@@ -6,10 +6,13 @@ interface AttendanceChartProps {
   displayOption: "all" | "coalition" | "opposition" | "goverment";
 }
 
+
+
 const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption }) => {
+  
   return (
     <div className="chart-wrapper">
-        {mkData
+          {mkData
             .slice() // Create a shallow copy of the data
             .sort((a, b) => {
             if (displayOption === "coalition") {
@@ -38,7 +41,7 @@ const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption
                 className={`chart-circle ${mk.IsPresent ? "present" : "absent"} ${isMatchingOption ? "" : "dimmed"}`}
                 ></div>
             );
-            })}
+          })}
     </div>
   );
 };

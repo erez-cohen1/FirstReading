@@ -26,19 +26,24 @@ const Modal: React.FC<ModalProps> = ({ mkData, displayOption, setShowModal }) =>
   return (
     <div className="modal-overlay">
         <div className="modal-content Component" ref={modalRef}>
-        <div
-            ref={arrowRef}
-            className={`arrow up fixed-arrow ${isArrowVisible ? "visible" : "hidden"}`}
-            onClick={() => {
-            setShowModal(false); // Close the modal
-            window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top
-            }}
-        ></div>
             <div className="attendance-grid">
             <div className="grid-content">
-                {filteredData.map((mk) => (
-                    <MemberCard key={mk.MkId} mk={mk} />
-                ))}
+                {filteredData.slice().sort((a, b) => {
+            if (displayOption === "coalition") {
+                // Sort coalition members first
+                if (a.IsCoalition !== b.IsCoalition) return b.IsCoalition ? 1 : -1;
+            } else if (displayOption === "opposition") {
+                // Sort opposition members first
+                if (a.IsCoalition !== b.IsCoalition) return b.IsCoalition ? -1 : 1;
+            } else if (displayOption === "goverment") {
+                // Sort opposition members first
+                if (a.isGoverment !== b.isGoverment) return b.isGoverment ? 1 : -1;
+            }
+            // Sort within each group by presence
+            return b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1;
+            }).map((mk) => (
+                      <MemberCard key={mk.MkId} mk={mk} />
+                  ))}
             </div>
             </div>
         </div>

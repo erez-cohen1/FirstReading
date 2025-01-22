@@ -28,9 +28,9 @@ const KnessetAttendance: React.FC = () => {
       </main>
       <div className="Component-footer attendance">
         <div>לרשימה המלאה</div>
-        <i className="arrow down" onClick={() => setShowModal(true)}></i>
-        {showModal && <Modal mkData={mkData} displayOption={displayOption} setShowModal={setShowModal} />}
+        <i className="arrow down" onClick={() => setShowModal(!showModal)}></i>
       </div>
+      {showModal && <Modal mkData={mkData} displayOption={displayOption} setShowModal={setShowModal} />}
     </div>
   );
 };
