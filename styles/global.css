@@ -560,7 +560,7 @@
     position: fixed;
     top: 55%;
     z-index: 1000;
-    left: 0;
+    left: 1%;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -750,6 +750,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 100%; /* 0.8125rem */
+    min-width: 20%;
 
     display: flex;
     flex-direction: column;

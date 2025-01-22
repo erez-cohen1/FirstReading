@@ -2,7 +2,7 @@
 import Schedule from "./Components/Schedule/Schedule";
 import Votes from "./Components/Votes";
 import DateSelector from "./Components/dateSelector";
-import KnessetAttendance from "./Components/attendence";
+import KnessetAttendance from "./Components/Attendence/KnessetAttendance";
 import CurrentDate from "./Components/Date";
 import LawSummary from "./Components/LawSummary";
 import { useState } from "react";
