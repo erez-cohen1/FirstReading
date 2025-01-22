@@ -15,18 +15,18 @@ const KnessetAttendance: React.FC = () => {
 
   return (
     <>
-      <header className="Component-header header-0">
+      <header className="Component-header header-0" id="Attendance-header">
         <h1>נוכחות חכים</h1>
       </header>
-      <main className="Component-main" style={{ height: "auto" }}>
+      <main className="Component-main">
         <AttendanceChart mkData={mkData} displayOption={displayOption} />
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
-      </main>
-      <div className="Component-footer attendance">
+        <div className="Component-footer attendance">
         <div>לרשימה המלאה</div>
-        <i className="arrow down" onClick={() => setShowModal(!showModal)}></i>
-      </div>
-      {showModal && <Modal mkData={mkData} displayOption={displayOption} setShowModal={setShowModal} />}
+        <i className={`arrow ${showModal ? "up" : "down"}`} onClick={() => setShowModal(!showModal)}></i>
+        </div>
+        {showModal && <Modal mkData={mkData} displayOption={displayOption} setShowModal={setShowModal} />}
+      </main>
     </>
   );
 };
