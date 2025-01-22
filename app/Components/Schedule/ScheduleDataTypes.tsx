@@ -30,6 +30,7 @@ export interface CommitteeEvent {
   EventDiscription?: string; // full discription of the event
   EventParticipants: CommitteeParticipant[];
   EventLiveStream?: string; // url to live stream
+  EventType: ScheduleEventType;
 }
 
 export interface CommitteeParticipantsData {
@@ -58,12 +59,13 @@ export interface PlenumEvent {
   IsBill: boolean;
   IsAgendaSug: boolean;
   FK_StatusID: number;
+  EventType: ScheduleEventType;
 }
 
 export interface KnsEvent {
   id: number;
   EventStart: Date; // "2025-01-07T12:00:00";
-  EventType: number; //3;
+  EventType: ScheduleEventType; //3;
   EventName: string;
   rnkParent: number; // hour group rank
   groups: number[]; // list of all ranks of hour groups "22, 20, 18, 12, 7, 6, 4, 3, 1"

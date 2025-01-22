@@ -1,10 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  toJewishDate,
-  formatJewishDateInHebrew,
-} from "jewish-date";
+import { toJewishDate, formatJewishDateInHebrew } from "jewish-date";
 
 export default function HebrewDateComponent() {
   const [gregorianDateHebrew, setGregorianDateHebrew] = useState("");
@@ -36,12 +33,10 @@ export default function HebrewDateComponent() {
 
   return (
     <>
-      <p  className="Date-fig">
-        <strong></strong> {gregorianDateHebrew}
-      </p>
-      <p  className="Date-fig">
-        <strong></strong> {hebrewDate}
-      </p>
+      <div className="dates-table-cur-date">
+        <p>{gregorianDateHebrew}</p>
+        <p>{hebrewDate}</p>
+      </div>
     </>
   );
 }

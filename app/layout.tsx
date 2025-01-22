@@ -7,13 +7,12 @@ import Footer from "@/lib/components/Footer";
 
 export const metadata: Metadata = {
   title: "קריאה ראשונה. מה שקורה היום בכנסת",
-  description:
-    "פלטפורמה למעקב אחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
+  description: "פלטפורמה למעקב אחר הפעילות בכנסת, עם עדכונים יומיים על הצעות חוק, דיונים והצבעות",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html dir="rtl" lang="he">
+    <html dir="rtl" lang="he" style={{ padding: "0" }}>
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>

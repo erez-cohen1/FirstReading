@@ -4,38 +4,36 @@ import { KnsEvent, ScheduleEventType } from "@/app/Components/Schedule/ScheduleD
 import { useEffect, useState } from "react";
 import { fetchScheduleData } from "./getScheduleData";
 
-export default function KnsEventComp({ params, searchParams }: { params: { id: number }; searchParams: { dateString: string } }) {
-  const [event, setEvent] = useState<KnsEvent>({
-    id: 0,
-    EventStart: new Date(searchParams.dateString),
-    EventType: 0,
-    EventName: "",
-    rnkParent: 0,
-    groups: [],
-    rnkChilds: 0,
-  });
-  useEffect(() => {
-    fetchScheduleData(searchParams.dateString, -1, ScheduleEventType.SpecialOccasion).then((event) => {
-      if (event != undefined) {
-        setEvent(event);
-      }
-    });
-  }, [params.id, searchParams?.dateString]);
-
+export default function KnsEventComp({ event, index, showTime }: { event: KnsEvent; index: number; showTime: boolean }) {
   return (
-    <div>
-      <h2>{event.EventName}</h2>
-      <p>{event.EventType}</p>
-      <p>
-        <b>
-          {event.EventStart.getHours()}:
-          {event.EventStart.getMinutes() == 0 ? event.EventStart.getMinutes() + "0" : event.EventStart.getMinutes()}
-        </b>{" "}
-        <br /> {event.EventName}
-      </p>
-      <a href="/">
-        <button>Back to Schedule</button>
-      </a>
-    </div>
+    <>
+      <tr>
+        <td></td>
+        <td colSpan={2} className="Schedule-table-horizontal-separator">
+          <div className="Schedule-horizontal-line"></div>
+        </td>
+      </tr>
+      <tr key={event.id} className="schedule-event-row">
+        <td className="schedule-hour-cell">
+          {showTime && (
+            <h3>
+              {event.EventStart.getHours()}:
+              {event.EventStart.getMinutes() == 0 ? event.EventStart.getMinutes() + "0" : event.EventStart.getMinutes()}
+            </h3>
+          )}
+        </td>
+        <td className="schedule-event-cell-opened">
+          <details>
+            <summary>
+              <div className={`special-event-title`}>
+                <h3>אירוע מיוחד</h3>
+                <p className="schedule-event-description">{event.EventName}</p>
+              </div>
+              <i className="arrow down"></i>
+            </summary>
+          </details>
+        </td>
+      </tr>
+    </>
   );
 }

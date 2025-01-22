@@ -1,0 +1,52 @@
+<html>
+  <head></head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      position: sticky;
+      z-index: 1000; /* Adjust z-index to ensure proper stacking order */
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header-1 {
+      top: 0; /* Sticks at the very top */
+      background-color: #ffcccc;
+    }
+
+    .header-2 {
+      top: 50px; /* Positioned below the first header */
+      background-color: #ccffcc;
+    }
+
+    .header-3 {
+      top: 100px; /* Positioned below the second header */
+      background-color: #ccccff;
+    }
+
+    .content {
+      padding: 20px;
+      height: 2000px; /* For scrolling demonstration */
+    }
+  </style>
+  <body>
+    <div class="header header-1">Header 1</div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, beatae deleniti cum hic blanditiis aperiam non officiis
+    exercitationem voluptatibus harum, dolore ab itaque. Minima quaerat aperiam minus ipsam ipsum cumque!
+    <div class="header header-2">Header 2</div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, beatae deleniti cum hic blanditiis aperiam non officiis
+    exercitationem voluptatibus harum, dolore ab itaque. Minima quaerat aperiam minus ipsam ipsum cumque!
+    <div class="header header-3">Header 3</div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, beatae deleniti cum hic blanditiis aperiam non officiis
+    exercitationem voluptatibus harum, dolore ab itaque. Minima quaerat aperiam minus ipsam ipsum cumque!
+    <div class="content">
+      <p>Content goes here...</p>
+      <!-- Add more content here to demonstrate scrolling -->
+    </div>
+  </body>
+</html>
