@@ -7,7 +7,7 @@ interface MemberCardProps {
 
 const MemberCard: React.FC<MemberCardProps> = ({ mk }) => {
     const [flippedId, setFlippedId] = useState<number | null>(null);
-
+    
     const handleFlip = (id: number) => {
         setFlippedId(flippedId === id ? null : id); // Toggle the flip state
       };
@@ -25,10 +25,10 @@ const MemberCard: React.FC<MemberCardProps> = ({ mk }) => {
             <div className="mk-name">{mk.Phone}</div>
         </div>
         ) : (
-        <>
+          <>
             <img src={mk.MkImage} alt={mk.Name} className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`} />
             <div className="mk-name">{mk.Name}</div>
-        </>
+          </>
         )}
     </div>
   );
