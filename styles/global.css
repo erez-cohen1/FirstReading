@@ -376,9 +376,7 @@
 }
 
   .Component-footer.attendance {
-    position: sticky;
     display: flex;
-    flex-direction: column;
     color: #0900BD;
     text-align: right;
     /* Section Style */
@@ -396,7 +394,24 @@
     border-right: 2px solid transparent;
     border-bottom: 2px solid transparent;
     border-left: 2px solid transparent;
-    background-color: transparent; /* Adjust as needed */
+  }
+
+  .footer-text{
+    flex: 1; /* Allow text to take available space */
+    text-align: right; /* Align text to the left */
+    margin-right: 0.5rem;
+    direction: rtl; /* Keep proper text direction for Hebrew */
+  }
+
+
+
+  .Component-footer.attendance.modal-active {
+    position: sticky;
+    width: 95%;
+    top: 5.3%;
+    z-index: 1001; /* Ensures it stays above other elements */
+    border: transparent;
+    padding: 0,0,0,0;
   }
 
 .expand-component {
@@ -736,19 +751,11 @@
   -webkit-transform: rotate(45deg);
 }
 
-.fixed-arrow {
-  position: fixed;
-  top: 55%;
-  z-index: 1000;
-  left: 1%;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-
-.fixed-arrow.visible {
-  opacity: 1;
-  visibility: visible;
+.footer-arrow {
+  margin-left: 1rem; /* Space between arrow and text */
+  font-size: 1.5rem; /* Adjust arrow size for footer */
+  margin-bottom: 0.5rem;
+  cursor: pointer; /* Pointer cursor for interactivity */
 }
 
 .schedule-event-participants-div {
@@ -826,6 +833,7 @@
   .chart-wrapper {
     width: 100%;
     position: relative;
+    margin-top: 1rem;
     display: grid;
     grid-template-columns: repeat(15, minmax(22px, 1fr)); /* Flexible columns */
     grid-template-rows: repeat(8, 20px); /* Exactly 8 rows, each 20px high */
@@ -837,19 +845,18 @@
   }
 
 .chart-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 0%;
+  width: 1rem;
+  height: 1rem;
+  transform: rotate(90deg);
+  margin: 0.1rem;
 }
 
 .present {
   background-color: var(--color-secondary);
-  border: 0.1em solid var(--color-primary);
 }
 
 .absent {
   background-color: var(--global-bg-color);
-  border: 0.1em solid var(--color-primary);
 }
 
 .dimmed {
@@ -859,46 +866,94 @@
 
 .display-options {
   border-top: 2px solid var(--global-bg-color);
-  border-right: 2px solid transparent;
-  border-bottom: 2px solid transparent;
-  border-left: 2px solid transparent;
   display: flex;
   margin-top: 10px;
   flex-direction: row;
   width: 95%;
-  align-items: center;
+  position: relative; /* For positioning the indicator */
 }
 
 .display-options button {
-  position: bottom;
-  border: solid transparent;
-  flex-direction: column;
+  flex: 1; /* Make buttons take equal space */
+  position: relative; /* For the indicator effect */
   background-color: transparent;
   font-family: "VC_david";
-  font-style: normal;
+  flex-direction: column;
   font-weight: 600;
-  width: 25%;
   font-size: 24px;
   line-height: 90%;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   color: rgba(9, 0, 189, 0.2);
-  p {
-    font-size: 24px;
-  }
+  border: none;
+  outline: none;
+  z-index: 2; /* Make sure buttons are above the indicator */
+  transition: color 0.3s ease;
 }
 
 .display-options button.active {
-  background-color: var(--global-bg-color); /* Blue background for active button */
-  color: #ffead8; /* White text for active button */
+  color: #FFEAD8; /* Change text color for active button */
 }
 
 .display-options button:hover {
   opacity: 0.8; /* Slightly dim when hovering */
 }
 
+.display-options .indicator {
+  position: absolute;
+  bottom: 0; /* Align indicator at the bottom */
+  left: 0; /* Start from the left */
+  height: 100%; /* Make it fill the button */
+  color: #ffead8;
+  background-color: var(--global-bg-color); /* Same background color as active */
+  transition: all 0.3s ease; /* Smooth animation */
+  z-index: 1; /* Place it behind the buttons */
+}
+
+
+.search-bar {
+  font-family: VC_NarkisBlock;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 1rem */
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem; /* Adjust padding with rem units */
+  border: 0.15rem solid var(--global-bg-color); /* 1px in rem */
+  margin-bottom: 1rem; /* Space below the search bar */
+  width: 100%; /* Full width for mobile screens */
+}
+
+.search-bar input {
+  flex: 1; /* Take all available space */
+  border: none;
+  outline: none;
+  padding: 0.375rem; /* Inner padding for input */
+  font-size: 1rem; /* Responsive font size */
+  background: transparent;
+}
+
+.search-bar input::placeholder {
+  color: rgba(9, 0, 189, 0.30);
+}
+
+.search-bar svg {
+  width: 1.25rem; /* Icon size (20px = 1.25rem) */
+  height: 1.25rem;
+  margin-right: 0.5rem; /* Space between icon and input */
+}
+
+
+
 .modal-overlay {
+  height: 0;
+  overflow: hidden;
+  width: 100%;
   position: relative;
   display: flex;
   margin-top: 1rem;
@@ -906,21 +961,66 @@
   pointer-events: none; /* Ensures the overlay doesn't block interactions */
 }
 
+.modal-overlay.modal-active{
+  height: 100%; /* Expands to full height when active */
+  pointer-events: auto; /* Allows interaction */
+  transition: all 1s ease-in-out;
+}
+
 .modal-content {
   background: #ffead8;
   color: rgb(0, 0, 0);
-  padding: 20px;
+  height: 0;
+  padding: 1rem;
   z-index: 5;
-  border-radius: 8px;
-  max-width: 500px;
-
   text-align: left;
   pointer-events: auto; /* Enables interaction within the modal */
+}
+
+.modal-overlay.modal-active .modal-content {
+  height: 100%;
+  transition: all 1s ease-in-out;
 }
 
 .grid-header {
   display: none; /* Optional: Hide the header to focus on grid items */
 }
+
+.faction-header {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Makes the header take full width */
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  color: #FF6700;
+
+  text-align: center;
+  /* Subtitle */
+  font-family: VC_NarkisBlock;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 1rem */
+}
+
+.faction-header::before,
+.faction-header::after {
+  content: '';
+  flex-grow: 1; /* Allows the lines to stretch */
+  height: 2px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="2" viewBox="0 0 5 2" fill="none"><path d="M125 1L1.00001 1.00001" stroke="%230900BD" stroke-width="2" stroke-linecap="square"/></svg>');
+  background-repeat: repeat-x; /* Repeats the SVG for the line */
+  background-size: contain; /* Ensures proper scaling */
+}
+
+.faction-header::before {
+  margin-left: 0.5rem;
+}
+
+.faction-header::after {
+  margin-right: 0.5rem;
+}
+
 
 .grid-content {
   display: grid;
@@ -930,7 +1030,7 @@
 
 .grid-item {
   color: #0900bd;
-
+  background: var(--component-bg-color);
   text-align: center;
   font-family: VC_NarkisBlock;
   font-size: 0.8125rem;
@@ -944,14 +1044,15 @@
   align-items: center;
   justify-content: space-between;
   /* height: 200px; Adjust height as needed */
-  text-align: center;
-  background: #f9f9f9;
-  border: 2px solid var(--global-bg-color);
+  width: 5.25rem;
+  height: 9.56256rem;
+  flex-shrink: 0;
+  border: 1px solid #0900BD;
 }
 
 .mk-image {
   min-width: 100%;
-  min-height: 70%;
+  min-height: 75%;
 }
 
 .mk-image.grayscale {
@@ -965,67 +1066,15 @@
 }
 
 .mk-name {
-  min-height: 30%;
+  min-height: 25%;
   padding: 0.5rem;
-  background-color: #fff; /* Optional: Add a background to separate the text */
   width: 100%;
   text-align: center;
-  border: 1px solid var(--global-bg-color);
-  border-top: sold transparent;
+  color: #0900BD;
 }
-
-.close-modal-button {
-  margin-top: 10px;
-  background-color: #0046ad;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 5;
-}
-
-.close-modal-button:hover {
-  background-color: #002f6e;
-}
-
-.attendance-footer .expand-icon img {
-  width: 24px;
-  height: 24px;
-}
-
-/* .mk-image {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .attendance-component {
-    width: 95%; /* Ensure it fits smaller screens */
-/* padding: 10px; Reduce padding */
 
 .Component-header h1 {
   font-size: 1.6em; /* Adjust font size */
-}
-
-.attendance-chart {
-  margin: 0.5rem 0; /* Add spacing */
-}
-
-.attendance-summary {
-  font-size: 2em; /* Adjust font size */
-  font-weight: bold;
-}
-
-.chart-circle {
-  width: 15px; /* Further reduce size */
-  height: 15px;
-  margin: 0.05rem;
-}
-
-.close-modal-button {
-  font-size: 0.9em; /* Adjust button size */
 }
 
 .vote-item {

@@ -9,6 +9,27 @@ const KnessetAttendance: React.FC = () => {
   const [mkData, loading, error] = useAttendanceData();
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+
+  // Handle modal opening and closing with smooth scroll
+  const handleToggleModal = () => {
+    if (showModal) {
+      // If modal is currently open, first scroll it to the top, then close it
+      if (modalRef.current) {
+        modalRef.current.scrollIntoView({ behavior: "smooth", block: "center"});
+
+        // Delay closing the modal to allow the scroll to complete
+        setTimeout(() => {
+          setShowModal(false); // Now close the modal
+        }, 800); // Adjust this time to match your scroll duration
+      }
+    } else {
+      // If modal is closed, open it
+      setShowModal(true);
+    }
+  };
 
   if (loading) return <div className="Component">Loading...</div>;
   if (error) return <div className="Component">Error: {error}</div>;
@@ -19,13 +40,16 @@ const KnessetAttendance: React.FC = () => {
         <h1>נוכחות חכים</h1>
       </header>
       <main className="Component-main">
-        <AttendanceChart mkData={mkData} displayOption={displayOption} />
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
-        <div className="Component-footer attendance">
-        <div>לרשימה המלאה</div>
-        <i className={`arrow ${showModal ? "up" : "down"}`} onClick={() => setShowModal(!showModal)}></i>
+        <AttendanceChart mkData={mkData} displayOption={displayOption} modalRef={modalRef}/>
+        <div className={`Component-footer attendance ${showModal ? "modal-active" : ""}`}>
+          <div className="footer-text">לרשימה המלאה</div>
+          <i
+            className={`arrow footer-arrow ${showModal ? "up" : "down"}`}
+            onClick={() => handleToggleModal()}
+          ></i>
         </div>
-        {showModal && <Modal mkData={mkData} displayOption={displayOption} setShowModal={setShowModal} />}
+        <Modal mkData={mkData} displayOption={displayOption} showModal={showModal} modalRef={modalRef}/>
       </main>
     </>
   );

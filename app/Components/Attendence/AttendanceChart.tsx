@@ -4,14 +4,15 @@ import { MkData } from "./MkData";
 interface AttendanceChartProps {
   mkData: MkData[];
   displayOption: "all" | "coalition" | "opposition" | "goverment";
+  modalRef: React.RefObject<HTMLDivElement>;
 }
 
 
 
-const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption }) => {
+const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption, modalRef}) => {
   
   return (
-    <div className="chart-wrapper">
+    <div className="chart-wrapper" ref={modalRef}>
           {mkData
             .slice() // Create a shallow copy of the data
             .sort((a, b) => {
