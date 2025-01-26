@@ -46,7 +46,7 @@ import { useState, useEffect } from "react";
 import { MkData } from "./MkData";
 import mkDetails from "./mk_Data.json";
 
-export const attendanceDataFromFile = (): [MkData[], boolean, string | null] => {
+export const useAttendanceDataFromFile = (): [MkData[], boolean, string | null] => {
   const [data, setData] = useState<MkData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

@@ -3,11 +3,11 @@ import AttendanceChart from "./AttendanceChart";
 import DisplayOptions from "./DisplayOptions";
 import Modal from "./Modal";
 //import { useAttendanceData } from "./useAttendanceData";
-import { attendanceDataFromFile } from "./useAttendanceData";
+import { useAttendanceDataFromFile } from "./useAttendanceData";
 import { MkData } from "./MkData";
 
 const KnessetAttendance: React.FC = () => {
-  const [mkData, loading, error] = attendanceDataFromFile();
+  const [mkData, loading, error] = useAttendanceDataFromFile();
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
