@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import VoteDetails from "./VotesResults"; // Ensure this component is correctly implemented
+import createVoteBar from "./VotingBar";
 
 type Vote = {
   VoteId: number;
@@ -10,6 +10,14 @@ type Vote = {
   VoteType: string;
   ItemTitle: string;
   AcceptedText: string;
+  Decision: string; // Added Decision field
+  Voters: Voter[];
+};
+
+type Voter = {
+  MkName: string;
+  FactionName: string;
+  Title: string; // Vote result (e.g., "בעד", "נגד", "נמנע", "נוכח")
 };
 
 type VoteData = {
@@ -17,35 +25,20 @@ type VoteData = {
 };
 
 const Votes = ({ date }: { date: Date }) => {
-
-  
   const [voteData, setVoteData] = useState<VoteData | null>(null);
-  const [selectedVoteId, setSelectedVoteId] = useState<number | null>(null);
+  const [expandedVoteId, setExpandedVoteId] = useState<number | null>(null);
+  const [voterFilters, setVoterFilters] = useState<Record<number, string>>({});
 
   const formatDate = (date: Date) => {
-    return date.toISOString().split('T')[0]; // Returns YYYY-MM-DD
+    return date.toISOString().split("T")[0];
   };
 
   const isSameDay = (voteDate: string, date: Date) => {
-    // Parse the voteDate (DD.MM.YYYY) into individual components
-    const [day, month, year] = voteDate.split('.').map(Number); // Extract day, month, year
-  
-    // Create a Date object and explicitly set it to UTC (prevent timezone issues)
-    const voteDateObj = new Date(Date.UTC(year, month - 1, day)); // Month is 0-indexed
-  
-    // Format both dates to YYYY-MM-DD (in UTC)
-    const voteDateFormatted = voteDateObj.toISOString().split('T')[0];
-    const dateFormatted = date.toISOString().split('T')[0];
-  
-    // Log the formatted dates and comparison result
-    console.log("voteDateFormatted:", voteDateFormatted);
-    console.log("dateFormatted:", dateFormatted);
-    console.log("isSameDay result:", voteDateFormatted === dateFormatted);
-  
-    return voteDateFormatted === dateFormatted;
+    const [day, month, year] = voteDate.split(".").map(Number);
+    const voteDateObj = new Date(Date.UTC(year, month - 1, day));
+    return voteDateObj.toISOString().split("T")[0] === formatDate(date);
   };
-  
-  
+
   useEffect(() => {
     const fetchVoteData = async () => {
       try {
@@ -60,34 +53,36 @@ const Votes = ({ date }: { date: Date }) => {
           "https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders",
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
           }
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch votes data");
-        }
+        if (!response.ok) throw new Error("Failed to fetch votes data");
 
         const data: VoteData = await response.json();
 
-        // Fetch vote details for each vote
         const votesWithDetails = await Promise.all(
           data.Table.map(async (vote) => {
             const voteDetailsResponse = await fetch(
               `https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVoteDetails/${vote.VoteId}`
             );
 
-            if (!voteDetailsResponse.ok) {
+            if (!voteDetailsResponse.ok)
               throw new Error("Failed to fetch vote details");
-            }
 
             const voteDetails = await voteDetailsResponse.json();
-            const acceptanceText = voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
+            const acceptanceText =
+              voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
+            const decision = voteDetails.VoteHeader[0]?.Decision || "N/A";
 
-            return { ...vote, AcceptedText: acceptanceText };
+            const voters: Voter[] = voteDetails.VoteDetails.map((voter: any) => ({
+              MkName: voter.MkName,
+              FactionName: voter.FactionName,
+              Title: voter.Title,
+            }));
+
+            return { ...vote, AcceptedText: acceptanceText, Decision: decision, Voters: voters };
           })
         );
 
@@ -98,71 +93,111 @@ const Votes = ({ date }: { date: Date }) => {
     };
 
     fetchVoteData();
-  }, [date]); // Add `date` to the dependency array
+  }, [date]);
 
-  const handleVoteClick = (voteId: number) => {
-    setSelectedVoteId(voteId);
+  const toggleVoteDetails = (voteId: number) => {
+    setExpandedVoteId(expandedVoteId === voteId ? null : voteId);
   };
 
-  const handleBack = () => {
-    setSelectedVoteId(null);
+  const handleVoterFilterChange = (voteId: number, newFilter: string) => {
+    setVoterFilters((prev) => ({
+      ...prev,
+      [voteId]: prev[voteId] === newFilter ? "" : newFilter,
+    }));
   };
 
   if (!voteData) {
     return <div>Loading votes...</div>;
   }
 
-  const filteredVotes = voteData.Table.filter((vote) => isSameDay(vote.VoteDateStr, date));
+  const filteredVotes = voteData.Table.filter((vote) =>
+    isSameDay(vote.VoteDateStr, date)
+  );
+
+  const inFavor = 30;
+  const against = 20;
+  const abstain = 10;
 
   return (
-    <div className="Component">
+    <div className="Component" id="Votes">
       <header className="Component-header">
         <h1>הצבעות</h1>
       </header>
       <main className="Component-main">
-        {selectedVoteId ? (
-          <VoteDetails voteId={selectedVoteId} onBack={handleBack} />
-        ) : (
-          <section className="Schedule-section" id="General-Assembly">
-            {filteredVotes.length > 0 ? (
-              <ul>
-                {filteredVotes.map((vote) => (
-                  <li key={vote.VoteId} className="vote-item" onClick={() => handleVoteClick(vote.VoteId)}>
+        <section className="votes-section">
+          {filteredVotes.length > 0 ? (
+            filteredVotes.map((vote, index) => (
+              <div key={index} className="schedule-event-cell-opened">
+                <div
+                  className={`law ${expandedVoteId === vote.VoteId ? "open" : ""}`}
+                  onClick={() => toggleVoteDetails(vote.VoteId)}
+                >
+                  <div className="law-content">
+                    <div className="law-name">{vote.ItemTitle || "N/A"}</div>
+                    {/* <div className="law-status">{vote.AcceptedText || "N/A"}</div> */}
+                    {createVoteBar(inFavor, against, abstain)}
+
+                  </div>
+                  <div>
+                  <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
+
+                  </div>
+                  
+                  </div>
+
+                {expandedVoteId === vote.VoteId && (
+                  <div>
+                    <p className="law-status">
+                      <strong>ההחלטה:</strong> {vote.Decision || "N/A"}
+                    </p>
                     <div>
-                      <strong>נושא הדיון:</strong> {vote.ItemTitle || "N/A"}
+                      <div style={{ marginBottom: "10px" }}>
+                        <button onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}>
+                          בעד
+                        </button>
+                        <button onClick={() => handleVoterFilterChange(vote.VoteId, "נגד")}>
+                          נגד
+                        </button>
+                        <button onClick={() => handleVoterFilterChange(vote.VoteId, "נמנע")}>
+                          נמנע
+                        </button>
+                      </div>
                     </div>
                     <div>
-                      <strong>תאריך:</strong> {vote.VoteDateStr || "N/A"}
+                      <strong>מצביעים:</strong>
+                      <ul>
+                        {vote.Voters.filter((voter) => {
+                          const filter = voterFilters[vote.VoteId] || "";
+                          return filter === "" || voter.Title === filter;
+                        }).map((voter, voterIndex) => (
+                          <li key={voterIndex}>
+                            {voter.MkName} - {voter.FactionName} ({voter.Title})
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div>
-                      <strong>שעה:</strong> {vote.VoteTimeStr || "N/A"}
-                    </div>
-                    <div>
-                      <strong>אופן ההצבעה:</strong> {vote.VoteType || "N/A"}
-                    </div>
-                    <div>
-                      <strong>תוצאה:</strong> {vote.AcceptedText || "N/A"}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>לא התקיימו הצבעות בתאריך {date.toLocaleDateString("he-IL", {
+                  </div>
+                )}
+                <br />
+                <td className="law-horizontal-line"></td>
+                <br />
+              </div>
+            ))
+          ) : (
+            <p>
+              לא נמצאו הצבעות בתאריך{" "}
+              {date.toLocaleDateString("he-IL", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
-              })}</p>
-            )}
-          </section>
-
-          
-        )}
+              })}
+            </p>
+          )}
+        </section>
       </main>
-      <footer className="Component-footer">
-        <a href="#" className="expand-component">
-          <p>לרשימה המלאה</p>
-        </a>
-      </footer>
+
+      <div>
+\    </div>
     </div>
   );
 };

@@ -29,6 +29,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
         const responseData = response.data as {
           query_result: { data: { rows: any[] } };
         };
+        console.log("Fetched Data:", responseData.query_result.data.rows);
         setData(responseData.query_result.data.rows);
         setLoading(false);
       } catch (err) {
@@ -100,7 +101,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
               </div>
             </div>
             <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
-          </summary>
+        </summary>
 
         <div style={{ marginTop: "10px" }}>
           {Object.entries(item)
