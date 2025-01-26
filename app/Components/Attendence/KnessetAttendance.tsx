@@ -40,7 +40,7 @@ const KnessetAttendance: React.FC = () => {
           <h1>נוכחות חכים</h1>
         </a>
       </header>
-      <main className="Component-main">
+      <main className="Component-main" id="Attendance-main">
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
         <AttendanceChart mkData={mkData} displayOption={displayOption} modalRef={modalRef} />
         <div className={`Component-footer attendance ${showModal ? "modal-active" : ""}`}>

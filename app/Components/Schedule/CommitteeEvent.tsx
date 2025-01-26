@@ -15,6 +15,7 @@ export default function CommitteeEventComp({
   showTime: boolean;
   rows: number;
 }) {
+  const [open, setOpen] = useState(false);
   const chairMan: CommitteeParticipant | undefined = event.EventParticipants.find((mk) => mk.ParticipantRole === "יושב-ראש");
   return (
     <>
@@ -40,15 +41,28 @@ export default function CommitteeEventComp({
             <div className="Schedule-vertical-line"></div>
           </td>
         ) : null}
-        <td className="schedule-event-cell-opened">
+        <td className="schedule-event-cell-opened" id={`committee-event-summary${event.id}`}>
           <details>
             <summary>
-              <div className={`schedule-event-title`}>
+              <div>
                 <h3>{event.CommitteeName}</h3>
-                <p className={`schedule-event-description${event.IsCanceled ? " canceled" : ""}`}>{event.EventName}</p>
+                <p className={`schedule-event-description${event.IsCanceled ? " canceled" : ""}`}>{event.EventName[0]}</p>
+                {/* <br /> */}
               </div>
               <i className="arrow down"></i>
             </summary>
+            {event.EventName.length > 1 &&
+              event.EventName.map(
+                (subject, index) =>
+                  index > 0 && (
+                    <>
+                      <p key={index} className={`schedule-event-description${event.IsCanceled ? " canceled" : ""}`}>
+                        {subject}
+                      </p>
+                      <br />
+                    </>
+                  )
+              )}
             <h5>תחומי עיסוקה של הועדה</h5>
             <p>תקציב המדינה; מסים לכל סוגיהם; מכס ובלו; מלוות; ענייני מטבע חוץ; בנקאות ושטרי כסף; הכנסות והוצאות המדינה.</p>
 

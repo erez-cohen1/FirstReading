@@ -32,8 +32,8 @@ export default function Wheel(props) {
       size.current = s.size;
     },
     detailsChanged: (s) => {
-      // console.log(s.track.details.abs);
-      props.setDate(s.track.details.abs);
+      // console.log(props.setValue ? props.setValue(s.track.details.abs) : s.track.details.abs);
+      props.setDate(props.setValue ? props.setValue(s.track.details.abs) : s.track.details.abs);
       setSliderState(s.track.details);
     },
     rubberband: !props.loop,

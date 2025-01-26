@@ -14,17 +14,7 @@ export default function WheelDatePicker({
   setDate: Dispatch<SetStateAction<Date>>;
   setShow: Dispatch<SetStateAction<boolean>>;
 }) {
-  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(new Date(Date.now())));
-  const [curDate, setCurDate] = useState(date.getDate());
-  const [curMonth, setCurMonth] = useState(date.getMonth());
-  const [curYear, setCurYear] = useState(date.getFullYear());
-  const formatYear = (year: number) => {
-    return new Date(Date.now()).getFullYear() - year;
-  };
-  const formatDay = (day: number) => {
-    return day + 1;
-  };
-  const formatMonth = (monthIndex: number) => {
+  const idxToStrMonth = (monthIndex: number) => {
     const hebrewMonths: Record<string, string> = {
       "1": "ינואר",
       "2": "פברואר",
@@ -51,6 +41,38 @@ export default function WheelDatePicker({
 
     return hebrewMonths[monthKey];
   };
+  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(new Date(Date.now())));
+  const [curDate, setCurDate] = useState(date.getDate());
+  const [curMonth, setCurMonth] = useState(idxToStrMonth(date.getMonth() + 1));
+  const [curYear, setCurYear] = useState(date.getFullYear());
+
+  const formatYear = (year: number) => {
+    return new Date(Date.now()).getFullYear() - year;
+  };
+  const formatDay = (day: number) => {
+    return day + 1;
+  };
+  const strMonthToIdx = (monthStr: string) => {
+    const hebrewMonths: Record<string, number> = {
+      ינואר: 1,
+      פברואר: 2,
+      מרץ: 3,
+      אפריל: 4,
+      מאי: 5,
+      יוני: 6,
+      יולי: 7,
+      אוגוסט: 8,
+      ספטמבר: 9,
+      אוקטובר: 10,
+      נובמבר: 11,
+      דצמבר: 12,
+    };
+    // Validate the input
+    if (!hebrewMonths[monthStr]) {
+      throw new Error("Invalid month index. Please provide a number between 1 and 12.");
+    }
+    return hebrewMonths[monthStr];
+  };
   return (
     <div className="wheel-date-picker-wrapper">
       <div className="wheel-date-picker-component">
@@ -70,7 +92,7 @@ export default function WheelDatePicker({
             length={12}
             perspective="center"
             initIdx={new Date(Date.now()).getMonth()}
-            setValue={formatMonth}
+            setValue={idxToStrMonth}
             setDate={setCurMonth}
           />
         </div>
@@ -81,8 +103,8 @@ export default function WheelDatePicker({
       <div className="date-selector-buttons-wrapper">
         <button
           onClick={() => {
-            console.log(new Date(Date.now()).getFullYear() - curYear, curMonth, curDate + 1);
-            setDate(new Date(new Date(Date.now()).getFullYear() - curYear, curMonth, curDate + 1));
+            const monthIndex = strMonthToIdx(curMonth) < 10 ? `0${strMonthToIdx(curMonth)}` : strMonthToIdx(curMonth);
+            setDate(new Date(`${curYear}-${monthIndex}-${curDate}T05:10:00`));
             setShow(false);
           }}
           className="date-selector-button"

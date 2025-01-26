@@ -5,9 +5,9 @@ import WheelDatePicker from "./WheelDatePicker";
 export default function DateSelector({ date, setDate }: { date: Date; setDate: Dispatch<SetStateAction<Date>> }) {
   const [showWheels, setShowWeels] = useState(false);
 
-  const dateStrparsed = date.toISOString().split("T")[0];
-  const maxDateAllowed = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate()).toISOString().split("T")[0];
-  const minDateAllowed = new Date(date.getFullYear() - 1, date.getMonth(), date.getDate()).toISOString().split("T")[0];
+  // const dateStrparsed = date.toISOString().split("T")[0];
+  // const maxDateAllowed = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate()).toISOString().split("T")[0];
+  // const minDateAllowed = new Date(date.getFullYear() - 1, date.getMonth(), date.getDate()).toISOString().split("T")[0];
 
   const today = new Date();
   const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000); // Subtract 1 day in milliseconds

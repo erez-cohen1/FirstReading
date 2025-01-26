@@ -26,7 +26,7 @@ export interface CommitteeEvent {
   IsCanceled: boolean;
   CommitteeName: string;
   CommitteeId: number;
-  EventName: string;
+  EventName: string[];
   EventDiscription?: string; // full discription of the event
   EventParticipants: CommitteeParticipant[];
   EventLiveStream?: string; // url to live stream
