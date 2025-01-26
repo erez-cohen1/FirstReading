@@ -13,13 +13,12 @@ const KnessetAttendance: React.FC = () => {
   const modalRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
-
   // Handle modal opening and closing with smooth scroll
   const handleToggleModal = () => {
     if (showModal) {
       // If modal is currently open, first scroll it to the top, then close it
       if (modalRef.current) {
-        modalRef.current.scrollIntoView({ behavior: "smooth", block: "center"});
+        modalRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
 
         // Delay closing the modal to allow the scroll to complete
         setTimeout(() => {
@@ -40,17 +39,14 @@ const KnessetAttendance: React.FC = () => {
       <header className="Component-header header-0" id="Attendance-header">
         <h1>נוכחות חברי כנסת</h1>
       </header>
-      <main className="Component-main">
+      <main className="Component-main" id="Attendance-main">
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
-        <AttendanceChart mkData={mkData} displayOption={displayOption} modalRef={modalRef}/>
+        <AttendanceChart mkData={mkData} displayOption={displayOption} modalRef={modalRef} />
         <div className={`Component-footer attendance ${showModal ? "modal-active" : ""}`}>
           <div className="footer-text">לרשימה המלאה</div>
-          <i
-            className={`arrow footer-arrow ${showModal ? "up" : "down"}`}
-            onClick={() => handleToggleModal()}
-          ></i>
+          <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`} onClick={() => handleToggleModal()}></i>
         </div>
-        <Modal mkData={mkData} displayOption={displayOption} showModal={showModal} modalRef={modalRef}/>
+        <Modal mkData={mkData} displayOption={displayOption} showModal={showModal} modalRef={modalRef} />
       </main>
     </>
   );

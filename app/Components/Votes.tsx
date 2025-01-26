@@ -109,11 +109,13 @@ const Votes = ({ date }: { date: Date }) => {
   const filteredVotes = voteData.Table.filter((vote) => isSameDay(vote.VoteDateStr, date));
 
   return (
-    <div className="Component">
-      <header className="Component-header">
-        <h1>הצבעות</h1>
+    <>
+      <header className="Component-header header-3">
+        <a href="#Votes-main">
+          <h1>הצבעות</h1>
+        </a>
       </header>
-      <main className="Component-main">
+      <main className="Component-main" id="Votes-main">
         {selectedVoteId ? (
           <VoteDetails voteId={selectedVoteId} onBack={handleBack} />
         ) : (
@@ -158,7 +160,7 @@ const Votes = ({ date }: { date: Date }) => {
           <p>לרשימה המלאה</p>
         </a>
       </footer>
-    </div>
+    </>
   );
 };
 

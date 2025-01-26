@@ -75,11 +75,11 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   return (
     <>
       <header className="Component-header header-2">
-        <a href="#LawSummary-header">
+        <a href="#LawSummary-main">
           <h1>הצעות חוק</h1>
         </a>
       </header>
-      <main className="Component-main" id="LawSummary-header">
+      <main className="Component-main" id="LawSummary-main">
         <section className="law-section" id="General-Assembly">
           {sortedData.map((item, index) => (
             <div key={index} className="schedule-event-cell-opened">

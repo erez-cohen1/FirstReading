@@ -26,6 +26,9 @@
   font-family: "VC_NarkisBlock-Bold";
   src: url("/VC_NarkisBlock-Bold.otf") format("opentype");
 }
+html {
+  scroll-behavior: smooth;
+}
 /* what is :root? https://developer.mozilla.org/en-US/docs/Web/CSS/:root */
 :root {
   /* Define design variables */
@@ -160,7 +163,7 @@
 
   /* Tables */
   table {
-    margin-top: 1.5rem;
+    /* margin-top: 1.5rem; */
     border-spacing: 0px;
     border-collapse: collapse;
   }
@@ -529,19 +532,39 @@
 }
 
 .header-0 {
-  top: 0;
+  top: 0rem;
+  bottom: 9rem;
 }
 
 .header-1 {
   top: 3rem;
+  bottom: 6rem;
 }
 
 .header-2 {
   top: 6rem; /* Positioned below the first header */
+  bottom: 3rem;
+}
+
+#Attendance-main {
+  scroll-margin-top: 3rem;
+}
+
+#Schedule-main {
+  scroll-margin-top: 6rem;
+}
+
+#LawSummary-main {
+  scroll-margin-top: 9rem;
+}
+
+#Votes-main {
+  scroll-margin-top: 12rem;
 }
 
 .header-3 {
   top: 9rem;
+  bottom: 0rem;
 }
 
 .Component-main {
@@ -551,6 +574,7 @@
   justify-content: space-evenly;
   color: var(--text-color1);
   width: 100%;
+  padding: 0.5rem 0;
   /* align-items: start ; */
 }
 
@@ -718,7 +742,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.1rem;
+  margin-top: 0;
   background-color: var(--component-bg-color);
   /* border-radius: var(--border-radius); */
   border: none;
@@ -770,14 +795,11 @@
   top: 0;
 }
 .schedule-event-description {
-  /* height: 2em; */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  max-height: 3rem;
-  background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* transition: all 1s ease-in-out; */
+  transition: all 1s ease-in-out;
 }
 
 .canceled {
@@ -842,36 +864,26 @@
       block-size: 0; /* Or also:  height:0; */
     }
 
-    .schdule-event-description {
-      overflow: visible;
-      max-height: 3rem;
-      background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
     &[open]::details-content {
       block-size: auto; /* Or also:  height:auto; */
       /* overflow: visible; */
     }
   }
   details[open] summary {
+    position: sticky;
+    top: 6rem;
+    max-height: fit-content;
     i {
+      cursor: pointer;
       transform: rotate(-135deg);
       -webkit-transform: rotate(-135deg);
-      margin: 0.7rem 1rem;
+      margin: 0.7rem 0rem;
       /* block-size: auto; */
     }
     .schedule-event-description {
       max-height: fit-content;
       overflow: visible;
-      -webkit-text-fill-color: var(--global-bg-color);
-      transition: all 1s ease-in-out;
-    }
-
-    .schedule-event-title {
-      /* margin-bottom: 0.3rem;
-        margin-top: 0; */
+      display: inline-block;
     }
   }
 
@@ -879,14 +891,23 @@
     .schedule-event-description {
       max-height: fit-content;
       overflow: visible;
-      -webkit-text-fill-color: var(--global-bg-color);
-      transition: all 1s ease-in-out;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      /* -webkit-text-fill-color: var(--global-bg-color); */
+      /* transition: all 1s ease-in-out; */
+    }
+    .schedule-event-title {
+      max-height: fit-content;
     }
   }
 
   summary {
+    i {
+      cursor: pointer;
+    }
     display: flex;
     flex-direction: row;
+    background-color: var(--component-bg-color);
     justify-content: space-between;
     align-items: flex-start;
     div {
@@ -952,14 +973,9 @@
 
 .schedule-event-title {
   margin-top: 0.3rem;
+  max-height: 4rem;
   h3 {
     text-decoration: none;
-    /* overflow: hidden;
-        max-height: 5rem;
-        background: -webkit-linear-gradient(var(--global-bg-color), var(--component-bg-color));
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; */
   }
 }
 
@@ -1087,7 +1103,7 @@
 }
 
 .display-options button.active {
-  color: #FFEAD8; /* Change text color for active button */
+  color: #ffead8; /* Change text color for active button */
 }
 
 .display-options button:hover {
@@ -1104,7 +1120,6 @@
   transition: all 0.3s ease; /* Smooth animation */
   z-index: 1; /* Place it behind the buttons */
 }
-
 
 .search-bar {
   font-family: "VC_NarkisBlock-Regular";
@@ -1132,7 +1147,7 @@
 }
 
 .search-bar input::placeholder {
-  color: rgba(9, 0, 189, 0.30);
+  color: rgba(9, 0, 189, 0.3);
 }
 
 .search-bar svg {
@@ -1185,7 +1200,7 @@
   width: 100%; /* Makes the header take full width */
   margin-bottom: 1rem;
   margin-top: 1rem;
-  color: #FF6700;
+  color: #ff6700;
 
   text-align: center;
   /* Subtitle */
@@ -1198,7 +1213,7 @@
 
 .faction-header::before,
 .faction-header::after {
-  content: '';
+  content: "";
   flex-grow: 1; /* Allows the lines to stretch */
   height: 2px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="2" viewBox="0 0 5 2" fill="none"><path d="M125 1L1.00001 1.00001" stroke="%230900BD" stroke-width="2" stroke-linecap="square"/></svg>');
@@ -1213,7 +1228,6 @@
 .faction-header::after {
   margin-right: 0.5rem;
 }
-
 
 .grid-content {
   display: grid;
@@ -1238,7 +1252,7 @@
   width: 5.25rem;
   height: 9.56256rem;
   flex-shrink: 0;
-  border: 1px solid #0900BD;
+  border: 1px solid #0900bd;
 }
 
 .mk-image {
@@ -1261,7 +1275,7 @@
   width: 100%;
   padding: 0.2rem;
   text-align: center;
-  color: #0900BD;
+  color: #0900bd;
 }
 
 .Component-header h1 {

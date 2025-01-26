@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [date, setDate] = useState(new Date(Date.now()));
-
+  // console.log(date.toISOString());
   return (
     <main className="main-page">
       <section className="main-header">
@@ -24,6 +24,7 @@ export default function Home() {
       </section>
       <hr />
       <KnessetAttendance></KnessetAttendance>
+      {/* <div className="hidden-div"></div> */}
       <Schedule date={date}></Schedule>
       <LawSummary queryId={1433}></LawSummary>
       {/* <LawCount></LawCount> */}
