@@ -49,6 +49,7 @@ export async function fetchScheduleData(
   setEvents?: Dispatch<SetStateAction<ScheduleData>>
 ): Promise<any> {
   try {
+    if (setLoading) setLoading(true);
     const rawScheduleData = await fetchData(
       "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday",
       {
