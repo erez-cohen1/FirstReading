@@ -351,6 +351,7 @@
     "Name": "מיכל מרים וולדיגר",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
   },
+  
   "1061": {
     "Name": "רון כץ",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1061/1_1061_3_17813.jpeg?v=20241229_74173"
@@ -559,5 +560,81 @@
   "1130": {
     "Name": "יצחק פינדרוס",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1001/1_1001_3_11229.jpeg?v=20250101_45784"
+  },
+  "1131": {
+    "Name": "מיכל וולדיגר",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
+  },
+  "1132": {
+    "Name": "צבי סוכות",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1121/1_1121_3_19949.jpeg?v=20241229_76864"
+  },
+
+  "1133":
+  {
+    "Name": "עפיף עבד",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1128/1_1128_3_20759.jpeg?v=20250126_84836"
+  },
+
+  "1134": {
+    "Name": "חוה עטייה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/992/1_992_3_11212.jpeg?v=20250101_10491"
+  },
+
+  "1135": {
+    "Name": "פז טור",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1050/1_1050_3_16606.jpeg?v=20241229_43527"
+  },
+  "1136": {
+    "Name": "יאסין ח'טיב",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1032/1_1032_3_13745.jpeg?v=20241229_58563"
+  },
+  "1137": {
+    "Name": "יולי אדלשטיין",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1/1_1_3_4.jpeg?v=20241229_51053"
+  }, 
+  "1138": {
+    "Name": "מרים וולדיגר מיכל",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
+  },
+
+  "1139": {
+    "Name": "ידידיה סוכות צבי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1121/1_1121_3_19949.jpeg?v=20241229_76864"
+  },
+
+  "1140": {
+    "Name": "אתי עטייה חוה",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/992/1_992_3_11212.jpeg?v=20250101_10491"
+  },
+
+  "1141": {
+    "Name": "יואל אדלשטיין יולי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1/1_1_3_4.jpeg?v=20241229_51053"
+  },
+
+  "1142": {
+    "Name": "טל מירון שלי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1118/1_1118_3_19926.jpeg?v=20241229_25527"
+  },
+
+  "1143": {
+    "Name": "אברהם בוארון אביחי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1126/1_1126_3_20040.jpeg?v=20241229_41308"
+  },
+
+  "1144": {
+    "Name": "קטרין שטרית קטי",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1018/1_1018_3_12330.jpeg?v=20250101_05393"
+  }, 
+  "1145": {
+    "Name": "זאב פינדרוס יצחק",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1001/1_1001_3_11229.jpeg?v=20250101_45784"
+  },
+
+  "1146": {
+    "Name": "דב מלביצקי חנוך",
+    "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1105/1_1105_3_19712.jpeg?v=20241229_74638"
   }
+
 }

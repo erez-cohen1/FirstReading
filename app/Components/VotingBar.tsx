@@ -15,8 +15,27 @@ const VoteBar = ({ inFavor, against, abstain }: VoteBarProps) => {
   const againstPercentage = (against / total) * 100;
   const abstainPercentage = (abstain / total) * 100;
 
+  // Set minimum width for each category
+  const minWidth = 10;
+
+  // Apply the minimum width only to values greater than 0
+  const inFavorAdjusted = inFavorPercentage > 0 ? Math.max(inFavorPercentage, minWidth) : 0;
+  const againstAdjusted = againstPercentage > 0 ? Math.max(againstPercentage, minWidth) : 0;
+  const abstainAdjusted = abstainPercentage > 0 ? Math.max(abstainPercentage, minWidth) : 0;
+
+  // Calculate the total adjusted width
+  const totalAdjusted = inFavorAdjusted + againstAdjusted + abstainAdjusted;
+
+  // Calculate the remaining space after applying the minimum width to each option
+  const remainingSpace = 100 - totalAdjusted;
+
+  // Distribute the remaining space across the categories proportionally
+  const inFavorFinalWidth = inFavorAdjusted > 0 ? (inFavorAdjusted / totalAdjusted) * (100 - remainingSpace) : 0;
+  const againstFinalWidth = againstAdjusted > 0 ? (againstAdjusted / totalAdjusted) * (100 - remainingSpace) : 0;
+  const abstainFinalWidth = abstainAdjusted > 0 ? (abstainAdjusted / totalAdjusted) * (100 - remainingSpace) : 0;
+
   return (
-    <div style={{ width: "60%" }}>
+    <div style={{ width: "70%" }}>
       {/* Bar */}
       <div
         style={{
@@ -29,30 +48,30 @@ const VoteBar = ({ inFavor, against, abstain }: VoteBarProps) => {
         }}
       >
         {/* בעד */}
-        {inFavorPercentage > 0 && (
+        {inFavorFinalWidth > 0 && (
           <div
             style={{
-              width: `${inFavorPercentage}%`,
+              width: `${inFavorFinalWidth}%`,
               backgroundColor: "#FF6700",
               height: "100%",
             }}
           />
         )}
         {/* נמנע */}
-        {abstainPercentage > 0 && (
+        {abstainFinalWidth > 0 && (
           <div
             style={{
-              width: `${abstainPercentage}%`,
+              width: `${abstainFinalWidth}%`,
               backgroundColor: "#FF670033",
               height: "100%",
             }}
           />
         )}
         {/* נגד */}
-        {againstPercentage > 0 && (
+        {againstFinalWidth > 0 && (
           <div
             style={{
-              width: `${againstPercentage}%`,
+              width: `${againstFinalWidth}%`,
               backgroundColor: "#0900BD",
               height: "100%",
             }}
@@ -65,16 +84,15 @@ const VoteBar = ({ inFavor, against, abstain }: VoteBarProps) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          marginTop: "0.5rem",
-          fontSize: "0.8rem",
+          fontSize: "1rem",
           position: "relative",
         }}
       >
         {/* בעד */}
-        {inFavorPercentage > 0 && (
+        {inFavorFinalWidth > 0 && (
           <div
             style={{
-              width: `${inFavorPercentage}%`,
+              width: `${inFavorFinalWidth}%`,
               textAlign: "center",
             }}
           >
@@ -83,10 +101,10 @@ const VoteBar = ({ inFavor, against, abstain }: VoteBarProps) => {
           </div>
         )}
         {/* נמנע */}
-        {abstainPercentage > 0 && (
+        {abstainFinalWidth > 0 && (
           <div
             style={{
-              width: `${abstainPercentage}%`,
+              width: `${abstainFinalWidth}%`,
               textAlign: "center",
             }}
           >
@@ -95,10 +113,10 @@ const VoteBar = ({ inFavor, against, abstain }: VoteBarProps) => {
           </div>
         )}
         {/* נגד */}
-        {againstPercentage > 0 && (
+        {againstFinalWidth > 0 && (
           <div
             style={{
-              width: `${againstPercentage}%`,
+              width: `${againstFinalWidth}%`,
               textAlign: "center",
             }}
           >
