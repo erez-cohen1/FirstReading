@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import initiatorsData from "./mkDetails.json";
-
+import SquareFillComponent from "./LawStatusSqueres";
 interface LawSummaryProps {
   queryId: number;
 }
@@ -93,16 +93,18 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
         >
           
         <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
-            <div className="law-content">
-              <div className="law-name">
-                {item.billname}
-              </div>
-              <div className="law-status">
-                {item.statusdesc}
-              </div>
+          <div className="law-content">
+            <div className="law-name">
+              {item.billname}
             </div>
-            <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
-          </summary>
+            {/* <div className="law-status">
+              {item.statusdesc}
+            </div> */}
+            <SquareFillComponent text={item.statusdesc} />
+          </div>
+          <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
+          
+        </summary>
 
         <div style={{ marginTop: "10px" }}>
           {Object.entries(item)

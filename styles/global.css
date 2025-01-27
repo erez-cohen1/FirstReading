@@ -1349,6 +1349,7 @@ html {
 .law.open .law-name {
   font-weight: bold; /* Make name bold when open */
   max-width: 90%; /* Adjust max-width when open */
+  margin-bottom: 1rem;
 }
 
 .law-status {
