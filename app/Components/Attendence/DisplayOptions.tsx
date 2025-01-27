@@ -55,41 +55,41 @@ const DisplayOptions: React.FC<DisplayOptionsProps> = ({
         onClick={() => setDisplayOption("all")}
         className={displayOption === "all" ? "active" : ""}
       >
-        <p>במשכן</p>
         <div>
           <span>{counts.oppositionPresent + counts.coalitionPresent}</span>/
           <span>{mkData.length}</span>
         </div>
+        <p>במשכן</p>  
       </button>
       <button
         onClick={() => setDisplayOption("opposition")}
         className={displayOption === "opposition" ? "active" : ""}
       >
-        <p>אופוזיציה</p>
         <div>
           <span>{counts.oppositionPresent}</span>/
           <span>{counts.oppositionAbsent + counts.oppositionPresent}</span>
         </div>
+        <p>אופוזיציה</p>
       </button>
       <button
         onClick={() => setDisplayOption("coalition")}
         className={displayOption === "coalition" ? "active" : ""}
       >
-        <p>קואליציה</p>
         <div>
           <span>{counts.coalitionPresent}</span>/
           <span>{counts.coalitionAbsent + counts.coalitionPresent}</span>
         </div>
+        <p>קואליציה</p>
       </button>
       <button
         onClick={() => setDisplayOption("goverment")}
         className={displayOption === "goverment" ? "active" : ""}
       >
-        <p>שרים</p>
         <div>
           <span>{counts.govermentPresent}</span>/
           <span>{counts.govermentPresent + counts.govermentAbsent}</span>
         </div>
+        <p>שרים</p>
       </button>
     </div>
   );

@@ -50,6 +50,7 @@ export async function fetchScheduleData(
 ): Promise<any> {
   try {
     if (setLoading) setLoading(true);
+
     const rawScheduleData = await fetchData(
       "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday",
       {
@@ -149,7 +150,11 @@ function processCommitteeEvents(data: ScheduleData, committeesParticipantsData: 
       names = event.EventName?.split("</p>");
     }
     const committeeName = names[0]?.replace(/<\/?[^>]+(>|$)/g, "").trim();
-    const eventName = names[1]?.replace(/<\/?[^>]+(>|$)/g, "").trim();
+    const eventNameSubjects = names[1]
+      ?.split("\r\n")
+      .map((subject) => subject.replace(/<\/?[^>]+(>|$)/g, "").trim())
+      .filter((subject) => subject != "");
+    // console.log(eventNameSubjects);
     let groups: number[] = [];
     if (event.groups != null) {
       groups = event.groups
@@ -176,7 +181,7 @@ function processCommitteeEvents(data: ScheduleData, committeesParticipantsData: 
       id: index,
       EventStart: new Date(event.EventStart),
       IsCanceled: event.IsCanceled,
-      EventName: eventName,
+      EventName: eventNameSubjects,
       CommitteeName: committeeName,
       CommitteeId: 0,
       EventDiscription: "",
