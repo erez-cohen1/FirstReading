@@ -28,7 +28,7 @@ type VoteData = {
   Table: Vote[];
 };
 
-const Votes = ({ date }: { date: Date }) => {
+const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
   const [expandedVoteId, setExpandedVoteId] = useState<number | null>(null);
   const [voterFilters, setVoterFilters] = useState<Record<number, string>>({
@@ -45,21 +45,21 @@ const Votes = ({ date }: { date: Date }) => {
     const voteDateObj = new Date(Date.UTC(year, month - 1, day));
     return voteDateObj.toISOString().split("T")[0] === formatDate(date);
   };
-  
+
   const getMkImage = (mkName: string) => {
     // Normalize spaces to a single space and trim leading/trailing spaces
-    const normalizedMkName = mkName.replace(/\s+/g, ' ').trim();
-    
-    const nameWords = normalizedMkName.split(" ").map(word => word.toLowerCase()); // Split and lowercase mkName
+    const normalizedMkName = mkName.replace(/\s+/g, " ").trim();
+
+    const nameWords = normalizedMkName.split(" ").map((word) => word.toLowerCase()); // Split and lowercase mkName
     const mk = Object.values(initiatorsData).find((entry: any) => {
       const entryWords = entry.Name.toLowerCase().split(" "); // Split and lowercase entry.Name
       // Check if all words in mkName are present in entry.Name
-      return nameWords.every(word => entryWords.includes(word));
+      return nameWords.every((word) => entryWords.includes(word));
     });
-  
+
     return mk ? mk.MkImage : null; // Return the MkImage if found, otherwise null
   };
-  
+
   useEffect(() => {
     const fetchVoteData = async () => {
       try {
@@ -70,14 +70,11 @@ const Votes = ({ date }: { date: Date }) => {
           ToDate: formattedDate,
         };
 
-        const response = await fetch(
-          "https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          }
-        );
+        const response = await fetch("https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
 
         if (!response.ok) throw new Error("Failed to fetch votes data");
 
@@ -89,12 +86,10 @@ const Votes = ({ date }: { date: Date }) => {
               `https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVoteDetails/${vote.VoteId}`
             );
 
-            if (!voteDetailsResponse.ok)
-              throw new Error("Failed to fetch vote details");
+            if (!voteDetailsResponse.ok) throw new Error("Failed to fetch vote details");
 
             const voteDetails = await voteDetailsResponse.json();
-            const acceptanceText =
-              voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
+            const acceptanceText = voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
             const decision = voteDetails.VoteHeader[0]?.Decision || "N/A";
 
             const voters: Voter[] = voteDetails.VoteDetails.map((voter: any) => ({
@@ -103,19 +98,13 @@ const Votes = ({ date }: { date: Date }) => {
               Title: voter.Title,
             }));
 
-            const inFavorCounter = voteDetails.VoteCounters.find(
-              (counter: any) => counter.Title === "בעד"
-            );
+            const inFavorCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "בעד");
             const inFavor = inFavorCounter ? inFavorCounter.countOfResult : 0;
 
-            const againstCounter = voteDetails.VoteCounters.find(
-              (counter: any) => counter.Title === "נגד"
-            );
+            const againstCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "נגד");
             const against = againstCounter ? againstCounter.countOfResult : 0;
 
-            const abstainCounter = voteDetails.VoteCounters.find(
-              (counter: any) => counter.Title === "נמנע"
-            );
+            const abstainCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "נמנע");
             const abstain = abstainCounter ? abstainCounter.countOfResult : 0;
 
             return {
@@ -155,7 +144,6 @@ const Votes = ({ date }: { date: Date }) => {
       };
     });
   };
-  
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -164,9 +152,7 @@ const Votes = ({ date }: { date: Date }) => {
   const filterVoters = (voters: Voter[], voteId: number) => {
     const filter = voterFilters[voteId];
     return voters
-      .filter((voter) =>
-        searchTerm === "" || voter.MkName.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      .filter((voter) => searchTerm === "" || voter.MkName.toLowerCase().includes(searchTerm.toLowerCase()))
       .filter((voter) => {
         if (filter === "בעד") {
           return voter.Title === "בעד";
@@ -183,54 +169,50 @@ const Votes = ({ date }: { date: Date }) => {
     return <div>Loading votes...</div>;
   }
 
-  const filteredVotes = voteData.Table.filter((vote) =>
-    isSameDay(vote.VoteDateStr, date)
-  );
+  const filteredVotes = voteData.Table.filter((vote) => isSameDay(vote.VoteDateStr, date));
 
   return (
     <>
-      <header className="Component-header header-3">
-        <a href="#Votes-main">
+      <header className={`Component-header ${isShrunk ? "header-4-small" : "header-4-big"}`}>
+        <a href="#Votes-main" className="header-link">
           <h1>הצבעות</h1>
         </a>
       </header>
       <main className="Component-main" id="Votes-main">
         <section className="votes-section">
-          {filteredVotes.length > 0 ? (
-            filteredVotes.map((vote, index) => (
-              <div key={index} className="schedule-event-cell-opened">
-                <div
-                  className={`vote ${expandedVoteId === vote.VoteId ? "open" : ""}`}
-                  onClick={() => toggleVoteDetails(vote.VoteId)}
-                >
-                  <div className="law-content">
-                    <div className="vote-name">{vote.ItemTitle || "N/A"}</div>
+          {filteredVotes.length > 0
+            ? filteredVotes.map((vote, index) => (
+                <div key={index} className="schedule-event-cell-opened">
+                  <div
+                    className={`vote ${expandedVoteId === vote.VoteId ? "open" : ""}`}
+                    onClick={() => toggleVoteDetails(vote.VoteId)}
+                  >
+                    <div className="law-content">
+                      <div className="vote-name">{vote.ItemTitle || "N/A"}</div>
+                    </div>
+                    <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
                   </div>
-                  <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
-                </div>
-                <div className="vote-infograph-div">
-                  <h3>{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</h3>
-                  <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
-                </div>
-                {expandedVoteId === vote.VoteId && (
-                  <div>
-                    <br></br>
-                    <p className="law-status">
-                      <strong>החלטה:</strong> {vote.Decision || "N/A"}
-                    </p>
-                    {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
-                    {searchBar(searchTerm, handleSearchChange)}
-                    {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}
+                  <div className="vote-infograph-div">
+                    <h3>{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</h3>
+                    <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
                   </div>
-                )}
-                <br />
-                <td className="law-horizontal-line"></td>
-                <br />
-              </div>
-            ))
-          ) : (
-            noResults(date)
-          )}
+                  {expandedVoteId === vote.VoteId && (
+                    <div>
+                      <br></br>
+                      <p className="law-status">
+                        <strong>החלטה:</strong> {vote.Decision || "N/A"}
+                      </p>
+                      {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
+                      {searchBar(searchTerm, handleSearchChange)}
+                      {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}
+                    </div>
+                  )}
+                  <br />
+                  <td className="law-horizontal-line"></td>
+                  <br />
+                </div>
+              ))
+            : noResults(date)}
         </section>
       </main>
     </>
@@ -240,48 +222,56 @@ const Votes = ({ date }: { date: Date }) => {
 export default Votes;
 
 function noResults(date: Date): React.ReactNode {
-  return <p>
-    לא נמצאו הצבעות בתאריך{" "}
-    {date.toLocaleDateString("he-IL", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    })}
-  </p>;
+  return (
+    <p>
+      לא נמצאו הצבעות בתאריך{" "}
+      {date.toLocaleDateString("he-IL", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
+    </p>
+  );
 }
 
-function filteringButtons(handleVoterFilterChange: (voteId: number, newFilter: string) => void, vote: Vote, voterFilters: Record<number, string>) {
-  return <div>
-    <div className="vote-display-options">
-      <button
-        onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
-        className={voterFilters[vote.VoteId] === "בעד" ? "active" : ""}
-      >
-        <div className="vote-button-content">
-          <div className="vote-button-number">{vote.inFavor}</div>
-          <div>בעד</div>
-        </div>
-      </button>
-      <button
-        onClick={() => handleVoterFilterChange(vote.VoteId, "נמנע")}
-        className={voterFilters[vote.VoteId] === "נמנע" ? "active" : ""}
-      >
-        <div className="vote-button-content">
-          <div className="vote-button-number">{vote.abstain}</div>
-          <div>נמנעים.ות</div>
-        </div>
-      </button>
-      <button
-        onClick={() => handleVoterFilterChange(vote.VoteId, "נגד")}
-        className={voterFilters[vote.VoteId] === "נגד" ? "active" : ""}
-      >
-        <div className="vote-button-content">
-          <div className="vote-button-number">{vote.against}</div>
-          <div>נגד</div>
-        </div>
-      </button>
+function filteringButtons(
+  handleVoterFilterChange: (voteId: number, newFilter: string) => void,
+  vote: Vote,
+  voterFilters: Record<number, string>
+) {
+  return (
+    <div>
+      <div className="vote-display-options">
+        <button
+          onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
+          className={voterFilters[vote.VoteId] === "בעד" ? "active" : ""}
+        >
+          <div className="vote-button-content">
+            <div className="vote-button-number">{vote.inFavor}</div>
+            <div>בעד</div>
+          </div>
+        </button>
+        <button
+          onClick={() => handleVoterFilterChange(vote.VoteId, "נמנע")}
+          className={voterFilters[vote.VoteId] === "נמנע" ? "active" : ""}
+        >
+          <div className="vote-button-content">
+            <div className="vote-button-number">{vote.abstain}</div>
+            <div>נמנעים.ות</div>
+          </div>
+        </button>
+        <button
+          onClick={() => handleVoterFilterChange(vote.VoteId, "נגד")}
+          className={voterFilters[vote.VoteId] === "נגד" ? "active" : ""}
+        >
+          <div className="vote-button-content">
+            <div className="vote-button-number">{vote.against}</div>
+            <div>נגד</div>
+          </div>
+        </button>
+      </div>
     </div>
-  </div>;
+  );
 }
 
 function displayResults(
@@ -290,12 +280,11 @@ function displayResults(
   getMkImage: (mkName: string) => string | null,
   filter: string
 ) {
-  
-  const label = filter === "בעד" ? "בעד" : filter === "נגד" ? "נגד" :filter ==="נמנע" ? "נמנעים.ות" : "בעד";
+  const label = filter === "בעד" ? "בעד" : filter === "נגד" ? "נגד" : filter === "נמנע" ? "נמנעים.ות" : "בעד";
 
   return (
     <div>
-      <p style={{ marginBottom: "0.5rem", fontSize: "1.4rem", fontWeight:"bold", marginTop:"1.2rem"}}>{label}</p>
+      <p style={{ marginBottom: "0.5rem", fontSize: "1.4rem", fontWeight: "bold", marginTop: "1.2rem" }}>{label}</p>
       <div
         style={{
           display: "flex",
@@ -304,8 +293,8 @@ function displayResults(
           gap: "0.5rem",
         }}
       >
-      {filterVoters(vote.Voters, vote.VoteId).map((voter, voterIndex) => {
-        const nameParts = voter.MkName.split(" ");
+        {filterVoters(vote.Voters, vote.VoteId).map((voter, voterIndex) => {
+          const nameParts = voter.MkName.split(" ");
 
           return (
             <div
@@ -329,9 +318,7 @@ function displayResults(
                   }}
                 />
               )}
-              <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>
-                {voter.MkName}
-              </p>
+              <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{voter.MkName}</p>
             </div>
           );
         })}
@@ -344,10 +331,11 @@ function searchBar(searchTerm: string, handleSearchChange: (event: React.ChangeE
   return (
     <div className="vote-search-bar">
       <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-        <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3"/>
-        <path d="M10.5 11L16.5 17" stroke="#0900BD" stroke-opacity="0.3"/>
+        <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3" />
+        <path d="M10.5 11L16.5 17" stroke="#0900BD" stroke-opacity="0.3" />
       </svg>
-      <input className="vote-search-bar input"
+      <input
+        className="vote-search-bar input"
         type="text"
         value={searchTerm}
         onChange={handleSearchChange}

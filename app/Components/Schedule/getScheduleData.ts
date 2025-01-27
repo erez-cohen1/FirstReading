@@ -7,11 +7,11 @@ import {
   KnsEvent,
   CommitteeParticipantsData,
   CommitteeParticipant,
+  CommitteeDescription,
 } from "./ScheduleDataTypes";
 
 import axios from "axios";
-import Papa from "papaparse";
-import { head } from "axios";
+import CommitteesDescriptions from "./committee_description.json";
 /*
  * Fetch data from the Knesset API
  * @param url - the url to fetch data from
@@ -50,7 +50,7 @@ export async function fetchScheduleData(
 ): Promise<any> {
   try {
     if (setLoading) setLoading(true);
-
+    // events data
     const rawScheduleData = await fetchData(
       "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday",
       {
@@ -61,9 +61,12 @@ export async function fetchScheduleData(
         body: JSON.stringify({ SelectedDate: date, SelectedMonth: null, SelectedYear: null }),
       }
     );
+    //participants data
     const committeeParticipantsData = await fetchData(
       "https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkLobbyData?lang=he"
     );
+    // description data
+    const committeesDescriptions: CommitteeDescription[] = await CommitteesDescriptions;
     // console.log(await CommitteesData);
     const scheduleData: ScheduleData = {
       eventsNumber:
@@ -75,7 +78,7 @@ export async function fetchScheduleData(
       CurrentCommitteeEvents:
         rawScheduleData.CurrentCommitteeEvents.length == 0
           ? []
-          : processCommitteeEvents(rawScheduleData, committeeParticipantsData),
+          : processCommitteeEvents(rawScheduleData, committeeParticipantsData, committeesDescriptions),
       CurrentKnsEvents: rawScheduleData.CurrentKnsEvents.length == 0 ? [] : processKnsEvents(rawScheduleData),
     };
     // console.log(scheduleData);
@@ -143,8 +146,13 @@ function processKnsEvents(data: ScheduleData): KnsEvent[] {
  * @param data - the fetched data
  * @returns the processed data
  */
-function processCommitteeEvents(data: ScheduleData, committeesParticipantsData: any): CommitteeEvent[] {
+function processCommitteeEvents(
+  data: ScheduleData,
+  committeesParticipantsData: any,
+  committeesDescription: CommitteeDescription[]
+): CommitteeEvent[] {
   return data.CurrentCommitteeEvents?.map((event: any, index: number) => {
+    // committee name and event name
     let names: string[] = ["", ""];
     if (event.EventName != null) {
       names = event.EventName?.split("</p>");
@@ -162,6 +170,7 @@ function processCommitteeEvents(data: ScheduleData, committeesParticipantsData: 
         .split(",")
         .map((group: string) => parseInt(group));
     }
+    //participants
     const filteredParticipants = committeesParticipantsData.committeePresences.filter(
       (participant: any) => participant.CommitteeName === committeeName
     );
@@ -177,6 +186,11 @@ function processCommitteeEvents(data: ScheduleData, committeesParticipantsData: 
           ParticipantImage: mk.ImagePath,
         };
       });
+    // get description from the file committee_description.json
+    let description = committeesDescription.find((committee) => committeeName.includes(committee.name))?.description;
+    if (description == undefined) {
+      description = "";
+    }
     return {
       id: index,
       EventStart: new Date(event.EventStart),
@@ -184,7 +198,7 @@ function processCommitteeEvents(data: ScheduleData, committeesParticipantsData: 
       EventName: eventNameSubjects,
       CommitteeName: committeeName,
       CommitteeId: 0,
-      EventDiscription: "",
+      CommitteeDiscription: description,
       EventParticipants: participants,
       EventLiveStream: "",
       EventType: ScheduleEventType.Committee,

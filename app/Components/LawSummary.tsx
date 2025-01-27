@@ -7,9 +7,10 @@ import SquareFillComponent from "./LawStatusSqueres";
 
 interface LawSummaryProps {
   queryId: number;
+  isShrunk: boolean;
 }
 
-const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
+const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,9 +52,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
     return <div>{error}</div>;
   }
 
-  const sortedData = [...data].sort(
-    (a, b) => new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime()
-  );
+  const sortedData = [...data].sort((a, b) => new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime());
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -61,9 +60,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   };
 
   const getInitiatorImage = (initiatorName: string) => {
-    const initiator = Object.values(initiatorsData).find(
-      (entry: any) => entry.Name === initiatorName
-    );
+    const initiator = Object.values(initiatorsData).find((entry: any) => entry.Name === initiatorName);
     return initiator ? initiator.MkImage : null;
   };
 
@@ -85,8 +82,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
 
   return (
     <>
-      <header className="Component-header header-2">
-        <a href="#LawSummary-main">
+      <header className={`Component-header ${isShrunk ? "header-3-small" : "header-3-big"}`}>
+        <a href="#LawSummary-main" className="header-link">
           <h1>הצעות חוק</h1>
         </a>
       </header>

@@ -16,18 +16,13 @@ const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption
           {mkData
             .slice() // Create a shallow copy of the data
             .sort((a, b) => {
-            if (displayOption === "coalition") {
-                // Sort coalition members first
-                if (a.IsCoalition !== b.IsCoalition) return b.IsCoalition ? 1 : -1;
-            } else if (displayOption === "opposition") {
-                // Sort opposition members first
-                if (a.IsCoalition !== b.IsCoalition) return b.IsCoalition ? -1 : 1;
-            } else if (displayOption === "goverment") {
-                // Sort opposition members first
-                if (a.isGoverment !== b.isGoverment) return b.isGoverment ? 1 : -1;
-            }
-            // Sort within each group by presence
-            return b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1;
+              // Primary sorting logic
+              const scoreA =
+                (a.IsCoalition ? 2 : 0) + (((a.IsPresent && a.IsCoalition) || (!a.IsPresent && !a.IsCoalition))  ? 1 : 0) + (displayOption === "goverment" && a.isGoverment ? 2 : 0); // Coalition gets 2, Present adds 1
+              const scoreB =
+                (b.IsCoalition ? 2 : 0) + (((b.IsPresent && b.IsCoalition) || (!b.IsPresent && !b.IsCoalition)) ? 1 : 0) + (displayOption === "goverment" && b.isGoverment ? 2 : 0);
+    
+              return scoreB - scoreA; // Sort descending
             })
             .map((mk) => {
             const isMatchingOption =
@@ -39,7 +34,7 @@ const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption
             return (
                 <div
                 key={mk.MkId}
-                className={`chart-circle ${mk.IsPresent ? "present" : "absent"} ${isMatchingOption ? "" : "dimmed"}`}
+                className={`chart-circle ${mk.IsCoalition ? "coalition" : "opposition"} ${mk.IsPresent ? "" : "dimmed"} ${isMatchingOption ? "" : "crossed"}`}
                 ></div>
             );
           })}
