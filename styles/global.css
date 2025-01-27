@@ -1314,6 +1314,7 @@ html {
   height: 0.1rem;
   background-color: var(--color-secondary);
   position: absolute;
+
   /* left: 50%; */
   /* top: 0; */
 }
@@ -1338,6 +1339,7 @@ html {
   display: flex;
   flex-direction: column ;
   width: 100%; /* Ensure content takes full width when open */
+  
 }
 
 .law-name {
@@ -1480,4 +1482,132 @@ html {
   background: transparent;
 }
 
+/* Styling for the button */
+.law-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.law-button .law-content {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  width: 100%; /* Ensure content takes full width when open */
+}
+
+.law-button.open .law-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure content takes full width when open */
+}
+
+.law-button .law-name {
+  font-weight: bold; /* Always bold for the button */
+  max-width: 55%; /* Ensure the name takes up appropriate width */
+  margin-left: 1rem;
+}
+
+.law-button.open .law-name {
+  max-width: 90%; /* Adjust max-width when open */
+  margin-bottom: 1rem;
+}
+
+.law-header{
+  color: #0900BD;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 1rem;
+  font-weight:bold ;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
+
+}
+
+.law-header p:last-child {
+  margin-left: 20%;
+  align-self: center;
+  padding-left: 1rem;
+}
+
+
+/* Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Overlay background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it appears on top */
+}
+
+.popup {
+  background-color: var(--color-background);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-in-out forwards; /* Fade-in effect when the component appears */
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.law-blue-squere {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: transparent; /* Transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0900BD;
+  font-size: 1rem;
+  font-weight: normal;
+  cursor: pointer;
+  border: 0.1rem solid #0900BD; /* Added blue border */
+}
 
