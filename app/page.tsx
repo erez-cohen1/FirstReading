@@ -5,30 +5,42 @@ import DateSelector from "./Components/Date/dateSelector";
 import KnessetAttendance from "./Components/Attendence/KnessetAttendance";
 import DateComponent from "./Components/Date/Date";
 import LawSummary from "./Components/LawSummary";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [date, setDate] = useState(new Date(Date.now()));
-  // console.log(date.toISOString());
+  const [isShrunk, setIsShrunk] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsShrunk(scrollY > 90); // Shrink if scrolled down 50px or more
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <main className="main-page">
-      <section className="main-header">
+      <section className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
         <h1>
-          קריאה <br />
+          קריאה {!isShrunk && <br />}
           ראשונה
         </h1>
+        <section className="Date">
+          <DateComponent date={date}></DateComponent>
+          <DateSelector date={date} setDate={setDate}></DateSelector>
+          <hr />
+        </section>
       </section>
-      <section className="Date">
-        <DateComponent date={date}></DateComponent>
-        <DateSelector date={date} setDate={setDate}></DateSelector>
-      </section>
-      <hr />
-      <KnessetAttendance date={date} />
+      <KnessetAttendance isShrunk={isShrunk} date={date} />
       {/* <div className="hidden-div"></div> */}
-      <Schedule date={date}></Schedule>
-      <LawSummary queryId={1433}></LawSummary>
+      <Schedule date={date} isShrunk={isShrunk}></Schedule>
+      <LawSummary queryId={1433} isShrunk={isShrunk}></LawSummary>
       {/* <LawCount></LawCount> */}
-      <Votes date={date}></Votes>
+      <Votes date={date} isShrunk={isShrunk}></Votes>
     </main>
   );
 }

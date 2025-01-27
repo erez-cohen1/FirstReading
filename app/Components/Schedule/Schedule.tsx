@@ -9,7 +9,7 @@ import CommitteeEventComp from "./CommitteeEvent";
 import PlenumEventComp from "./PlenumEvent";
 import KnsEventComp from "./KnsEvent";
 
-export default function Schedule({ date }: { date: Date }) {
+export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boolean }) {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState<ScheduleData>({
     eventsNumber: 0,
@@ -46,7 +46,7 @@ export default function Schedule({ date }: { date: Date }) {
     return (
       // <div className="Component" id="Schedule">
       <>
-        <header className="Component-header header-1" id="Schedule-header">
+        <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
           <a href="#Schedule-main">
             <h1>סדר יום</h1>
           </a>
@@ -64,7 +64,7 @@ export default function Schedule({ date }: { date: Date }) {
   if (loading) {
     return (
       <>
-        <header className="Component-header header-1" id="Schedule-header">
+        <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
           <a href="#Schedule-main">
             <h1>סדר יום</h1>
           </a>
@@ -80,8 +80,8 @@ export default function Schedule({ date }: { date: Date }) {
 
   return (
     <>
-      <header className="Component-header header-1" id="Schedule-header">
-        <a href="#Schedule-main">
+      <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
+        <a href="#Schedule-main" className="header-link">
           <h1>סדר יום</h1>
         </a>
       </header>

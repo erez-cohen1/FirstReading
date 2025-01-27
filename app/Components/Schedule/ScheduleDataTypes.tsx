@@ -27,7 +27,7 @@ export interface CommitteeEvent {
   CommitteeName: string;
   CommitteeId: number;
   EventName: string[];
-  EventDiscription?: string; // full discription of the event
+  CommitteeDiscription?: string; // full discription of the event
   EventParticipants: CommitteeParticipant[];
   EventLiveStream?: string; // url to live stream
   EventType: ScheduleEventType;
@@ -44,6 +44,12 @@ export interface CommitteeParticipant {
   ParticipantName: string;
   ParticipantRole: string;
   ParticipantImage: string;
+}
+
+export interface CommitteeDescription {
+  id: number;
+  name: string;
+  description: string;
 }
 
 export interface PlenumEvent {
