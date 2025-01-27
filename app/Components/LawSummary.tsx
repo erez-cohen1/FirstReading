@@ -5,9 +5,10 @@ import initiatorsData from "./mkDetails.json";
 
 interface LawSummaryProps {
   queryId: number;
+  isShrunk: boolean;
 }
 
-const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
+const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,9 +49,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
     return <div>{error}</div>;
   }
 
-  const sortedData = [...data].sort(
-    (a, b) => new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime()
-  );
+  const sortedData = [...data].sort((a, b) => new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime());
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -58,9 +57,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   };
 
   const getInitiatorImage = (initiatorName: string) => {
-    const initiator = Object.values(initiatorsData).find(
-      (entry: any) => entry.Name === initiatorName
-    );
+    const initiator = Object.values(initiatorsData).find((entry: any) => entry.Name === initiatorName);
     return initiator ? initiator.MkImage : null;
   };
 
@@ -78,95 +75,93 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
 
   return (
     <>
-      <header className="Component-header header-2">
-        <a href="#LawSummary-main">
+      <header className={`Component-header ${isShrunk ? "header-3-small" : "header-3-big"}`}>
+        <a href="#LawSummary-main" className="header-link">
           <h1>הצעות חוק</h1>
         </a>
       </header>
       <main className="Component-main" id="LawSummary-main">
-      <section className="law-section" id="General-Assembly">
-      {sortedData.map((item, index) => (
-      <div key={index} className="schedule-event-cell-opened">
-        <details
-          open={openIndexes.has(index)} // Set open state based on the index
-          onToggle={() => toggleDetails(index)} // Toggle open/close when clicked
-        >
-          
-        <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
-            <div className="law-content">
-              <div className="law-name">
-                {item.billname}
-              </div>
-              <div className="law-status">
-                {item.statusdesc}
-              </div>
-            </div>
-            <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
-          </summary>
-
-        <div style={{ marginTop: "10px" }}>
-          {Object.entries(item)
-            .filter(([key, value]) => value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
-            .map(([key, value]) => (
-              <p key={key} style={{ margin: "0.5rem 0" }}>
-                <p className="law-status">
-                  {columnNames[key] || key}
-                  <br/>
-                </p>{" "}
-                {key === "initiatorsfullnames"
-                  ? null
-                  : key === "StartDate"
-                  ? formatDate(value as string)
-                  : (value as string)}
-              </p>
-            ))}
-          {item.initiatorsfullnames && (
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "0.5rem",
-                marginTop: "0.5rem",
-              }}
-            >
-              {item.initiatorsfullnames.split(",").map((name: string) => {
-                const imageUrl = getInitiatorImage(name.trim());
-                return (
-                  <div
-                    key={name}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      textAlign: "center",
-                      maxWidth: "calc(25% - 0.5rem)",
-                    }}
-                  >
-                    {imageUrl && (
-                      <img
-                        src={imageUrl}
-                        alt={name}
-                        style={{
-                          width: "6rem",
-                          height: "6rem",
-                          objectFit: "cover", // Ensures content fits without distortion
-                        }}
-                      />
-                    )}
-                    <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{name}</p>
+        <section className="law-section" id="General-Assembly">
+          {sortedData.map((item, index) => (
+            <div key={index} className="schedule-event-cell-opened">
+              <details
+                open={openIndexes.has(index)} // Set open state based on the index
+                onToggle={() => toggleDetails(index)} // Toggle open/close when clicked
+              >
+                <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
+                  <div className="law-content">
+                    <div className="law-name">{item.billname}</div>
+                    <div className="law-status">{item.statusdesc}</div>
                   </div>
-                );
-              })}
+                  <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
+                </summary>
+
+                <div style={{ marginTop: "10px" }}>
+                  {Object.entries(item)
+                    .filter(
+                      ([key, value]) =>
+                        value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
+                    )
+                    .map(([key, value]) => (
+                      <p key={key} style={{ margin: "0.5rem 0" }}>
+                        <p className="law-status">
+                          {columnNames[key] || key}
+                          <br />
+                        </p>{" "}
+                        {key === "initiatorsfullnames"
+                          ? null
+                          : key === "StartDate"
+                          ? formatDate(value as string)
+                          : (value as string)}
+                      </p>
+                    ))}
+                  {item.initiatorsfullnames && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "0.5rem",
+                        marginTop: "0.5rem",
+                      }}
+                    >
+                      {item.initiatorsfullnames.split(",").map((name: string) => {
+                        const imageUrl = getInitiatorImage(name.trim());
+                        return (
+                          <div
+                            key={name}
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              textAlign: "center",
+                              maxWidth: "calc(25% - 0.5rem)",
+                            }}
+                          >
+                            {imageUrl && (
+                              <img
+                                src={imageUrl}
+                                alt={name}
+                                style={{
+                                  width: "6rem",
+                                  height: "6rem",
+                                  objectFit: "cover", // Ensures content fits without distortion
+                                }}
+                              />
+                            )}
+                            <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{name}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </details>
+              <br></br>
+              <td className="law-horizontal-line"> </td>
+              <br></br>
             </div>
-          )}
-        </div>
-      </details>
-      <br></br>
-      <td className="law-horizontal-line"> </td>
-      <br></br>
-    </div>
-  ))}
-</section>
+          ))}
+        </section>
       </main>
     </>
   );

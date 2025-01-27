@@ -27,7 +27,7 @@ type VoteData = {
   Table: Vote[];
 };
 
-const Votes = ({ date }: { date: Date }) => {
+const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
   const [expandedVoteId, setExpandedVoteId] = useState<number | null>(null);
   const [voterFilters, setVoterFilters] = useState<Record<number, string>>({
@@ -55,20 +55,17 @@ const Votes = ({ date }: { date: Date }) => {
           ToDate: formattedDate,
         };
 
-        const response = await fetch(
-          "https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          }
-        );
+        const response = await fetch("https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVotesHeaders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
 
         if (!response.ok) throw new Error("Failed to fetch votes data");
 
         const data: VoteData = await response.json();
 
-        console.log("Fetched vote headers:", data); // Print fetched data
+        // console.log("Fetched vote headers:", data); // Print fetched data
 
         const votesWithDetails = await Promise.all(
           data.Table.map(async (vote) => {
@@ -76,15 +73,13 @@ const Votes = ({ date }: { date: Date }) => {
               `https://knesset.gov.il/WebSiteApi/knessetapi/Votes/GetVoteDetails/${vote.VoteId}`
             );
 
-            if (!voteDetailsResponse.ok)
-              throw new Error("Failed to fetch vote details");
+            if (!voteDetailsResponse.ok) throw new Error("Failed to fetch vote details");
 
             const voteDetails = await voteDetailsResponse.json();
 
-            console.log("Vote details for VoteId", vote.VoteId, voteDetails); // Print vote details
+            // console.log("Vote details for VoteId", vote.VoteId, voteDetails); // Print vote details
 
-            const acceptanceText =
-              voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
+            const acceptanceText = voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
             const decision = voteDetails.VoteHeader[0]?.Decision || "N/A";
 
             const voters: Voter[] = voteDetails.VoteDetails.map((voter: any) => ({
@@ -94,19 +89,13 @@ const Votes = ({ date }: { date: Date }) => {
             }));
 
             // Extract counts for inFavor, against, abstain
-            const inFavorCounter = voteDetails.VoteCounters.find(
-              (counter: any) => counter.Title === "בעד"
-            );
+            const inFavorCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "בעד");
             const inFavor = inFavorCounter ? inFavorCounter.countOfResult : 0;
 
-            const againstCounter = voteDetails.VoteCounters.find(
-              (counter: any) => counter.Title === "נגד"
-            );
+            const againstCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "נגד");
             const against = againstCounter ? againstCounter.countOfResult : 0;
 
-            const abstainCounter = voteDetails.VoteCounters.find(
-              (counter: any) => counter.Title === "נמנע"
-            );
+            const abstainCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "נמנע");
             const abstain = abstainCounter ? abstainCounter.countOfResult : 0;
 
             return {
@@ -152,14 +141,12 @@ const Votes = ({ date }: { date: Date }) => {
     return <div>Loading votes...</div>;
   }
 
-  const filteredVotes = voteData.Table.filter((vote) =>
-    isSameDay(vote.VoteDateStr, date)
-  );
+  const filteredVotes = voteData.Table.filter((vote) => isSameDay(vote.VoteDateStr, date));
 
   return (
     <>
-      <header className="Component-header header-3">
-        <a href="#Votes-main">
+      <header className={`Component-header ${isShrunk ? "header-4-small" : "header-4-big"}`}>
+        <a href="#Votes-main" className="header-link">
           <h1>הצבעות</h1>
         </a>
       </header>

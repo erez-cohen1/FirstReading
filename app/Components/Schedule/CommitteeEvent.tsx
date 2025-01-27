@@ -1,8 +1,9 @@
 "use client";
 
 import { CommitteeEvent, CommitteeParticipant, ScheduleEventType } from "@/app/Components/Schedule/ScheduleDataTypes";
-import { use, useEffect, useState } from "react";
+import { RefObject, use, useEffect, useMemo, useRef, useState } from "react";
 import { fetchCommitteeData, fetchScheduleData } from "./getScheduleData";
+import useIsVisible from "./useIsVisible";
 
 export default function CommitteeEventComp({
   event,
@@ -15,14 +16,32 @@ export default function CommitteeEventComp({
   showTime: boolean;
   rows: number;
 }) {
-  const [open, setOpen] = useState(false);
   const chairMan: CommitteeParticipant | undefined = event.EventParticipants.find((mk) => mk.ParticipantRole === "יושב-ראש");
+  const summaryRef = useRef<HTMLTableCellElement | null>(null);
+  const isVisible = useIsVisible(summaryRef);
+
+  const handleToggle = (e: React.SyntheticEvent<HTMLDetailsElement>) => {
+    const target = e.currentTarget as HTMLDetailsElement;
+    //closing the element
+    if (!target.open && !isVisible) {
+      summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (target.open) {
+      // opening the element
+      const detailsList: NodeListOf<HTMLDetailsElement> = document.querySelectorAll("details");
+      // Close all other details elements.
+      detailsList.forEach((details) => {
+        if (details.textContent != target.textContent) {
+          details.open = false;
+        }
+      });
+    }
+  };
   return (
     <>
       {event.id != 0 ? (
         <tr>
           <td></td>
-          <td colSpan={2} className="Schedule-table-horizontal-separator">
+          <td colSpan={2} className="Schedule-table-horizontal-separator" ref={summaryRef}>
             <div className="Schedule-horizontal-line"></div>
           </td>
         </tr>
@@ -30,7 +49,7 @@ export default function CommitteeEventComp({
       <tr key={event.id} className="schedule-event-row">
         <td className="schedule-hour-cell">
           {showTime && (
-            <h3>
+            <h3 className="schedule-event-time">
               {event.EventStart.getHours()}:
               {event.EventStart.getMinutes() == 0 ? event.EventStart.getMinutes() + "0" : event.EventStart.getMinutes()}
             </h3>
@@ -42,12 +61,11 @@ export default function CommitteeEventComp({
           </td>
         ) : null}
         <td className="schedule-event-cell-opened" id={`committee-event-summary${event.id}`}>
-          <details>
+          <details onToggle={handleToggle}>
             <summary>
               <div>
                 <h3>{event.CommitteeName}</h3>
                 <p className={`schedule-event-description${event.IsCanceled ? " canceled" : ""}`}>{event.EventName[0]}</p>
-                {/* <br /> */}
               </div>
               <i className="arrow down"></i>
             </summary>
@@ -64,7 +82,8 @@ export default function CommitteeEventComp({
                   )
               )}
             <h5>תחומי עיסוקה של הועדה</h5>
-            <p>תקציב המדינה; מסים לכל סוגיהם; מכס ובלו; מלוות; ענייני מטבע חוץ; בנקאות ושטרי כסף; הכנסות והוצאות המדינה.</p>
+            <p>{event.CommitteeDiscription}</p>
+            {/* <p>תקציב המדינה; מסים לכל סוגיהם; מכס ובלו; מלוות; ענייני מטבע חוץ; בנקאות ושטרי כסף; הכנסות והוצאות המדינה.</p> */}
 
             {event.EventParticipants.length > 0 && (
               <>

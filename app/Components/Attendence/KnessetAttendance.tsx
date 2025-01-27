@@ -6,7 +6,7 @@ import Modal from "./Modal";
 import { useAttendanceDataFromFile } from "./useAttendanceData";
 import { MkData } from "./MkData";
 
-const KnessetAttendance: React.FC = () => {
+const KnessetAttendance: React.FC<{ isShrunk: boolean }> = ({ isShrunk }: { isShrunk: boolean }) => {
   const [mkData, loading, error] = useAttendanceDataFromFile();
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
@@ -36,8 +36,10 @@ const KnessetAttendance: React.FC = () => {
 
   return (
     <>
-      <header className="Component-header header-0" id="Attendance-header">
-        <h1>נוכחות חברי כנסת</h1>
+      <header className={`Component-header ${isShrunk ? "header-1-small" : "header-1-big"}`} id="Attendance-header">
+        <a href="#Attendance-main" className="header-link">
+          <h1>נוכחות חברי כנסת</h1>
+        </a>
       </header>
       <main className="Component-main" id="Attendance-main">
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
