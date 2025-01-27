@@ -138,12 +138,8 @@ const Votes = ({ date }: { date: Date }) => {
                     {createVoteBar(inFavor, against, abstain)}
 
                   </div>
-                  <div>
                   <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
-
-                  </div>
-                  
-                  </div>
+                </div>
 
                 {expandedVoteId === vote.VoteId && (
                   <div>
@@ -197,7 +193,8 @@ const Votes = ({ date }: { date: Date }) => {
       </main>
 
       <div>
-\    </div>
+      <h3>תוצאות ההצבעה</h3>
+    </div>
     </div>
   );
 };

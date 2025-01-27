@@ -1,12 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  toJewishDate,
-  formatJewishDateInHebrew,
-} from "jewish-date";
+import { toJewishDate, formatJewishDateInHebrew } from "jewish-date";
 
-export default function HebrewDateComponent({ date }: { date: Date }) {
+export default function DateComponent({ date }: { date: Date }) {
   const [gregorianDateHebrew, setGregorianDateHebrew] = useState("");
   const [hebrewDate, setHebrewDate] = useState("");
 
@@ -23,16 +20,26 @@ export default function HebrewDateComponent({ date }: { date: Date }) {
     const jewishDate = toJewishDate(date);
     const formattedHebrewDate = formatJewishDateInHebrew(jewishDate);
     setHebrewDate(formattedHebrewDate);
+
+    // Add transition class to trigger animation
+    const datesTableCurDate = document.querySelector(".dates-table-cur-date");
+    if (datesTableCurDate) {
+      datesTableCurDate.classList.add("transition");
+      setTimeout(() => {
+        datesTableCurDate.classList.remove("transition");
+      }, 1000); // Duration of the transition
+    }
   }, [date]); // Re-run the effect whenever the `date` prop changes
 
   return (
     <>
-      <p className="Date-fig">
-        <strong></strong> {gregorianDateHebrew}
-      </p>
-      <p className="Date-fig">
-        <strong></strong> {hebrewDate}
-      </p>
+      <div className="dates-table-cur-date">
+        <p className="date-content">{gregorianDateHebrew}</p>
+        <p className="date-content">{hebrewDate}</p>
+      </div>
     </>
   );
 }
+
+// add transition on date change
+// add datepicker
