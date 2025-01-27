@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import createVoteBar from "./VotingBar";
+import VoteBar from "./VotingBar";
 
 type Vote = {
   VoteId: number;
@@ -10,14 +10,17 @@ type Vote = {
   VoteType: string;
   ItemTitle: string;
   AcceptedText: string;
-  Decision: string; // Added Decision field
+  Decision: string;
   Voters: Voter[];
+  inFavor: number;
+  against: number;
+  abstain: number;
 };
 
 type Voter = {
   MkName: string;
   FactionName: string;
-  Title: string; // Vote result (e.g., "בעד", "נגד", "נמנע", "נוכח")
+  Title: string;
 };
 
 type VoteData = {
@@ -27,7 +30,10 @@ type VoteData = {
 const Votes = ({ date }: { date: Date }) => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
   const [expandedVoteId, setExpandedVoteId] = useState<number | null>(null);
-  const [voterFilters, setVoterFilters] = useState<Record<number, string>>({});
+  const [voterFilters, setVoterFilters] = useState<Record<number, string>>({
+    // Default filter is "בעד" for all votes initially
+    0: "בעד",
+  });
 
   const formatDate = (date: Date) => {
     return date.toISOString().split("T")[0];
@@ -62,6 +68,8 @@ const Votes = ({ date }: { date: Date }) => {
 
         const data: VoteData = await response.json();
 
+        console.log("Fetched vote headers:", data); // Print fetched data
+
         const votesWithDetails = await Promise.all(
           data.Table.map(async (vote) => {
             const voteDetailsResponse = await fetch(
@@ -72,6 +80,9 @@ const Votes = ({ date }: { date: Date }) => {
               throw new Error("Failed to fetch vote details");
 
             const voteDetails = await voteDetailsResponse.json();
+
+            console.log("Vote details for VoteId", vote.VoteId, voteDetails); // Print vote details
+
             const acceptanceText =
               voteDetails.VoteHeader[0]?.AcceptedText || "N/A";
             const decision = voteDetails.VoteHeader[0]?.Decision || "N/A";
@@ -82,7 +93,31 @@ const Votes = ({ date }: { date: Date }) => {
               Title: voter.Title,
             }));
 
-            return { ...vote, AcceptedText: acceptanceText, Decision: decision, Voters: voters };
+            // Extract counts for inFavor, against, abstain
+            const inFavorCounter = voteDetails.VoteCounters.find(
+              (counter: any) => counter.Title === "בעד"
+            );
+            const inFavor = inFavorCounter ? inFavorCounter.countOfResult : 0;
+
+            const againstCounter = voteDetails.VoteCounters.find(
+              (counter: any) => counter.Title === "נגד"
+            );
+            const against = againstCounter ? againstCounter.countOfResult : 0;
+
+            const abstainCounter = voteDetails.VoteCounters.find(
+              (counter: any) => counter.Title === "נמנע"
+            );
+            const abstain = abstainCounter ? abstainCounter.countOfResult : 0;
+
+            return {
+              ...vote,
+              AcceptedText: acceptanceText,
+              Decision: decision,
+              Voters: voters,
+              inFavor,
+              against,
+              abstain,
+            };
           })
         );
 
@@ -100,10 +135,17 @@ const Votes = ({ date }: { date: Date }) => {
   };
 
   const handleVoterFilterChange = (voteId: number, newFilter: string) => {
-    setVoterFilters((prev) => ({
-      ...prev,
-      [voteId]: prev[voteId] === newFilter ? "" : newFilter,
-    }));
+    // If the filter is the same as the previous one, do nothing
+    setVoterFilters((prev) => {
+      const currentFilter = prev[voteId];
+      if (currentFilter === newFilter) {
+        return prev; // No changes if clicked again on the same button
+      }
+      return {
+        ...prev,
+        [voteId]: newFilter,
+      };
+    });
   };
 
   if (!voteData) {
@@ -114,31 +156,30 @@ const Votes = ({ date }: { date: Date }) => {
     isSameDay(vote.VoteDateStr, date)
   );
 
-  const inFavor = 30;
-  const against = 20;
-  const abstain = 10;
-
   return (
-    <div className="Component" id="Votes">
-      <header className="Component-header">
-        <h1>הצבעות</h1>
+    <>
+      <header className="Component-header header-3">
+        <a href="#Votes-main">
+          <h1>הצבעות</h1>
+        </a>
       </header>
-      <main className="Component-main">
+      <main className="Component-main" id="Votes-main">
         <section className="votes-section">
           {filteredVotes.length > 0 ? (
             filteredVotes.map((vote, index) => (
               <div key={index} className="schedule-event-cell-opened">
                 <div
-                  className={`law ${expandedVoteId === vote.VoteId ? "open" : ""}`}
+                  className={`vote ${expandedVoteId === vote.VoteId ? "open" : ""}`}
                   onClick={() => toggleVoteDetails(vote.VoteId)}
                 >
                   <div className="law-content">
-                    <div className="law-name">{vote.ItemTitle || "N/A"}</div>
-                    {/* <div className="law-status">{vote.AcceptedText || "N/A"}</div> */}
-                    {createVoteBar(inFavor, against, abstain)}
-
+                    <div className="vote-name">{vote.ItemTitle || "N/A"}</div>
                   </div>
                   <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
+                </div>
+                <div className="vote-infograph-div">
+                  <h3>{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</h3>
+                  <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
                 </div>
 
                 {expandedVoteId === vote.VoteId && (
@@ -147,15 +188,33 @@ const Votes = ({ date }: { date: Date }) => {
                       <strong>ההחלטה:</strong> {vote.Decision || "N/A"}
                     </p>
                     <div>
-                      <div style={{ marginBottom: "10px" }}>
-                        <button onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}>
-                          בעד
+                      <div className="vote-display-options">
+                        <button
+                          onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
+                          className={voterFilters[vote.VoteId] === "בעד" ? "active" : ""}
+                        >
+                          <div className="vote-button-content">
+                            <div className="vote-button-number">{vote.inFavor}</div>
+                            <div>בעד</div>
+                          </div>
                         </button>
-                        <button onClick={() => handleVoterFilterChange(vote.VoteId, "נגד")}>
-                          נגד
+                        <button
+                          onClick={() => handleVoterFilterChange(vote.VoteId, "נמנע")}
+                          className={voterFilters[vote.VoteId] === "נמנע" ? "active" : ""}
+                        >
+                          <div className="vote-button-content">
+                            <div className="vote-button-number">{vote.abstain}</div>
+                            <div>נמנעים.ות</div>
+                          </div>
                         </button>
-                        <button onClick={() => handleVoterFilterChange(vote.VoteId, "נמנע")}>
-                          נמנע
+                        <button
+                          onClick={() => handleVoterFilterChange(vote.VoteId, "נגד")}
+                          className={voterFilters[vote.VoteId] === "נגד" ? "active" : ""}
+                        >
+                          <div className="vote-button-content">
+                            <div className="vote-button-number">{vote.against}</div>
+                            <div>נגד</div>
+                          </div>
                         </button>
                       </div>
                     </div>
@@ -163,7 +222,7 @@ const Votes = ({ date }: { date: Date }) => {
                       <strong>מצביעים:</strong>
                       <ul>
                         {vote.Voters.filter((voter) => {
-                          const filter = voterFilters[vote.VoteId] || "";
+                          const filter = voterFilters[vote.VoteId] || "בעד"; // Default to "בעד"
                           return filter === "" || voter.Title === filter;
                         }).map((voter, voterIndex) => (
                           <li key={voterIndex}>
@@ -191,11 +250,7 @@ const Votes = ({ date }: { date: Date }) => {
           )}
         </section>
       </main>
-
-      <div>
-      <h3>תוצאות ההצבעה</h3>
-    </div>
-    </div>
+    </>
   );
 };
 

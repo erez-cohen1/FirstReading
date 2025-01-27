@@ -77,11 +77,13 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   };
 
   return (
-    <div className="Component" id="Schedule">
-      <header className="Component-header">
-        <h1>הצעות חוק</h1>
+    <>
+      <header className="Component-header header-2">
+        <a href="#LawSummary-main">
+          <h1>הצעות חוק</h1>
+        </a>
       </header>
-      <main className="Component-main">
+      <main className="Component-main" id="LawSummary-main">
       <section className="law-section" id="General-Assembly">
       {sortedData.map((item, index) => (
       <div key={index} className="schedule-event-cell-opened">
@@ -166,7 +168,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId }) => {
   ))}
 </section>
       </main>
-    </div>
+    </>
   );
 };
 
