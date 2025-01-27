@@ -9,9 +9,10 @@ import { MkData } from "./MkData";
 
 interface KnessetAttendanceProps {
   date: Date
+  isShrunk: boolean
 }
 
-const KnessetAttendance: React.FC<{ isShrunk: boolean }><KnessetAttendanceProps> = ({ isShrunk }: { isShrunk: boolean }{date}) => {
+const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) => {
   const [mkData, loading, error] = useAttendanceDataFromFile(date);
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
