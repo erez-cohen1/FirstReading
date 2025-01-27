@@ -23,7 +23,7 @@ export default function Home() {
         <DateSelector date={date} setDate={setDate}></DateSelector>
       </section>
       <hr />
-      <KnessetAttendance></KnessetAttendance>
+      <KnessetAttendance date={date} />
       {/* <div className="hidden-div"></div> */}
       <Schedule date={date}></Schedule>
       <LawSummary queryId={1433}></LawSummary>

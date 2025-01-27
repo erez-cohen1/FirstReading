@@ -1,0 +1,289 @@
+[
+  {
+    "MkId": 90,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/90/1_90_3_248.jpeg?v=20250127_18832",
+    "PositionName": "#ראש הממשלה",
+    "IsMk": true
+  },
+  {
+    "MkId": 826,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/826/1_826_3_1921.jpeg?v=20250127_18832",
+    "PositionName": "#סגן ראש הממשלה",
+    "IsMk": true
+  },
+  {
+    "MkId": 936,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/936/1_936_3_2523.jpeg?v=20250127_18832",
+    "PositionName": "#שר האוצר#שר נוסף במשרד הביטחון",
+    "IsMk": false
+  },
+  {
+    "MkId": 768,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/768/1_768_3_1721.jpeg?v=20250127_18832",
+    "PositionName": "#שר נוסף במשרד האוצר",
+    "IsMk": true
+  },
+  {
+    "MkId": 928,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/928/1_928_3_2473.jpeg?v=20250127_18832",
+    "PositionName": "#שר האנרגיה והתשתיות",
+    "IsMk": false
+  },
+  {
+    "MkId": 936,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/936/1_936_3_2523.jpeg?v=20250127_18832",
+    "PositionName": "#שר האוצר#שר נוסף במשרד הביטחון",
+    "IsMk": false
+  },
+  {
+    "MkId": 69,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/69/1_69_3_191.jpeg?v=20250127_18832",
+    "PositionName": "#שר הביטחון",
+    "IsMk": true
+  },
+  {
+    "MkId": 1099,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1099/1_1099_3_19749.jpeg?v=20250127_18832",
+    "PositionName": "#שר הבינוי והשיכון#שר במשרד ראש הממשלה",
+    "IsMk": false
+  },
+  {
+    "MkId": 1039,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1039/1_1039_3_15050.jpeg?v=20250127_18832",
+    "PositionName": "#שר הבריאות",
+    "IsMk": true
+  },
+  {
+    "MkId": 884,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/884/1_884_3_2213.jpeg?v=20250127_18832",
+    "PositionName": "#שרת ההתיישבות והמשימות הלאומיות",
+    "IsMk": true
+  },
+  {
+    "MkId": 723,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/723/1_723_3_1586.jpeg?v=20250127_18832",
+    "PositionName": "#שרת החדשנות, המדע והטכנולוגיה",
+    "IsMk": true
+  },
+  {
+    "MkId": 725,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/725/1_725_3_1595.jpeg?v=20250127_18832",
+    "PositionName": "#שר החוץ",
+    "IsMk": true
+  },
+  {
+    "MkId": 1055,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1055/1_1055_3_17783.jpeg?v=20250127_18832",
+    "PositionName": "#שר בלי תיק במשרד החינוך",
+    "IsMk": false
+  },
+  {
+    "MkId": 945,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/945/1_945_3_2583.jpeg?v=20250127_18832",
+    "PositionName": "#שר החינוך",
+    "IsMk": false
+  },
+  {
+    "MkId": 771,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/771/1_771_3_1732.jpeg?v=20250127_18832",
+    "PositionName": "#שר החקלאות וביטחון המזון",
+    "IsMk": true
+  },
+  {
+    "MkId": 974,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/974/1_974_3_12308.jpeg?v=20250127_18832",
+    "PositionName": "#שר הכלכלה והתעשייה",
+    "IsMk": true
+  },
+  {
+    "MkId": 826,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/826/1_826_3_1921.jpeg?v=20250127_18832",
+    "PositionName": "#שר המשפטים",
+    "IsMk": true
+  },
+  {
+    "MkId": 912,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/912/1_912_3_2364.jpeg?v=20250127_18832",
+    "PositionName": "#שר נוסף במשרד המשפטים#שר הקשר בין הממשלה לכנסת#השר לשיתוף פעולה אזורי",
+    "IsMk": false
+  },
+  {
+    "MkId": 906,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/906/1_906_3_2332.jpeg?v=20250127_18832",
+    "PositionName": "#שר העבודה",
+    "IsMk": false
+  },
+  {
+    "MkId": 977,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/977/1_977_3_11108.jpeg?v=20250127_18832",
+    "PositionName": "#שר העלייה והקליטה",
+    "IsMk": true
+  },
+  {
+    "MkId": 1008,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1008/1_1008_3_11235.jpeg?v=20250127_18832",
+    "PositionName": "#שר הפנים",
+    "IsMk": true
+  },
+  {
+    "MkId": 912,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/912/1_912_3_2364.jpeg?v=20250127_18832",
+    "PositionName": "#שר נוסף במשרד המשפטים#שר הקשר בין הממשלה לכנסת#השר לשיתוף פעולה אזורי",
+    "IsMk": false
+  },
+  {
+    "MkId": 751,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/751/1_751_3_1669.jpeg?v=20250127_18832",
+    "PositionName": "#שר הרווחה והביטחון החברתי",
+    "IsMk": false
+  },
+  {
+    "MkId": 831,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/831/1_831_3_1946.jpeg?v=20250127_18832",
+    "PositionName": "#שרת התחבורה והבטיחות בדרכים",
+    "IsMk": false
+  },
+  {
+    "MkId": 212,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/212/1_212_3_535.jpeg?v=20250127_18832",
+    "PositionName": "#שר התיירות",
+    "IsMk": false
+  },
+  {
+    "MkId": 1070,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1070/1_1070_3_17798.jpeg?v=20250127_18832",
+    "PositionName": "#שר התפוצות והמאבק באנטישמיות",
+    "IsMk": false
+  },
+  {
+    "MkId": 1011,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1011/1_1011_3_12326.jpeg?v=20250127_18832",
+    "PositionName": "#שר התקשורת",
+    "IsMk": true
+  },
+  {
+    "MkId": 922,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/922/1_922_3_2431.jpeg?v=20250127_18832",
+    "PositionName": "#שר התרבות והספורט",
+    "IsMk": false
+  },
+  {
+    "MkId": 103,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/103/1_103_3_285.jpeg?v=20250127_18832",
+    "PositionName": "#שר ירושלים ומסורת ישראל",
+    "IsMk": false
+  },
+  {
+    "MkId": 1014,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1014/1_1014_3_12318.jpeg?v=20250127_18832",
+    "PositionName": "#השרה להגנת הסביבה",
+    "IsMk": false
+  },
+  {
+    "MkId": 1113,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1113/1_1113_3_20015.jpeg?v=20250127_18832",
+    "PositionName": "#השר לעניינים אסטרטגיים",
+    "IsMk": false
+  },
+  {
+    "MkId": 1002,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1002/1_1002_3_12304.jpeg?v=20250127_18832",
+    "PositionName": "#השרה לשוויון חברתי וקידום מעמד האישה",
+    "IsMk": true
+  },
+  {
+    "MkId": 957,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/957/1_957_3_2656.jpeg?v=20250127_18832",
+    "PositionName": "#השר לשירותי דת",
+    "IsMk": true
+  },
+  {
+    "MkId": 912,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/912/1_912_3_2364.jpeg?v=20250127_18832",
+    "PositionName": "#שר נוסף במשרד המשפטים#שר הקשר בין הממשלה לכנסת#השר לשיתוף פעולה אזורי",
+    "IsMk": false
+  },
+  {
+    "MkId": 1099,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1099/1_1099_3_19749.jpeg?v=20250127_18832",
+    "PositionName": "#שר הבינוי והשיכון#שר במשרד ראש הממשלה",
+    "IsMk": false
+  },
+  {
+    "MkId": 950,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/950/1_950_3_2607.jpeg?v=20250127_18832",
+    "PositionName": "#סגנית שר החוץ",
+    "IsMk": true
+  },
+  {
+    "MkId": 1029,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1029/1_1029_3_13527.jpeg?v=20250127_18832",
+    "PositionName": "#סגן שר החקלאות וביטחון המזון",
+    "IsMk": true
+  },
+  {
+    "MkId": 814,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/814/1_814_3_1874.jpeg?v=20250127_18832",
+    "PositionName": "#סגן שר התחבורה והבטיחות בדרכים#סגן שר ראש הממשלה",
+    "IsMk": false
+  },
+  {
+    "MkId": 996,
+    "IsPresent": true,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/996/1_996_3_11221.jpeg?v=20250127_18832",
+    "PositionName": "#סגן שר התרבות והספורט",
+    "IsMk": true
+  },
+  {
+    "MkId": 814,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/814/1_814_3_1874.jpeg?v=20250127_18832",
+    "PositionName": "#סגן שר התחבורה והבטיחות בדרכים#סגן שר ראש הממשלה",
+    "IsMk": false
+  },
+  {
+    "MkId": 1063,
+    "IsPresent": false,
+    "mkImage": "https://fs.knesset.gov.il/globaldocs/MK/1063/1_1063_3_17738.jpeg?v=20250127_18832",
+    "PositionName": "#סגן שר ראש הממשלה",
+    "IsMk": true
+  }
+]
