@@ -715,6 +715,8 @@ html {
 }
 
 .Component-footer.attendance {
+  padding: 0;
+  margin: 0;
   display: flex;
   color: #0900bd;
   text-align: right;
@@ -735,6 +737,7 @@ html {
 .footer-text {
   flex: 1; /* Allow text to take available space */
   text-align: right; /* Align text to the left */
+  font-size: 1.375rem;
   margin: 0.625rem;
   direction: rtl; /* Keep proper text direction for Hebrew */
 }
@@ -742,10 +745,11 @@ html {
 .Component-footer.attendance.modal-active {
   position: sticky;
   width: 100%;
-  top: 30%;
+  top: 30.5%;
   z-index: 6;
   border: transparent;
   padding: 0, 0, 0, 0;
+  margin: 0;
 }
 
 .footer-big-header-stick {
@@ -1247,7 +1251,7 @@ html {
   flex: 1; /* Make buttons take equal space */
   position: relative; /* For the indicator effect */
   background-color: transparent;
-  font-family: "VC_david-Medium";
+  font-family: "VC_david-Bold";
   flex-direction: column;
   font-weight: 600;
   line-height: 90%;
@@ -1266,16 +1270,13 @@ html {
 }
 
 .display-options button p {
+  font-family: "VC_david-Regular";
   font-size: 1rem; /* Font size for the text (e.g., "שרים") */
   margin: 0; /* Reset margin for consistent alignment */
 }
 
 .display-options button.active {
-  color: #ffead8; /* Change text color for active button */
-}
-
-.display-options button:hover {
-  opacity: 0.8; /* Slightly dim when hovering */
+  color: var(--component-bg-color); /* Change text color for active button */
 }
 
 .display-options .indicator {
@@ -1283,9 +1284,8 @@ html {
   bottom: 0; /* Align indicator at the bottom */
   left: 0; /* Start from the left */
   height: 100%; /* Make it fill the button */
-  color: #ffead8;
+  color: var(--component-bg-color);
   background-color: var(--global-bg-color); /* Same background color as active */
-  transition: all 0.3s ease; /* Smooth animation */
   z-index: 1; /* Place it behind the buttons */
 }
 
@@ -1295,21 +1295,21 @@ html {
   font-style: normal;
   font-weight: 400;
   line-height: 100%; /* 1rem */
-
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.75rem; /* Adjust padding with rem units */
   border: 0.15rem solid var(--global-bg-color); /* 1px in rem */
   margin-bottom: 1rem; /* Space below the search bar */
-  width: 100%; /* Full width for mobile screens */
+  margin-right: 0.7rem;
+  width: 95%; /* Full width for mobile screens */
 }
 
 .search-bar input {
   flex: 1; /* Take all available space */
   border: none;
   outline: none;
-  padding: 0.375rem; /* Inner padding for input */
+  padding-top: 0.3rem;
+  padding-bottom: 0.5rem;
   font-size: 1rem; /* Responsive font size */
   background: transparent;
 }
@@ -1324,13 +1324,24 @@ html {
   margin-right: 0.5rem; /* Space between icon and input */
 }
 
+.modal-option-display{
+  color: #0900BD;
+
+  text-align: right;
+  font-family: "VC_david-Bold";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 90%; /* 0.9rem */
+
+}
+
 .modal-overlay {
   max-height: 0;
   overflow: hidden;
   width: 100%;
   position: relative;
   display: flex;
-  margin-top: 1rem;
   align-items: center;
   pointer-events: none; /* Ensures the overlay doesn't block interactions */
   transition: max-height 1s ease-in-out; /* Smooth transition */
@@ -1344,18 +1355,24 @@ html {
 .modal-content {
   background: #ffead8;
   color: rgb(0, 0, 0);
+  width: 100%;
   max-height: 0; /* Start with collapsed content */
-  padding: 1rem;
+  padding-top: 0;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   z-index: 5;
   text-align: left;
   pointer-events: auto; /* Enables interaction within the modal */
   overflow: hidden; /* Ensure content doesn't overflow when collapsed */
   transition: max-height 3s ease-in-out, padding 3s ease-in-out;
+  border-bottom: 2px solid var(--color-secondary);
 }
 
 .modal-overlay.modal-active .modal-content {
   max-height: 1000vh; /* Set a large enough height for the content */
-  padding: 1rem; /* Ensure padding transitions smoothly */
+  padding: 1rem, 0 ,0, 1rem; /* Ensure padding transitions smoothly */
 }
 
 .grid-header {
@@ -1442,7 +1459,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
 }
 
 /* Info box container */
@@ -1454,24 +1470,24 @@ html {
   border: 2px solid #0900BD;
   position: flex;
   text-align: left;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-in-out; 
+  z-index: 2000;
 }
 
 /* Title styling */
 .mk-info-title {
   font-size: 1.5rem;
-  margin-bottom: 1rem;
 }
 
 .mk-info-item {
   position: relative;
-  top: 20%;
-  right: 5%;
+  top: 2%;
+  right: 2%;
   color: #0900bd;
   background: var(--component-bg-color);
   text-align: center;
   font-family: "VC_NarkisBlock-Regular";
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%; /* 0.8125rem */
@@ -1487,8 +1503,6 @@ html {
 /* Image styling */
 .mk-info-image {
   position: relative;
-  width: 5.1875rem;
-  height: 7.5rem;
   margin-bottom: 1rem;
 }
 
@@ -1507,11 +1521,17 @@ html {
 .roles-list {
   position: relative;
   color: #0900BD;
-  bottom: 40%;
-  right: 27%;
+  text-align: right;
+  font-family: "VC_NarkisBlock-Regular";
+  font-size: 0.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  bottom: 15%;
+  right: 5%;
   text-align: right;
   white-space: normal; /* Allow text to wrap */
-  overflow: hidden; /* Prevent content overflow */
+  overflow-wrap: break-word;
   word-wrap: break-word; /* Ensure proper word breaks */
   word-break: break-word; /* Ensure breaking at word boundaries */
   max-width: 90%; /* Limit width to avoid overflow on smaller screens */
@@ -1521,13 +1541,11 @@ html {
 }
 
 .roles-list p {
-  margin-bottom: 0.3rem;
   overflow-wrap: break-word; /* Ensure proper breaking of long text */
 }
 
 .roles-list h4 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
   text-align: right;
 }
 
