@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchScheduleData } from "./getScheduleData";
-import Link from "next/link";
 import { ScheduleEventType, ScheduleData, CommitteeEvent, PlenumEvent, KnsEvent } from "./ScheduleDataTypes";
-import { all } from "axios";
 import CommitteeEventComp from "./CommitteeEvent";
 import PlenumEventComp from "./PlenumEvent";
 import KnsEventComp from "./KnsEvent";
