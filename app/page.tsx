@@ -5,6 +5,7 @@ import DateSelector from "./Components/Date/dateSelector";
 import KnessetAttendance from "./Components/Attendence/KnessetAttendance";
 import DateComponent from "./Components/Date/Date";
 import LawSummary from "./Components/LawSummary";
+import DailyInfo from "./Components/DailyInfo/DailyInfo";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -41,6 +42,7 @@ export default function Home() {
       <LawSummary queryId={1433} isShrunk={isShrunk}></LawSummary>
       {/* <LawCount></LawCount> */}
       <Votes date={date} isShrunk={isShrunk}></Votes>
+      <DailyInfo isShrunk={isShrunk}></DailyInfo>
     </main>
   );
 }
