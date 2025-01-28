@@ -19,6 +19,23 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
   const modalRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      const header = headerRef.current;
+      if (header) {
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${header.offsetHeight}px`
+        );
+      }
+    };
+  
+    updateHeaderHeight();
+    window.addEventListener("resize", updateHeaderHeight);
+  
+    return () => window.removeEventListener("resize", updateHeaderHeight);
+  }, []);
+
   // Handle modal opening and closing with smooth scroll
   const handleToggleModal = () => {
     if (showModal) {
