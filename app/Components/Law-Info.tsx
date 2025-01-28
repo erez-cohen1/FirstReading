@@ -28,7 +28,7 @@ const SquaresWithText = () => {
           <img 
           src="/Vector.png"  // Path to the image in the public folder
           alt="Vector" 
-          style={{ width: '1.2rem', height: '1.2rem', marginRight: '1.5rem' }} // Space between image and squares
+          style={{ width: '1.2rem', height: '1.2rem', marginRight: '3.7rem' }} // Space between image and squares
         />
       </div>
       
