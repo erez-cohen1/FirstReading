@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import AttendanceChart from "./AttendanceChart";
 import DisplayOptions from "./DisplayOptions";
 import Modal from "./Modal";
-//import { useAttendanceData } from "./useAttendanceData";
-import { useAttendanceDataFromFile } from "./useAttendanceData";
+import { useAttendanceData } from "./useAttendanceData";
+//import { useAttendanceDataFromFile } from "./useAttendanceData";
 import { MkData } from "./MkData";
 
 
@@ -13,7 +13,7 @@ interface KnessetAttendanceProps {
 }
 
 const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) => {
-  const [mkData, loading, error] = useAttendanceDataFromFile(date);
+  const [mkData, loading, error] = useAttendanceData();
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);

@@ -1435,7 +1435,7 @@ html {
 /* Overlay for the info box */
 .mk-info-overlay {
   position: fixed;
-  top: 30%;
+  top: 40%;
   left: 0;
   border: 2px solid #0900bd;
   background: #ffead8;
@@ -1451,8 +1451,8 @@ html {
   color: #0900bd;
   width: 24.375rem;
   height: 20.84781rem;
-  border: 2px solid #0900bd;
-  position: relative;
+  border: 2px solid #0900BD;
+  position: flex;
   text-align: left;
   animation: fadeIn 0.3s ease-in-out;
 }
@@ -1466,12 +1466,12 @@ html {
 .mk-info-item {
   position: relative;
   top: 20%;
-  left: 35%;
+  right: 5%;
   color: #0900bd;
   background: var(--component-bg-color);
   text-align: center;
   font-family: "VC_NarkisBlock-Regular";
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: 100%; /* 0.8125rem */
@@ -1482,7 +1482,6 @@ html {
   width: 5.25rem;
   height: 9.56256rem;
   flex-shrink: 0;
-  border: 1px solid #0900bd;
 }
 
 /* Image styling */
@@ -1496,22 +1495,53 @@ html {
 /* Detail styling */
 .mk-info-detail {
   position: relative;
-  top: 0%;
-  bottom: 80%;
-  right: 10%;
+  color: #0900BD;
+  text-align: right;
+  bottom: 40%;
+  right: 30%;
   font-size: 1rem;
+  line-height: 100%; /* 1rem */
   margin-bottom: 0.5rem;
 }
+
+.roles-list {
+  position: relative;
+  color: #0900BD;
+  bottom: 40%;
+  right: 27%;
+  text-align: right;
+  white-space: normal; /* Allow text to wrap */
+  overflow: hidden; /* Prevent content overflow */
+  word-wrap: break-word; /* Ensure proper word breaks */
+  word-break: break-word; /* Ensure breaking at word boundaries */
+  max-width: 90%; /* Limit width to avoid overflow on smaller screens */
+  margin: 1rem auto 0; /* Center the list and add spacing */
+  font-size: 1rem;
+  line-height: 1.5; /* Improve readability */
+}
+
+.roles-list p {
+  margin-bottom: 0.3rem;
+  overflow-wrap: break-word; /* Ensure proper breaking of long text */
+}
+
+.roles-list h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: right;
+}
+
+
 
 /* Close button */
 .mk-info-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 1rem;
+  left: 1rem;
   background: transparent;
-  border: none;
+  border: solid transparent;
   font-size: 1.5rem;
-  color: #ff4500;
+  color: var(--global-bg-color);
   cursor: pointer;
 }
 
@@ -1531,11 +1561,6 @@ html {
   }
 }
 
-.mk-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .mk-name {
   min-height: 20%;
