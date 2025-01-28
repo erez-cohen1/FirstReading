@@ -65,8 +65,8 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
         </a>
       </header>
       <main className="Component-main" id="Attendance-main">
-        <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} />
-        <AttendanceChart mkData={mkData} displayOption={displayOption} modalRef={modalRef} />
+        <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} modalRef={modalRef} />
+        <AttendanceChart mkData={mkData} displayOption={displayOption} />
         {/* <NonMkChart mkData={mkData} govData={govData} displayOption={displayOption} modalRef={modalRef} /> */}
         <div className={`Component-footer attendance ${showModal ? "modal-active" : ""} ${isShrunk ? "" : "footer-big-header-stick"}`}>
           <div className="footer-text">לרשימה המלאה</div>
