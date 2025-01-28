@@ -1560,7 +1560,7 @@ html {
 
 
 /* Overlay */
-.modal-overlay {
+.modal-overlay2{
   position: fixed;
   top: 0;
   left: 0;
@@ -1574,7 +1574,7 @@ html {
 }
 
 /* Modal content */
-.modal-content {
+.modal-content2 {
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -1587,7 +1587,7 @@ html {
 }
 
 /* Overlay background */
-.overlay {
+.overlay2 {
   position: fixed;
   top: 0;
   left: 0;
