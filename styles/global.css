@@ -745,7 +745,7 @@ html {
 .Component-footer.attendance.modal-active {
   position: sticky;
   width: 100%;
-  top: 30.5%;
+  top: calc(var(--total-first-headers-height-small) + calc(var(--sticky-header-height)) - 0.3rem);
   z-index: 6;
   border: transparent;
   padding: 0, 0, 0, 0;
@@ -1452,8 +1452,8 @@ html {
 /* Overlay for the info box */
 .mk-info-overlay {
   position: fixed;
-  top: 40%;
-  left: 0;
+  top: 34%;
+  left: 5%;
   border: 2px solid #0900bd;
   background: #ffead8;
   display: flex;
