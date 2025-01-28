@@ -7,12 +7,14 @@ interface DisplayOptionsProps {
   setDisplayOption: React.Dispatch<
     React.SetStateAction<"all" | "coalition" | "opposition" | "goverment">
   >;
+  modalRef: React.RefObject<HTMLDivElement>;
 }
 
 const DisplayOptions: React.FC<DisplayOptionsProps> = ({
   mkData,
   displayOption,
   setDisplayOption,
+  modalRef
 }) => {
   const indicatorRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +50,7 @@ const DisplayOptions: React.FC<DisplayOptionsProps> = ({
   const counts = getCounts();
 
   return (
-    <div className="display-options">
+    <div className="display-options" ref={modalRef}>
       {/* Indicator */}
       <div className="indicator" ref={indicatorRef}></div>
       <button

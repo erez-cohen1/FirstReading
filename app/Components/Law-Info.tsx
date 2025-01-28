@@ -8,29 +8,20 @@ const SquaresWithText = () => {
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',border: '0.2rem solid #0900BD', margin: '0.3rem', padding: '0.8rem', backgroundColor: '#ffead8', width: 'fit-content'
-    }}>
+    <div className='law-popup-div'>
       {/* Displaying the squares */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
         {numbers.map((num, index) => (
           <div
             key={index}
+            className='law-popup-squeres'
             style={{
-              width: '1.1rem',
-              height: '1.1rem',
-              margin: '0.2rem',
               backgroundColor: index === 0 ? '#FF6700' : 'transparent', // Fill only the first square (most right square)
-              border: '1.4px solid #0900BD',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontSize: '1rem',
-              fontWeight: 'normal',
+              color: index === 0 ? 'white' : '#0900BD', // Change the text color of the filled square
             }}
           >
             {num}
           </div>
-          
           
         ))}
           {/* Adding the image (Vector.png) to the left of the squares */}
@@ -42,9 +33,9 @@ const SquaresWithText = () => {
       </div>
       
       {/* Displaying the rows of text */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', fontWeight: 'normal' }}>
+      <div className='law-popup-text'>
         {texts.map((text, index) => (
-          <p key={index}>{text}</p>
+          <p key={index} style={{marginBottom:"0.2rem"}}>{text}</p>
         ))}
       </div>
     </div>

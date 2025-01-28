@@ -16,6 +16,8 @@ type Vote = {
   inFavor: number;
   against: number;
   abstain: number;
+  numVoted: number;
+  numInPlenum: number;
 };
 
 type Voter = {
@@ -107,6 +109,13 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
             const abstainCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "נמנע");
             const abstain = abstainCounter ? abstainCounter.countOfResult : 0;
 
+            const presentAndNotVotedCounter = voteDetails.VoteCounters.find((counter: any) => counter.Title === "נוכח ולא הצביע");
+            const presentAndNotVoted = presentAndNotVotedCounter ? presentAndNotVotedCounter.countOfResult : 0;
+
+            // Calculate num1 (בעד, נגד, נמנע) and num2 (בעד, נגד, נמנע, נוכח ולא הצביע)
+            const numVoted = inFavor + against + abstain;
+            const numInPlenum = inFavor + against + abstain + presentAndNotVoted;
+
             return {
               ...vote,
               AcceptedText: acceptanceText,
@@ -115,9 +124,19 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
               inFavor,
               against,
               abstain,
+              numVoted,
+              numInPlenum
             };
           })
         );
+
+      // Initialize voter filters with "בעד" as the default
+      const initialFilters = votesWithDetails.reduce((filters: Record<number, string>, vote: any) => {
+        filters[vote.VoteId] = "בעד";
+        return filters;
+      }, {});
+
+      setVoterFilters(initialFilters); // Set the default filters
 
         setVoteData({ Table: votesWithDetails });
       } catch (error) {
@@ -132,18 +151,18 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
     setExpandedVoteId(expandedVoteId === voteId ? null : voteId);
   };
 
-  const handleVoterFilterChange = (voteId: number, newFilter: string) => {
-    setVoterFilters((prev) => {
-      const currentFilter = prev[voteId];
-      if (currentFilter === newFilter) {
-        return prev; // No changes if clicked again on the same button
-      }
-      return {
-        ...prev,
-        [voteId]: newFilter,
-      };
-    });
-  };
+    const handleVoterFilterChange = (voteId: number,   newFilter: string) => {
+      setVoterFilters((prev) => {
+        const currentFilter = prev[voteId];
+        if (currentFilter === newFilter) {
+          return prev; // No changes if clicked again on the same button
+        }
+        return {
+          ...prev,
+          [voteId]: newFilter,
+        };
+      });
+    };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -193,7 +212,11 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                     <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
                   </div>
                   <div className="vote-infograph-div">
-                    <h3>{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</h3>
+                    <div>
+                    <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
+                    <p>{vote.numVoted}/{vote.numInPlenum}</p>
+                    <p>הצביעו</p>
+                    </div>
                     <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
                   </div>
                   {expandedVoteId === vote.VoteId && (
@@ -202,6 +225,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                       <p className="law-status">
                         <strong>החלטה:</strong> {vote.Decision || "N/A"}
                       </p>
+                      
                       {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
                       {searchBar(searchTerm, handleSearchChange)}
                       {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}
@@ -244,7 +268,7 @@ function filteringButtons(
       <div className="vote-display-options">
         <button
           onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
-          className={voterFilters[vote.VoteId] === "בעד" ? "active" : ""}
+          className={(voterFilters[vote.VoteId] || "בעד") === "בעד" ? "active" : ""}
         >
           <div className="vote-button-content">
             <div className="vote-button-number">{vote.inFavor}</div>
@@ -284,7 +308,7 @@ function displayResults(
 
   return (
     <div>
-      <p style={{ marginBottom: "0.5rem", fontSize: "1.4rem", fontWeight: "bold", marginTop: "1.2rem" }}>{label}</p>
+      <p className="vote-label">{label}</p>
       <div
         style={{
           display: "flex",
@@ -318,7 +342,7 @@ function displayResults(
                   }}
                 />
               )}
-              <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{voter.MkName}</p>
+              <p className="law-value">{voter.MkName}</p>
             </div>
           );
         })}

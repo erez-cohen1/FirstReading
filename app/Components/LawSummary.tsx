@@ -101,6 +101,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
               i
             </div>
           </div>
+
           {/* Conditionally render the SquaresWithText component with fade-in effect */}
           {openSquaresWithText && (
             <div className="modal-overlay-laws-info" onClick={toggleSquaresWithText}>
@@ -110,7 +111,6 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
             </div>
           )}
         </div>
-
         <section className="law-section" id="General-Assembly">
           <td className="law-horizontal-line"> </td>
           <br />
@@ -125,11 +125,10 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                   <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
                 </summary>
 
-                <div style={{ marginTop: "10px" }}>
+                <div style={{ marginTop: "1rem" }}>
                   {Object.entries(item)
                     .filter(
-                      ([key, value]) =>
-                        value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
+                      ([key, value]) => key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
                     )
                     .map(([key, value]) => (
                       <p key={key} style={{ margin: "0.5rem 0" }}>
@@ -137,20 +136,24 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                           {columnNames[key] || key}
                           <br />
                         </p>{" "}
-                        {key === "initiatorsfullnames"
-                          ? null
-                          : key === "StartDate"
-                          ? formatDate(value as string)
-                          : (value as string)}
+                        <span className="law-value">
+                          {key === "initiatorsfullnames"
+                            ? value === null
+                              ? "אין עדיין מידע על יוזמי החוק."
+                              : null
+                            : value === null
+                            ? "אין עדיין תקציר לחוק."
+                            : (value as string)}
+                        </span>
                       </p>
                     ))}
+
                   {item.initiatorsfullnames && (
                     <div
                       style={{
                         display: "flex",
                         flexWrap: "wrap",
                         gap: "0.5rem",
-                        marginTop: "0.5rem",
                       }}
                     >
                       {item.initiatorsfullnames.split(",").map((name: string) => {
@@ -177,7 +180,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                                 }}
                               />
                             )}
-                            <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{name}</p>
+                            <span className="law-value">{name}</span>
                           </div>
                         );
                       })}

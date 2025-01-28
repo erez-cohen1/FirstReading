@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MkData } from "./MkData";
 import MemberCard from "./MemberCard";
+import MkInfo from "./MkInfo";
 
 interface ModalProps {
   mkData: MkData[];
@@ -13,6 +14,25 @@ const Modal: React.FC<ModalProps> = ({ mkData, displayOption, showModal, modalRe
   const [isArrowVisible, setIsArrowVisible] = useState(true);
   const arrowRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
+  const [activeWindow, setActiveWindow] = useState<Window | null>(null);
+  const [selectedMk, setSelectedMk] = useState<MkData | null>(null);
+
+  const handleActivate = (mk: MkData) => {
+    setSelectedMk(mk); // Show the `mk-info` box
+  };
+
+  const handleClose = () => {
+    setSelectedMk(null); // Close the `mk-info` box
+  };
+
+  // Close any open window when unmounting
+  React.useEffect(() => {
+    return () => {
+      if (activeWindow) {
+        activeWindow.close();
+      }
+    };
+  }, [activeWindow]);
 
   // Filter data based on the display option
   const filteredData =
@@ -75,9 +95,12 @@ const Modal: React.FC<ModalProps> = ({ mkData, displayOption, showModal, modalRe
                   .slice()
                   .sort((a, b) => (b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1))
                   .map((mk) => (
-                    <MemberCard key={mk.MkId} mk={mk} />
+                    <MemberCard
+                      key={mk.MkId} mk={mk} onActivate={handleActivate} 
+                    />
                   ))}
               </div>
+              <MkInfo mk={selectedMk} onClose={handleClose} />
             </div>
           ))}
         </div>
