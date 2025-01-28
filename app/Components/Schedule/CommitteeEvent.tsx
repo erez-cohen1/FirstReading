@@ -60,7 +60,7 @@ export default function CommitteeEventComp({
             <div className="Schedule-vertical-line"></div>
           </td>
         ) : null}
-        <td className="schedule-event-cell-opened" id={`committee-event-summary${event.id}`}>
+        <td className="schedule-event-cell-opened" id={`ommittee-event-summary${event.id}`}>
           <details onToggle={handleToggle}>
             <summary>
               <div>

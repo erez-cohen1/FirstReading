@@ -103,7 +103,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
           </div>
           {/* Conditionally render the SquaresWithText component with fade-in effect */}
           {openSquaresWithText && (
-            <div className="overlay" onClick={toggleSquaresWithText}>
+            <div className="modal-overlay-laws-info" onClick={toggleSquaresWithText}>
               <div className="popup">
                 <SquaresWithText />
               </div>
