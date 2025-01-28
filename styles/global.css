@@ -1477,20 +1477,30 @@ html {
 }
 
 .law-name {
-  font-weight: normal;
+  font-family: "VC_NarkisBlock-Regular", sans-serif;
+  font-weight:lighter;
   max-width: 55%; /* Ensure the name takes up appropriate width */
   margin-left: 1rem;
+  
 }
 
 .law.open .law-name {
-  font-weight: bold; /* Make name bold when open */
   max-width: 90%; /* Adjust max-width when open */
   margin-bottom: 1rem;
+  font-family: "VC_NarkisBlock-Bold";
 }
 
 .law-status {
   color: var(--color-secondary);
+  font-family: "VC_NarkisBlock-Regular", sans-serif;
+  margin-bottom: 0.6rem;
 }
+.law-value{
+  font-family: "VC_NarkisBlock-Regular", sans-serif;
+  color: var(--global-bg-color);
+}
+
+
 
 .arrow {
   transition: transform 0.3s ease;
@@ -1505,6 +1515,7 @@ html {
 }
 
 .vote-infograph-div {
+  font-family: "VC_NarkisBlock-Regular";
   margin-top: 2rem;
   display: flex;
   flex-direction: row;
@@ -1524,13 +1535,14 @@ html {
 }
 
 .vote-name {
+  font-family: "VC_NarkisBlock-Regular";
   font-weight: normal;
   width: 90%; /* Ensure the name takes up appropriate width */
   margin-left: 1rem;
 }
 
 .vote.open .vote-name {
-  font-weight: bold; /* Make name bold when open */
+  font-family: "VC_NarkisBlock-bold";
   max-width: 90%; /* Adjust max-width when open */
 }
 
@@ -1545,7 +1557,7 @@ html {
   position: relative; /* For positioning the indicator */
 }
 
-.vote-display-options button {
+.vote-display-options button {  
   flex: 1; /* Default flex size for all buttons */
   margin-bottom: 1rem; /* Adjust margin for spacing */
   position: relative;
@@ -1615,6 +1627,12 @@ html {
   padding-right: 0.5rem;
   font-size: 1rem; /* Responsive font size */
   background: transparent;
+  font-family: "VC_NarkisBlock-Regular";
+}
+
+.vote-search-bar::placeholder {
+  font-family: "VC_NarkisBlock-Regular";
+  font-size: 1rem; /* Optional: Adjust the font size if needed */
 }
 
 /* Styling for the button */
@@ -1652,6 +1670,7 @@ html {
 }
 
 .law-header{
+  font-family: "VC_NarkisBlock-Regular";
   color: #0900BD;
   display: flex;
   flex-direction: row;
@@ -1746,3 +1765,59 @@ Modal content
   border: 0.1rem solid #0900BD; /* Added blue border */
 }
 
+.law-popup-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: normal;
+  font-family: "VC_NarkisBlock-Regular", sans-serif; /* Added fallback font */
+}
+
+.law-popup-squeres {
+  font-family: "VC_NarkisBlock-Regular", sans-serif; /* Added fallback font */
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0.15rem;
+  border: 1.4px solid #0900BD;
+  display: flex;
+  justify-content:center;
+  align-items:end;
+  font-size: 1rem;
+  font-weight: normal;
+
+}
+
+.law-popup-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0.2rem solid #0900BD;
+  margin: 0.3rem;
+  padding: 0.4rem;
+  background-color: #ffead8;
+  width: fit-content;
+}
+
+.vote-button-content{
+  display: flex;
+  flex-direction: column;
+  font-family: "VC_David-Regular";
+  font-size:large;  
+}
+
+.vote-button-number{
+  font-size:xx-large
+}
+
+.vote-label {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1.2rem;
+  font-family: "VC_David-Regular";
+}
+
+.vote-result-text{
+  font-family: "VC_David-bold";
+  color:"var(--global-bg-color)" ;
+}

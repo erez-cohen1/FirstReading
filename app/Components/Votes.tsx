@@ -193,7 +193,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                     <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
                   </div>
                   <div className="vote-infograph-div">
-                    <h3>{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</h3>
+                    <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
                     <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
                   </div>
                   {expandedVoteId === vote.VoteId && (
@@ -284,7 +284,7 @@ function displayResults(
 
   return (
     <div>
-      <p style={{ marginBottom: "0.5rem", fontSize: "1.4rem", fontWeight: "bold", marginTop: "1.2rem" }}>{label}</p>
+      <p className="vote-label">{label}</p>
       <div
         style={{
           display: "flex",
@@ -318,7 +318,7 @@ function displayResults(
                   }}
                 />
               )}
-              <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{voter.MkName}</p>
+              <p className="law-value">{voter.MkName}</p>
             </div>
           );
         })}

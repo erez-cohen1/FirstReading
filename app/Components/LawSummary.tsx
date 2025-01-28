@@ -100,7 +100,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
             >
               i
             </div>
-          </div>
+        </div>
+      
           {/* Conditionally render the SquaresWithText component with fade-in effect */}
           {openSquaresWithText && (
             <div className="modal-overlay-laws-info" onClick={toggleSquaresWithText}>
@@ -109,7 +110,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
               </div>
             </div>
           )}
-        </div>
+      </div>
 
 
         <section className="law-section" id="General-Assembly">
@@ -140,11 +141,14 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                           {columnNames[key] || key}
                           <br />
                         </p>{" "}
+                        <span className="law-value">
                         {key === "initiatorsfullnames"
                           ? null
                           : key === "StartDate"
                           ? formatDate(value as string)
                           : (value as string)}
+                        </span>
+
                       </p>
                     ))}
                   {item.initiatorsfullnames && (
@@ -153,7 +157,6 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                         display: "flex",
                         flexWrap: "wrap",
                         gap: "0.5rem",
-                        marginTop: "0.5rem",
                       }}
                     >
                       {item.initiatorsfullnames.split(",").map((name: string) => {
@@ -180,7 +183,9 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                                 }}
                               />
                             )}
-                            <p style={{ margin: "0.1rem 0", fontSize: "1rem" }}>{name}</p>
+                            <span className="law-value">
+                              {name}
+                            </span>
                           </div>
                         );
                       })}
