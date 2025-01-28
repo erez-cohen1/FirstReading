@@ -111,8 +111,6 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
             </div>
           )}
       </div>
-
-
         <section className="law-section" id="General-Assembly">
           <td className="law-horizontal-line"> </td>
           <br />
@@ -132,9 +130,9 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                   <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
                 </summary>
 
-                <div style={{ marginTop: "10px" }}>
+                <div style={{ marginTop: "1rem" }}>
                   {Object.entries(item)
-                    .filter(([key, value]) => value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
+                    .filter(([key, value]) =>key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
                     .map(([key, value]) => (
                       <p key={key} style={{ margin: "0.5rem 0" }}>
                         <p className="law-status">
@@ -143,14 +141,13 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                         </p>{" "}
                         <span className="law-value">
                         {key === "initiatorsfullnames"
-                          ? null
-                          : key === "StartDate"
-                          ? formatDate(value as string)
-                          : (value as string)}
+                        ? (value === null ? "אין עדיין מידע על יוזמי החוק." : null)
+                        : (value === null ? "אין עדיין תקציר לחוק." : (value as string))}
                         </span>
-
                       </p>
                     ))}
+
+                    
                   {item.initiatorsfullnames && (
                     <div
                       style={{

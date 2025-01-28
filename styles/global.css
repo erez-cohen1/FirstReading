@@ -26,6 +26,11 @@
   font-family: "VC_NarkisBlock-Bold";
   src: url("/VC_NarkisBlock-Bold.otf") format("opentype");
 }
+
+@font-face {
+  font-family: "VC_Kislev-Regular";
+  src: url("/VC_Kislev-Regular.otf") format("opentype");
+}
 html {
   scroll-behavior: smooth;
 }
@@ -1858,6 +1863,7 @@ Modal content
 }
 
 .law-blue-squere {
+  font-family: "VC-KIS";
   width: 1.2rem;
   height: 1.2rem;
   background-color: transparent; /* Transparent background */
