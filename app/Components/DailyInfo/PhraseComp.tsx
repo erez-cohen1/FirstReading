@@ -36,13 +36,11 @@ export default function PhraseComp({
   };
   return (
     <>
-      {index != 0 ? (
-        <tr>
-          <td className="info-table-horizontal-separator">
-            <div className="daily-info-line"></div>
-          </td>
-        </tr>
-      ) : null}
+      <tr>
+        <td className="info-table-horizontal-separator">
+          <div className="daily-info-line"></div>
+        </td>
+      </tr>
       <tr key={index} className="info-event-row">
         <td className="info-event-cell-opened" ref={summaryRef}>
           <details onToggle={handleToggle}>

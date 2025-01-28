@@ -31,7 +31,7 @@ export default function AllPhrasesComp({
       const detailsList: NodeListOf<HTMLDetailsElement> = document.querySelectorAll("details");
       // Close all other details elements.
       detailsList.forEach((details) => {
-        if (details.textContent != target.textContent) {
+        if (details.textContent != target.textContent && details.id == target.id) {
           details.open = false;
         }
       });
@@ -48,7 +48,7 @@ export default function AllPhrasesComp({
       ) : null}
       <tr key={index} className="info-event-row">
         <td className="info-event-cell-opened" ref={summaryRef}>
-          <details onToggle={handleToggle}>
+          <details id="info-all-phrases" onToggle={handleToggle}>
             <summary>
               <div className="info-all-phrases-title white">
                 <h3>{name}</h3>
@@ -56,15 +56,18 @@ export default function AllPhrasesComp({
               <i className="arrow down white"></i>
             </summary>
             {phrases.map((phrase, index) => (
-              <details key={index}>
-                <summary>
-                  <div className="info-event-title">
-                    <h3>{phrase.term}</h3>
-                  </div>
-                  <i className="arrow down white"></i>
-                </summary>
-                <p>{phrase.explanation}</p>
-              </details>
+              <>
+                <div className="daily-info-line"></div>
+                <details key={index} onToggle={handleToggle}>
+                  <summary className="info-event-summary">
+                    <div className="info-event-title">
+                      <h3>{phrase.term}</h3>
+                    </div>
+                    <i className="arrow down white"></i>
+                  </summary>
+                  <p>{phrase.explanation}</p>
+                </details>
+              </>
             ))}
           </details>
         </td>
