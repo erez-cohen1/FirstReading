@@ -722,10 +722,14 @@ html {
   .Component-footer.attendance.modal-active {
     position: sticky;
     width: 100%;
-    top: 0%;
-    z-index: 6; /* Ensures it stays above other elements */
+    top: 30%;
+    z-index: 1000; /* Ensures it stays above other elements */
     border: transparent;
     padding: 0,0,0,0;
+  }
+
+  .footer-big-header-stick{
+    top: 60%;
   }
 
 .expand-component {
