@@ -1616,7 +1616,7 @@ html {
 .law-status {
   color: var(--color-secondary);
   font-family: "VC_NarkisBlock-Regular", sans-serif;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.2rem;
 }
 .law-value{
   font-family: "VC_NarkisBlock-Regular", sans-serif;
@@ -1715,7 +1715,7 @@ html {
 
 /* Style for active buttons */
 .vote-display-options button.active {
-  color: white; /* Change text color for active button */
+  color: var(--component-bg-color); /* Change text color for active button */
   background-color: #0900bd;
 }
 
@@ -1727,6 +1727,7 @@ html {
 }
 
 .vote-search-bar {
+  align-self: center;
   font-family: "VC_NarkisBlock-Regular";
   font-size: 1rem;
   font-style: normal;
@@ -1738,7 +1739,7 @@ html {
   padding: 0.2rem 0.5rem; /* Adjust padding with rem units */
   border: 0.15rem solid var(--global-bg-color); /* 1px in rem */
   margin-bottom: 0.2rem; /* Space below the search bar */
-  width: 100%; /* Full width for mobile screens */
+  width: 95%; /* Full width for mobile screens */
 }
 
 .vote-search-bar input {
@@ -1815,17 +1816,18 @@ html {
 
 /* Overlay */
 .modal-overlay-laws-info {
-  position: fixed;
+  position:fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); /* Adds a subtle shadow around the modal */
 }
+
 
 Modal content
 .modal-content {
@@ -1875,7 +1877,7 @@ Modal content
 }
 
 .law-blue-squere {
-  font-family: "VC-KIS";
+  font-family: "VC_Kislev-Regular";
   width: 1.2rem;
   height: 1.2rem;
   background-color: transparent; /* Transparent background */
@@ -1934,6 +1936,7 @@ Modal content
 }
 
 .vote-label {
+  margin-right: 0.6rem;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
   font-weight: bold;
