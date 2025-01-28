@@ -723,7 +723,7 @@ html {
     position: sticky;
     width: 100%;
     top: 30%;
-    z-index: 1000; /* Ensures it stays above other elements */
+    z-index: 6;
     border: transparent;
     padding: 0,0,0,0;
   }
