@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { MkData } from "./MkData";
 import { govData } from "./posData";
-import mkDetails from "./mk_Data261.json";
+import mkDetails from "./mk_Data281.json";
 
 export const useAttendanceData = (): [MkData[], boolean, string | null] => {
   const [data, setData] = useState<MkData[]>([]);
@@ -16,33 +16,37 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
 
         const json = await response.json();
         setData(
-          json.mks.map((mk: any) => ({
-            MkId: mk.MkId,
-            IsPresent: mk.IsPresent,
-            IsCoalition: mk.IsCoalition,
-            Name: `${mk.Firstname} ${mk.Lastname}`,
-            MkImage: mk.ImagePath,
-            FactionName: mk.FactionName,
-            Phone: mk.Phone,
-            isGoverment: json.governmentPositions.some(
-              (position: any) => position.IsMk && position.MkId === mk.MkId
-            ),
-          }))
+          json.mks.map((mk: any) => {
+            // Extract roles for the current MK
+            const rolesList = json.knessetPositions
+              .filter((position: any) => position.MkId === mk.MkId)
+              .map((position: any) => position.RoleName);
 
-          
+            return {
+              MkId: mk.MkId,
+              IsPresent: mk.IsPresent,
+              IsCoalition: mk.IsCoalition,
+              Name: `${mk.Firstname} ${mk.Lastname}`,
+              MkImage: mk.ImagePath,
+              FactionName: mk.FactionName,
+              Phone: mk.Phone,
+              Mail: mk.Email, // Add Mail field
+              RolesList: rolesList, // Add RolesList field
+              isGoverment: json.governmentPositions.some(
+                (position: any) => position.IsMk && position.MkId === mk.MkId
+              ),
+            };
+          })
         );
 
-        // Add entries from json.governmentPositions where IsMk is false
-        const nonMkGovernmentPositions = json.governmentPositions.map((position: any) => (
-          {
-            MkId: position.MkId,
-            IsPresent: position.IsPresent,
-            mkImage: position.ImagePath,
-            PositionName: position.RoleName,
-            IsMk: position.IsMk
-          }));
-
-        
+        // // Handle non-MK government positions, if needed
+        // const nonMkGovernmentPositions = json.governmentPositions.map((position: any) => ({
+        //   MkId: position.MkId,
+        //   IsPresent: position.IsPresent,
+        //   mkImage: position.ImagePath,
+        //   PositionName: position.RoleName,
+        //   IsMk: position.IsMk,
+        // }));
       } catch (err) {
         setError((err as Error).message);
       } finally {
@@ -51,8 +55,8 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
     };
 
     fetchAttendanceData();
-    
   }, []);
+
   console.log(JSON.stringify(data, null, 2));
   return [data, loading, error];
 };
@@ -92,6 +96,8 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
               Phone: mk.Phone,
               isGoverment: mk.isGoverment,
               IsPresent: attendance ? attendance.IsPresent : false, // Default to false if not found
+              Mail: mk.Mail,
+              RolesList: mk.RolesList
             };
           });
         }

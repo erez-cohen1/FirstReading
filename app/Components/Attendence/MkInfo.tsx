@@ -31,18 +31,32 @@ const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
   return (
     <div className="mk-info-overlay">
       <div className="mk-info" ref={infoRef}>
-        <button className="mk-info-close" onClick={onClose}>
+        <div className="mk-info-close" onClick={onClose}>
           ✖
-        </button>
-            <div className="mk-info-item">
-                <img
-                    src={mk.MkImage}
-                    alt={mk.Name}
-                    className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
-                />
-                <div className="mk-name">{mk.Name}</div>
+        </div>
+        <div className="mk-info-item">
+          <img
+            src={mk.MkImage}
+            alt={mk.Name}
+            className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
+          />
+          <div className="mk-name">{mk.Name}</div>
+        </div>
+        <p className="mk-info-detail">{mk.Phone}</p>
+        <p className="mk-info-detail">{mk.Mail}</p>
+  
+        {/* RolesList Section */}
+        <div className="roles-list">  
+          {mk.RolesList.length > 0 ? (
+            <div>
+              {mk.RolesList.map((role, index) => (
+                <p key={index}>{role}</p>
+              ))}
             </div>
-        <p className="mk-info-detail"><strong>טלפון</strong> {mk.Phone}</p>
+          ) : (
+            <p>לחבר הכנסת אין תפקידים מיוחדים בכנסת</p>
+          )}
+        </div>
       </div>
     </div>
   );

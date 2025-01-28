@@ -2,7 +2,15 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import WheelDatePicker from "./WheelDatePicker";
 
-export default function DateSelector({ date, setDate }: { date: Date; setDate: Dispatch<SetStateAction<Date>> }) {
+export default function DateSelector({
+  date,
+  setDate,
+  topRef,
+}: {
+  date: Date;
+  setDate: Dispatch<SetStateAction<Date>>;
+  topRef: React.RefObject<HTMLDivElement>;
+}) {
   const [showWheels, setShowWeels] = useState(false);
 
   // const dateStrparsed = date.toISOString().split("T")[0];
@@ -12,6 +20,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
   const today = new Date();
   const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000); // Subtract 1 day in milliseconds
   const dayBeforeYesterday = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000); // Subtract 2 days in milliseconds
+  // const element = document.getElementById("top");
 
   return (
     <div className="date-selector-wrapper">
@@ -21,6 +30,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
             onClick={() => {
               setDate(today);
               setShowWeels(false);
+              topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
             className={`date-selector${date.toDateString() == today.toDateString() && !showWheels ? " selected" : ""}`}
           >
@@ -37,6 +47,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
             onClick={() => {
               setDate(yesterday);
               setShowWeels(false);
+              topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
             className={`date-selector${date.toDateString() == yesterday.toDateString() && !showWheels ? " selected" : ""}`}
           >
@@ -55,6 +66,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
             onClick={() => {
               setDate(dayBeforeYesterday);
               setShowWeels(false);
+              topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
             className={`date-selector${
               date.toDateString() == dayBeforeYesterday.toDateString() && !showWheels ? " selected" : ""
@@ -74,7 +86,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
           </button>
         </div>
       </div>
-      {showWheels && <WheelDatePicker date={date} setDate={setDate} setShow={setShowWeels}></WheelDatePicker>}
+      {showWheels && <WheelDatePicker date={date} setDate={setDate} setShow={setShowWeels} topRef={topRef}></WheelDatePicker>}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { ScheduleEventType, ScheduleData, CommitteeEvent, PlenumEvent, KnsEvent 
 import CommitteeEventComp from "./CommitteeEvent";
 import PlenumEventComp from "./PlenumEvent";
 import KnsEventComp from "./KnsEvent";
+import LoadingGif from "../../../basic_loading.gif";
 
 export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boolean }) {
   const [loading, setLoading] = useState(true);
@@ -69,6 +70,7 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
         </header>
         <main className="Component-main" id="Schedule-main">
           <br />
+          {/* <img src={"/basic_loading_gif.gif"} alt="loading" className="loading-gif" /> */}
           <h3 style={{ textAlign: "center" }}>טוען את סדר היום...</h3>
           <br />
         </main>
