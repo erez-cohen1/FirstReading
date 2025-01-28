@@ -88,15 +88,15 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
         </a>
       </header>
       <main className="Component-main" id="LawSummary-main">
-      <div className="law-header">
-        <p>שם ההצעה</p>
-        <div style={{ display: 'flex' }}>
-            <p style={{ marginLeft: '1rem' }}>סטטוס</p>
+        <div className="law-header">
+          <p>שם ההצעה</p>
+          <div style={{ display: "flex" }}>
+            <p style={{ marginLeft: "1rem" }}>סטטוס</p>
             {/* Blue square with "i" */}
             <div
               className="law-blue-squere"
               onClick={toggleSquaresWithText} // Click to toggle SquaresWithText visibility
-              style={{ marginLeft: '6rem' }} // Add margin to the square from the left
+              style={{ marginLeft: "6rem" }} // Add margin to the square from the left
             >
               i
             </div>
@@ -111,21 +111,15 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
           )}
         </div>
 
-
         <section className="law-section" id="General-Assembly">
           <td className="law-horizontal-line"> </td>
           <br />
           {sortedData.map((item, index) => (
             <div key={index} className="schedule-event-cell-opened">
-              <details
-                open={openIndexes.has(index)}
-                onToggle={() => toggleDetails(index)}
-              >
+              <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
                 <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
                   <div className="law-content">
-                    <div className="law-name">
-                      {item.billname}
-                    </div>
+                    <div className="law-name">{item.billname}</div>
                     <SquareFillComponent text={item.statusdesc} />
                   </div>
                   <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
@@ -133,7 +127,10 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
 
                 <div style={{ marginTop: "10px" }}>
                   {Object.entries(item)
-                    .filter(([key, value]) => value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
+                    .filter(
+                      ([key, value]) =>
+                        value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
+                    )
                     .map(([key, value]) => (
                       <p key={key} style={{ margin: "0.5rem 0" }}>
                         <p className="law-status">

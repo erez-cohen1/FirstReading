@@ -6,6 +6,7 @@ import KnessetAttendance from "./Components/Attendence/KnessetAttendance";
 import DateComponent from "./Components/Date/Date";
 import LawSummary from "./Components/LawSummary";
 import DailyInfo from "./Components/DailyInfo/DailyInfo";
+import Credits from "./Components/Credits/Credits";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -24,12 +25,14 @@ export default function Home() {
     };
   }, []);
   return (
-    <main className="main-page">
+    <main className="main-page" id="top">
       <section className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
-        <h1>
-          קריאה {!isShrunk && <br />}
-          ראשונה
-        </h1>
+        <a href="#top">
+          <h1>
+            קריאה {!isShrunk && <br />}
+            ראשונה
+          </h1>
+        </a>
         <section className="Date">
           <DateComponent date={date}></DateComponent>
           <DateSelector date={date} setDate={setDate}></DateSelector>
@@ -40,9 +43,11 @@ export default function Home() {
       {/* <div className="hidden-div"></div> */}
       <Schedule date={date} isShrunk={isShrunk}></Schedule>
       <LawSummary queryId={1433} isShrunk={isShrunk}></LawSummary>
-      {/* <LawCount></LawCount> */}
       <Votes date={date} isShrunk={isShrunk}></Votes>
-      <DailyInfo isShrunk={isShrunk}></DailyInfo>
+      {/* {date.toDateString() != new Date(Date.now()).toDateString() && <Votes date={date} isShrunk={isShrunk}></Votes>} */}
+      <DailyInfo headerNum={5} isShrunk={isShrunk}></DailyInfo>
+      {/* <DailyInfo headerNum={date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4} isShrunk={isShrunk}></DailyInfo> */}
+      <Credits></Credits>
     </main>
   );
 }

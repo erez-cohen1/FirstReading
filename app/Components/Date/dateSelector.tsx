@@ -12,6 +12,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
   const today = new Date();
   const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000); // Subtract 1 day in milliseconds
   const dayBeforeYesterday = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000); // Subtract 2 days in milliseconds
+  const element = document.getElementById("top");
 
   return (
     <div className="date-selector-wrapper">
@@ -21,6 +22,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
             onClick={() => {
               setDate(today);
               setShowWeels(false);
+              element?.scrollIntoView();
             }}
             className={`date-selector${date.toDateString() == today.toDateString() && !showWheels ? " selected" : ""}`}
           >
@@ -37,6 +39,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
             onClick={() => {
               setDate(yesterday);
               setShowWeels(false);
+              element?.scrollIntoView();
             }}
             className={`date-selector${date.toDateString() == yesterday.toDateString() && !showWheels ? " selected" : ""}`}
           >
@@ -55,6 +58,7 @@ export default function DateSelector({ date, setDate }: { date: Date; setDate: D
             onClick={() => {
               setDate(dayBeforeYesterday);
               setShowWeels(false);
+              element?.scrollIntoView();
             }}
             className={`date-selector${
               date.toDateString() == dayBeforeYesterday.toDateString() && !showWheels ? " selected" : ""
