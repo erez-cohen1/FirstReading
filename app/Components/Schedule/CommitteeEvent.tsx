@@ -23,7 +23,8 @@ export default function CommitteeEventComp({
   const handleToggle = (e: React.SyntheticEvent<HTMLDetailsElement>) => {
     const target = e.currentTarget as HTMLDetailsElement;
     //closing the element
-    if (!target.open && !isVisible) {
+    // console.log(isVisible);
+    if (!target.open) {
       summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (target.open) {
       // opening the element
@@ -41,7 +42,7 @@ export default function CommitteeEventComp({
       {event.id != 0 ? (
         <tr>
           <td></td>
-          <td colSpan={2} className="Schedule-table-horizontal-separator" ref={summaryRef}>
+          <td colSpan={2} className="Schedule-table-horizontal-separator">
             <div className="Schedule-horizontal-line"></div>
           </td>
         </tr>
@@ -60,7 +61,7 @@ export default function CommitteeEventComp({
             <div className="Schedule-vertical-line"></div>
           </td>
         ) : null}
-        <td className="schedule-event-cell-opened" id={`ommittee-event-summary${event.id}`}>
+        <td className="schedule-event-cell-opened" id={`committee-event-summary`} ref={summaryRef}>
           <details onToggle={handleToggle}>
             <summary>
               <div>

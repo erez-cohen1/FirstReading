@@ -88,20 +88,20 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
         </a>
       </header>
       <main className="Component-main" id="LawSummary-main">
-      <div className="law-header">
-        <p>שם ההצעה</p>
-        <div style={{ display: 'flex' }}>
-            <p style={{ marginLeft: '1rem' }}>סטטוס</p>
+        <div className="law-header">
+          <p>שם ההצעה</p>
+          <div style={{ display: "flex" }}>
+            <p style={{ marginLeft: "1rem" }}>סטטוס</p>
             {/* Blue square with "i" */}
             <div
               className="law-blue-squere"
               onClick={toggleSquaresWithText} // Click to toggle SquaresWithText visibility
-              style={{ marginLeft: '6rem' }} // Add margin to the square from the left
+              style={{ marginLeft: "6rem" }} // Add margin to the square from the left
             >
               i
             </div>
-        </div>
-      
+          </div>
+
           {/* Conditionally render the SquaresWithText component with fade-in effect */}
           {openSquaresWithText && (
             <div className="modal-overlay-laws-info" onClick={toggleSquaresWithText}>
@@ -110,31 +110,26 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
               </div>
             </div>
           )}
-      </div>
-
-
+        </div>
         <section className="law-section" id="General-Assembly">
           <td className="law-horizontal-line"> </td>
           <br />
           {sortedData.map((item, index) => (
             <div key={index} className="schedule-event-cell-opened">
-              <details
-                open={openIndexes.has(index)}
-                onToggle={() => toggleDetails(index)}
-              >
+              <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
                 <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
                   <div className="law-content">
-                    <div className="law-name">
-                      {item.billname}
-                    </div>
+                    <div className="law-name">{item.billname}</div>
                     <SquareFillComponent text={item.statusdesc} />
                   </div>
                   <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
                 </summary>
 
-                <div style={{ marginTop: "10px" }}>
+                <div style={{ marginTop: "1rem" }}>
                   {Object.entries(item)
-                    .filter(([key, value]) => value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
+                    .filter(
+                      ([key, value]) => key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
+                    )
                     .map(([key, value]) => (
                       <p key={key} style={{ margin: "0.5rem 0" }}>
                         <p className="law-status">
@@ -142,15 +137,17 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                           <br />
                         </p>{" "}
                         <span className="law-value">
-                        {key === "initiatorsfullnames"
-                          ? null
-                          : key === "StartDate"
-                          ? formatDate(value as string)
-                          : (value as string)}
+                          {key === "initiatorsfullnames"
+                            ? value === null
+                              ? "אין עדיין מידע על יוזמי החוק."
+                              : null
+                            : value === null
+                            ? "אין עדיין תקציר לחוק."
+                            : (value as string)}
                         </span>
-
                       </p>
                     ))}
+
                   {item.initiatorsfullnames && (
                     <div
                       style={{
@@ -183,9 +180,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                                 }}
                               />
                             )}
-                            <span className="law-value">
-                              {name}
-                            </span>
+                            <span className="law-value">{name}</span>
                           </div>
                         );
                       })}
