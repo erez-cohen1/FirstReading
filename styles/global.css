@@ -1672,7 +1672,7 @@ html {
 
 
 /* Overlay */
-.modal-overlay {
+.modal-overlay-laws-info {
   position: fixed;
   top: 0;
   left: 0;
@@ -1685,7 +1685,7 @@ html {
   z-index: 1000;
 }
 
-/* Modal content */
+Modal content
 .modal-content {
   background-color: white;
   padding: 2rem;
