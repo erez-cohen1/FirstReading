@@ -9,10 +9,12 @@ export default function WheelDatePicker({
   date,
   setDate,
   setShow,
+  topRef,
 }: {
   date: Date;
   setDate: Dispatch<SetStateAction<Date>>;
   setShow: Dispatch<SetStateAction<boolean>>;
+  topRef: React.RefObject<HTMLDivElement>;
 }) {
   const idxToStrMonth = (monthIndex: number) => {
     const hebrewMonths: Record<string, string> = {
@@ -107,7 +109,7 @@ export default function WheelDatePicker({
             const monthIndex = strMonthToIdx(curMonth) < 10 ? `0${strMonthToIdx(curMonth)}` : strMonthToIdx(curMonth);
             setDate(new Date(`${curYear}-${monthIndex}-${curDate}T05:10:00`));
             setShow(false);
-            element?.scrollIntoView();
+            topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
           className="date-selector-button"
         >

@@ -7,11 +7,12 @@ import DateComponent from "./Components/Date/Date";
 import LawSummary from "./Components/LawSummary";
 import DailyInfo from "./Components/DailyInfo/DailyInfo";
 import Credits from "./Components/Credits/Credits";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [date, setDate] = useState(new Date(Date.now()));
   const [isShrunk, setIsShrunk] = useState(false);
+  const topRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +26,7 @@ export default function Home() {
     };
   }, []);
   return (
-    <main className="main-page" id="top">
+    <main className="main-page" id="top" ref={topRef}>
       <section className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
         <a href="#top">
           <h1>
@@ -35,7 +36,7 @@ export default function Home() {
         </a>
         <section className="Date">
           <DateComponent date={date}></DateComponent>
-          <DateSelector date={date} setDate={setDate}></DateSelector>
+          <DateSelector date={date} setDate={setDate} topRef={topRef}></DateSelector>
           <hr />
         </section>
       </section>
