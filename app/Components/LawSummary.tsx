@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import initiatorsData from "./mkDetails.json";
+import SquaresWithText from "./Law-Info";
 import SquareFillComponent from "./LawStatusSqueres";
+
 interface LawSummaryProps {
   queryId: number;
   isShrunk: boolean;
@@ -12,7 +14,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [openIndexes, setOpenIndexes] = useState<Set<number>>(new Set()); // Tracks open items
+  const [openIndexes, setOpenIndexes] = useState<Set<number>>(new Set());
+  const [openSquaresWithText, setOpenSquaresWithText] = useState(false); // State to control the visibility of SquaresWithText
 
   const columnNames: Record<string, string> = {
     SummaryLaw: "תקציר החוק",
@@ -73,6 +76,10 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
     });
   };
 
+  const toggleSquaresWithText = () => {
+    setOpenSquaresWithText(!openSquaresWithText); // Toggle visibility of SquaresWithText
+  };
+
   return (
     <>
       <header className={`Component-header ${isShrunk ? "header-3-small" : "header-3-big"}`}>
@@ -81,19 +88,44 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
         </a>
       </header>
       <main className="Component-main" id="LawSummary-main">
+      <div className="law-header">
+        <p>שם ההצעה</p>
+        <div style={{ display: 'flex' }}>
+            <p style={{ marginLeft: '1rem' }}>סטטוס</p>
+            {/* Blue square with "i" */}
+            <div
+              className="law-blue-squere"
+              onClick={toggleSquaresWithText} // Click to toggle SquaresWithText visibility
+              style={{ marginLeft: '6rem' }} // Add margin to the square from the left
+            >
+              i
+            </div>
+          </div>
+          {/* Conditionally render the SquaresWithText component with fade-in effect */}
+          {openSquaresWithText && (
+            <div className="overlay" onClick={toggleSquaresWithText}>
+              <div className="popup">
+                <SquaresWithText />
+              </div>
+            </div>
+          )}
+        </div>
+
+
         <section className="law-section" id="General-Assembly">
+          <td className="law-horizontal-line"> </td>
+          <br />
           {sortedData.map((item, index) => (
             <div key={index} className="schedule-event-cell-opened">
               <details
-                open={openIndexes.has(index)} // Set open state based on the index
-                onToggle={() => toggleDetails(index)} // Toggle open/close when clicked
+                open={openIndexes.has(index)}
+                onToggle={() => toggleDetails(index)}
               >
                 <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
                   <div className="law-content">
-                    <div className="law-name">{item.billname}</div>
-                    {/* <div className="law-status">
-              {item.statusdesc}
-            </div> */}
+                    <div className="law-name">
+                      {item.billname}
+                    </div>
                     <SquareFillComponent text={item.statusdesc} />
                   </div>
                   <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
@@ -101,10 +133,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
 
                 <div style={{ marginTop: "10px" }}>
                   {Object.entries(item)
-                    .filter(
-                      ([key, value]) =>
-                        value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
-                    )
+                    .filter(([key, value]) => value !== null && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
                     .map(([key, value]) => (
                       <p key={key} style={{ margin: "0.5rem 0" }}>
                         <p className="law-status">
@@ -147,7 +176,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                                 style={{
                                   width: "6rem",
                                   height: "6rem",
-                                  objectFit: "cover", // Ensures content fits without distortion
+                                  objectFit: "cover",
                                 }}
                               />
                             )}
@@ -159,9 +188,9 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                   )}
                 </div>
               </details>
-              <br></br>
+              <br />
               <td className="law-horizontal-line"> </td>
-              <br></br>
+              <br />
             </div>
           ))}
         </section>
