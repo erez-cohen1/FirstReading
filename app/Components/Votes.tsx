@@ -309,25 +309,19 @@ function displayResults(
     <div>
       <p className="vote-label">{label}</p>
       <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "flex-start", // Align items from left to right
-          gap: "0.5rem",
-        }}
+      className="grid-content"
       >
         {filterVoters(vote.Voters, vote.VoteId).map((voter, voterIndex) => {
           const nameParts = voter.MkName.split(" ");
 
           return (
+          
             <div
               key={voterIndex}
               style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
                 maxWidth: "calc(25% - 0.5rem)",
               }}
             >
