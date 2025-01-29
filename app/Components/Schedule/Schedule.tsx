@@ -70,7 +70,8 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
         </header>
         <main className="Component-main" id="Schedule-main">
           <br />
-          <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+          {/* <img src={"/basic_loading_gif.gif"} alt="loading" className="loading-gif" /> */}
+          <h3 style={{ textAlign: "center" }}>טוען את סדר היום...</h3>
           <br />
         </main>
       </>
