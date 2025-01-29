@@ -85,6 +85,9 @@ const Modal: React.FC<ModalProps> = ({ mkData, displayOption, showModal, modalRe
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
+        <div className="modal-option-display">
+          {displayOption === "all" ? "במשכן" : displayOption === "coalition" ? "קואליציה" : displayOption === "opposition" ? "אופוזיציה": "שרים"}
+        </div>
         <div className="attendance-grid">
           {sortedFactions.map(([factionName, members]) => (
             <div key={factionName} className="faction-group">
