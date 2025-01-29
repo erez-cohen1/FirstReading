@@ -137,7 +137,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                           <br />
                         </p>{" "}
                         <span className="law-value">
-                        {key === "initiatorsfullnames"
+                          {key === "initiatorsfullnames"
                         ? (value === null ? "אין מידע על יוזמי.ות חוק זה" : null)
                         : (value === null ? "אין תקציר לחוק זה" : (value as string))}
                         </span>

@@ -72,7 +72,20 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
       <main className="info-main" id="DailyInfo-main">
         <table className="info-table">
           <tbody className={`info-table-body showAll}`}>
-            <PhraseComp isShrunk={isShrunk} index={0} content={phrases[0]?.explanation} name={phrases[0]?.term}></PhraseComp>
+            {/* <PhraseComp isShrunk={isShrunk} index={0} content={phrases[0]?.explanation} name={phrases[0]?.term}></PhraseComp> */}
+            <tr className="info-event-row">
+              <td className="info-event-cell-opened" ref={summaryRef}>
+                <details onToggle={handleToggle}>
+                  <summary className="info-event-summary">
+                    <div className="info-event-title">
+                      <h3>{phrases[0]?.term}</h3>
+                    </div>
+                    <i className="arrow down white"></i>
+                  </summary>
+                  <p>{phrases[0]?.explanation}</p>
+                </details>
+              </td>
+            </tr>
             <tr>
               <td className="info-table-horizontal-separator">
                 <div className="daily-info-line"></div>
