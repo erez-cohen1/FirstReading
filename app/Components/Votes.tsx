@@ -325,23 +325,24 @@ function displayResults(
               style={{
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
                 maxWidth: "calc(25% - 0.5rem)",
               }}
             >
               {getMkImage(voter.MkName) && (
+                <div className="grid-item">
                 <img
                   src={getMkImage(voter.MkName) || ""}
                   alt={voter.MkName}
-                  style={{
-                    width: "6rem",
-                    height: "6rem",
-                    objectFit: "cover",
-                  }}
+                  className="mk-image "
                 />
+                <div className="mk-name">
+                <p className="law-value">{voter.MkName}</p>
+                </div>
+                </div>
               )}
-              <p className="law-value">{voter.MkName}</p>
             </div>
           );
         })}
