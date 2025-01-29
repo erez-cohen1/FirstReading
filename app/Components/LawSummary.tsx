@@ -111,7 +111,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
             </div>
           )}
         </div>
-        <section className="law-section" id="General-Assembly">
+        <section className="law-section">
           <td className="law-horizontal-line"> </td>
           <br />
           {sortedData.map((item, index) => (
