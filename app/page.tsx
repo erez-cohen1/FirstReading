@@ -19,8 +19,8 @@ export default function Home() {
       const scrollY = window.scrollY;
       // console.log(isShrunk);
       if (!isShrunk) {
-        setIsShrunk(scrollY > 30); // Shrink if scrolled down 50px or more
-      } else if (scrollY < 30) {
+        setIsShrunk(scrollY > 60); // Shrink if scrolled down 50px or more
+      } else if (scrollY < 60) {
         setIsShrunk(false);
       }
     };

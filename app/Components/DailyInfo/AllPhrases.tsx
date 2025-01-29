@@ -49,18 +49,18 @@ export default function AllPhrasesComp({
         </tr>
       ) : null}
       <tr className="info-event-row">
-        <td className="info-event-cell-opened" ref={summaryRef}>
-          <details id="info-all-phrases" onToggle={handleToggle}>
+        <td className="info-event-cell-opened" ref={summaryRef} id="info-event-cell">
+          <details id="info-all-phrases">
             <summary>
               <div className="info-all-phrases-title white">
-                <h3>{name}</h3>
+                <h1>{name}</h1>
               </div>
               <i className="arrow down white"></i>
             </summary>
             {phrases.map((phrase, index) => (
               <div key={index}>
                 <div className="daily-info-line"></div>
-                <details key={index} onToggle={handleToggle}>
+                <details key={index}>
                   <summary className="info-event-summary">
                     <div className="info-event-title">
                       <h3>{phrase.term}</h3>

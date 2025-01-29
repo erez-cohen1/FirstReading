@@ -52,7 +52,27 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({ date, isShrunk, h
     }
   };
 
-  if (loading) return <div className="Component">Loading...</div>;
+  if (loading)
+    return (
+      <>
+        <header
+          className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
+            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
+          }`}
+          id="Attendance-header"
+        >
+          <a href="#Attendance-main">
+            <h1>נוכחות חברי כנסת</h1>
+          </a>
+        </header>
+        <main className="Component-main" id="Schedule-main">
+          <br />
+          <br />
+          <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+          <br />
+        </main>
+      </>
+    );
   if (error) return <div className="Component">Error: {error}</div>;
 
   return (

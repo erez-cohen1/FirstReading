@@ -21,7 +21,6 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
     setLoading(true);
     const dateString = date.toISOString();
     fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setLoading, setEvents);
-    setLoading(false);
   }, [date]);
 
   const rows = (events.eventsNumber - 1) * 2 + 1;
@@ -38,7 +37,6 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
   sortedEvents.sort((a, b) => {
     return a.EventStart.getTime() - b.EventStart.getTime();
   });
-  // setLoading(false);
 
   if (loading) {
     return (

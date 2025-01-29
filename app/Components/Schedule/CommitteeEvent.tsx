@@ -88,6 +88,7 @@ export default function CommitteeEventComp({
 
             {event.EventParticipants.length > 0 && (
               <>
+                <br />
                 <h5>חברי הכנסת החברים בוועדה</h5>
                 <div>
                   <div className="schedule-event-participants-div">

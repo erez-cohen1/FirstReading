@@ -630,7 +630,6 @@ html {
   h1 {
     font-size: 2.5em;
     color: var(--component-bg-color);
-    font-weight: bold;
     margin: 0;
   }
 }
@@ -755,6 +754,7 @@ html {
 
 #DailyInfo-header {
   position: relative;
+  z-index: 0;
 }
 #committee-event-summary {
   padding: 0.5rem;
@@ -971,11 +971,19 @@ html {
     } */
   h5 {
     color: var(--color-secondary);
-    font-weight: bold;
+    font-size: 1rem;
+    font-family: "VC_narkisBlock-Regular";
   }
   h3 {
+    font-size: 1.25rem;
+    font-family: "VC_david-Bold";
     color: var(--global-bg-color);
-    font-weight: bold;
+    /* font-weight: bold; */
+  }
+  p {
+    font-size: 1rem;
+    font-family: "VC_narkisBlock-Regular";
+    color: var(--global-bg-color);
   }
   br {
     line-height: 30%;
@@ -1092,13 +1100,15 @@ html {
   }
   details[open] summary {
     position: sticky;
-    top: calc(var(--total-first-headers-height-small) - 0.4rem + calc(var(--sticky-header-height) * 3));
+    top: calc(var(--total-first-headers-height-small) - 0.4rem + calc(var(--sticky-header-height) * 2));
     max-height: fit-content;
     i {
       cursor: pointer;
       transform: rotate(-135deg);
       -webkit-transform: rotate(-135deg);
       margin: 0.7rem 0rem;
+      width: 0.80438rem;
+      height: 0.79963rem;
       /* block-size: auto; */
     }
     .schedule-event-description {
@@ -1685,7 +1695,8 @@ html {
 }
 
 .Component-header h1 {
-  font-size: 1.6em; /* Adjust font size */
+  font-family: "VC_david-Regular";
+  font-size: 1.375em; /* Adjust font size */
 }
 
 .vote-item {
@@ -2086,6 +2097,11 @@ Modal content .modal-content {
   font-family: "VC_David-bold";
   color: "var(--global-bg-color)";
 }
+
+#info-table-horizontal-separator {
+  padding: 0;
+}
+
 .info-table-horizontal-separator {
   scroll-margin-top: 6rem;
   /* padding: 0.5rem 0.2rem; */
@@ -2120,10 +2136,14 @@ Modal content .modal-content {
   }
 }
 
+#info-event-cell {
+  padding: 0rem;
+}
+
 .info-event-cell-opened {
   height: 70%;
   width: 100%;
-  padding: 1rem;
+  padding: 0rem;
   details {
     transition: all 1s ease-in-out;
     interpolate-size: allow-keywords;
@@ -2144,7 +2164,8 @@ Modal content .modal-content {
   details[open] > summary {
     position: sticky;
     top: 0rem;
-    max-height: fit-content;
+    height: 2.81rem;
+    /* max-height: fit-content; */
     padding-left: 0.8rem;
     /* height: 2.81rem; */
 
@@ -2152,7 +2173,7 @@ Modal content .modal-content {
       cursor: pointer;
       transform: rotate(-135deg);
       -webkit-transform: rotate(-135deg);
-      margin: 0.3rem 0rem;
+      margin: 0.7rem 0rem;
       /* block-size: auto; */
     }
     .info-event-description {
@@ -2171,10 +2192,10 @@ Modal content .modal-content {
       /* -webkit-text-fill-color: var(--global-bg-color); */
       /* transition: all 1s ease-in-out; */
     }
-    .info-event-title {
+    > summary > .info-event-title {
       max-height: fit-content;
       h3 {
-        font-family: "VC_NarkisBlock-Regular";
+        font-family: "VC_NarkisBlock-Bold";
         font-size: 1rem;
         font-style: normal;
         font-weight: 400;
@@ -2209,6 +2230,10 @@ Modal content .modal-content {
   align-items: center;
   h3 {
     font-family: "VC_NarkisBlock-Regular";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 1rem */
   }
 }
 .info-table {
@@ -2232,6 +2257,11 @@ Modal content .modal-content {
   h3 {
     color: var(--component-bg-color);
     /* font-weight: bold; */
+  }
+  h1 {
+    color: var(--component-bg-color);
+    font-family: "VC_david-Regular";
+    font-size: 1.375rem;
   }
   br {
     line-height: 30%;
@@ -2288,8 +2318,9 @@ Modal content .modal-content {
     align-items: center;
     padding: 0.7rem;
     h1 {
+      font-family: "VC_david-Regular";
       color: var(--component-bg-color);
-      font-size: 1.6rem;
+      font-size: 1.25rem;
     }
     background-color: var(--color-secondary);
   }
