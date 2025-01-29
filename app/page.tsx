@@ -32,9 +32,12 @@ export default function Home() {
   }, [isShrunk]);
 
   const stickyHeadersNum = date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4;
+  var r = document.querySelector(":root");
+
   return (
     <>
-      <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`} id="top" ref={topRef}>
+      <div ref={topRef}></div>
+      <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
         <a href="#top">
           <h1>
             קריאה {!isShrunk && <br />}
@@ -43,7 +46,7 @@ export default function Home() {
         </a>
         <section className="Date">
           <DateComponent date={date}></DateComponent>
-          <DateSelector date={date} setDate={setDate} topRef={topRef}></DateSelector>
+          <DateSelector root={r} date={date} setDate={setDate} topRef={topRef}></DateSelector>
           <hr />
         </section>
       </header>

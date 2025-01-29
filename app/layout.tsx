@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      <body>
+      <body id="top">
         {/* <Navbar /> */}
         <div>{children}</div>
         {/* <Footer /> */}
@@ -24,6 +24,3 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
-
-//TODO - change the favicon
-//TODO - make order in global.css to be global
