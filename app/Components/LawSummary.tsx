@@ -5,6 +5,7 @@ import initiatorsData from "./mkDetails.json";
 import SquaresWithText from "./Law-Info";
 import SquareFillComponent from "./LawStatusSqueres";
 
+
 interface LawSummaryProps {
   queryId: number;
   isShrunk: boolean;
@@ -46,7 +47,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
   }, [queryId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />;
   }
 
   if (error) {
@@ -155,37 +156,22 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
 
                   {item.initiatorsfullnames && (
                     <div
-                      style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: "0.5rem",
-                      }}
+                    className="grid-content"
                     >
                       {item.initiatorsfullnames.split(",").map((name: string) => {
                         const imageUrl = getInitiatorImage(name.trim());
                         return (
                           <div
                             key={name}
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                              textAlign: "center",
-                              maxWidth: "calc(25% - 0.5rem)",
-                            }}
+                            className="grid-item"
                           >
                             {imageUrl && (
                               <img
                                 src={imageUrl}
                                 alt={name}
-                                style={{
-                                  width: "6rem",
-                                  height: "6rem",
-                                  objectFit: "cover",
-                                }}
                               />
                             )}
-                            <span className="law-value">{name}</span>
+                            <div className="law-value">{name}</div>
                           </div>
                         );
                       })}
