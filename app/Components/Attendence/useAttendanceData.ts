@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { MkData } from "./MkData";
 import { govData } from "./posData";
 import mkDetails from "./mk_Data281.json";
+import govData1 from "./govermentPos.json";
 
 export const useAttendanceData = (): [MkData[], boolean, string | null] => {
   const [data, setData] = useState<MkData[]>([]);
@@ -63,7 +64,7 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
 
 export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, string | null] => {
   const [data, setData] = useState<MkData[]>([]);
-  //const [GovData, setGovData] = useState<govData[]>([]);
+  const [GovData, setGovData] = useState<govData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -72,10 +73,11 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
       try {
         // Step 1: Load data from mk_Data.json
         const localData: MkData[] = await mkDetails;
-        //const govermentDetail: govData[] = await govermentPos;
+        //const govermentDetail: govData[] = await govData1;
         const today = new Date();
         const isToday = (date.toDateString() == today.toDateString());
         var updatedData = localData;
+        //var updatedGovData = govData1;
         if (isToday){
           // Step 2: Fetch attendance mapping from the API
           const response = await fetch("https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkPresent?lang=he");
@@ -100,19 +102,21 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
               RolesList: mk.RolesList
             };
           });
+
+          // updatedGovData = govermentDetail.map((mk) => {
+          //   // Find the attendance for the current MkId
+          //   const attendance = attendanceMapping.find((att) => att.MkId === mk.MkId);
+          //   return {
+          //     MkId: mk.MkId,
+          //     mkImage: mk.mkImage,
+          //     PositionName: mk.PositionName,
+          //     IsMk: mk.IsMk,
+          //     IsPresent: attendance ? attendance.IsPresent : false, // Default to false if not found
+          //   };
+          // });
         }
 
-        // const updatedGovData = govermentDetail.map((mk) => {
-        //   // Find the attendance for the current MkId
-        //   const attendance = attendanceMapping.find((att) => att.MkId === mk.MkId);
-        //   return {
-        //     MkId: mk.MkId,
-        //     mkImage: mk.mkImage,
-        //     PositionName: mk.PositionName,
-        //     IsMk: mk.IsMk,
-        //     IsPresent: attendance ? attendance.IsPresent : false, // Default to false if not found
-        //   };
-        // });
+        
 
         setData(updatedData);
         //setGovData(updatedGovData);

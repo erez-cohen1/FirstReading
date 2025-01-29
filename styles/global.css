@@ -745,11 +745,11 @@ html {
 .Component-footer.attendance.modal-active {
   position: sticky;
   width: 100%;
-  top: calc(var(--total-first-headers-height-small) + calc(var(--sticky-header-height)) - 0.3rem);
+  top: calc(var(--total-first-headers-height-small) + calc(var(--sticky-header-height)) - 0.2rem);
   z-index: 6;
   border: transparent;
   padding: 0, 0, 0, 0;
-  margin: 0;
+  margin-top: 0.3rem;
 }
 
 .footer-big-header-stick {
@@ -1185,10 +1185,25 @@ html {
   width: 90%;
 }
 
-.non-mk-chart {
-  right: 0;
+.attendance-note {
+  font-family: "VC_NarkisBlock-Regular";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 1rem */
   position: relative;
-  margin-top: 1rem;
+  padding-top: 0.5rem;
+  text-align: right; /* Aligns text to the right */
+  direction: rtl; /* Ensures proper right-to-left text flow */
+  margin-left: auto;
+  padding-right: 2rem;
+}
+
+.non-mk-chart {
+  position: relative;
+  margin-left: auto;
+  margin-top: 0.5rem;
+  margin-right: 1.5rem;
   display: grid;
   grid-auto-flow: row;
   justify-content: right;

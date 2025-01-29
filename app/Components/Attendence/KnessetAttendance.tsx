@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import AttendanceChart from "./AttendanceChart";
 import DisplayOptions from "./DisplayOptions";
+import NonMkChart from "./NonMkChart";
 import Modal from "./Modal";
 import { useAttendanceData } from "./useAttendanceData";
 import { useAttendanceDataFromFile } from "./useAttendanceData";
@@ -67,9 +68,9 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
       <main className="Component-main" id="Attendance-main">
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} modalRef={modalRef} />
         <AttendanceChart mkData={mkData} displayOption={displayOption} />
-        {/* <NonMkChart mkData={mkData} govData={govData} displayOption={displayOption} modalRef={modalRef} /> */}
+        {/* <NonMkChart mkData={mkData} govData={govData} displayOption={displayOption} modalRef={modalRef} /> */} 
         <div className={`Component-footer attendance ${showModal ? "modal-active" : ""} ${isShrunk ? "" : "footer-big-header-stick"}`}
-         onClick={() => handleToggleModal()}>
+        onClick={() => handleToggleModal()}>
           <div className="footer-text">לרשימה המלאה</div>
           <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`}></i>
         </div>
