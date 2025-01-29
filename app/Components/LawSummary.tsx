@@ -112,19 +112,19 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
             </div>
           )}
         </div>
-        <section className="law-section" id="General-Assembly">
+        <section className="law-section">
           <td className="law-horizontal-line"> </td>
           <br />
           {sortedData.map((item, index) => (
-            <div key={index} className="schedule-event-cell-opened">
-              <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
-                <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
-                  <div className="law-content">
-                    <div className="law-name">{item.billname}</div>
-                    <SquareFillComponent text={item.statusdesc} />
-                  </div>
-                  <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
-                </summary>
+              <div key={index} className="law-event-cell-opened ">
+                <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
+                  <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
+                    <div className="law-content">
+                      <div className="law-name">{item.billname}</div>
+                      <SquareFillComponent text={item.statusdesc} />
+                    </div>
+                    <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
+                  </summary>
 
                 <div style={{ marginTop: "1rem" }}>
                   {Object.entries(item)
@@ -139,12 +139,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
                         </p>{" "}
                         <span className="law-value">
                           {key === "initiatorsfullnames"
-                            ? value === null
-                              ? "אין עדיין מידע על יוזמי החוק."
-                              : null
-                            : value === null
-                            ? "אין עדיין תקציר לחוק."
-                            : (value as string)}
+                        ? (value === null ? "אין מידע על יוזמי.ות חוק זה" : null)
+                        : (value === null ? "אין תקציר לחוק זה" : (value as string))}
                         </span>
                       </p>
                     ))}

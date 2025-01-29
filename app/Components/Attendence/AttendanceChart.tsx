@@ -12,6 +12,7 @@ interface AttendanceChartProps {
 const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption}) => {
   
   return (
+    <>
     <div className="chart-wrapper">
           {mkData
             .slice() // Create a shallow copy of the data
@@ -39,6 +40,10 @@ const AttendanceChart: React.FC<AttendanceChartProps> = ({ mkData, displayOption
             );
           })}
     </div>
+    <p className="attendance-note">
+        {displayOption === "goverment" ? "*לא כל השרים הם חברי כנסת" : ""}
+    </p> 
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ const VoteBar = ({ inFavor, against, abstain }: VoteBarProps) => {
   const abstainPercentage = (abstain / total) * 100;
 
   // Set minimum width for each category
-  const minWidth = 10;
+  const minWidth = 12;
 
   // Apply the minimum width only to values greater than 0
   const inFavorAdjusted = inFavorPercentage > 0 ? Math.max(inFavorPercentage, minWidth) : 0;

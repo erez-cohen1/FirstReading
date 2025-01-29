@@ -201,7 +201,7 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
         <section className="votes-section">
           {filteredVotes.length > 0
             ? filteredVotes.map((vote, index) => (
-                <div key={index} className="schedule-event-cell-opened">
+                <div key={index} className="law-event-cell-opened">
                   <div
                     className={`vote ${expandedVoteId === vote.VoteId ? "open" : ""}`}
                     onClick={() => toggleVoteDetails(vote.VoteId)}
@@ -212,7 +212,7 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
                     <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
                   </div>
                   <div className="vote-infograph-div">
-                    <div>
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                       <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
                       <p>
                         {vote.numVoted}/{vote.numInPlenum}
@@ -224,10 +224,9 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
                   {expandedVoteId === vote.VoteId && (
                     <div>
                       <br></br>
-                      <p className="law-status">
-                        <strong>החלטה:</strong> {vote.Decision || "N/A"}
+                      <p className="law-status" style={{ marginRight: "1rem" }}>
+                        <p>החלטה:</p> {vote.Decision || "N/A"}
                       </p>
-
                       {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
                       {searchBar(searchTerm, handleSearchChange)}
                       {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}
@@ -266,7 +265,7 @@ function filteringButtons(
   voterFilters: Record<number, string>
 ) {
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="vote-display-options">
         <button
           onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
@@ -315,7 +314,7 @@ function displayResults(
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: "flex-start", // Align items from left to right
           gap: "0.5rem",
         }}
       >
@@ -328,23 +327,20 @@ function displayResults(
               style={{
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
                 textAlign: "center",
                 maxWidth: "calc(25% - 0.5rem)",
               }}
             >
               {getMkImage(voter.MkName) && (
-                <img
-                  src={getMkImage(voter.MkName) || ""}
-                  alt={voter.MkName}
-                  style={{
-                    width: "6rem",
-                    height: "6rem",
-                    objectFit: "cover",
-                  }}
-                />
+                <div className="grid-item">
+                  <img src={getMkImage(voter.MkName) || ""} alt={voter.MkName} className="mk-image " />
+                  <div className="mk-name">
+                    <p className="law-value">{voter.MkName}</p>
+                  </div>
+                </div>
               )}
-              <p className="law-value">{voter.MkName}</p>
             </div>
           );
         })}
@@ -355,18 +351,20 @@ function displayResults(
 
 function searchBar(searchTerm: string, handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void) {
   return (
-    <div className="vote-search-bar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-        <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3" />
-        <path d="M10.5 11L16.5 17" stroke="#0900BD" stroke-opacity="0.3" />
-      </svg>
-      <input
-        className="vote-search-bar input"
-        type="text"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        placeholder="לחיפוש חבר.ת כנסת לפי שם"
-      />
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div className="vote-search-bar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+          <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3" />
+          <path d="M10.5 11L16.5 17" stroke="#0900BD" stroke-opacity="0.3" />
+        </svg>
+        <input
+          className="vote-search-bar input"
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="לחיפוש חבר.ת כנסת לפי שם"
+        />
+      </div>
     </div>
   );
 }
