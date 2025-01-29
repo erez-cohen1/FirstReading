@@ -46,8 +46,7 @@ const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
         <p className="mk-info-detail">{mk.Mail}</p>
   
         {/* RolesList Section */}
-        <div className="roles-list">
-          <h4>תפקידים בכנסת ה25</h4>
+        <div className="roles-list">  
           {mk.RolesList.length > 0 ? (
             <div>
               {mk.RolesList.map((role, index) => (
