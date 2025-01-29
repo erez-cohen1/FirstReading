@@ -43,7 +43,19 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
   if (loading) {
     return (
       <>
+        <header
+          id="Schedule-header"
+        >
+          <a href="#Schedule-main">
+            <h1>סדר יום</h1>
+          </a>
+        </header>
+        <main className="Component-main" id="Schedule-main">
+          <br />
+          <br />
           <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+          <br />
+        </main>
       </>
     );
   }
