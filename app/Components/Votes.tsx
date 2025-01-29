@@ -185,13 +185,8 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
   };
 
   if (!voteData) {
-    return (
-      <>
-        <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
-      </>
-    );
+    return <div>Loading votes...</div>;
   }
-
 
   const filteredVotes = voteData.Table.filter((vote) => isSameDay(vote.VoteDateStr, date));
 
@@ -315,6 +310,7 @@ function displayResults(
       <p className="vote-label">{label}</p>
       <div
       className="grid-content"
+
       >
         {filterVoters(vote.Voters, vote.VoteId).map((voter, voterIndex) => {
           const nameParts = voter.MkName.split(" ");

@@ -47,7 +47,8 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
   }, [queryId]);
 
   if (loading) {
-    return <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />;
+    return <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+    ;
   }
 
   if (error) {
