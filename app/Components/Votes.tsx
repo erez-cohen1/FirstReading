@@ -201,7 +201,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
         <section className="votes-section">
           {filteredVotes.length > 0
             ? filteredVotes.map((vote, index) => (
-                <div key={index} className="schedule-event-cell-opened">
+                <div key={index} className="law-event-cell-opened">
                   <div
                     className={`vote ${expandedVoteId === vote.VoteId ? "open" : ""}`}
                     onClick={() => toggleVoteDetails(vote.VoteId)}
@@ -312,7 +312,7 @@ function displayResults(
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: "flex-start", // Align items from left to right
           gap: "0.5rem",
         }}
       >

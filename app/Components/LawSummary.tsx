@@ -115,15 +115,15 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
           <td className="law-horizontal-line"> </td>
           <br />
           {sortedData.map((item, index) => (
-            <div key={index} className="schedule-event-cell-opened">
-              <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
-                <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
-                  <div className="law-content">
-                    <div className="law-name">{item.billname}</div>
-                    <SquareFillComponent text={item.statusdesc} />
-                  </div>
-                  <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
-                </summary>
+              <div key={index} className="law-event-cell-opened ">
+                <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
+                  <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
+                    <div className="law-content">
+                      <div className="law-name">{item.billname}</div>
+                      <SquareFillComponent text={item.statusdesc} />
+                    </div>
+                    <i className={`arrow ${openIndexes.has(index) ? "up" : "down"}`} />
+                  </summary>
 
                 <div style={{ marginTop: "1rem" }}>
                   {Object.entries(item)

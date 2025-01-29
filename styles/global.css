@@ -1006,7 +1006,7 @@ html {
   }
   details[open] summary {
     position: sticky;
-    top: calc(var(--total-first-headers-height-small) - 0.4rem + calc(var(--sticky-header-height) * 2));
+    top: calc(var(--total-first-headers-height-small) - 0.4rem + calc(var(--sticky-header-height) * 3));
     max-height: fit-content;
     i {
       cursor: pointer;
@@ -1615,7 +1615,7 @@ html {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   font-size: 1.2rem;
   width: 100%;
 }
@@ -1641,6 +1641,7 @@ html {
 }
 
 .law.open .law-name {
+  
   max-width: 90%; /* Adjust max-width when open */
   margin-bottom: 1rem;
   font-family: "VC_NarkisBlock-Bold";
@@ -1849,12 +1850,10 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); /* Adds a subtle shadow around the modal */
 }
 
 
@@ -1948,6 +1947,9 @@ Modal content .modal-content {
   padding: 0.4rem;
   background-color: #ffead8;
   width: fit-content;
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5); /* Adds a soft shadow */
+
+  
 }
 
 .vote-button-content {
@@ -2226,4 +2228,12 @@ Modal content .modal-content {
 
 .credits-empty-div {
   height: 65px;
+}
+
+
+.law-event-cell-opened {
+
+  height: 70%;
+  /* max-width: 100%; */
+  padding: 0.2rem;
 }
