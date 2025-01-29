@@ -37,9 +37,18 @@ export default function PlenumEventComp({ events, index, rows }: { events: Plenu
               <div className={`schedule-event-title`}>
                 <h3>ישיבת מליאה</h3>
                 <p>סדר יום המליאה:</p>
-                <div>
-                  <p key={index} className="schedule-event-description">
-                    1. {events[0].Name}
+                <div id="plenum-subject">
+                  <div
+                    key={index}
+                    style={{
+                      width: "0.7rem",
+                      height: "0.7rem",
+                      backgroundColor: "#FF6700",
+                      border: "none",
+                    }}
+                  />
+                  <p key={index + 1} className="schedule-event-description">
+                    {events[0].Name}
                   </p>
                 </div>
               </div>
@@ -49,12 +58,19 @@ export default function PlenumEventComp({ events, index, rows }: { events: Plenu
               {events.map(
                 (event, index) =>
                   index != 0 && (
-                    <>
-                      <p key={index}>
-                        {index + 1}. {event.Name}
-                      </p>
+                    <div key={index} id="plenum-subject">
+                      <div
+                        key={-index}
+                        style={{
+                          width: "0.7rem",
+                          height: "0.7rem",
+                          backgroundColor: "#FF6700",
+                          border: "none",
+                        }}
+                      />
+                      <p key={index}>{` ${event.Name}`}</p>
                       <br />
-                    </>
+                    </div>
                   )
               )}
             </div>

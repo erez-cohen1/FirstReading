@@ -6,8 +6,9 @@ export default function Credits() {
   const isVisible = useIsVisible(endRef);
   const handleToggle = (e: React.SyntheticEvent<HTMLDetailsElement>) => {
     const target = e.currentTarget as HTMLDetailsElement;
-    //closing the element
+
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    //closing the element
     if (!target.open && !isVisible) {
       //   endRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (target.open) {
@@ -53,8 +54,8 @@ export default function Credits() {
                     </div>
                     <div className="credtis-photos">
                       <div className="credits-empty-div"></div>
-                      <img src="/huji.svg" alt="huji" />
-                      <img src="/bezalel.svg" alt="bezalel" />
+                      <img src="/huji_logo_blue.svg" alt="huji" />
+                      <img src="/betzalel_logo_blue.svg" alt="bezalel" />
                     </div>
                   </div>
                   <div></div>

@@ -30,7 +30,7 @@ type VoteData = {
   Table: Vote[];
 };
 
-const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
+const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; headerNum: number }) => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
   const [expandedVoteId, setExpandedVoteId] = useState<number | null>(null);
   const [voterFilters, setVoterFilters] = useState<Record<number, string>>({
@@ -125,18 +125,18 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
               against,
               abstain,
               numVoted,
-              numInPlenum
+              numInPlenum,
             };
           })
         );
 
-      // Initialize voter filters with "בעד" as the default
-      const initialFilters = votesWithDetails.reduce((filters: Record<number, string>, vote: any) => {
-        filters[vote.VoteId] = "בעד";
-        return filters;
-      }, {});
+        // Initialize voter filters with "בעד" as the default
+        const initialFilters = votesWithDetails.reduce((filters: Record<number, string>, vote: any) => {
+          filters[vote.VoteId] = "בעד";
+          return filters;
+        }, {});
 
-      setVoterFilters(initialFilters); // Set the default filters
+        setVoterFilters(initialFilters); // Set the default filters
 
         setVoteData({ Table: votesWithDetails });
       } catch (error) {
@@ -151,18 +151,18 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
     setExpandedVoteId(expandedVoteId === voteId ? null : voteId);
   };
 
-    const handleVoterFilterChange = (voteId: number,   newFilter: string) => {
-      setVoterFilters((prev) => {
-        const currentFilter = prev[voteId];
-        if (currentFilter === newFilter) {
-          return prev; // No changes if clicked again on the same button
-        }
-        return {
-          ...prev,
-          [voteId]: newFilter,
-        };
-      });
-    };
+  const handleVoterFilterChange = (voteId: number, newFilter: string) => {
+    setVoterFilters((prev) => {
+      const currentFilter = prev[voteId];
+      if (currentFilter === newFilter) {
+        return prev; // No changes if clicked again on the same button
+      }
+      return {
+        ...prev,
+        [voteId]: newFilter,
+      };
+    });
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -192,7 +192,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
 
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-4-small" : "header-4-big"}`}>
+      <header className={`Component-header ${isShrunk ? `header-4-small` : `header-4-big`}`}>
         <a href="#Votes-main" className="header-link">
           <h1>הצבעות</h1>
         </a>
@@ -213,16 +213,18 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                   </div>
                   <div className="vote-infograph-div">
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
-                    <p>{vote.numVoted}/{vote.numInPlenum}</p>
-                    <p>הצביעו</p>
+                      <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
+                      <p>
+                        {vote.numVoted}/{vote.numInPlenum}
+                      </p>
+                      <p>הצביעו</p>
                     </div>
                     <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
                   </div>
                   {expandedVoteId === vote.VoteId && (
                     <div>
                       <br></br>
-                      <p className="law-status" style={{marginRight: "1rem"}}>
+                      <p className="law-status" style={{ marginRight: "1rem" }}>
                         <p>החלטה:</p> {vote.Decision || "N/A"}
                       </p>
                       {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
@@ -264,7 +266,7 @@ function filteringButtons(
 ) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div className="vote-display-options" >
+      <div className="vote-display-options">
         <button
           onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
           className={(voterFilters[vote.VoteId] || "בעד") === "בעד" ? "active" : ""}
@@ -327,14 +329,10 @@ function displayResults(
             >
               {getMkImage(voter.MkName) && (
                 <div className="grid-item">
-                <img
-                  src={getMkImage(voter.MkName) || ""}
-                  alt={voter.MkName}
-                  className="mk-image "
-                />
-                <div className="mk-name">
-                <p className="law-value">{voter.MkName}</p>
-                </div>
+                  <img src={getMkImage(voter.MkName) || ""} alt={voter.MkName} className="mk-image " />
+                  <div className="mk-name">
+                    <p className="law-value">{voter.MkName}</p>
+                  </div>
                 </div>
               )}
             </div>
@@ -348,20 +346,19 @@ function displayResults(
 function searchBar(searchTerm: string, handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-    <div className="vote-search-bar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-        <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3" />
-        <path d="M10.5 11L16.5 17" stroke="#0900BD" stroke-opacity="0.3" />
-      </svg>
-      <input
-        className="vote-search-bar input"
-        type="text"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        placeholder="לחיפוש חבר.ת כנסת לפי שם"
-      />
-    </div>
-
+      <div className="vote-search-bar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+          <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3" />
+          <path d="M10.5 11L16.5 17" stroke="#0900BD" stroke-opacity="0.3" />
+        </svg>
+        <input
+          className="vote-search-bar input"
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="לחיפוש חבר.ת כנסת לפי שם"
+        />
+      </div>
     </div>
   );
 }

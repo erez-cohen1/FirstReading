@@ -33,6 +33,17 @@ export default function PhraseComp({
         }
       });
     }
+    const rect = target.getBoundingClientRect();
+    const bottomSpace = window.innerHeight - rect.bottom;
+    console.log(bottomSpace);
+    if (target.open) {
+      if (bottomSpace < 0) {
+        window.scrollBy({
+          top: Math.abs(bottomSpace) + 20, // Add some padding
+          behavior: "smooth",
+        });
+      }
+    }
   };
   return (
     <>

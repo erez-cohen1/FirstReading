@@ -27,6 +27,8 @@ export default function AllPhrasesComp({
     if (!target.open) {
       summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (target.open) {
+      summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
       // opening the element
       const detailsList: NodeListOf<HTMLDetailsElement> = document.querySelectorAll("details");
       // Close all other details elements.
@@ -46,7 +48,7 @@ export default function AllPhrasesComp({
           </td>
         </tr>
       ) : null}
-      <tr key={index} className="info-event-row">
+      <tr className="info-event-row">
         <td className="info-event-cell-opened" ref={summaryRef}>
           <details id="info-all-phrases" onToggle={handleToggle}>
             <summary>
@@ -56,7 +58,7 @@ export default function AllPhrasesComp({
               <i className="arrow down white"></i>
             </summary>
             {phrases.map((phrase, index) => (
-              <>
+              <div key={index}>
                 <div className="daily-info-line"></div>
                 <details key={index} onToggle={handleToggle}>
                   <summary className="info-event-summary">
@@ -67,7 +69,7 @@ export default function AllPhrasesComp({
                   </summary>
                   <p>{phrase.explanation}</p>
                 </details>
-              </>
+              </div>
             ))}
           </details>
         </td>

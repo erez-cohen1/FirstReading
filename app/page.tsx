@@ -17,17 +17,24 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsShrunk(scrollY > 90); // Shrink if scrolled down 50px or more
+      // console.log(isShrunk);
+      if (!isShrunk) {
+        setIsShrunk(scrollY > 30); // Shrink if scrolled down 50px or more
+      } else if (scrollY < 30) {
+        setIsShrunk(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isShrunk]);
+
+  const stickyHeadersNum = date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4;
   return (
-    <main className="main-page" id="top" ref={topRef}>
-      <section className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
+    <>
+      <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`} id="top" ref={topRef}>
         <a href="#top">
           <h1>
             קריאה {!isShrunk && <br />}
@@ -39,16 +46,20 @@ export default function Home() {
           <DateSelector date={date} setDate={setDate} topRef={topRef}></DateSelector>
           <hr />
         </section>
-      </section>
-      <KnessetAttendance isShrunk={isShrunk} date={date} />
-      {/* <div className="hidden-div"></div> */}
-      <Schedule date={date} isShrunk={isShrunk}></Schedule>
-      <LawSummary queryId={1433} isShrunk={isShrunk}></LawSummary>
-      <Votes date={date} isShrunk={isShrunk}></Votes>
-      {/* {date.toDateString() != new Date(Date.now()).toDateString() && <Votes date={date} isShrunk={isShrunk}></Votes>} */}
-      <DailyInfo headerNum={5} isShrunk={isShrunk}></DailyInfo>
-      {/* <DailyInfo headerNum={date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4} isShrunk={isShrunk}></DailyInfo> */}
-      <Credits></Credits>
-    </main>
+      </header>
+      <main className="main-page" onClick={() => setIsShrunk(true)}>
+        <KnessetAttendance headerNum={stickyHeadersNum} isShrunk={isShrunk} date={date} />
+        {/* <div className="hidden-div"></div> */}
+        <Schedule headerNum={stickyHeadersNum} date={date} isShrunk={isShrunk}></Schedule>
+        <LawSummary headerNum={stickyHeadersNum} queryId={1433} isShrunk={isShrunk}></LawSummary>
+        {/* <Votes date={date} isShrunk={isShrunk}></Votes> */}
+        {date.toDateString() != new Date(Date.now()).toDateString() && (
+          <Votes date={date} headerNum={stickyHeadersNum} isShrunk={isShrunk}></Votes>
+        )}
+        <DailyInfo headerNum={stickyHeadersNum} isShrunk={isShrunk}></DailyInfo>
+        {/* <DailyInfo headerNum={date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4} isShrunk={isShrunk}></DailyInfo> */}
+        <Credits></Credits>
+      </main>
+    </>
   );
 }

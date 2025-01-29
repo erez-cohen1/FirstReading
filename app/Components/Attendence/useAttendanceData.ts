@@ -33,9 +33,7 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
               Phone: mk.Phone,
               Mail: mk.Email, // Add Mail field
               RolesList: rolesList, // Add RolesList field
-              isGoverment: json.governmentPositions.some(
-                (position: any) => position.IsMk && position.MkId === mk.MkId
-              ),
+              isGoverment: json.governmentPositions.some((position: any) => position.IsMk && position.MkId === mk.MkId),
             };
           })
         );
@@ -58,7 +56,7 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
     fetchAttendanceData();
   }, []);
 
-  console.log(JSON.stringify(data, null, 2));
+  // console.log(JSON.stringify(data, null, 2));
   return [data, loading, error];
 };
 
@@ -75,16 +73,16 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
         const localData: MkData[] = await mkDetails;
         //const govermentDetail: govData[] = await govData1;
         const today = new Date();
-        const isToday = (date.toDateString() == today.toDateString());
+        const isToday = date.toDateString() == today.toDateString();
         var updatedData = localData;
         //var updatedGovData = govData1;
-        if (isToday){
+        if (isToday) {
           // Step 2: Fetch attendance mapping from the API
           const response = await fetch("https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkPresent?lang=he");
           if (!response.ok) throw new Error(`Error fetching attendance data: ${response.status}`);
 
-          const attendanceMapping: { MkId: number, IsPresent: boolean }[] = await response.json();
-          
+          const attendanceMapping: { MkId: number; IsPresent: boolean }[] = await response.json();
+
           // Step 3: Update local data to reflect attendance status
           updatedData = localData.map((mk) => {
             // Find the attendance for the current MkId
@@ -99,7 +97,7 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
               isGoverment: mk.isGoverment,
               IsPresent: attendance ? attendance.IsPresent : false, // Default to false if not found
               Mail: mk.Mail,
-              RolesList: mk.RolesList
+              RolesList: mk.RolesList,
             };
           });
 
@@ -116,8 +114,6 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
           // });
         }
 
-        
-
         setData(updatedData);
         //setGovData(updatedGovData);
       } catch (err) {
@@ -132,4 +128,3 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
 
   return [data, loading, error];
 };
-

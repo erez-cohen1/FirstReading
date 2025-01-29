@@ -240,7 +240,7 @@ html {
   .main-header-big {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: start;
     width: 100%;
     height: fit-content;
@@ -252,7 +252,7 @@ html {
     transition: all 0.5s ease-in-out;
     h1 {
       flex-shrink: 0;
-      width: 14rem;
+      width: 20rem;
       height: var(--main-title-height-big);
       text-align: right;
       font-family: "VC_david-Regular";
@@ -523,7 +523,7 @@ html {
 .wheel-date-picker-component {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 4rem;
+  height: 5rem;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -548,8 +548,27 @@ html {
 }
 
 .date-selector-button {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  /* vertical-align: middle; */
+  /* padding: 0.3rem; */
   color: var(--global-bg-color);
   border: none;
+  font-size: 0rem;
+  margin: 10px;
+  margin-top: 0;
+  h5 {
+    display: inline-block;
+    color: var(--global-bg-color);
+    font-family: "VC_NarkisBlock-Regular";
+    margin-left: 10px;
+    vertical-align: middle;
+    font-size: 1.25rem;
+    /* padding: 0.1rem 0.1rem 0.1rem 0rem; */
+    /* height: ; */
+    /* line-height: 1rem; */
+  }
 }
 
 .date-selector-buttons-wrapper {
@@ -588,6 +607,11 @@ html {
   border-radius: var(--border-radius);
   border: none;
   width: 100%;
+}
+
+.sticky-header {
+  position: sticky;
+  z-index: 1000; /* Adjust z-index to ensure proper stacking order */
 }
 
 .Component-header {
@@ -629,13 +653,13 @@ html {
 
 .header-2-big {
   top: calc(var(--total-first-headers-height-big) - 0.4rem + var(--sticky-header-height));
-  bottom: calc(var(--sticky-header-height) * 3);
+  /* bottom: calc(var(--sticky-header-height) * 3); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-2-small {
   top: calc(var(--total-first-headers-height-small) - 0.4rem + var(--sticky-header-height));
-  bottom: calc(var(--sticky-header-height) * 3);
+  /* bottom: calc(var(--sticky-header-height) * 3); */
   transition: all 0.5s ease-in-out;
 }
 
@@ -647,32 +671,70 @@ html {
 
 .header-3-small {
   top: calc(var(--total-first-headers-height-small) - 0.6rem + calc(var(--sticky-header-height) * 2));
-  bottom: calc(var(--sticky-header-height) * 2);
+  /* bottom: calc(var(--sticky-header-height) * 2); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-4-big {
   top: calc(var(--total-first-headers-height-big) - 0.8rem + calc(var(--sticky-header-height) * 3));
-  bottom: calc(var(--sticky-header-height) * 1);
+  bottom: 0;
+
   transition: all 0.5s ease-in-out;
 }
 
 .header-4-small {
   top: calc(var(--total-first-headers-height-small) - 0.8rem + calc(var(--sticky-header-height) * 3));
-  bottom: calc(var(--sticky-header-height) * 1);
+  bottom: 0;
+
   transition: all 0.5s ease-in-out;
 }
 
 .header-5-big {
   top: calc(var(--total-first-headers-height-big) - 1rem + calc(var(--sticky-header-height) * 4));
-  bottom: calc(var(--sticky-header-height) * 0);
+  /* bottom: calc(var(--sticky-header-height) * 0); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-5-small {
   top: calc(var(--total-first-headers-height-small) - 1rem + calc(var(--sticky-header-height) * 4));
-  bottom: calc(var(--sticky-header-height) * 0);
+  /* bottom: calc(var(--sticky-header-height) * 0); */
   transition: all 0.5s ease-in-out;
+}
+
+.bottom-0-small {
+  bottom: 0;
+}
+
+.bottom-1-small {
+  bottom: calc(var(--sticky-header-height) * 1);
+}
+
+.bottom-1-big {
+  bottom: calc(var(--sticky-header-height) * 1);
+}
+
+.bottom-2-small {
+  bottom: calc(var(--sticky-header-height) * 2);
+}
+
+.bottom-2-big {
+  bottom: calc(var(--sticky-header-height) * 2);
+}
+
+.bottom-3-small {
+  bottom: calc(var(--sticky-header-height) * 3);
+}
+
+.bottom-3-big {
+  bottom: calc(var(--sticky-header-height) * 3);
+}
+
+.bottom-4-small {
+  bottom: calc(var(--sticky-header-height) * 4);
+}
+
+.bottom-4-big {
+  bottom: calc(var(--sticky-header-height) * 4);
 }
 
 #Attendance-main {
@@ -690,7 +752,13 @@ html {
 #Votes-main {
   scroll-margin-top: calc(var(--total-first-headers-height-small) - 0.8rem + calc(var(--sticky-header-height) * 4));
 }
+
+#DailyInfo-header {
+  position: relative;
+}
 #committee-event-summary {
+  padding: 0.5rem;
+  padding-right: 0.4rem;
   scroll-margin-top: calc(var(--total-first-headers-height-small) - 0.6rem + calc(var(--sticky-header-height) * 2));
 }
 
@@ -705,6 +773,17 @@ html {
   /* align-items: start ; */
 }
 
+#plenum-subject {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  p {
+    display: flex;
+    width: 90%;
+  }
+}
+
 .Component-footer {
   display: flex;
   flex-direction: row;
@@ -712,6 +791,10 @@ html {
   background-color: inherit;
   padding: 0.4rem 0.2rem;
   color: var(--text-color1);
+}
+
+.loading-gif {
+  height: 4rem;
 }
 
 .Component-footer.attendance {
@@ -992,7 +1075,6 @@ html {
 .schedule-event-cell-opened {
   height: 70%;
   /* max-width: 100%; */
-  padding: 0.2rem;
 
   details {
     transition: all 1s ease-in-out;
@@ -1106,6 +1188,7 @@ html {
 
 .schedule-event-participants-div {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.5rem;
@@ -1355,8 +1438,8 @@ html {
   pointer-events: auto; /* Allows interaction */
 }
 
-.modal-option-display{
-  color: #0900BD;
+.modal-option-display {
+  color: #0900bd;
   text-align: right;
   font-family: "VC_david-Bold";
   font-size: 1rem;
@@ -1385,7 +1468,7 @@ html {
 
 .modal-overlay.modal-active .modal-content {
   max-height: 1000vh; /* Set a large enough height for the content */
-  padding: 1rem, 0 ,0, 1rem; /* Ensure padding transitions smoothly */
+  padding: 1rem, 0, 0, 1rem; /* Ensure padding transitions smoothly */
 }
 
 .grid-header {
@@ -1480,10 +1563,10 @@ html {
   color: #0900bd;
   width: 24.375rem;
   height: 20.84781rem;
-  border: 2px solid #0900BD;
+  border: 2px solid #0900bd;
   position: flex;
   text-align: left;
-  animation: fadeIn 0.3s ease-in-out; 
+  animation: fadeIn 0.3s ease-in-out;
   z-index: 2000;
 }
 
@@ -1522,7 +1605,7 @@ html {
 /* Detail styling */
 .mk-info-detail {
   position: relative;
-  color: #0900BD;
+  color: #0900bd;
   text-align: right;
   bottom: 40%;
   right: 30%;
@@ -1533,7 +1616,10 @@ html {
 
 .roles-list {
   position: relative;
-  color: #0900BD;
+  color: #0900bd;
+  bottom: 40%;
+  right: 27%;
+  color: #0900bd;
   text-align: right;
   font-family: "VC_NarkisBlock-Regular";
   font-size: 0.5rem;
@@ -1562,8 +1648,6 @@ html {
   text-align: right;
 }
 
-
-
 /* Close button */
 .mk-info-close {
   position: absolute;
@@ -1591,7 +1675,6 @@ html {
     transform: scale(1);
   }
 }
-
 
 .mk-name {
   min-height: 20%;
@@ -1672,7 +1755,6 @@ html {
 }
 
 .law.open .law-name {
-  
   max-width: 90%; /* Adjust max-width when open */
   margin-bottom: 1rem;
   font-family: "VC_NarkisBlock-Bold";
@@ -1876,7 +1958,7 @@ html {
 
 /* Overlay */
 .modal-overlay-laws-info {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -1886,7 +1968,6 @@ html {
   align-items: center;
   z-index: 1000;
 }
-
 
 Modal content .modal-content {
   background-color: white;
@@ -1979,8 +2060,6 @@ Modal content .modal-content {
   background-color: #ffead8;
   width: fit-content;
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5); /* Adds a soft shadow */
-
-  
 }
 
 .vote-button-content {
@@ -2261,9 +2340,7 @@ Modal content .modal-content {
   height: 65px;
 }
 
-
 .law-event-cell-opened {
-
   height: 70%;
   /* max-width: 100%; */
   padding: 0.2rem;
