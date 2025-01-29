@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import WheelDatePicker from "./WheelDatePicker";
 
 export default function DateSelector({
@@ -18,12 +18,14 @@ export default function DateSelector({
   // const dateStrparsed = date.toISOString().split("T")[0];
   // const maxDateAllowed = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate()).toISOString().split("T")[0];
   // const minDateAllowed = new Date(date.getFullYear() - 1, date.getMonth(), date.getDate()).toISOString().split("T")[0];
-  if (showWheels) {
-    document.documentElement.style.setProperty("--main-title-height-small", "9rem");
-    // document.documentElement.style.setProperty("--main-title-height-big", "13.9rem");
-  } else {
-    document.documentElement.style.setProperty("--main-title-height-small", "2rem");
-  }
+  useEffect(() => {
+    if (showWheels) {
+      document.documentElement.style.setProperty("--main-title-height-small", "9rem");
+      // document.documentElement.style.setProperty("--main-title-height-big", "13.9rem");
+    } else {
+      document.documentElement.style.setProperty("--main-title-height-small", "2rem");
+    }
+  }, [showWheels]);
   const today = new Date();
   const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000); // Subtract 1 day in milliseconds
   const dayBeforeYesterday = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000); // Subtract 2 days in milliseconds

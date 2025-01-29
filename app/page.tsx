@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const [date, setDate] = useState(new Date(Date.now()));
   const [isShrunk, setIsShrunk] = useState(false);
+  const [r, setR] = useState<Element | null>(null);
   const topRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -24,15 +25,14 @@ export default function Home() {
         setIsShrunk(false);
       }
     };
-
+    setR(document.querySelector(":root"));
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isShrunk]);
+  }, [isShrunk, setR]);
 
   const stickyHeadersNum = date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4;
-  var r = document.querySelector(":root");
 
   return (
     <>
