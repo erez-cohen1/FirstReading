@@ -44,7 +44,9 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
     return (
       <>
         <header
-          className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}
+          className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
+            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
+          }`}
           id="Schedule-header"
         >
           <a href="#Schedule-main">
@@ -68,7 +70,12 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
   ) {
     return (
       <>
-        <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
+        <header
+          className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
+            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
+          }`}
+          id="Schedule-header"
+        >
           <a href="#Schedule-main">
             <h1>סדר יום</h1>
           </a>
@@ -132,11 +139,3 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
     </>
   );
 }
-
-/*
-TODO:
-8. find each committee discription
-10. fix long committee names
-12. add link from each event to the law/vote
-14. fix lines not same opacity
-*/

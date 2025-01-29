@@ -19,7 +19,7 @@ export default function Home() {
       const scrollY = window.scrollY;
       // console.log(isShrunk);
       if (!isShrunk) {
-        setIsShrunk(scrollY > 10); // Shrink if scrolled down 50px or more
+        setIsShrunk(scrollY > 30); // Shrink if scrolled down 50px or more
       } else if (scrollY < 30) {
         setIsShrunk(false);
       }
@@ -48,22 +48,10 @@ export default function Home() {
         </section>
       </header>
       <main className="main-page" onClick={() => setIsShrunk(true)}>
-        <KnessetAttendance
-          headerNum={stickyHeadersNum == 5 ? stickyHeadersNum - 3 : stickyHeadersNum}
-          isShrunk={isShrunk}
-          date={date}
-        />
+        <KnessetAttendance headerNum={stickyHeadersNum} isShrunk={isShrunk} date={date} />
         {/* <div className="hidden-div"></div> */}
-        <Schedule
-          headerNum={stickyHeadersNum == 5 ? stickyHeadersNum - 2 : stickyHeadersNum}
-          date={date}
-          isShrunk={isShrunk}
-        ></Schedule>
-        <LawSummary
-          headerNum={stickyHeadersNum == 5 ? stickyHeadersNum - 1 : stickyHeadersNum}
-          queryId={1433}
-          isShrunk={isShrunk}
-        ></LawSummary>
+        <Schedule headerNum={stickyHeadersNum} date={date} isShrunk={isShrunk}></Schedule>
+        <LawSummary headerNum={stickyHeadersNum} queryId={1433} isShrunk={isShrunk}></LawSummary>
         {/* <Votes date={date} isShrunk={isShrunk}></Votes> */}
         {date.toDateString() != new Date(Date.now()).toDateString() && (
           <Votes date={date} headerNum={stickyHeadersNum} isShrunk={isShrunk}></Votes>

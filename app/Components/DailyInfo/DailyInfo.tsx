@@ -46,10 +46,7 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
   if (loading) {
     return (
       <>
-        <header
-          className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}
-          id="DailyInfo-header"
-        >
+        <header className={`Component-header`} id="DailyInfo-header">
           <a href="#Info-main">
             <h1>הידעת?</h1>
           </a>
@@ -67,7 +64,7 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
   }
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-5-small" : "header-5-big"}`} id="DailyInfo-header">
+      <header className={`Component-header`} id="DailyInfo-header">
         <a href="#DailyInfo-main" className="header-link">
           <h1>הידעת?</h1>
         </a>

@@ -653,13 +653,13 @@ html {
 
 .header-2-big {
   top: calc(var(--total-first-headers-height-big) - 0.4rem + var(--sticky-header-height));
-  bottom: calc(var(--sticky-header-height) * 3);
+  /* bottom: calc(var(--sticky-header-height) * 3); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-2-small {
   top: calc(var(--total-first-headers-height-small) - 0.4rem + var(--sticky-header-height));
-  bottom: calc(var(--sticky-header-height) * 3);
+  /* bottom: calc(var(--sticky-header-height) * 3); */
   transition: all 0.5s ease-in-out;
 }
 
@@ -671,32 +671,70 @@ html {
 
 .header-3-small {
   top: calc(var(--total-first-headers-height-small) - 0.6rem + calc(var(--sticky-header-height) * 2));
-  bottom: calc(var(--sticky-header-height) * 2);
+  /* bottom: calc(var(--sticky-header-height) * 2); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-4-big {
   top: calc(var(--total-first-headers-height-big) - 0.8rem + calc(var(--sticky-header-height) * 3));
-  bottom: calc(var(--sticky-header-height) * 0);
+  bottom: 0;
+
   transition: all 0.5s ease-in-out;
 }
 
 .header-4-small {
   top: calc(var(--total-first-headers-height-small) - 0.8rem + calc(var(--sticky-header-height) * 3));
-  bottom: calc(var(--sticky-header-height) * 0);
+  bottom: 0;
+
   transition: all 0.5s ease-in-out;
 }
 
 .header-5-big {
   top: calc(var(--total-first-headers-height-big) - 1rem + calc(var(--sticky-header-height) * 4));
-  bottom: calc(var(--sticky-header-height) * 0);
+  /* bottom: calc(var(--sticky-header-height) * 0); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-5-small {
   top: calc(var(--total-first-headers-height-small) - 1rem + calc(var(--sticky-header-height) * 4));
-  bottom: calc(var(--sticky-header-height) * 0);
+  /* bottom: calc(var(--sticky-header-height) * 0); */
   transition: all 0.5s ease-in-out;
+}
+
+.bottom-0-small {
+  bottom: 0;
+}
+
+.bottom-1-small {
+  bottom: calc(var(--sticky-header-height) * 1);
+}
+
+.bottom-1-big {
+  bottom: calc(var(--sticky-header-height) * 1);
+}
+
+.bottom-2-small {
+  bottom: calc(var(--sticky-header-height) * 2);
+}
+
+.bottom-2-big {
+  bottom: calc(var(--sticky-header-height) * 2);
+}
+
+.bottom-3-small {
+  bottom: calc(var(--sticky-header-height) * 3);
+}
+
+.bottom-3-big {
+  bottom: calc(var(--sticky-header-height) * 3);
+}
+
+.bottom-4-small {
+  bottom: calc(var(--sticky-header-height) * 4);
+}
+
+.bottom-4-big {
+  bottom: calc(var(--sticky-header-height) * 4);
 }
 
 #Attendance-main {

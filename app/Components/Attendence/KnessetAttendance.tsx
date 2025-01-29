@@ -58,7 +58,9 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({ date, isShrunk, h
   return (
     <>
       <header
-        className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}
+        className={`Component-header ${isShrunk ? `header-1-small` : `header-1-big`} ${
+          headerNum == 4 ? `bottom-2-small` : `bottom-3-small`
+        }`}
         id="Attendance-header"
       >
         <a href="#Attendance-main" className="header-link">

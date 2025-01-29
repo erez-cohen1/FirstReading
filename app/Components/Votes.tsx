@@ -192,7 +192,7 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
 
   return (
     <>
-      <header className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}>
+      <header className={`Component-header ${isShrunk ? `header-4-small` : `header-4-big`}`}>
         <a href="#Votes-main" className="header-link">
           <h1>הצבעות</h1>
         </a>
