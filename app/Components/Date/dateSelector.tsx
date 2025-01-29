@@ -39,7 +39,9 @@ export default function DateSelector({
         </div>
         <div
           className={`date-vertical-line${
-            date.toDateString() == today.toDateString() || date.toDateString() == yesterday.toDateString() ? " line-selected" : ""
+            date.toDateString() == today.toDateString() || (date.toDateString() == yesterday.toDateString() && !showWheels)
+              ? " line-selected"
+              : ""
           }`}
         ></div>
         <div className="date-selector-div">
@@ -56,7 +58,8 @@ export default function DateSelector({
         </div>
         <div
           className={`date-vertical-line${
-            date.toDateString() == yesterday.toDateString() || date.toDateString() == dayBeforeYesterday.toDateString()
+            date.toDateString() == yesterday.toDateString() ||
+            (date.toDateString() == dayBeforeYesterday.toDateString() && !showWheels)
               ? " line-selected"
               : ""
           }`}

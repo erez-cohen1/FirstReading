@@ -48,15 +48,18 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
       <>
         <header
           className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}
-          id="Schedule-header"
+          id="DailyInfo-header"
         >
-          <a href="#DailyInfo-main">
+          <a href="#Info-main">
             <h1>הידעת?</h1>
           </a>
         </header>
-        <main className="Component-main" id="DailyInfo-main">
+        <main className="Component-main" id="Info-main">
           <br />
-          <h3 style={{ textAlign: "center" }}>...</h3>
+          {/* <img src={"/basic_loading_gif.gif"} alt="loading" className="loading-gif" /> */}
+          {/* <h3 style={{ textAlign: "center" }}>טוען את סדר היום...</h3> */}
+          <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+
           <br />
         </main>
       </>
@@ -64,7 +67,7 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
   }
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-5-small" : "header-5-big"}`} id="Schedule-header">
+      <header className={`Component-header ${isShrunk ? "header-5-small" : "header-5-big"}`} id="DailyInfo-header">
         <a href="#DailyInfo-main" className="header-link">
           <h1>הידעת?</h1>
         </a>
@@ -75,7 +78,7 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
             {/* <PhraseComp isShrunk={isShrunk} index={0} content={phrases[0]?.explanation} name={phrases[0]?.term}></PhraseComp> */}
             <tr className="info-event-row">
               <td className="info-event-cell-opened" ref={summaryRef}>
-                <details onToggle={handleToggle}>
+                <details open onToggle={handleToggle}>
                   <summary className="info-event-summary">
                     <div className="info-event-title">
                       <h3>{phrases[0]?.term}</h3>

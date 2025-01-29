@@ -6,13 +6,13 @@ import { useAttendanceData } from "./useAttendanceData";
 //import { useAttendanceDataFromFile } from "./useAttendanceData";
 import { MkData } from "./MkData";
 
-
 interface KnessetAttendanceProps {
-  date: Date
-  isShrunk: boolean
+  date: Date;
+  isShrunk: boolean;
+  headerNum: number;
 }
 
-const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) => {
+const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({ date, isShrunk, headerNum }) => {
   const [mkData, loading, error] = useAttendanceData();
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
@@ -23,16 +23,13 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
     const updateHeaderHeight = () => {
       const header = headerRef.current;
       if (header) {
-        document.documentElement.style.setProperty(
-          "--header-height",
-          `${header.offsetHeight}px`
-        );
+        document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
       }
     };
-  
+
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
-  
+
     return () => window.removeEventListener("resize", updateHeaderHeight);
   }, []);
 
@@ -59,7 +56,10 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
 
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-1-small" : "header-1-big"}`} id="Attendance-header">
+      <header
+        className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}
+        id="Attendance-header"
+      >
         <a href="#Attendance-main" className="header-link">
           <h1>נוכחות חברי כנסת</h1>
         </a>
@@ -68,7 +68,11 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
         <DisplayOptions mkData={mkData} displayOption={displayOption} setDisplayOption={setDisplayOption} modalRef={modalRef} />
         <AttendanceChart mkData={mkData} displayOption={displayOption} />
         {/* <NonMkChart mkData={mkData} govData={govData} displayOption={displayOption} modalRef={modalRef} /> */}
-        <div className={`Component-footer attendance ${showModal ? "modal-active" : ""} ${isShrunk ? "" : "footer-big-header-stick"}`}>
+        <div
+          className={`Component-footer attendance ${showModal ? "modal-active" : ""} ${
+            isShrunk ? "" : "footer-big-header-stick"
+          }`}
+        >
           <div className="footer-text">לרשימה המלאה</div>
           <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`} onClick={() => handleToggleModal()}></i>
         </div>

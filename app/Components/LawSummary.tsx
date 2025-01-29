@@ -8,9 +8,10 @@ import SquareFillComponent from "./LawStatusSqueres";
 interface LawSummaryProps {
   queryId: number;
   isShrunk: boolean;
+  headerNum: number;
 }
 
-const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
+const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum }) => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -82,7 +83,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
 
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-3-small" : "header-3-big"}`}>
+      <header className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}>
         <a href="#LawSummary-main" className="header-link">
           <h1>הצעות חוק</h1>
         </a>

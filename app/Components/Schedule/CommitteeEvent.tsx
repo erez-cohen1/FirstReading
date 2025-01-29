@@ -92,22 +92,18 @@ export default function CommitteeEventComp({
                 <div>
                   <div className="schedule-event-participants-div">
                     {chairMan && (
-                      <div className={`schedule-event-participant-cell`} key={chairMan?.ParticipantId}>
-                        <img src={chairMan?.ParticipantImage} alt={chairMan?.ParticipantName} />
-                        <p>
-                          {chairMan?.ParticipantName}
-                          <br />
-                          <b>יושב ראש</b>
-                        </p>
+                      <div className="grid-item" key={chairMan.ParticipantId}>
+                        <img src={chairMan.ParticipantImage} alt={chairMan.ParticipantName} className={`mk-image`} />
+                        <div className="mk-name">{chairMan.ParticipantName}</div>
                       </div>
                     )}
 
                     {event.EventParticipants.filter((mk) => {
                       return mk.ParticipantRole != "יושב-ראש";
                     }).map((mk) => (
-                      <div className={`schedule-event-participant-cell`} key={mk.ParticipantId}>
-                        <img src={mk.ParticipantImage} alt={mk.ParticipantName} />
-                        <p>{mk.ParticipantName}</p>
+                      <div className="grid-item" key={mk.ParticipantId}>
+                        <img src={mk.ParticipantImage} alt={mk.ParticipantName} className={`mk-image`} />
+                        <div className="mk-name">{mk.ParticipantName}</div>
                       </div>
                     ))}
                   </div>

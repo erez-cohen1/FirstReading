@@ -32,9 +32,7 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
               Phone: mk.Phone,
               Mail: mk.Email, // Add Mail field
               RolesList: rolesList, // Add RolesList field
-              isGoverment: json.governmentPositions.some(
-                (position: any) => position.IsMk && position.MkId === mk.MkId
-              ),
+              isGoverment: json.governmentPositions.some((position: any) => position.IsMk && position.MkId === mk.MkId),
             };
           })
         );
@@ -57,7 +55,7 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
     fetchAttendanceData();
   }, []);
 
-  console.log(JSON.stringify(data, null, 2));
+  // console.log(JSON.stringify(data, null, 2));
   return [data, loading, error];
 };
 
@@ -82,7 +80,7 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
 //           if (!response.ok) throw new Error(`Error fetching attendance data: ${response.status}`);
 
 //           const attendanceMapping: { MkId: number, IsPresent: boolean }[] = await response.json();
-          
+
 //           // Step 3: Update local data to reflect attendance status
 //           updatedData = localData.map((mk) => {
 //             // Find the attendance for the current MkId
@@ -126,4 +124,3 @@ export const useAttendanceData = (): [MkData[], boolean, string | null] => {
 
 //   return [data, loading, error];
 // };
-

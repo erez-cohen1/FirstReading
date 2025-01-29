@@ -8,7 +8,7 @@ import PlenumEventComp from "./PlenumEvent";
 import KnsEventComp from "./KnsEvent";
 import LoadingGif from "../../../basic_loading.gif";
 
-export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boolean }) {
+export default function Schedule({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; headerNum: number }) {
   const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState<ScheduleData>({
     eventsNumber: 0,
@@ -18,8 +18,10 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
     CurrentKnsEvents: [],
   });
   useEffect(() => {
+    setLoading(true);
     const dateString = date.toISOString();
     fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setLoading, setEvents);
+    setLoading(false);
   }, [date]);
 
   const rows = (events.eventsNumber - 1) * 2 + 1;
@@ -36,6 +38,28 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
   sortedEvents.sort((a, b) => {
     return a.EventStart.getTime() - b.EventStart.getTime();
   });
+  // setLoading(false);
+
+  if (loading) {
+    return (
+      <>
+        <header
+          className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}
+          id="Schedule-header"
+        >
+          <a href="#Schedule-main">
+            <h1>סדר יום</h1>
+          </a>
+        </header>
+        <main className="Component-main" id="Schedule-main">
+          <br />
+          <br />
+          <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+          <br />
+        </main>
+      </>
+    );
+  }
   if (
     events.CurrentCommitteeEvents.length == 0 &&
     events.CurrentPlenumEvents.length == 0 &&
@@ -43,7 +67,6 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
     !loading
   ) {
     return (
-      // <div className="Component" id="Schedule">
       <>
         <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
           <a href="#Schedule-main">
@@ -53,27 +76,6 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
         <main className="Component-main" id="Schedule-main">
           <br />
           <h3 style={{ textAlign: "center" }}>היום לא מתקיימים דיוני ועדות, ישיבת מליאה ואירועים מיוחדים בכנסת</h3>
-          <br />
-        </main>
-      </>
-      // </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <>
-        <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
-          <a href="#Schedule-main">
-            <h1>סדר יום</h1>
-          </a>
-        </header>
-        <main className="Component-main" id="Schedule-main">
-          <br />
-          {/* <img src={"/basic_loading_gif.gif"} alt="loading" className="loading-gif" /> */}
-          {/* <h3 style={{ textAlign: "center" }}>טוען את סדר היום...</h3> */}
-          <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
-
           <br />
         </main>
       </>
@@ -87,38 +89,46 @@ export default function Schedule({ date, isShrunk }: { date: Date; isShrunk: boo
           <h1>סדר יום</h1>
         </a>
       </header>
-      <main className="Component-main" id="Schedule-main">
-        <table className="Schedule-table">
-          <tbody className={`Schedule-table-body showAll}`}>
-            {sortedEvents.map((event, index) => {
-              if (event.EventType == ScheduleEventType.Committee) {
-                return (
-                  <CommitteeEventComp
-                    event={event as CommitteeEvent}
-                    index={index}
-                    showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
-                    rows={rows}
-                    key={index}
-                  ></CommitteeEventComp>
-                );
-              } else if (event.EventType == ScheduleEventType.Plenum) {
-                return (
-                  <PlenumEventComp events={events.CurrentPlenumEvents} rows={rows} index={index} key={index}></PlenumEventComp>
-                );
-              } else if (event.EventType == ScheduleEventType.SpecialOccasion) {
-                return (
-                  <KnsEventComp
-                    event={event as KnsEvent}
-                    index={index}
-                    showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
-                    key={index}
-                  ></KnsEventComp>
-                );
-              }
-            })}
-          </tbody>
-        </table>
-      </main>
+      {loading ? (
+        <main className="Component-main" id="Schedule-main">
+          <br />
+          <h3 style={{ textAlign: "center" }}>היום לא מתקיימים דיוני ועדות, ישיבת מליאה ואירועים מיוחדים בכנסת</h3>
+          <br />
+        </main>
+      ) : (
+        <main className="Component-main" id="Schedule-main">
+          <table className="Schedule-table">
+            <tbody className={`Schedule-table-body showAll}`}>
+              {sortedEvents.map((event, index) => {
+                if (event.EventType == ScheduleEventType.Committee) {
+                  return (
+                    <CommitteeEventComp
+                      event={event as CommitteeEvent}
+                      index={index}
+                      showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
+                      rows={rows}
+                      key={index}
+                    ></CommitteeEventComp>
+                  );
+                } else if (event.EventType == ScheduleEventType.Plenum) {
+                  return (
+                    <PlenumEventComp events={events.CurrentPlenumEvents} rows={rows} index={index} key={index}></PlenumEventComp>
+                  );
+                } else if (event.EventType == ScheduleEventType.SpecialOccasion) {
+                  return (
+                    <KnsEventComp
+                      event={event as KnsEvent}
+                      index={index}
+                      showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
+                      key={index}
+                    ></KnsEventComp>
+                  );
+                }
+              })}
+            </tbody>
+          </table>
+        </main>
+      )}
     </>
   );
 }

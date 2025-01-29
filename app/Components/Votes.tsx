@@ -30,7 +30,7 @@ type VoteData = {
   Table: Vote[];
 };
 
-const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
+const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; headerNum: number }) => {
   const [voteData, setVoteData] = useState<VoteData | null>(null);
   const [expandedVoteId, setExpandedVoteId] = useState<number | null>(null);
   const [voterFilters, setVoterFilters] = useState<Record<number, string>>({
@@ -125,18 +125,18 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
               against,
               abstain,
               numVoted,
-              numInPlenum
+              numInPlenum,
             };
           })
         );
 
-      // Initialize voter filters with "בעד" as the default
-      const initialFilters = votesWithDetails.reduce((filters: Record<number, string>, vote: any) => {
-        filters[vote.VoteId] = "בעד";
-        return filters;
-      }, {});
+        // Initialize voter filters with "בעד" as the default
+        const initialFilters = votesWithDetails.reduce((filters: Record<number, string>, vote: any) => {
+          filters[vote.VoteId] = "בעד";
+          return filters;
+        }, {});
 
-      setVoterFilters(initialFilters); // Set the default filters
+        setVoterFilters(initialFilters); // Set the default filters
 
         setVoteData({ Table: votesWithDetails });
       } catch (error) {
@@ -151,18 +151,18 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
     setExpandedVoteId(expandedVoteId === voteId ? null : voteId);
   };
 
-    const handleVoterFilterChange = (voteId: number,   newFilter: string) => {
-      setVoterFilters((prev) => {
-        const currentFilter = prev[voteId];
-        if (currentFilter === newFilter) {
-          return prev; // No changes if clicked again on the same button
-        }
-        return {
-          ...prev,
-          [voteId]: newFilter,
-        };
-      });
-    };
+  const handleVoterFilterChange = (voteId: number, newFilter: string) => {
+    setVoterFilters((prev) => {
+      const currentFilter = prev[voteId];
+      if (currentFilter === newFilter) {
+        return prev; // No changes if clicked again on the same button
+      }
+      return {
+        ...prev,
+        [voteId]: newFilter,
+      };
+    });
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -192,7 +192,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
 
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-4-small" : "header-4-big"}`}>
+      <header className={`Component-header ${isShrunk ? `header-${headerNum}-small` : `header-${headerNum}-big`}`}>
         <a href="#Votes-main" className="header-link">
           <h1>הצבעות</h1>
         </a>
@@ -213,9 +213,11 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                   </div>
                   <div className="vote-infograph-div">
                     <div>
-                    <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
-                    <p>{vote.numVoted}/{vote.numInPlenum}</p>
-                    <p>הצביעו</p>
+                      <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
+                      <p>
+                        {vote.numVoted}/{vote.numInPlenum}
+                      </p>
+                      <p>הצביעו</p>
                     </div>
                     <VoteBar inFavor={vote.inFavor} against={vote.against} abstain={vote.abstain} />
                   </div>
@@ -225,7 +227,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                       <p className="law-status">
                         <strong>החלטה:</strong> {vote.Decision || "N/A"}
                       </p>
-                      
+
                       {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
                       {searchBar(searchTerm, handleSearchChange)}
                       {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}

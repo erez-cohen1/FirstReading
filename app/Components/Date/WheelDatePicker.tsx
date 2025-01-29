@@ -31,7 +31,7 @@ export default function WheelDatePicker({
       "11": "נובמבר",
       "12": "דצמבר",
     };
-
+    monthIndex = ((monthIndex % 12) + 12) % 12;
     const shiftedMonthIndex = monthIndex + 1;
     // Convert the number to a string to match object keys
     const monthKey = shiftedMonthIndex.toString();
@@ -50,7 +50,7 @@ export default function WheelDatePicker({
   const element = document.getElementById("top");
 
   const formatYear = (year: number) => {
-    return new Date(Date.now()).getFullYear() - year;
+    return 2024 + year;
   };
   const formatDay = (day: number) => {
     return day + 1;
@@ -84,23 +84,16 @@ export default function WheelDatePicker({
             loop
             length={daysInMonth}
             perspective="center"
-            initIdx={new Date(Date.now()).getDate() - 1}
+            initIdx={date.getDate() - 1}
             setValue={formatDay}
             setDate={setCurDate}
           />
         </div>
         <div className="wheel-date-picker">
-          <Wheel
-            loop
-            length={12}
-            perspective="center"
-            initIdx={new Date(Date.now()).getMonth()}
-            setValue={idxToStrMonth}
-            setDate={setCurMonth}
-          />
+          <Wheel loop length={12} perspective="center" initIdx={date.getMonth()} setValue={idxToStrMonth} setDate={setCurMonth} />
         </div>
         <div className="wheel-date-picker">
-          <Wheel length={2} initIdx={0} setValue={formatYear} setDate={setCurYear} />
+          <Wheel length={2} initIdx={formatYear(date.getFullYear())} setValue={formatYear} setDate={setCurYear} />
         </div>
       </div>
       <div className="date-selector-buttons-wrapper">
@@ -113,7 +106,8 @@ export default function WheelDatePicker({
           }}
           className="date-selector-button"
         >
-          בחר
+          <h5>אישור</h5>
+          <img src="/check.svg" alt="check" style={{ width: "1.1rem" }} />
         </button>
         <button
           onClick={() => {
@@ -121,7 +115,8 @@ export default function WheelDatePicker({
           }}
           className="date-selector-button"
         >
-          סגור
+          <h5>ביטול</h5>
+          <img src="/X.svg" alt="abort" />
         </button>
       </div>
     </div>
