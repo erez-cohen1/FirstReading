@@ -13,10 +13,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html dir="rtl" lang="he" style={{ padding: "0" }}>
-      <head>
-        <link rel="icon" href="/favicon.png" />
-      </head>
-      <body id="top">
+      <head>{/* <link rel="icon" href="/favicon.png" /> */}</head>
+      <body>
         {/* <Navbar /> */}
         <div>{children}</div>
         {/* <Footer /> */}

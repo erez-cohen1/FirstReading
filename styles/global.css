@@ -640,37 +640,37 @@ html {
 }
 
 .header-1-big {
-  top: calc(var(--total-first-headers-height-big) - 0.2rem);
+  top: calc(var(--total-first-headers-height-big) - 0.04rem);
   bottom: calc(var(--sticky-header-height) * 4);
   transition: all 0.5s ease-in-out;
 }
 
 .header-1-small {
-  top: calc(var(--total-first-headers-height-small) - 0.2rem);
+  top: calc(var(--total-first-headers-height-small) - 0.04rem);
   bottom: calc(var(--sticky-header-height) * 4);
   transition: all 0.5s ease-in-out;
 }
 
 .header-2-big {
-  top: calc(var(--total-first-headers-height-big) - 0.4rem + var(--sticky-header-height));
+  top: calc(var(--total-first-headers-height-big) - 0.05rem + var(--sticky-header-height));
   /* bottom: calc(var(--sticky-header-height) * 3); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-2-small {
-  top: calc(var(--total-first-headers-height-small) - 0.4rem + var(--sticky-header-height));
+  top: calc(var(--total-first-headers-height-small) - 0.05rem + var(--sticky-header-height));
   /* bottom: calc(var(--sticky-header-height) * 3); */
   transition: all 0.5s ease-in-out;
 }
 
 .header-3-big {
-  top: calc(var(--total-first-headers-height-big) - 0.6rem + calc(var(--sticky-header-height) * 2));
+  top: calc(var(--total-first-headers-height-big) - 0.03rem + calc(var(--sticky-header-height) * 2));
   bottom: calc(var(--sticky-header-height) * 2);
   transition: all 0.5s ease-in-out;
 }
 
 .header-3-small {
-  top: calc(var(--total-first-headers-height-small) - 0.6rem + calc(var(--sticky-header-height) * 2));
+  top: calc(var(--total-first-headers-height-small) - 0.03rem + calc(var(--sticky-header-height) * 2));
   /* bottom: calc(var(--sticky-header-height) * 2); */
   transition: all 0.5s ease-in-out;
 }
@@ -678,12 +678,11 @@ html {
 .header-4-big {
   top: calc(var(--total-first-headers-height-big) - 0.8rem + calc(var(--sticky-header-height) * 3));
   bottom: 0;
-
   transition: all 0.5s ease-in-out;
 }
 
 .header-4-small {
-  top: calc(var(--total-first-headers-height-small) - 0.8rem + calc(var(--sticky-header-height) * 3));
+  top: calc(var(--total-first-headers-height-small) + calc(var(--sticky-header-height) * 3));
   bottom: 0;
 
   transition: all 0.5s ease-in-out;
@@ -2115,6 +2114,7 @@ Modal content .modal-content {
   position: relative;
   width: 100%;
   height: 0.1rem;
+  margin-top: 0.3rem;
 }
 
 .info-event-row {
@@ -2164,12 +2164,12 @@ Modal content .modal-content {
 
   details[open] > summary {
     position: sticky;
-    top: 0rem;
+    /* top: 0rem; */
     height: 2.81rem;
     /* max-height: fit-content; */
     padding-left: 0.8rem;
     /* height: 2.81rem; */
-
+    background-color: var(--global-bg-color);
     i {
       cursor: pointer;
       transform: rotate(-135deg);
@@ -2185,6 +2185,7 @@ Modal content .modal-content {
   }
 
   details[open] {
+    background-color: var(--global-bg-color);
     .info-event-description {
       max-height: fit-content;
       overflow: visible;

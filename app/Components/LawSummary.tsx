@@ -5,7 +5,6 @@ import initiatorsData from "./mkDetails.json";
 import SquaresWithText from "./Law-Info";
 import SquareFillComponent from "./LawStatusSqueres";
 
-
 interface LawSummaryProps {
   queryId: number;
   isShrunk: boolean;
@@ -47,8 +46,26 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
   }, [queryId]);
 
   if (loading) {
-    return <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
-    ;
+    return (
+      <>
+        <header
+          className={`Component-header ${isShrunk ? `header-1-small` : `header-1-big`} ${
+            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
+          }`}
+          id="Attendance-header"
+        >
+          <a href="#Attendance-main">
+            <h1>נוכחות חברי כנסת</h1>
+          </a>
+        </header>
+        <main className="Component-main" id="Schedule-main">
+          <br />
+          <br />
+          <img src={"/LoadingFinal.gif"} alt="loading" className="loading-gif" />
+          <br />
+        </main>
+      </>
+    );
   }
 
   if (error) {
@@ -156,22 +173,12 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
                     ))}
 
                   {item.initiatorsfullnames && (
-                    <div
-                    className="grid-content"
-                    >
+                    <div className="grid-content">
                       {item.initiatorsfullnames.split(",").map((name: string) => {
                         const imageUrl = getInitiatorImage(name.trim());
                         return (
-                          <div
-                            key={name}
-                            className="grid-item"
-                          >
-                            {imageUrl && (
-                              <img
-                                src={imageUrl}
-                                alt={name}
-                              />
-                            )}
+                          <div key={name} className="grid-item">
+                            {imageUrl && <img src={imageUrl} alt={name} />}
                             <div className="law-value">{name}</div>
                           </div>
                         );

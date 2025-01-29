@@ -12,6 +12,8 @@ import {
 
 import axios from "axios";
 import CommitteesDescriptions from "./committee_description.json";
+import mock_schedule_today from "./mock_schedule_today.json";
+import mock_lobby_data from "./mock_lobby_data.json";
 /*
  * Fetch data from the Knesset API
  * @param url - the url to fetch data from
@@ -26,6 +28,26 @@ export async function fetchData(url: string, requestInit?: RequestInit) {
     }
     const data = await response.json();
     // console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
+export async function fetchMockData(dateString: string) {
+  try {
+    const data = await mock_schedule_today;
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
+export async function fetchMockLobbyData() {
+  try {
+    const data = await mock_lobby_data;
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -51,23 +73,27 @@ export async function fetchScheduleData(
   try {
     if (setLoading) setLoading(true);
     // events data
-    const rawScheduleData = await fetchData(
-      "https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday",
-      {
+    let rawScheduleData;
+    if (new Date(date).toDateString() == new Date(Date.now()).toDateString()) {
+      rawScheduleData = await fetchMockData(date);
+    } else {
+      rawScheduleData = await fetchData("https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ SelectedDate: date, SelectedMonth: null, SelectedYear: null }),
-      }
-    );
+      });
+    }
     //participants data
-    const committeeParticipantsData = await fetchData(
-      "https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkLobbyData?lang=he"
-    );
+    let committeeParticipantsData;
+    if (new Date(date).toDateString() == new Date(Date.now()).toDateString()) {
+      committeeParticipantsData = await fetchMockLobbyData();
+    } else {
+      committeeParticipantsData = await fetchData("https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkLobbyData?lang=he");
+    }
     // description data
-    const committeesDescriptions: CommitteeDescription[] = await CommitteesDescriptions;
-    // console.log(await CommitteesData);
+    const committeesDescriptions: CommitteeDescription[] = await CommitteesDescriptions; // console.log(await CommitteesData);
     const scheduleData: ScheduleData = {
       eventsNumber:
         rawScheduleData.CurrentCommitteeEvents.length +

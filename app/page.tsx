@@ -20,9 +20,10 @@ export default function Home() {
       const scrollY = window.scrollY;
       // console.log(isShrunk);
       if (!isShrunk) {
-        setIsShrunk(scrollY > 60); // Shrink if scrolled down 50px or more
-      } else if (scrollY < 60) {
+        setIsShrunk(scrollY > 80); // Shrink if scrolled down 50px or more
+      } else if (scrollY < 80) {
         setIsShrunk(false);
+        window.scrollTo(0, 0);
       }
     };
     setR(document.querySelector(":root"));
@@ -36,7 +37,7 @@ export default function Home() {
 
   return (
     <>
-      <div ref={topRef}></div>
+      <div ref={topRef} id="top"></div>
       <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
         <a href="#top">
           <h1>

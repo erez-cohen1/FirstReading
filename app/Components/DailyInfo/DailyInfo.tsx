@@ -70,7 +70,7 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
         </a>
       </header>
       <main className="info-main" id="DailyInfo-main">
-        <table className="info-table">
+        <table className="info-table" style={{ marginBottom: "0.3rem" }}>
           <tbody className={`info-table-body showAll}`}>
             {/* <PhraseComp isShrunk={isShrunk} index={0} content={phrases[0]?.explanation} name={phrases[0]?.term}></PhraseComp> */}
             <tr className="info-event-row">
@@ -93,11 +93,11 @@ export default function DailyInfo({ headerNum, isShrunk }: { headerNum: number; 
             </tr>
             <AllPhrasesComp phrases={phrases} isShrunk={isShrunk} index={0} content={""} name={"למילון הכנסת"}></AllPhrasesComp>
             {/* <PhraseComp isShrunk={isShrunk} index={1} content={phrases[1]?.explanation} name={phrases[1]?.term}></PhraseComp> */}
-            <tr>
+            {/* <tr>
               <td className="info-table-horizontal-separator">
                 <div className="daily-info-line"></div>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
       </main>

@@ -37,6 +37,7 @@ export default function PlenumEventComp({ events, index, rows }: { events: Plenu
               <div className={`schedule-event-title`}>
                 <h3>ישיבת מליאה</h3>
                 <p>סדר יום המליאה:</p>
+                <br />
                 <div id="plenum-subject">
                   <div
                     key={index}
@@ -66,9 +67,12 @@ export default function PlenumEventComp({ events, index, rows }: { events: Plenu
                           height: "0.7rem",
                           backgroundColor: "#FF6700",
                           border: "none",
+                          marginTop: "0.3em",
                         }}
                       />
                       <p key={index}>{` ${event.Name}`}</p>
+                      <br />
+                      <br />
                       <br />
                     </div>
                   )

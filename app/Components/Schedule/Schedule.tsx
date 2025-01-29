@@ -37,13 +37,14 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
   sortedEvents.sort((a, b) => {
     return a.EventStart.getTime() - b.EventStart.getTime();
   });
+  // setLoading(false);
 
   if (loading) {
     return (
       <>
         <header
           className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
-            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
+            headerNum == 4 ? `bottom-1-small` : `bottom-2-small`
           }`}
           id="Schedule-header"
         >
@@ -68,12 +69,7 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
   ) {
     return (
       <>
-        <header
-          className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
-            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
-          }`}
-          id="Schedule-header"
-        >
+        <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
           <a href="#Schedule-main">
             <h1>סדר יום</h1>
           </a>
@@ -89,51 +85,48 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
 
   return (
     <>
-      <header className={`Component-header ${isShrunk ? "header-2-small" : "header-2-big"}`} id="Schedule-header">
+      <header
+        className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
+          headerNum == 4 ? `bottom-1-small` : `bottom-2-small`
+        }`}
+        id="Schedule-header"
+      >
         <a href="#Schedule-main" className="header-link">
           <h1>סדר יום</h1>
         </a>
       </header>
-      {loading ? (
-        <main className="Component-main" id="Schedule-main">
-          <br />
-          <h3 style={{ textAlign: "center" }}>היום לא מתקיימים דיוני ועדות, ישיבת מליאה ואירועים מיוחדים בכנסת</h3>
-          <br />
-        </main>
-      ) : (
-        <main className="Component-main" id="Schedule-main">
-          <table className="Schedule-table">
-            <tbody className={`Schedule-table-body showAll}`}>
-              {sortedEvents.map((event, index) => {
-                if (event.EventType == ScheduleEventType.Committee) {
-                  return (
-                    <CommitteeEventComp
-                      event={event as CommitteeEvent}
-                      index={index}
-                      showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
-                      rows={rows}
-                      key={index}
-                    ></CommitteeEventComp>
-                  );
-                } else if (event.EventType == ScheduleEventType.Plenum) {
-                  return (
-                    <PlenumEventComp events={events.CurrentPlenumEvents} rows={rows} index={index} key={index}></PlenumEventComp>
-                  );
-                } else if (event.EventType == ScheduleEventType.SpecialOccasion) {
-                  return (
-                    <KnsEventComp
-                      event={event as KnsEvent}
-                      index={index}
-                      showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
-                      key={index}
-                    ></KnsEventComp>
-                  );
-                }
-              })}
-            </tbody>
-          </table>
-        </main>
-      )}
+      <main className="Component-main" id="Schedule-main">
+        <table className="Schedule-table">
+          <tbody className={`Schedule-table-body showAll}`}>
+            {sortedEvents.map((event, index) => {
+              if (event.EventType == ScheduleEventType.Committee) {
+                return (
+                  <CommitteeEventComp
+                    event={event as CommitteeEvent}
+                    index={index}
+                    showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
+                    rows={rows}
+                    key={index}
+                  ></CommitteeEventComp>
+                );
+              } else if (event.EventType == ScheduleEventType.Plenum) {
+                return (
+                  <PlenumEventComp events={events.CurrentPlenumEvents} rows={rows} index={index} key={index}></PlenumEventComp>
+                );
+              } else if (event.EventType == ScheduleEventType.SpecialOccasion) {
+                return (
+                  <KnsEventComp
+                    event={event as KnsEvent}
+                    index={index}
+                    showTime={index == 0 || event.EventStart.toISOString() != sortedEvents[index - 1].EventStart.toISOString()}
+                    key={index}
+                  ></KnsEventComp>
+                );
+              }
+            })}
+          </tbody>
+        </table>
+      </main>
     </>
   );
 }

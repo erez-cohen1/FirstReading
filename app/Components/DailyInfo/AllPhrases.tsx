@@ -51,7 +51,7 @@ export default function AllPhrasesComp({
       <tr className="info-event-row">
         <td className="info-event-cell-opened" ref={summaryRef} id="info-event-cell">
           <details id="info-all-phrases">
-            <summary>
+            <summary className="header-4-small">
               <div className="info-all-phrases-title white">
                 <h1>{name}</h1>
               </div>

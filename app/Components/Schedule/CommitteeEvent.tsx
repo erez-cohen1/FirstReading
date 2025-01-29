@@ -31,7 +31,7 @@ export default function CommitteeEventComp({
       const detailsList: NodeListOf<HTMLDetailsElement> = document.querySelectorAll("details");
       // Close all other details elements.
       detailsList.forEach((details) => {
-        if (details.textContent != target.textContent) {
+        if (details.textContent != target.textContent && details.id == target.id) {
           details.open = false;
         }
       });
@@ -62,7 +62,7 @@ export default function CommitteeEventComp({
           </td>
         ) : null}
         <td className="schedule-event-cell-opened" id={`committee-event-summary`} ref={summaryRef}>
-          <details onToggle={handleToggle}>
+          <details onToggle={handleToggle} id="schedule-committee">
             <summary>
               <div>
                 <h3>{event.CommitteeName}</h3>
