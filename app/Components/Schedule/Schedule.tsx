@@ -44,6 +44,9 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
     return (
       <>
         <header
+          className={`Component-header ${isShrunk ? `header-2-small` : `header-2-big`} ${
+            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
+          }`}
           id="Schedule-header"
         >
           <a href="#Schedule-main">
