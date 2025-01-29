@@ -72,7 +72,7 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
         <div className={`Component-footer attendance ${showModal ? "modal-active" : ""} ${isShrunk ? "" : "footer-big-header-stick"}`}
         onClick={() => handleToggleModal()}>
           <div className="footer-text">לרשימה המלאה</div>
-          <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`} onClick={() => handleToggleModal()}></i>
+          <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`}></i>
         </div>
         <Modal mkData={mkData} displayOption={displayOption} showModal={showModal} modalRef={modalRef} />
       </main>
