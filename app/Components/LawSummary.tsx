@@ -111,7 +111,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
             </div>
           )}
         </div>
-        <section className="law-section" id="General-Assembly">
+        <section className="law-section">
           <td className="law-horizontal-line"> </td>
           <br />
           {sortedData.map((item, index) => (
@@ -137,7 +137,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk }) => {
                           <br />
                         </p>{" "}
                         <span className="law-value">
-                        {key === "initiatorsfullnames"
+                          {key === "initiatorsfullnames"
                         ? (value === null ? "אין מידע על יוזמי.ות חוק זה" : null)
                         : (value === null ? "אין תקציר לחוק זה" : (value as string))}
                         </span>

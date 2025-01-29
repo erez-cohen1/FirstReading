@@ -83,7 +83,7 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
           const response = await fetch("https://knesset.gov.il/WebSiteApi/knessetapi/MkLobby/GetMkPresent?lang=he");
           if (!response.ok) throw new Error(`Error fetching attendance data: ${response.status}`);
 
-          const attendanceMapping: { MkId: number, IsPresent: boolean }[] = await response.json();
+//           const attendanceMapping: { MkId: number, IsPresent: boolean }[] = await response.json();
           
           // Step 3: Update local data to reflect attendance status
           updatedData = localData.map((mk) => {
@@ -118,18 +118,18 @@ export const useAttendanceDataFromFile = (date: Date): [MkData[], boolean, strin
 
         
 
-        setData(updatedData);
-        //setGovData(updatedGovData);
-      } catch (err) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
+//         setData(updatedData);
+//         //setGovData(updatedGovData);
+//       } catch (err) {
+//         setError((err as Error).message);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-    fetchAttendanceData();
-  }, [date]);
+//     fetchAttendanceData();
+//   }, [date]);
 
-  return [data, loading, error];
-};
+//   return [data, loading, error];
+// };
 

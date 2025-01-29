@@ -4,7 +4,7 @@ import DisplayOptions from "./DisplayOptions";
 import NonMkChart from "./NonMkChart";
 import Modal from "./Modal";
 import { useAttendanceData } from "./useAttendanceData";
-import { useAttendanceDataFromFile } from "./useAttendanceData";
+//import { useAttendanceDataFromFile } from "./useAttendanceData";
 import { MkData } from "./MkData";
 
 
@@ -14,7 +14,7 @@ interface KnessetAttendanceProps {
 }
 
 const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) => {
-  const [mkData, loading, error] = useAttendanceDataFromFile(date);
+  const [mkData, loading, error] = useAttendanceData();
   const [displayOption, setDisplayOption] = useState<"all" | "coalition" | "opposition" | "goverment">("all");
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -72,7 +72,7 @@ const KnessetAttendance: React.FC<KnessetAttendanceProps> = ({date, isShrunk}) =
         <div className={`Component-footer attendance ${showModal ? "modal-active" : ""} ${isShrunk ? "" : "footer-big-header-stick"}`}
         onClick={() => handleToggleModal()}>
           <div className="footer-text">לרשימה המלאה</div>
-          <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`}></i>
+          <i className={`arrow footer-arrow ${showModal ? "up" : "down"}`} onClick={() => handleToggleModal()}></i>
         </div>
         <Modal mkData={mkData} displayOption={displayOption} showModal={showModal} modalRef={modalRef} />
       </main>
