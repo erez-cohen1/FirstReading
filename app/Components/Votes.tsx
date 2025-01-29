@@ -212,7 +212,7 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                     <i className={`arrow ${expandedVoteId === vote.VoteId ? "up" : "down"}`} />
                   </div>
                   <div className="vote-infograph-div">
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <div>
                     <p className="vote-result-text">{vote.AcceptedText === "ההצעה לא התקבלה" ? "לא עבר" : "עבר"}</p>
                     <p>{vote.numVoted}/{vote.numInPlenum}</p>
                     <p>הצביעו</p>
@@ -222,9 +222,10 @@ const Votes = ({ date, isShrunk }: { date: Date; isShrunk: boolean }) => {
                   {expandedVoteId === vote.VoteId && (
                     <div>
                       <br></br>
-                      <p className="law-status" style={{marginRight: "1rem"}}>
-                        <p>החלטה:</p> {vote.Decision || "N/A"}
+                      <p className="law-status">
+                        <strong>החלטה:</strong> {vote.Decision || "N/A"}
                       </p>
+                      
                       {filteringButtons(handleVoterFilterChange, vote, voterFilters)}
                       {searchBar(searchTerm, handleSearchChange)}
                       {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}
@@ -263,8 +264,8 @@ function filteringButtons(
   voterFilters: Record<number, string>
 ) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div className="vote-display-options" >
+    <div>
+      <div className="vote-display-options">
         <button
           onClick={() => handleVoterFilterChange(vote.VoteId, "בעד")}
           className={(voterFilters[vote.VoteId] || "בעד") === "בעד" ? "active" : ""}
@@ -352,7 +353,6 @@ function displayResults(
 
 function searchBar(searchTerm: string, handleSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
     <div className="vote-search-bar">
       <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
         <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" stroke-opacity="0.3" />
@@ -365,8 +365,6 @@ function searchBar(searchTerm: string, handleSearchChange: (event: React.ChangeE
         onChange={handleSearchChange}
         placeholder="לחיפוש חבר.ת כנסת לפי שם"
       />
-    </div>
-
     </div>
   );
 }

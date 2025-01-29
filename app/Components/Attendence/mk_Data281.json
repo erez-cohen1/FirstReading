@@ -1412,7 +1412,7 @@
     {
       "MkId": 1009,
       "IsPresent": false,
-      "IsCoalition": false,
+      "IsCoalition": null,
       "Name": "עידן רול",
       "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1009/1_1009_3_12328.jpeg?v=20250128_64767",
       "FactionName": "",

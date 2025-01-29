@@ -564,8 +564,6 @@
 }
 
 .Component-footer.attendance {
-  padding: 0;
-  margin: 0;
   display: flex;
   color: #0900bd;
   text-align: right;
@@ -589,22 +587,17 @@
 .footer-text {
   flex: 1; /* Allow text to take available space */
   text-align: right; /* Align text to the left */
-  font-size: 1.375rem;
-  margin: 0.625rem;
+  margin-right: 0.5rem;
   direction: rtl; /* Keep proper text direction for Hebrew */
 }
 
 .Component-footer.attendance.modal-active {
   position: sticky;
-  width: 100%;
-  top: calc(var(--total-first-headers-height-small) + calc(var(--sticky-header-height)) - 0.3rem);
-  z-index: 6;
+  width: 95%;
+  top: 5.3%;
+  z-index: 1001; /* Ensures it stays above other elements */
   border: transparent;
   padding: 0, 0, 0, 0;
-}
-
-.footer-big-header-stick {
-  top: 60%;
 }
 
 .expand-component {
@@ -1065,7 +1058,7 @@
   flex: 1; /* Make buttons take equal space */
   position: relative; /* For the indicator effect */
   background-color: transparent;
-  font-family: "VC_david-Bold";
+  font-family: "VC_david";
   flex-direction: column;
   font-weight: 600;
   font-size: 24px;
@@ -1081,14 +1074,12 @@
   transition: color 0.3s ease;
 }
 
-.display-options button p {
-  font-family: "VC_david-Regular";
-  font-size: 1rem; /* Font size for the text (e.g., "שרים") */
-  margin: 0; /* Reset margin for consistent alignment */
+.display-options button.active {
+  color: #ffead8; /* Change text color for active button */
 }
 
-.display-options button.active {
-  color: var(--component-bg-color); /* Change text color for active button */
+.display-options button:hover {
+  opacity: 0.8; /* Slightly dim when hovering */
 }
 
 .display-options .indicator {
@@ -1096,8 +1087,9 @@
   bottom: 0; /* Align indicator at the bottom */
   left: 0; /* Start from the left */
   height: 100%; /* Make it fill the button */
-  color: var(--component-bg-color);
+  color: #ffead8;
   background-color: var(--global-bg-color); /* Same background color as active */
+  transition: all 0.3s ease; /* Smooth animation */
   z-index: 1; /* Place it behind the buttons */
 }
 
@@ -1107,21 +1099,21 @@
   font-style: normal;
   font-weight: 400;
   line-height: 100%; /* 1rem */
+
   position: relative;
   display: flex;
   align-items: center;
+  padding: 0.5rem 0.75rem; /* Adjust padding with rem units */
   border: 0.15rem solid var(--global-bg-color); /* 1px in rem */
   margin-bottom: 1rem; /* Space below the search bar */
-  margin-right: 0.7rem;
-  width: 95%; /* Full width for mobile screens */
+  width: 100%; /* Full width for mobile screens */
 }
 
 .search-bar input {
   flex: 1; /* Take all available space */
   border: none;
   outline: none;
-  padding-top: 0.3rem;
-  padding-bottom: 0.5rem;
+  padding: 0.375rem; /* Inner padding for input */
   font-size: 1rem; /* Responsive font size */
   background: transparent;
 }
@@ -1136,23 +1128,13 @@
   margin-right: 0.5rem; /* Space between icon and input */
 }
 
-.modal-option-display {
-  color: #0900bd;
-
-  text-align: right;
-  font-family: "VC_david-Bold";
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 90%; /* 0.9rem */
-}
-
 .modal-overlay {
   height: 0;
   overflow: hidden;
   width: 100%;
   position: relative;
   display: flex;
+  margin-top: 1rem;
   align-items: center;
   pointer-events: none; /* Ensures the overlay doesn't block interactions */
 }
@@ -1166,24 +1148,16 @@
 .modal-content {
   background: #ffead8;
   color: rgb(0, 0, 0);
-  width: 100%;
-  max-height: 0; /* Start with collapsed content */
-  padding-top: 0;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  height: 0;
+  padding: 1rem;
   z-index: 5;
   text-align: left;
   pointer-events: auto; /* Enables interaction within the modal */
-  overflow: hidden; /* Ensure content doesn't overflow when collapsed */
-  transition: max-height 3s ease-in-out, padding 3s ease-in-out;
-  border-bottom: 2px solid var(--color-secondary);
 }
 
 .modal-overlay.modal-active .modal-content {
-  max-height: 1000vh; /* Set a large enough height for the content */
-  padding: 1rem, 0, 0, 1rem; /* Ensure padding transitions smoothly */
+  height: 100%;
+  transition: all 1s ease-in-out;
 }
 
 .grid-header {
@@ -1262,132 +1236,10 @@
   filter: grayscale(100%);
 }
 
-/* Overlay for the info box */
-.mk-info-overlay {
-  position: fixed;
-  top: 34%;
-  left: 5%;
-  border: 2px solid #0900bd;
-  background: #ffead8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Info box container */
 .mk-info {
-  background-color: #ffead8;
-  color: #0900bd;
-  width: 24.375rem;
-  height: 20.84781rem;
-  border: 2px solid #0900bd;
-  position: flex;
-  text-align: left;
-  animation: fadeIn 0.3s ease-in-out;
-  z-index: 2000;
-}
-
-/* Title styling */
-.mk-info-title {
-  font-size: 1.5rem;
-}
-
-.mk-info-item {
-  position: relative;
-  top: 2%;
-  right: 2%;
-  color: #0900bd;
-  background: var(--component-bg-color);
-  text-align: center;
-  font-family: "VC_NarkisBlock-Regular";
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 0.8125rem */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 200px; Adjust height as needed */
-  width: 5.25rem;
-  height: 9.56256rem;
-  flex-shrink: 0;
-}
-
-/* Image styling */
-.mk-info-image {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-/* Detail styling */
-.mk-info-detail {
-  position: relative;
-  color: #0900bd;
-  text-align: right;
-  bottom: 40%;
-  right: 30%;
-  font-size: 1rem;
-  line-height: 100%; /* 1rem */
-  margin-bottom: 0.5rem;
-}
-
-.roles-list {
-  position: relative;
-  color: #0900bd;
-  text-align: right;
-  font-family: "VC_NarkisBlock-Regular";
-  font-size: 0.5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%;
-  bottom: 15%;
-  right: 5%;
-  text-align: right;
-  white-space: normal; /* Allow text to wrap */
-  overflow-wrap: break-word;
-  word-wrap: break-word; /* Ensure proper word breaks */
-  word-break: break-word; /* Ensure breaking at word boundaries */
-  max-width: 90%; /* Limit width to avoid overflow on smaller screens */
-  margin: 1rem auto 0; /* Center the list and add spacing */
-  font-size: 1rem;
-  line-height: 1.5; /* Improve readability */
-}
-
-.roles-list p {
-  overflow-wrap: break-word; /* Ensure proper breaking of long text */
-}
-
-.roles-list h4 {
-  font-size: 1.2rem;
-  text-align: right;
-}
-
-/* Close button */
-.mk-info-close {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: transparent;
-  border: solid transparent;
-  font-size: 1.5rem;
-  color: var(--global-bg-color);
-  cursor: pointer;
-}
-
-.mk-info-close:hover {
-  color: #ff0000;
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
 }
 
 .mk-name {
@@ -1472,12 +1324,6 @@
 
 .law-status {
   color: var(--color-secondary);
-  font-family: "VC_NarkisBlock-Regular", sans-serif;
-  margin-bottom: 0.2rem;
-}
-.law-value {
-  font-family: "VC_NarkisBlock-Regular", sans-serif;
-  color: var(--global-bg-color);
 }
 
 .arrow {
@@ -1490,562 +1336,4 @@
 
 .arrow.down {
   transform: rotate(45deg); /* Rotate arrow down when closed */
-}
-
-.vote-infograph-div {
-  font-family: "VC_NarkisBlock-Regular";
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  /* align-items: center; */
-  width: 100%;
-}
-
-.vote {
-  margin-right: 0.5rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  font-size: 1.2rem;
-  width: 92%;
-}
-
-.vote-name {
-  font-family: "VC_NarkisBlock-Regular";
-  font-weight: normal;
-  width: 90%; /* Ensure the name takes up appropriate width */
-  margin-left: 1rem;
-}
-
-.vote.open .vote-name {
-  font-family: "VC_NarkisBlock-bold";
-  max-width: 90%; /* Adjust max-width when open */
-}
-
-.vote-display-options {
-  margin-top: 1rem;
-  border-top: 2px solid var(--global-bg-color);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 95%;
-  max-width: 100%;
-  position: relative; /* For positioning the indicator */
-}
-
-.vote-display-options button {
-  flex: 1; /* Default flex size for all buttons */
-  margin-bottom: 1rem; /* Adjust margin for spacing */
-  position: relative;
-  background-color: transparent;
-  font-family: "VC_david-Medium";
-  font-weight: 600;
-  font-size: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #0900bd;
-  border: none;
-  outline: none;
-  z-index: 2;
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-/* Adjust the width of "בעד" and "נגד" buttons */
-.vote-display-options button:first-child, /* "בעד" button */
-.vote-display-options button:last-child {
-  /* "נגד" button */
-  flex-basis: 40%; /* Wider buttons */
-}
-
-/* "נמנע" button remains smaller */
-.vote-display-options button:nth-child(2) {
-  /* "נמנע" button */
-  width: 28%;
-}
-
-/* Style for active buttons */
-.vote-display-options button.active {
-  color: var(--component-bg-color); /* Change text color for active button */
-  background-color: #0900bd;
-}
-
-.vote-display-options img {
-  width: calc(25% - 10px); /* Make the images 25% of the container width minus the gap */
-  height: auto;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.vote-search-bar {
-  align-self: center;
-  font-family: "VC_NarkisBlock-Regular";
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 1rem */
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 0.2rem 0.5rem; /* Adjust padding with rem units */
-  border: 0.15rem solid var(--global-bg-color); /* 1px in rem */
-  margin-bottom: 0.2rem; /* Space below the search bar */
-  width: 95%; /* Full width for mobile screens */
-}
-
-.vote-search-bar input {
-  flex: 1; /* Take all available space */
-  border: none;
-  outline: none;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-right: 0.5rem;
-  font-size: 1rem; /* Responsive font size */
-  background: transparent;
-  font-family: "VC_NarkisBlock-Regular";
-}
-
-.vote-search-bar::placeholder {
-  font-family: "VC_NarkisBlock-Regular";
-  font-size: 1rem; /* Optional: Adjust the font size if needed */
-}
-
-/* Styling for the button */
-.law-button {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.2rem;
-  width: 100%;
-}
-
-.law-button .law-content {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  width: 100%; /* Ensure content takes full width when open */
-}
-
-.law-button.open .law-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%; /* Ensure content takes full width when open */
-}
-
-.law-button .law-name {
-  font-weight: bold; /* Always bold for the button */
-  max-width: 55%; /* Ensure the name takes up appropriate width */
-  margin-left: 1rem;
-}
-
-.law-button.open .law-name {
-  max-width: 90%; /* Adjust max-width when open */
-  margin-bottom: 1rem;
-}
-
-.law-header {
-  color: #0900bd;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  padding-right: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.2rem;
-  font-size: 1.2rem;
-}
-
-.law-header p:last-child {
-  margin-left: 20%;
-  align-self: center;
-  padding-left: 1rem;
-}
-
-/* Overlay */
-.modal-overlay-laws-info {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5); /* Adds a subtle shadow around the modal */
-}
-
-Modal content .modal-content {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
-  position: relative;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Overlay background */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Ensure it appears on top */
-}
-
-.popup {
-  background-color: var(--color-background);
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 80%;
-  max-height: 80%;
-  overflow-y: auto;
-  animation: fadeIn 0.3s ease-in-out forwards; /* Fade-in effect when the component appears */
-}
-
-/* Fade-in effect */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.law-blue-squere {
-  font-family: "VC_Kislev-Regular";
-  width: 1.2rem;
-  height: 1.2rem;
-  background-color: transparent; /* Transparent background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #0900bd;
-  font-size: 1rem;
-  font-weight: normal;
-  cursor: pointer;
-  border: 0.1rem solid #0900bd; /* Added blue border */
-}
-.law-popup-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-weight: normal;
-  font-family: "VC_NarkisBlock-Regular", sans-serif; /* Added fallback font */
-}
-
-.law-popup-squeres {
-  font-family: "VC_NarkisBlock-Regular", sans-serif; /* Added fallback font */
-  width: 1.1rem;
-  height: 1.1rem;
-  margin: 0.15rem;
-  border: 1.4px solid #0900bd;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  font-size: 1rem;
-  font-weight: normal;
-}
-
-.law-popup-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 0.2rem solid #0900bd;
-  margin: 0.3rem;
-  padding: 0.4rem;
-  background-color: #ffead8;
-  width: fit-content;
-}
-
-.vote-button-content {
-  display: flex;
-  flex-direction: column;
-  font-family: "VC_David-Regular";
-  font-size: large;
-}
-
-.vote-button-number {
-  font-size: xx-large;
-}
-
-.vote-label {
-  margin-right: 0.6rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1.2rem;
-  font-family: "VC_David-Regular";
-}
-
-.vote-result-text {
-  font-family: "VC_David-bold";
-  color: "var(--global-bg-color)";
-}
-.info-table-horizontal-separator {
-  scroll-margin-top: 6rem;
-  /* padding: 0.5rem 0.2rem; */
-  background-color: var(--global-bg-color);
-  height: fit-content;
-}
-
-.daily-info-line {
-  background-color: var(--component-bg-color);
-  position: relative;
-  width: 100%;
-  height: 0.1rem;
-}
-
-.info-event-row {
-  padding: 0;
-  transition: height 3s ease-in-out;
-  background-color: var(--global-bg-color);
-}
-
-.info-all-phrases > summary {
-  height: 2rem;
-}
-
-.info-all-phrases[open] > summary {
-  height: 2rem;
-}
-
-.info-all-phrases-title {
-  h3 {
-    font-family: "VC_david-Regular";
-  }
-}
-
-.info-event-cell-opened {
-  height: 70%;
-  width: 100%;
-  padding: 1rem;
-  details {
-    transition: all 1s ease-in-out;
-    interpolate-size: allow-keywords;
-    &::details-content {
-      transition: all 1s, content-visibility 1s allow-discrete;
-      overflow: hidden;
-      block-size: 0; /* Or also:  height:0; */
-    }
-
-    &[open]::details-content {
-      transition: all 1s ease-in-out;
-
-      block-size: auto; /* Or also:  height:auto; */
-      /* overflow: visible; */
-    }
-  }
-
-  details[open] > summary {
-    position: sticky;
-    top: 0rem;
-    max-height: fit-content;
-    padding-left: 0.8rem;
-    /* height: 2.81rem; */
-
-    i {
-      cursor: pointer;
-      transform: rotate(-135deg);
-      -webkit-transform: rotate(-135deg);
-      margin: 0.3rem 0rem;
-      /* block-size: auto; */
-    }
-    .info-event-description {
-      max-height: fit-content;
-      overflow: visible;
-      display: inline-block;
-    }
-  }
-
-  details[open] {
-    .info-event-description {
-      max-height: fit-content;
-      overflow: visible;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      /* -webkit-text-fill-color: var(--global-bg-color); */
-      /* transition: all 1s ease-in-out; */
-    }
-    .info-event-title {
-      max-height: fit-content;
-      h3 {
-        font-family: "VC_NarkisBlock-Regular";
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 100%; /* 1rem */
-      }
-    }
-  }
-
-  summary {
-    display: flex;
-    flex-direction: row;
-    padding-left: 0.8rem;
-    justify-content: space-between;
-    align-items: center;
-    /* line-clamp: 4; */
-    height: 2.81rem;
-    /* overflow: hidden; */
-    /* height: 2rem; */
-    i {
-      cursor: pointer;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-    }
-    transition: all 1s ease-in-out;
-  }
-}
-.info-event-title {
-  max-height: fit-content;
-  align-items: center;
-  h3 {
-    font-family: "VC_NarkisBlock-Regular";
-  }
-}
-.info-table {
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0.1rem;
-  margin-top: 0;
-  background-color: var(--global-bg-color);
-  border: none;
-  max-height: fit-content;
-
-  /* p {
-        color: var(--global-bg-color);
-        margin-bottom: 0.4rem;
-      } */
-  h5 {
-    color: var(--component-bg-color);
-    /* font-weight: bold; */
-  }
-  h3 {
-    color: var(--component-bg-color);
-    /* font-weight: bold; */
-  }
-  br {
-    line-height: 30%;
-  }
-}
-
-.info-table-body {
-  /* height: 100px; */
-  transition: all 3s ease-in-out;
-}
-
-.info-main {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--global-bg-color);
-  justify-content: space-evenly;
-  color: var(--component-bg-color);
-  width: 100%;
-  padding: 0 0.7rem;
-}
-
-.white {
-  border-color: var(--component-bg-color);
-}
-
-.info-event-description {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  transition: all 1s ease-in-out;
-  font-family: "VC_NarkisBlock-Regular";
-  font-weight: normal;
-}
-
-.info-event-summary {
-  display: flex;
-  flex-direction: row;
-  /* padding: 0.5rem 0; */
-  /* background-color: var(--component-bg-color); */
-  justify-content: space-between;
-  align-items: center;
-  i {
-    cursor: pointer;
-  }
-  div {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-#Credits-main {
-  summary {
-    align-items: center;
-    padding: 0.7rem;
-    h1 {
-      color: var(--component-bg-color);
-      font-size: 1.6rem;
-    }
-    background-color: var(--color-secondary);
-  }
-}
-
-#Credits-cell {
-  background-color: var(--component-bg-color);
-  padding: 0rem;
-  summary {
-    width: 100%;
-    background-color: var(--color-secondary);
-    /* color: var(--color-secondary); */
-  }
-}
-
-.credits-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  /* padding: 0.5rem; */
-  background-color: var(--component-bg-color);
-  /* border: 1px solid var(--color-secondary); */
-  border-radius: 5px;
-  /* margin: 0.5rem; */
-  width: 100%;
-}
-
-#credit-arrow {
-  margin: 0rem;
-}
-
-.credits-label {
-  /* padding-right: 1rem; */
-  display: block;
-  width: 70%;
-}
-
-.credtis-photos {
-  img {
-    width: 3rem;
-    height: auto;
-  }
-  padding-bottom: 10px;
-}
-
-.credits-empty-div {
-  height: 65px;
 }
