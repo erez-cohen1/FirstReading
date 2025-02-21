@@ -1,10 +1,10 @@
 "use client";
 import Schedule from "./Components/Schedule/Schedule";
-import Votes from "./Components/Votes";
+import Votes from "./Components/Votes/Votes";
 import DateSelector from "./Components/Date/dateSelector";
 import KnessetAttendance from "./Components/Attendence/KnessetAttendance";
 import DateComponent from "./Components/Date/Date";
-import LawSummary from "./Components/LawSummary";
+import LawSummary from "./Components/Laws/LawSummary";
 import DailyInfo from "./Components/DailyInfo/DailyInfo";
 import Credits from "./Components/Credits/Credits";
 import { useEffect, useRef, useState } from "react";
@@ -13,6 +13,7 @@ export default function Home() {
   const [date, setDate] = useState(new Date(Date.now()));
   const [isShrunk, setIsShrunk] = useState(false);
   const [r, setR] = useState<Element | null>(null);
+  const [pushedTitle, setPushedTitle] = useState(false);
   const topRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -20,10 +21,9 @@ export default function Home() {
       const scrollY = window.scrollY;
       // console.log(isShrunk);
       if (!isShrunk) {
-        setIsShrunk(scrollY > 80); // Shrink if scrolled down 50px or more
+        setIsShrunk(scrollY > 80); // Shrink if scrolled down 80px or more
       } else if (scrollY < 80) {
         setIsShrunk(false);
-        window.scrollTo(0, 0);
       }
     };
     setR(document.querySelector(":root"));
@@ -31,7 +31,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isShrunk, setR]);
+  }, [isShrunk, setR, pushedTitle, setPushedTitle]);
 
   const stickyHeadersNum = date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4;
 
@@ -39,7 +39,7 @@ export default function Home() {
     <>
       <div ref={topRef} id="top"></div>
       <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
-        <a href="#top">
+        <a href="#top" onClick={() => setPushedTitle(true)}>
           <h1>
             קריאה {!isShrunk && <br />}
             ראשונה

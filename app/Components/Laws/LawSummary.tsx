@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import initiatorsData from "./mkDetails.json";
+import initiatorsData from "../Attendence/mkDetails.json";
 import SquaresWithText from "./Law-Info";
 import SquareFillComponent from "./LawStatusSqueres";
 
@@ -136,7 +136,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
           )}
         </div>
         <section className="law-section">
-          <td className="law-horizontal-line"> </td>
+          <div className="law-horizontal-line"> </div>
           <br />
           {sortedData.map((item, index) => (
             <div key={index} className="law-event-cell-opened ">

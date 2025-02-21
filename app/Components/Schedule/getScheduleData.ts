@@ -74,17 +74,13 @@ export async function fetchScheduleData(
     if (setLoading) setLoading(true);
     // events data
     let rawScheduleData;
-    if (new Date(date).toDateString() == new Date(Date.now()).toDateString()) {
-      rawScheduleData = await fetchMockData(date);
-    } else {
-      rawScheduleData = await fetchData("https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ SelectedDate: date, SelectedMonth: null, SelectedYear: null }),
-      });
-    }
+    rawScheduleData = await fetchData("https://knesset.gov.il/WebSiteApi/knessetapi/KnessetMainEvents/GetEventsAgendaToday", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ SelectedDate: date, SelectedMonth: null, SelectedYear: null }),
+    });
     //participants data
     let committeeParticipantsData;
     if (new Date(date).toDateString() == new Date(Date.now()).toDateString()) {

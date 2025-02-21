@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import VoteBar from "./VotingBar";
-import initiatorsData from "./mkDetails.json";
+import initiatorsData from "../Attendence/mkDetails.json";
 
 type Vote = {
   VoteId: number;

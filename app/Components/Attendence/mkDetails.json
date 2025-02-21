@@ -351,7 +351,7 @@
     "Name": "מיכל מרים וולדיגר",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
   },
-  
+
   "1061": {
     "Name": "רון כץ",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1061/1_1061_3_17813.jpeg?v=20241229_74173"
@@ -553,7 +553,7 @@
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1125/1_1125_3_20029.jpeg?v=20250113_09581"
   },
   "1129": {
-    "Name": "צגה מלקו", 
+    "Name": "צגה מלקו",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1122/1_1122_3_19962.jpeg?v=20250113_02775"
   },
 
@@ -570,8 +570,7 @@
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1121/1_1121_3_19949.jpeg?v=20241229_76864"
   },
 
-  "1133":
-  {
+  "1133": {
     "Name": "עפיף עבד",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1128/1_1128_3_20759.jpeg?v=20250126_84836"
   },
@@ -592,7 +591,7 @@
   "1137": {
     "Name": "יולי אדלשטיין",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1/1_1_3_4.jpeg?v=20241229_51053"
-  }, 
+  },
   "1138": {
     "Name": "מרים וולדיגר מיכל",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1060/1_1060_3_17793.jpeg?v=20241229_31677"
@@ -626,7 +625,7 @@
   "1144": {
     "Name": "קטרין שטרית קטי",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1018/1_1018_3_12330.jpeg?v=20250101_05393"
-  }, 
+  },
   "1145": {
     "Name": "זאב פינדרוס יצחק",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1001/1_1001_3_11229.jpeg?v=20250101_45784"
@@ -636,5 +635,4 @@
     "Name": "דב מלביצקי חנוך",
     "MkImage": "https://fs.knesset.gov.il/globaldocs/MK/1105/1_1105_3_19712.jpeg?v=20241229_74638"
   }
-
 }
