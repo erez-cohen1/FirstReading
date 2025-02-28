@@ -6,7 +6,6 @@ import { ScheduleEventType, ScheduleData, CommitteeEvent, PlenumEvent, KnsEvent 
 import CommitteeEventComp from "./CommitteeEvent";
 import PlenumEventComp from "./PlenumEvent";
 import KnsEventComp from "./KnsEvent";
-import LoadingGif from "../../../basic_loading.gif";
 
 export default function Schedule({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; headerNum: number }) {
   const [loading, setLoading] = useState(true);

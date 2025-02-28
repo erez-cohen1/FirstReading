@@ -43,6 +43,7 @@ export default function WheelDatePicker({
 
     return hebrewMonths[monthKey];
   };
+
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(new Date(Date.now())));
   const [curDate, setCurDate] = useState(date.getDate());
   const [curMonth, setCurMonth] = useState(idxToStrMonth(date.getMonth() + 1));
@@ -52,9 +53,11 @@ export default function WheelDatePicker({
   const formatYear = (year: number) => {
     return 2024 + year;
   };
+
   const formatDay = (day: number) => {
     return day + 1;
   };
+
   const strMonthToIdx = (monthStr: string) => {
     const hebrewMonths: Record<string, number> = {
       ינואר: 1,
@@ -76,6 +79,7 @@ export default function WheelDatePicker({
     }
     return hebrewMonths[monthStr];
   };
+
   return (
     <div className="wheel-date-picker-wrapper">
       <div className="wheel-date-picker-component">
@@ -90,17 +94,32 @@ export default function WheelDatePicker({
           />
         </div>
         <div className="wheel-date-picker">
-          <Wheel loop length={12} perspective="center" initIdx={date.getMonth()} setValue={idxToStrMonth} setDate={setCurMonth} />
+          <Wheel
+            loop
+            length={12}
+            perspective="center"
+            initIdx={date.getMonth()}
+            setValue={idxToStrMonth}
+            setDate={setCurMonth}
+          />
         </div>
         <div className="wheel-date-picker">
-          <Wheel length={2} initIdx={formatYear(date.getFullYear())} setValue={formatYear} setDate={setCurYear} />
+          <Wheel
+            length={2}
+            initIdx={formatYear(date.getFullYear())}
+            setValue={formatYear}
+            setDate={setCurYear}
+          />
         </div>
       </div>
       <div className="date-selector-buttons-wrapper">
         <button
           onClick={() => {
-            const monthIndex = strMonthToIdx(curMonth) < 10 ? `0${strMonthToIdx(curMonth)}` : strMonthToIdx(curMonth);
-            setDate(new Date(`${curYear}-${monthIndex}-${curDate}T05:10:00`));
+            const monthIndex = strMonthToIdx(curMonth);
+            const formattedMonth = monthIndex < 10 ? `0${monthIndex}` : monthIndex; // Ensure two digits for month
+            const formattedDay = curDate < 10 ? `0${curDate}` : curDate; // Ensure two digits for day
+
+            setDate(new Date(`${curYear}-${formattedMonth}-${formattedDay}T05:10:00`));
             setShow(false);
             topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
