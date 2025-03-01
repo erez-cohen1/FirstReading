@@ -21,21 +21,21 @@ export default function CommitteeEventComp({
   const isVisible = useIsVisible(summaryRef);
 
   const handleToggle = (e: React.SyntheticEvent<HTMLDetailsElement>) => {
-    const target = e.currentTarget as HTMLDetailsElement;
-    //closing the element
-    // console.log(isVisible);
-    if (!target.open) {
-      summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else if (target.open) {
-      // opening the element
-      const detailsList: NodeListOf<HTMLDetailsElement> = document.querySelectorAll("details");
-      // Close all other details elements.
-      detailsList.forEach((details) => {
-        if (details.textContent != target.textContent && details.id == target.id) {
-          details.open = false;
-        }
-      });
-    }
+    // const target = e.currentTarget as HTMLDetailsElement;
+    // //closing the element
+    // // console.log(isVisible);
+    // if (!target.open) {
+    //   summaryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    // } else if (target.open) {
+    //   // opening the element
+    //   const detailsList: NodeListOf<HTMLDetailsElement> = document.querySelectorAll("details");
+    //   // Close all other details elements.
+    //   detailsList.forEach((details) => {
+    //     if (details.textContent != target.textContent && details.id == target.id) {
+    //       details.open = false;
+    //     }
+    //   });
+    // }
   };
   return (
     <>
