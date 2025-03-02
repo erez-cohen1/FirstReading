@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <>
-      <div style={{ maxWidth: "470px", margin: "0 auto" }}>
+      <div className="screen-size">
       <div ref={topRef} id="top"></div>
       <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
         <a href="#top" onClick={() => setPushedTitle(true)}>

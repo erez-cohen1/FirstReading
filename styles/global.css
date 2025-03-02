@@ -2396,6 +2396,19 @@ Modal content .modal-content {
   background-color: var(--component-bg-color) !important; /* Use the color of your choice */
 }
 
+.screen-size {
+  max-width: 500px;
+  margin: 0 auto;
+  zoom: 1; /* Default zoom level for all screens */
+}
+
+@media (min-width: 1024px) {
+  .screen-size {
+    zoom: 0.6; /* Zoom out on screens larger than 1024px (e.g., computers) */
+  }
+}
+
+
 
 
 
