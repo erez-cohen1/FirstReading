@@ -231,7 +231,7 @@ const KnessetAttendance: React.FC = () => {
                       key={mk.MkId}
                       onClick={() => handleFlip(mk.MkId)}
                     >
-                      {flippedId === mk.MkId ? (
+                      {/* {flippedId === mk.MkId ? (
                         <div className="mk-info">
                           <div className="mk-name">{mk.Name}</div>
                           <div className="mk-name">{mk.FactionName}</div>
@@ -242,7 +242,7 @@ const KnessetAttendance: React.FC = () => {
                           <img src={mk.MkImage} alt={mk.Name} className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`} />
                           <div className="mk-name">{mk.Name}</div>
                         </>
-                      )}
+                      )} */}
                     </div>
                   ))}
                 </div>

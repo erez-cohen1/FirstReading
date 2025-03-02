@@ -40,10 +40,15 @@ const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
             alt={mk.Name}
             className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
           />
-          <div className="mk-name">{mk.Name}</div>
+          <div style={{display: "flex", flexDirection: "column",alignItems: "start"}}>
+          <p className="mk-info-detail">{mk.Phone}</p>
+          <p className="mk-info-detail">{mk.Mail}</p>
+          </div>
         </div>
-        <p className="mk-info-detail">{mk.Phone}</p>
-        <p className="mk-info-detail">{mk.Mail}</p>
+        <div>
+        <p className="mk-name">{mk.Name}</p>
+        </div>
+
   
         {/* RolesList Section */}
         <div className="roles-list">
