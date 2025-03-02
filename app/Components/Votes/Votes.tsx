@@ -39,7 +39,8 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
   const [searchTerm, setSearchTerm] = useState<string>(""); // New state for search term
 
   const formatDate = (date: Date) => {
-    return date.toISOString().split("T")[0];
+    const formattedDate = date.toLocaleDateString("en-CA"); // "YYYY-MM-DD" format in local time
+    return formattedDate;
   };
 
   const isSameDay = (voteDate: string, date: Date) => {
@@ -68,6 +69,7 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
         const formattedDate = formatDate(date);
         const payload = {
           SearchType: 1,
+          
           FromDate: formattedDate,
           ToDate: formattedDate,
         };

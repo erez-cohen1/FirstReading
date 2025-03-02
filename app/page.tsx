@@ -47,7 +47,7 @@ export default function Home() {
         </a>
         <section className="Date">
           <DateComponent date={date}></DateComponent>
-          <DateSelector root={r} date={date} setDate={setDate} topRef={topRef}></DateSelector>
+          <DateSelector date={date} setDate={setDate} topRef={topRef}></DateSelector>
           <hr />
         </section>
       </header>

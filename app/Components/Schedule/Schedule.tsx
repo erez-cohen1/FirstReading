@@ -6,6 +6,7 @@ import { ScheduleEventType, ScheduleData, CommitteeEvent, PlenumEvent, KnsEvent 
 import CommitteeEventComp from "./CommitteeEvent";
 import PlenumEventComp from "./PlenumEvent";
 import KnsEventComp from "./KnsEvent";
+import LoadingGif from "../../../basic_loading.gif";
 
 export default function Schedule({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; headerNum: number }) {
   const [loading, setLoading] = useState(true);
@@ -18,7 +19,7 @@ export default function Schedule({ date, isShrunk, headerNum }: { date: Date; is
   });
   useEffect(() => {
     setLoading(true);
-    const dateString = date.toISOString();
+    const dateString = date.toLocaleDateString("en-CA");
     fetchScheduleData(dateString, -1, ScheduleEventType.Plenum, setLoading, setEvents);
   }, [date]);
 
