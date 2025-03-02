@@ -37,6 +37,7 @@ export default function Home() {
 
   return (
     <>
+      <div style={{ maxWidth: "470px", margin: "0 auto" }}>
       <div ref={topRef} id="top"></div>
       <header className={`${isShrunk ? "main-header-small" : "main-header-big"} header-0`}>
         <a href="#top" onClick={() => setPushedTitle(true)}>
@@ -64,6 +65,8 @@ export default function Home() {
         {/* <DailyInfo headerNum={date.toDateString() != new Date(Date.now()).toDateString() ? 5 : 4} isShrunk={isShrunk}></DailyInfo> */}
         <Credits></Credits>
       </main>
+      </div>
+
     </>
   );
 }

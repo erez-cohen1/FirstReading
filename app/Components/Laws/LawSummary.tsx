@@ -136,7 +136,10 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
           )}
         </div>
         <section className="law-section">
-          <div className="law-horizontal-line"> </div>
+        <div style={{width: "100%", position: "relative"}}> 
+              <td className="law-horizontal-line"> </td>
+              <br />
+        </div>
           <br />
           {sortedData.map((item, index) => (
             <div key={index} className="law-event-cell-opened ">
@@ -187,9 +190,11 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
                   )}
                 </div>
               </details>
+              <div style={{width: "100%", position: "relative"}}> 
               <br />
               <td className="law-horizontal-line"> </td>
               <br />
+              </div>
             </div>
           ))}
         </section>

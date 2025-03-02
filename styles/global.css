@@ -1016,6 +1016,8 @@ html {
   padding: 0.5rem 0.2rem;
 }
 
+
+
 .Schedule-vertical-line {
   height: 100%;
   width: 0.1rem;
@@ -1044,10 +1046,12 @@ html {
 }
 
 .Schedule-horizontal-line {
-  width: 95%;
+  width: 80%; /* Ensures it stays within the container */
+  max-width: calc(100% - 2rem); /* Optional: prevents slight overflows */
   height: 0.1rem;
   background-color: var(--color-secondary);
   position: absolute;
+  
   /* left: 50%; */
   /* top: 0; */
 }
@@ -1729,16 +1733,16 @@ html {
   width: 100%;
   justify-content: space-between;
   padding: 0.5rem;
+  
 }
 
 .law-horizontal-line {
-  width: 85%;
-  height: 0.1rem;
-  background-color: var(--color-secondary);
+  width: 90%;
   position: absolute;
 
-  /* left: 50%; */
-  /* top: 0; */
+  height: 0.1rem;
+  background-color: var(--color-secondary);
+
 }
 
 .law {
@@ -2380,7 +2384,7 @@ Modal content .modal-content {
 }
 
 .law-event-cell-opened {
-  height: 70%;
+  width: 100%;
   /* max-width: 100%; */
   padding: 0.2rem;
 }
@@ -2391,4 +2395,7 @@ Modal content .modal-content {
   font-size: small;
   background-color: var(--component-bg-color) !important; /* Use the color of your choice */
 }
+
+
+
 

@@ -234,9 +234,11 @@ const Votes = ({ date, isShrunk, headerNum }: { date: Date; isShrunk: boolean; h
                       {displayResults(filterVoters, vote, getMkImage, voterFilters[vote.VoteId])}
                     </div>
                   )}
-                  <br />
-                  <td className="law-horizontal-line"></td>
-                  <br />
+              <div style={{width: "100%", position: "relative"}}> 
+              <br />
+              <td className="law-horizontal-line"> </td>
+              <br />
+              </div>
                 </div>
               ))
             : noResults(date)}
