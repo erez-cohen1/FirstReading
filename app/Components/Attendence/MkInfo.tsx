@@ -35,18 +35,21 @@ const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
           ✖
         </div>
         <div className="mk-info-item">
+          <div  style={{display: "flex", flexDirection: "column",alignItems: "center",justifyContent:"center", width: "4.5rem"}}>
           <img
             src={mk.MkImage}
             alt={mk.Name}
             className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
           />
+          <div className="mk-name">{mk.Name}</div>
+          </div>
+
           <div style={{display: "flex", flexDirection: "column",alignItems: "start"}}>
           <p className="mk-info-detail">{mk.Phone}</p>
           <p className="mk-info-detail">{mk.Mail}</p>
           </div>
         </div>
         <div>
-        <p className="mk-name">{mk.Name}</p>
         </div>
 
   
