@@ -201,7 +201,7 @@ const KnessetAttendance: React.FC = () => {
           </div>
         </div>
       </main>
-      <div className="Component-footer attendance" ref={footerRef}>
+      <div ref={footerRef}>
         <div>לרשימה המלאה</div>
         {!showModal && (
           <i

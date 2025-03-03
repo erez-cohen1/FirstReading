@@ -58,51 +58,55 @@ const Modal: React.FC<ModalProps> = ({ mkData, displayOption, showModal, modalRe
   const sortedFactions = Object.entries(groupedByFaction).sort((a, b) => b[1].length - a[1].length);
 
   return (
-    <div className={`modal-overlay ${showModal ? "modal-active" : ""}`}>
-      <div className="modal-content">
-        <div className="search-bar">
-          {/* Search Icon */}
-          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
-            <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" strokeOpacity="0.3" />
-            <path d="M10.5 11L16.5 17" stroke="#0900BD" strokeOpacity="0.3" />
-          </svg>
-          {/* Input Field */}
-          <input
-            type="text"
-            placeholder="לחיפוש חבר כנסת לפי שם"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-        <div className="modal-option-display">
-          {displayOption === "all"
-            ? "במשכן"
-            : displayOption === "coalition"
-            ? "קואליציה"
-            : displayOption === "opposition"
-            ? "אופוזיציה"
-            : "שרים"}
-        </div>
-        <div className="attendance-grid">
-          {sortedFactions.map(([factionName, members]) => (
-            <div key={factionName} className="faction-group">
-              {/* Faction Header */}
-              <div className="faction-header">{factionName}</div>
-              <div className="grid-content">
-                {members
-                  .slice()
-                  .sort((a, b) => (b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1))
-                  .map((mk) => (
-                    <MemberCard key={mk.MkId} mk={mk} onActivate={handleActivate} />
-                  ))}
+    <>
+      <div className={`modal-overlay ${showModal ? "modal-active" : ""}`}>
+        <div className="modal-content">
+          <div className="search-bar">
+            {/* Search Icon */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+              <circle cx="6.5" cy="6.5" r="6" stroke="#0900BD" strokeOpacity="0.3" />
+              <path d="M10.5 11L16.5 17" stroke="#0900BD" strokeOpacity="0.3" />
+            </svg>
+            {/* Input Field */}
+            <input
+              type="text"
+              placeholder="לחיפוש חבר כנסת לפי שם"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <div className="modal-option-display">
+            {displayOption === "all"
+              ? "במשכן"
+              : displayOption === "coalition"
+              ? "קואליציה"
+              : displayOption === "opposition"
+              ? "אופוזיציה"
+              : "שרים"}
+          </div>
+          <div className="attendance-grid">
+            {sortedFactions.map(([factionName, members]) => (
+              <div key={factionName} className="faction-group">
+                <div className="faction-header">{factionName}</div>
+                <div className="grid-content">
+                  {members
+                    .slice()
+                    .sort((a, b) => (b.IsPresent === a.IsPresent ? 0 : b.IsPresent ? 1 : -1))
+                    .map((mk) => (
+                      <MemberCard key={mk.MkId} mk={mk} onActivate={handleActivate} />
+                    ))}
+                </div>
               </div>
-              <MkInfo mk={selectedMk} onClose={handleClose} />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+  
+      {/* Move MkInfo outside modal-overlay */}
+      {selectedMk && <MkInfo mk={selectedMk} onClose={handleClose} />}
+    </>
   );
+  
 };
 
 export default Modal;
