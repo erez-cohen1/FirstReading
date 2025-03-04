@@ -102,7 +102,6 @@ const Modal: React.FC<ModalProps> = ({ mkData, displayOption, showModal, modalRe
         </div>
       </div>
   
-      {/* Move MkInfo outside modal-overlay */}
       {selectedMk && <MkInfo mk={selectedMk} onClose={handleClose} />}
     </>
   );

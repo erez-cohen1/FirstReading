@@ -9,7 +9,7 @@ interface MkInfoProps {
 const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
   const infoRef = useRef<HTMLDivElement | null>(null);
 
-  // Close when clicking outside the `mk-info` box
+  // Close when clicking outside the `mk-info` box OR when scrolling
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (infoRef.current && !infoRef.current.contains(event.target as Node)) {
@@ -17,12 +17,18 @@ const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
       }
     };
 
+    const handleScroll = () => {
+      onClose(); // Close modal when user scrolls
+    };
+
     if (mk) {
       document.addEventListener("mousedown", handleClickOutside);
+      window.addEventListener("scroll", handleScroll);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [mk, onClose]);
 
@@ -35,24 +41,21 @@ const MkInfo: React.FC<MkInfoProps> = ({ mk, onClose }) => {
           ✖
         </div>
         <div className="mk-info-item">
-          <div  style={{display: "flex", flexDirection: "column",alignItems: "center",justifyContent:"center", width: "4.5rem"}}>
-          <img
-            src={mk.MkImage}
-            alt={mk.Name}
-            className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
-          />
-          <div className="mk-name">{mk.Name}</div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "4.5rem" }}>
+            <img
+              src={mk.MkImage}
+              alt={mk.Name}
+              className={`mk-image ${mk.IsPresent ? "" : "grayscale"}`}
+            />
+            <div className="mk-name">{mk.Name}</div>
           </div>
 
-          <div style={{display: "flex", flexDirection: "column",alignItems: "start"}}>
-          <p className="mk-info-detail">{mk.Phone}</p>
-          <p className="mk-info-detail">{mk.Mail}</p>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "start" }}>
+            <p className="mk-info-detail">{mk.Phone}</p>
+            <p className="mk-info-detail">{mk.Mail}</p>
           </div>
         </div>
-        <div>
-        </div>
 
-  
         {/* RolesList Section */}
         <div className="roles-list">
           {mk.RolesList.length > 0 ? (
