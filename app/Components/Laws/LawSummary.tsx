@@ -16,7 +16,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [openIndexes, setOpenIndexes] = useState<Set<number>>(new Set());
-  const [openSquaresWithText, setOpenSquaresWithText] = useState(false); // State to control the visibility of SquaresWithText
+  const [openSquaresWithText, setOpenSquaresWithText] = useState(false);
 
   const columnNames: Record<string, string> = {
     SummaryLaw: "תקציר החוק",
@@ -45,17 +45,25 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
     fetchData();
   }, [queryId]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (openSquaresWithText) {
+        setOpenSquaresWithText(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [openSquaresWithText]);
+
   if (loading) {
     return (
       <>
-        <header
-          className={`Component-header ${isShrunk ? `header-1-small` : `header-1-big`} ${
-            headerNum == 4 ? "bottom-1-small" : "bottom-2-small"
-          }`}
-          id="Attendance-header"
-        >
+        <header className={`Component-header ${isShrunk ? `header-1-small` : `header-1-big`} ${headerNum === 4 ? "bottom-1-small" : "bottom-2-small"}`} id="Attendance-header">
           <a href="#Attendance-main">
-            <h1>נוכחות חברי כנסת</h1>
+            <h1>הצעות חוק</h1>
           </a>
         </header>
         <main className="Component-main" id="Schedule-main">
@@ -73,11 +81,6 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
   }
 
   const sortedData = [...data].sort((a, b) => new Date(b.LastUpdatedDate).getTime() - new Date(a.LastUpdatedDate).getTime());
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return `${date.toLocaleDateString("he-IL")} ${date.toLocaleTimeString("he-IL", { hour: "2-digit", minute: "2-digit" })}`;
-  };
 
   const getInitiatorImage = (initiatorName: string) => {
     const initiator = Object.values(initiatorsData).find((entry: any) => entry.Name === initiatorName);
@@ -97,16 +100,12 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
   };
 
   const toggleSquaresWithText = () => {
-    setOpenSquaresWithText(!openSquaresWithText); // Toggle visibility of SquaresWithText
+    setOpenSquaresWithText(!openSquaresWithText);
   };
 
   return (
     <>
-      <header
-        className={`Component-header ${isShrunk ? `header-3-small` : `header-3-big`} ${
-          headerNum == 4 ? `bottom-0-small` : `bottom-1-small`
-        }`}
-      >
+      <header className={`Component-header ${isShrunk ? `header-3-small` : `header-3-big`} ${headerNum === 4 ? `bottom-0-small` : `bottom-1-small`}`}>
         <a href="#LawSummary-main" className="header-link">
           <h1>הצעות חוק</h1>
         </a>
@@ -116,17 +115,12 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
           <p>שם ההצעה</p>
           <div style={{ display: "flex" }}>
             <p style={{ marginLeft: "1rem" }}>סטטוס</p>
-            {/* Blue square with "i" */}
-            <div
-              className="law-blue-squere"
-              onClick={toggleSquaresWithText} // Click to toggle SquaresWithText visibility
-              style={{ marginLeft: "6rem" }} // Add margin to the square from the left
-            >
+            <div className="law-blue-squere" onClick={toggleSquaresWithText} style={{ marginLeft: "6rem" }}>
               i
             </div>
           </div>
 
-          {/* Conditionally render the SquaresWithText component with fade-in effect */}
+          {/* Popup that closes on scroll */}
           {openSquaresWithText && (
             <div className="modal-overlay-laws-info" onClick={toggleSquaresWithText}>
               <div className="popup">
@@ -136,13 +130,13 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
           )}
         </div>
         <section className="law-section">
-        <div style={{width: "100%", position: "relative"}}> 
-              <td className="law-horizontal-line"> </td>
-              <br />
-        </div>
+          <div style={{ width: "100%", position: "relative" }}>
+            <td className="law-horizontal-line"></td>
+            <br />
+          </div>
           <br />
           {sortedData.map((item, index) => (
-            <div key={index} className="law-event-cell-opened ">
+            <div key={index} className="law-event-cell-opened">
               <details open={openIndexes.has(index)} onToggle={() => toggleDetails(index)}>
                 <summary className={`law ${openIndexes.has(index) ? "open" : ""}`}>
                   <div className="law-content">
@@ -154,9 +148,7 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
 
                 <div style={{ marginTop: "1rem" }}>
                   {Object.entries(item)
-                    .filter(
-                      ([key, value]) => key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate"
-                    )
+                    .filter(([key]) => key != "SummaryLaw" && key !== "billname" && key !== "statusdesc" && key !== "StatusID" && key !== "StartDate")
                     .map(([key, value]) => (
                       <p key={key} style={{ margin: "0.5rem 0" }}>
                         <p className="law-status">
@@ -168,8 +160,6 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
                             ? value === null
                               ? "אין מידע על יוזמי.ות חוק זה"
                               : null
-                            : value === null
-                            ? "אין תקציר לחוק זה"
                             : (value as string)}
                         </span>
                       </p>
@@ -190,10 +180,10 @@ const LawSummary: React.FC<LawSummaryProps> = ({ queryId, isShrunk, headerNum })
                   )}
                 </div>
               </details>
-              <div style={{width: "100%", position: "relative"}}> 
-              <br />
-              <td className="law-horizontal-line"> </td>
-              <br />
+              <div style={{ width: "100%", position: "relative" }}>
+                <br />
+                <td className="law-horizontal-line"></td>
+                <br />
               </div>
             </div>
           ))}
